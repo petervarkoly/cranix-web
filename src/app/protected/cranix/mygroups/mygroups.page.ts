@@ -233,7 +233,8 @@ export class MyGroupsPage implements OnInit {
       componentProps: {
         objectType: "education/" + this.segment,
         objectIds: objectIds,
-        selection: selected
+        selection: selected,
+        gridApi:   this.gridApi
       },
       animated: true,
       showBackdrop: true
@@ -251,6 +252,7 @@ export class MyGroupsPage implements OnInit {
     this.objectService.selectedObject = group;
     const modal = await this.modalCtrl.create({
       component: GroupMembersPage,
+      cssClass: 'big-modal',
       animated: true,
       swipeToClose: true,
       showBackdrop: true
