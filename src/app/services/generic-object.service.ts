@@ -63,11 +63,13 @@ export class GenericObjectService {
     'ignoreNetbios',
     'msQuotaUsed',
     'name',
+    'netMask',
     'network',
     'ownerName',
     'recDate',
     'role',
     'sourceAvailable',
+    'startIP',
     'startIp',
     'uid',
     'wlanIp'
@@ -526,7 +528,7 @@ export class GenericObjectService {
     if (this.multivalued.indexOf(key) != -1) {
       return 'multivalued';
     }
-    if( typeof obj == 'number' && action == 'edit' && this.readOnlyAttributes.indexOf(key) != -1 ) {
+    if( typeof obj == 'number' && action == 'modify' && this.readOnlyAttributes.indexOf(key) != -1 ) {
       return 'numberRo'
     }
     if( typeof obj == 'number'  ) {
