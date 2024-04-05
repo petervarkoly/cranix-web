@@ -332,6 +332,9 @@ export class AuthenticationService {
             case "/pages/cephalix/institutes": { return this.isAllowed('cephalix.manage') }
             case "/pages/cephalix/institutes/all": { return this.isAllowed('cephalix.manage') }
             case "/pages/cephalix/tickets": { return this.isAllowed('cephalix.ticket') }
+            //TODO IT MUST BE FIXED
+            case "/pages/cranix/categories": { return true }
+            
             case "/pages/cranix/devices": { return this.isAllowed('device.manage') }
             case "/pages/cranix/devices/all": { return this.isAllowed('device.manage') }
             case "/pages/cranix/groups": { return this.isAllowed('group.manage') }

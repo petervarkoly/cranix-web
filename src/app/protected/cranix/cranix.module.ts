@@ -2,6 +2,7 @@ import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
 import { NgModule }            from '@angular/core';
 import { CommonModule }        from '@angular/common';
 //Own Stuff
+import { CategoriesPageModule }   from './categories/categories.module';
 import { DevicesListsModule } from './devices/lists/devices-lists.module';
 import { HwconfsPageModule }   from './hwconfs/hwconfs.module';
 import { GroupsPageModule }    from './groups/groups.module';
@@ -19,6 +20,7 @@ import { UsersListsPageModule } from './users/lists/users-lists.module';
   declarations: [],
   imports: [
     CommonModule,
+    CategoriesPageModule,
     DevicesListsModule,
     HwconfsPageModule,
     GroupsPageModule,

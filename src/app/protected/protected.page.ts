@@ -53,6 +53,11 @@ export class ProtectedPage implements OnInit {
       icon: 'desktop'
     },
     {
+      title: 'Categories',
+      url: '/pages/cranix/categories',
+      icon: 'grid'
+    },
+    {
       title: 'Softwares',
       url: '/pages/cranix/softwares',
       icon: 'software'
@@ -102,6 +107,7 @@ export class ProtectedPage implements OnInit {
       }
     })
     for (let page of this.defAppPages) {
+      console.log("Protected page:" + page.title)
       if (this.authService.isRouteAllowed(page.url)) {
         if( page.title == 'Lessons') {
           if(this.authService.isAllowed('challenge.manage')){
@@ -110,6 +116,7 @@ export class ProtectedPage implements OnInit {
             page.url = "/pages/edu/lessons/tests"
           }
         }
+        console.log("add it")
         this.appPages.push(page);
       }
     }
