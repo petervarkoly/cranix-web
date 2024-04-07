@@ -529,6 +529,6 @@ export class DeviceState {
 	deviceId: number = 0
 	created: string = ""
 	//State can be on off error unknown warning
-	state: number = 0
+	state: number = 1
 	constructor() { this.created = new Date().toISOString()}
 }

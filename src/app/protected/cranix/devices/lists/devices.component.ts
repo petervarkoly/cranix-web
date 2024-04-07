@@ -105,7 +105,13 @@ export class DevicesComponent implements OnInit {
     if (this.showState) {
       interval(3000).pipe(takeWhile(() => this.alive)).subscribe((func => {
         this.deviceService.getStateOfDevices().subscribe(
-          (val) => { this.deviceStates = val })
+          (val) => { 
+            for( let dev of this.rowData ){
+              if(val[dev.id]) {
+                this.deviceStates[dev.id] = val[dev.id];
+              }
+            }
+          })
       }))
     }
   }
@@ -145,7 +151,7 @@ export class DevicesComponent implements OnInit {
               suppressSizeToFit: true,
               cellStyle: { 'padding': '1px', 'line-height': '36px' },
               field: 'status',
-              cellRenderer: DeviceStateComponent
+              cellRendererFramework: DeviceStateComponent
             })
           }
           continue;
