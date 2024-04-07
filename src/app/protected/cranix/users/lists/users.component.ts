@@ -32,7 +32,7 @@ export class UsersComponent implements OnInit {
   rowData = [];
   defaultMustChange: boolean = true;
   selectedUser: User;
-  roles: {}[];
+  roles: Role[];
   constructor(
     public authService: AuthenticationService,
     public objectService: GenericObjectService,
@@ -258,4 +258,9 @@ export class UsersComponent implements OnInit {
       this.authService.log("most lett vegrehajtva.")
     })
   }
+}
+
+export interface Role {
+	role: string,
+	desc: string
 }
