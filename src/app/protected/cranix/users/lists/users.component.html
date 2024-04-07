@@ -56,7 +56,7 @@
         </ion-item>
         <ion-item>
           <ion-label position="stacked">{{'uid'|translate}}</ion-label>
-          <ion-input [(ngModel)]="selectedUser.uid" name="uid" [disabled]="selectedUser.id"></ion-input>
+          <ion-input [(ngModel)]="selectedUser.uid" name="uid" [disabled]="selectedUser.id != null"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">{{'uuid'|translate}}</ion-label>
