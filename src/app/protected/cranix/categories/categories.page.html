@@ -1,10 +1,11 @@
 <cranix-toolbar title="{{'Manage Categories' | translate}}"></cranix-toolbar>
-<ion-toolbar *ngIf="!authService.isMD()" class="page-toolbar">
+<ion-toolbar *ngIf="!authService.isMD() && !selectedCategory" class="page-toolbar">
   <ion-item lines="none">
     <ion-label *ngIf="gridApi">
       #{{gridApi.getDisplayedRowCount()}}
     </ion-label>
-    <ion-input placeholder="{{'search' | translate }}" (input)="onQuickFilterChanged('categorieFilter')" id="categorieFilter">
+    <ion-input placeholder="{{'search' | translate }}" (input)="onQuickFilterChanged('categorieFilter')"
+      id="categorieFilter">
     </ion-input>
   </ion-item>
   <ion-buttons slot="end">
@@ -22,7 +23,7 @@
     </ion-button>
   </ion-buttons>
 </ion-toolbar>
-<ion-content *ngIf="!authService.isMD()" id="carded">
+<ion-content *ngIf="!authService.isMD() && !selectedCategory" id="carded">
   <ag-grid-angular style="width: 100%; height: 100%;" rowSelection="multiple"
     class="{{authService.settings.agGridThema}}" [rowHeight]="authService.settings.rowHeight"
     [rowMultiSelectWithClick]="authService.settings.rowMultiSelectWithClick" [context]="context"
@@ -30,6 +31,131 @@
     (selectionChanged)="selectionChanged()" id="categoriesPageTable">
   </ag-grid-angular>
 </ion-content>
-<ion-content *ngIf="authService.isMD()">
+<ion-content *ngIf="authService.isMD() && !selectedCategory">
   <cranix-md-list objectType="categorie" [context]="context"></cranix-md-list>
+</ion-content>
+<ion-content *ngIf="selectedCategory">
+  <ion-card>
+    <ion-card-header>
+      <ion-toolbar>
+        <ion-card-title>{{cardTitle|translate}} </ion-card-title>
+        <ion-buttons slot="end">
+          <ion-button fill="clear" size="small" (click)="addEditCategory()" [disabled]="disable">
+            <ion-icon slot="icon-only" color="success" name="checkmark-sharp"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" size="small" (click)="selectedCategory=false"  [disabled]="disable">
+            <ion-icon slot="icon-only" color="danger" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="stacked"> {{'name'|translate}} </ion-label>
+              <ion-input [(ngModel)]="selectedCategory.name"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label position="stacked"> {{'description'|translate}} </ion-label>
+              <ion-input [(ngModel)]="selectedCategory.description"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label position="stacked"> {{'categoryType'|translate}} </ion-label>
+              <ion-select [(ngModel)]="selectedCategory.categotyType" name="categotyType">
+                <ion-select-option *ngFor="let type of categoryTypes" [value]="type">{{type}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <!-- GROUPS -->
+          <ion-label position="stacked">{{'Groups of the categorie' | translate}}</ion-label>
+          <ionic-selectable #groupSelectable [isMultiple]="true" [(ngModel)]="selectedCategory.groupIds"
+            [ngModelOptions]="{standalone: true}" [items]="objectService.allObjects['group']" itemValueField="id"
+            itemTextField="name" [canSearch]="true">
+            <ng-template ionicSelectableHeaderTemplate>
+              <ion-toolbar>
+                <ion-title>
+                  {{ "Select the groups of the categorie" | translate }}
+                </ion-title>
+                <ion-buttons slot="end">
+                  <ion-button ion-button (click)="groupSelectable.close()">
+                    <ion-icon color="danger" name="close"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ng-template>
+          </ionic-selectable>
+        </ion-item>
+        <!-- USERS -->
+        <ion-item>
+          <ion-label position="stacked">{{'Users of the categorie' | translate}}</ion-label>
+          <ionic-selectable #userSelectable [isMultiple]="true" [(ngModel)]="selectedCategory.userIds"
+            [ngModelOptions]="{standalone: true}" [items]="objectService.allObjects['user']" itemValueField="id"
+            itemTextField="fullName" [canSearch]="true">
+            <ng-template ionicSelectableHeaderTemplate>
+              <ion-toolbar>
+                <ion-title>
+                  {{ "Select the users of the categorie" | translate }}
+                </ion-title>
+                <ion-buttons slot="end">
+                  <ion-button ion-button (click)="userSelectable.close()">
+                    <ion-icon color="danger" name="close"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ng-template>
+          </ionic-selectable>
+        </ion-item>
+        <!-- ROOMS -->
+        <ion-item>
+          <ion-label position="stacked">{{'Rooms of the categorie' | translate}}</ion-label>
+          <ionic-selectable #roomSelectable [isMultiple]="true" [(ngModel)]="selectedCategory.roomIds"
+            [ngModelOptions]="{standalone: true}" [items]="objectService.allObjects['room']" itemValueField="id"
+            itemTextField="name" [canSearch]="true">
+            <ng-template ionicSelectableHeaderTemplate>
+              <ion-toolbar>
+                <ion-title>
+                  {{ "Select the rooms of the categorie" | translate }}
+                </ion-title>
+                <ion-buttons slot="end">
+                  <ion-button ion-button (click)="roomSelectable.close()">
+                    <ion-icon color="danger" name="close"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ng-template>
+          </ionic-selectable>
+        </ion-item>
+        <!-- Devices -->
+        <ion-item>
+          <ion-label position="stacked">{{'Devices of the categorie' | translate}}</ion-label>
+          <ionic-selectable #deviceSelectable [isMultiple]="true" [(ngModel)]="selectedCategory.deviceIds"
+            [ngModelOptions]="{standalone: true}" [items]="objectService.allObjects['device']" itemValueField="id"
+            itemTextField="name" [canSearch]="true">
+            <ng-template ionicSelectableHeaderTemplate>
+              <ion-toolbar>
+                <ion-title>
+                  {{ "Select the devices of the categorie" | translate }}
+                </ion-title>
+                <ion-buttons slot="end">
+                  <ion-button ion-button (click)="deviceSelectable.close()">
+                    <ion-icon color="danger" name="close"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ng-template>
+          </ionic-selectable>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

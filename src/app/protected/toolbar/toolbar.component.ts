@@ -55,7 +55,7 @@ export class ToolbarComponent implements OnInit {
   ngAfterViewInit() {
     if (this.authService.isAllowed("cephalix.ticket")) {
       this.countTickets();
-      interval(30000).pipe(takeWhile(() => this.alive)).subscribe((func => {
+      interval(3000).pipe(takeWhile(() => this.alive)).subscribe((func => {
         this.countTickets();
       }))
     }

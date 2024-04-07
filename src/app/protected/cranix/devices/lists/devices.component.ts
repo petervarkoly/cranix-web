@@ -2,19 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, PopoverController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
+import { interval } from 'rxjs';
+import { takeWhile } from 'rxjs/operators';
 
 //own modules
 import { ActionsComponent } from 'src/app/shared/actions/actions.component';
 import { DeviceActionBTNRenderer } from 'src/app/pipes/ag-device-renderer';
+import { DeviceStateComponent } from 'src/app/pipes/ag-device-state'
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
-import { Device } from 'src/app/shared/models/data-model'
+import { Device, DeviceState } from 'src/app/shared/models/data-model'
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { DevicePrintersComponent } from './../details/printers/device-printers.component';
 import { AddDeviceComponent } from './../add-device/add-device.component';
 import { ManageDhcpComponent } from 'src/app/shared/actions/manage-dhcp/manage-dhcp.component';
+import { DevicesService } from 'src/app/services/devices.service';
 
 @Component({
   selector: 'cranix-devices',
@@ -33,12 +37,16 @@ export class DevicesComponent implements OnInit {
   context;
   title = 'app';
   rowData = [];
-  selection:   Device[] = [];
+  selection: Device[] = [];
   selectedIds: number[] = [];
+  deviceStates: {} = {};
+  alive: boolean = true
+  showState: boolean = false
 
   constructor(
     public authService: AuthenticationService,
     public alertController: AlertController,
+    public deviceService: DevicesService,
     public languageS: LanguageService,
     public modalCtrl: ModalController,
     public objectService: GenericObjectService,
@@ -49,6 +57,7 @@ export class DevicesComponent implements OnInit {
 
     this.context = { componentParent: this };
     this.objectKeys = Object.getOwnPropertyNames(new Device());
+    this.showState = this.authService.isAllowed("device.state")
     this.createColumnDefs();
     this.defaultColDef = {
       resizable: true,
@@ -77,15 +86,28 @@ export class DevicesComponent implements OnInit {
       this.rowData = this.objectService.allObjects['device'].filter(obj => obj.hwconfId != 2);
       delete this.selectedRoom;
     }
+    if (this.showState) {
+      for( let dev of this.rowData ){
+        this.deviceStates[dev.id] = new DeviceState();
+      }
+    }
     delete this.objectService.selectedObject;
   }
+
   ngOnDestroy() {
+    this.alive = false;
     console.log("ngOnDestroy")
     delete this.objectService.selectedRoom;
     delete this.objectService.selectedObject;
   }
   public ngAfterViewInit() {
     while (document.getElementsByTagName('mat-tooltip-component').length > 0) { document.getElementsByTagName('mat-tooltip-component')[0].remove(); }
+    if (this.showState) {
+      interval(3000).pipe(takeWhile(() => this.alive)).subscribe((func => {
+        this.deviceService.getStateOfDevices().subscribe(
+          (val) => { this.deviceStates = val })
+      }))
+    }
   }
 
   createColumnDefs() {
@@ -116,6 +138,16 @@ export class DevicesComponent implements OnInit {
             pinned: 'left',
             cellRendererFramework: DeviceActionBTNRenderer
           })
+          if( this.showState) {
+            columnDefs.push({
+              headerName: this.languageS.trans("status"),
+              width: 100,
+              suppressSizeToFit: true,
+              cellStyle: { 'padding': '1px', 'line-height': '36px' },
+              field: 'status',
+              cellRenderer: DeviceStateComponent
+            })
+          }
           continue;
         }
         case 'hwconfId': {
@@ -164,20 +196,20 @@ export class DevicesComponent implements OnInit {
     this.objectService.deleteObjectDialog(device, 'device', '')
   }
 
-  selectionChanged(){
+  selectionChanged() {
     this.objectService.selectedIds = []
     for (let i = 0; i < this.gridApi.getSelectedRows().length; i++) {
       this.objectService.selectedIds.push(this.gridApi.getSelectedRows()[i].id);
     }
     this.objectService.selection = this.gridApi.getSelectedRows()
   }
-  checkChange(ev, dev: Device){
-    if( ev.detail.checked ) {
+  checkChange(ev, dev: Device) {
+    if (ev.detail.checked) {
       this.objectService.selectedIds.push(dev.id)
       this.objectService.selection.push(dev)
     } else {
       this.objectService.selectedIds = this.objectService.selectedIds.filter(id => id != dev.id)
-      this.objectService.selection   = this.objectService.selection.filter(obj => obj.id != dev.id)
+      this.objectService.selection = this.objectService.selection.filter(obj => obj.id != dev.id)
     }
   }
 

@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs/internal/Observable';
-import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Device, InstallStateDev, Printer } from 'src/app/shared/models/data-model';
 import { UtilsService } from './utils.service';
@@ -17,6 +16,11 @@ export class DevicesService {
 		private http: HttpClient,
 		private authService: AuthenticationService) {
 		this.hostname = this.utils.hostName();
+	}
+
+	getStateOfDevices() {
+		this.url = this.hostname + `/devices/states`;
+		return this.http.get<any>(this.url, { headers: this.authService.headers });
 	}
 
 	importDevices(fd: FormData) {

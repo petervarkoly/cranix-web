@@ -65,6 +65,25 @@
                 <ion-label position="stacked">{{'subject' | translate}}</ion-label>
                 <ion-input [(ngModel)]="support.subject" name="subject" required></ion-input>
             </ion-item>
+            <ion-item>
+                <ion-label position="stacked">{{'Device concerned by the issue' | translate}}</ion-label>
+                <ionic-selectable #deviceSelectable [(ngModel)]="support.cranixDeviceId"
+                  [ngModelOptions]="{standalone: true}" [items]="objectService.allObjects['device']" itemValueField="id"
+                  itemTextField="name" [canSearch]="true">
+                  <ng-template ionicSelectableHeaderTemplate>
+                    <ion-toolbar>
+                      <ion-title>
+                        {{ "Select the devices of the categorie" | translate }}
+                      </ion-title>
+                      <ion-buttons slot="end">
+                        <ion-button ion-button (click)="deviceSelectable.close()">
+                          <ion-icon color="danger" name="close"></ion-icon>
+                        </ion-button>
+                      </ion-buttons>
+                    </ion-toolbar>
+                  </ng-template>
+                </ionic-selectable>
+              </ion-item>
             <quill-editor [styles]="{height: '250px'}" [(ngModel)]="support.description" name="description"
                 placeholder="{{'Insert your issue ...' | translate}}"></quill-editor>
         </ion-list>

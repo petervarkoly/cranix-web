@@ -29,7 +29,7 @@ export class AddDeviceComponent implements OnInit, OnDestroy {
   roomsToSelect: Room[] = [];
   addDeviceForm: FormGroup;
   disabled: boolean = false;
-  macOk = false;
+  macOk = true;
 
   @Input() public adHocRoom: boolean;
   constructor(
@@ -45,7 +45,7 @@ export class AddDeviceComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     //Preset mac if any.
-    if( this.authService.session.mac ) {
+    if (this.authService.session.mac) {
       this.device.mac = this.authService.session.mac;
     }
     console.log('room is, :::', this.objectService.selectedRoom);
@@ -62,7 +62,7 @@ export class AddDeviceComponent implements OnInit, OnDestroy {
         this.roomService.getRoomsToRegister().subscribe(
           (val) => {
             this.roomsToSelect = val;
-            console.log("ngOnInit",this.roomsToSelect)
+            console.log("ngOnInit", this.roomsToSelect)
           }
         )
       }
@@ -93,20 +93,10 @@ export class AddDeviceComponent implements OnInit, OnDestroy {
     } else {
       let newDevice = [];
       let macs = this.device.mac.split('\n');
-      let startIndex = this.ipAdresses.indexOf(this.device.ip);
-      if (macs.length == 1) {
-        newDevice[0] = {
-          name: this.device.name,
-          ip: this.ipAdresses[startIndex].split(' ')[0],
-          mac: macs[0],
-          hwconfId: this.device.hwconfId,
-          roomId: this.device.roomId,
-          serial: this.device.serial,
-          inventary: this.device.inventary,
-          row: this.device.row,
-          place: this.device.place
-        }
+      if (macs.length < 2) {
+        newDevice[0] = this.device
       } else {
+        let startIndex = this.ipAdresses.indexOf(this.device.ip);
         for (let x = 0; x < macs.length; x++) {
           newDevice[x] = {
             name: this.ipAdresses[startIndex + x].split(' ')[1],
@@ -130,6 +120,7 @@ export class AddDeviceComponent implements OnInit, OnDestroy {
         },
           (err) => {
             this.objectService.errorMessage(err)
+            this.disabled = false;
           },
           () => {
             this.disabled = false;
@@ -139,7 +130,7 @@ export class AddDeviceComponent implements OnInit, OnDestroy {
   }
 
   ipChanged(ev) {
-    this.device.name=ev.detail.value.split(" ")[1];
+    this.device.name = ev.detail.value.split(" ")[1];
   }
 
   roomChanged(room) {
@@ -157,11 +148,15 @@ export class AddDeviceComponent implements OnInit, OnDestroy {
   }
 
   checkMac(ev) {
+    if (!ev.detail.value) {
+      this.macOk = true
+      return
+    }
     let ok = true;
-    let pattern=/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})/;
+    let pattern = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})/;
     let line: string;
-    for(line of ev.detail.value.split('\n') ){
-      if(!line.match(pattern) ) {
+    for (line of ev.detail.value.split('\n')) {
+      if (!line.match(pattern)) {
         ok = false;
         break;
       }

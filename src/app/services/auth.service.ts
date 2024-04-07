@@ -349,8 +349,8 @@ export class AuthenticationService {
             case "/pages/cranix/softwares": { return this.isAllowed('software.manage') }
             case "/pages/cranix/security": { return this.isOneOfAllowed(['system.firewall', 'system.proxy']) }
             //TODO education.challenges
-            case "/pages/edu/lessons": { return this.isAllowed('permitall') }
-            case "/pages/edu/lessons/tests": { return this.isAllowed('permitall') }
+            case "/pages/edu/lessons": { return this.isAllowed('education') }
+            case "/pages/edu/lessons/tests": { return this.isAllowed('education') }
             case "/pages/edu/lessons/challenges": { return this.isAllowed('challenge.manage') }
             case "/pages/edu/lessons/roomcontrol": { return this.isAllowed('education.rooms') }
             case "/pages/cranix/profile": { return this.isOneOfAllowed(['permitall','2fa.use']) }

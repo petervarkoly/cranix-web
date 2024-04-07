@@ -6,7 +6,6 @@ import { Storage } from '@ionic/storage-angular';
 //own modules
 import { ActionsComponent } from 'src/app/shared/actions/actions.component';
 import { UserActionBTNRenderer } from 'src/app/pipes/ag-user-renderer';
-import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
@@ -20,8 +19,11 @@ import { SystemService } from 'src/app/services/system.service';
   templateUrl: './users.component.html'
 })
 export class UsersComponent implements OnInit {
+  addEditUserOpen: boolean = false;
+  addEditTitle: string = "Add user";
+  disable: boolean = false;
   objectKeys: string[] = [];
-  displayedColumns: string[] = ['uid', 'uuid', 'givenName', 'surName', 'role', 'classes', 'actions'];
+  displayedColumns: string[] = ['uid', 'uuid', 'givenName', 'surName', 'role', 'actions'];
   columnDefs = [];
   defaultColDef = {};
   gridApi: GridApi;
@@ -29,6 +31,8 @@ export class UsersComponent implements OnInit {
   context;
   rowData = [];
   defaultMustChange: boolean = true;
+  selectedUser: User;
+  roles: {}[];
   constructor(
     public authService: AuthenticationService,
     public objectService: GenericObjectService,
@@ -49,12 +53,14 @@ export class UsersComponent implements OnInit {
     }
     this.systemService.getSystemConfigValue("DEFAULT_MUST_CHANGE").subscribe(
       (val) => {
-        if( val == "no"){
-        this.defaultMustChange = false
-      }}
+        if (val == "no") {
+          this.defaultMustChange = false
+        }
+      }
     )
   }
   async ngOnInit() {
+    this.roles = [];
     this.storage.get('UsersPage.displayedColumns').then((val) => {
       let myArray = JSON.parse(val);
       if (myArray) {
@@ -64,6 +70,11 @@ export class UsersComponent implements OnInit {
     });
     while (!this.objectService.allObjects['user']) {
       await new Promise(f => setTimeout(f, 1000));
+    }
+    for (let g of this.objectService.allObjects['group']) {
+      if (g.groupType == 'primary') {
+        this.roles.push({ role: g.name.toLowerCase(), desc: g.description })
+      }
     }
     this.rowData = this.objectService.allObjects['user']
   }
@@ -181,35 +192,47 @@ export class UsersComponent implements OnInit {
   }
 
   async redirectToEdit(user: User) {
-    let action = "modify";
     if (!user) {
-      user = new User();
-      user.mustChange = this.defaultMustChange;
-      delete user.msQuotaUsed;
-      delete user.fsQuotaUsed;
-      delete user.mailAliases;
-      delete user.classes;
-      action = 'add';
+      this.selectedUser = new User();
+      this.selectedUser.mustChange = this.defaultMustChange;
+      delete this.selectedUser.msQuotaUsed;
+      delete this.selectedUser.fsQuotaUsed;
+      delete this.selectedUser.mailAliases;
+      delete this.selectedUser.classes;
+      this.addEditTitle = "Add user";
+    } else {
+      this.selectedUser = user;
+      this.addEditTitle = "Edit user";
     }
-    const modal = await this.modalCtrl.create({
-      component: ObjectsEditComponent,
-      cssClass: 'medium-modal',
-      componentProps: {
-        objectType: "user",
-        objectAction: action,
-        object: user
-      },
-      animated: true,
-      showBackdrop: true
-    });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
-    });
-    (await modal).present();
+    this.addEditUserOpen = true;
   }
 
+  addEditUser(){
+    this.disable = true;
+    this.objectService.requestSent();
+    this.sendRequest().subscribe({
+      next: (val) => {
+        this.objectService.responseMessage(val)
+        if(val.code == "OK") {
+          this.addEditUserOpen = false
+          this.selectedUser = null
+        }
+      },
+      error: (err) => {
+        this.objectService.errorMessage(err)
+      },
+      complete:() => {
+        this.disable = false;
+      }
+    })
+  }
+  sendRequest(){
+    if(this.selectedUser.id){
+     return this.objectService.modifyObject(this.selectedUser, "user")
+    }else{
+      return this.objectService.addObject(this.selectedUser, "user")
+    }
+  }
   /**
   * Function to Select the columns to show
   * @param ev

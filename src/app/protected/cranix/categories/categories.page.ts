@@ -25,6 +25,13 @@ export class CategoriesPage implements OnInit {
   gridApi: GridApi;
   columnApi: ColumnApi;
   context;
+  selectedCategory: Category;
+  cardTitle: string = "Add category";
+  disable: boolean = false;
+  //TODO READ FROM API
+  categoryTypes: string[] = [
+    'Tunnel', 'freie Strecke', 'Meisterei', 'informations', 'installations'
+  ]
 
   constructor(
     public authService: AuthenticationService,
@@ -108,7 +115,7 @@ export class CategoriesPage implements OnInit {
   }
 
   public redirectToDelete = (category: Category) => {
-    this.objectService.deleteObjectDialog(category, 'group', '')
+    this.objectService.deleteObjectDialog(category, 'categorie', '')
   }
   /**
   * Open the actions menu with the selected object ids.
@@ -128,7 +135,7 @@ export class CategoriesPage implements OnInit {
       component: ActionsComponent,
       event: ev,
       componentProps: {
-        objectType: "category",
+        objectType: "categorie",
         objectIds: this.objectService.selectedIds,
         selection: this.objectService.selection,
         gridApi: this.gridApi
@@ -139,4 +146,41 @@ export class CategoriesPage implements OnInit {
     (await popover).present();
   }
 
+  redirectToEdit(category: Category) {
+    delete this.gridApi;
+    if( category ) {
+      this.selectedCategory = category
+      this.cardTitle = "Edit category";
+    } else {
+      this.selectedCategory = new Category();
+      this.cardTitle = "Add category";
+    }
+    console.log(this.selectedCategory)
+  }
+
+  addEditCategory(){
+    this.disable = true;
+    this.objectService.requestSent();
+    this.sendRequest().subscribe({
+      next: (val) => {
+        this.objectService.responseMessage(val)
+        if(val.code == "OK") {
+          this.selectedCategory = null
+        }
+      },
+      error: (err) => {
+        this.objectService.errorMessage(err)
+      },
+      complete:() => {
+        this.disable = false;
+      }
+    })
+  }
+  sendRequest(){
+    if(this.selectedCategory.id){
+     return this.objectService.modifyObject(this.selectedCategory, "categorie")
+    }else{
+      return this.objectService.addObject(this.selectedCategory, "categorie")
+    }
+  }
 }

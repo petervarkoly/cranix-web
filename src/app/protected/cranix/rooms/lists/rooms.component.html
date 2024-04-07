@@ -33,3 +33,80 @@
 <ion-content *ngIf="authService.isMD()">
   <cranix-md-list objectType="room" [context]="context"></cranix-md-list>
 </ion-content>
+<ion-modal #addEditRoomModal [isOpen]="addEditRoomOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ addEditTitle | translate }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="addEditRoomOpen = false" [disabled]="disable">
+            <ion-icon slot="icon-only" name="close" color="danger"></ion-icon>
+          </ion-button>
+          <ion-button (click)="addEditRoom()" [disabled]="disable">
+            <ion-icon slot="icon-only" name="checkmark" color="success"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item *ngIf="selectedRoom.id">
+          <ion-label position="stacked">{{'id'|translate}}</ion-label>
+          <ion-input [(ngModel)]="selectedRoom.id" name="id" disabled></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">{{'name'|translate}}</ion-label>
+          <ion-input [(ngModel)]="selectedRoom.name" name="name" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">{{'description'|translate}}</ion-label>
+          <ion-input [(ngModel)]="selectedRoom.description" name="description"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked"> {{'roomType'|translate}} </ion-label>
+          <ion-select [(ngModel)]="selectedRoom.roomType" name="roomType">
+            <ion-select-option *ngFor="let roomType of objectService.selects['roomType']" [value]="roomType">{{ roomType |
+              translate}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div  *ngIf="selectedRoom.roomType != 'route' && selectedRoom.roomType != 'virtualRoom'">
+          <ion-item>
+            <ion-label position="stacked">{{'devCount'|translate}}</ion-label>
+            <ion-select type="text" [(ngModel)]="selectedRoom.devCount" name="devCount" [compareWith]="objectService.compareFn" [disabled]="selectedRoom.id">
+              <ion-select-option *ngFor="let option of  objectService.selects['devCount']" value="{{option}}">
+                {{option | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">{{'hwconfId'|translate}}</ion-label>
+            <ion-select type="text" [(ngModel)]="selectedRoom.hwconfId" name="hwconfId" [compareWith]="objectService.compareFn" [disabled]="selectedRoom.id">
+              <ion-select-option *ngFor="let hw of objectService.allObjects['hwconf']" value="{{hw.id}}">{{hw.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">{{'roomControl'|translate}}</ion-label>
+            <ion-select type="text" [(ngModel)]="selectedRoom.roomControl" name="roomControl" [compareWith]="objectService.compareFn" [disabled]="selectedRoom.id">
+              <ion-select-option *ngFor="let option of  objectService.selects['roomControl']" value="{{option}}">
+                {{option | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">{{'network'|translate}}</ion-label>
+            <ion-select type="text" [(ngModel)]="selectedRoom.network" name="network" [compareWith]="objectService.compareFn" [disabled]="selectedRoom.id">
+              <ion-select-option *ngFor="let option of  objectService.selects['network']" value="{{option}}">
+                {{option | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">{{'places'|translate}}</ion-label>
+            <ion-input type="number" [(ngModel)]="selectedRoom.places" name="places"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">{{'rows'|translate}}</ion-label>
+            <ion-input type="number" [(ngModel)]="selectedRoom.rows" name="rows"></ion-input>
+          </ion-item>
+        </div>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>

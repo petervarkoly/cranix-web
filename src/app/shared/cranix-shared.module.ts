@@ -23,6 +23,7 @@ import { UserActionBTNRenderer } from 'src/app/pipes/ag-user-renderer';
 import { DateCellRenderer } from 'src/app/pipes/ag-date-renderer';
 import { DateTimeCellRenderer } from 'src/app/pipes/ag-datetime-renderer';
 import { RoomActionBTNRenderer } from 'src/app/pipes/ag-room-renderer';
+import { DeviceStateComponent } from '../pipes/ag-device-state'; 
 import { DeviceActionBTNRenderer } from 'src/app/pipes/ag-device-renderer';
 import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
 import { SoftwareEditBTNRenderer } from 'src/app/pipes/ag-software-edit-renderer';
@@ -73,8 +74,9 @@ import { simpleToolbarOptions } from 'src/app/shared/models/constants'
     ObjectsEditComponent,
     DateCellRenderer,
     DateTimeCellRenderer,
-    DeviceIdCellRenderer,
     DeviceActionBTNRenderer,
+    DeviceIdCellRenderer,
+    DeviceStateComponent,
     DownloadSoftwaresComponent,
     EditBTNRenderer,
     FilesCollectComponent,

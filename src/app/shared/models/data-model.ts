@@ -523,3 +523,12 @@ export class CrxChallengeAnswer {
 	correct: boolean = false
 	constructor() { }
 }
+
+export class DeviceState {
+	id: number = 0
+	deviceId: number = 0
+	created: string = ""
+	//State can be on off error unknown warning
+	state: number = 0
+	constructor() { this.created = new Date().toISOString()}
+}

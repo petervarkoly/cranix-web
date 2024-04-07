@@ -31,6 +31,10 @@ export class RoomsComponent implements OnInit {
   defaultColDef = {};
   context;
 
+  addEditRoomOpen: boolean = false;
+  addEditTitle: string = "";
+  disable: boolean = false;
+  selectedRoom: Room = null;
   constructor(
     public authService: AuthenticationService,
     public objectService: GenericObjectService,
@@ -92,6 +96,12 @@ export class RoomsComponent implements OnInit {
           });
           continue;
         }
+        case 'roomType': {
+          col['valueGetter'] = function (params) {
+            return params.context.componentParent.languageS.trans(params.data.roomType);
+          }
+          break;
+        }
         case 'hwconfId': {
           col['valueGetter'] = function (params) {
             return params.context['componentParent'].objectService.idToName('hwconf', params.data.hwconfId);
@@ -151,42 +161,49 @@ export class RoomsComponent implements OnInit {
     (await popover).present();
   }
 
-  async redirectToEdit(room: Room) {
-    let action = "";
+  redirectToEdit(room: Room) {
     if (room) {
       delete room.accessInRooms;
-      this.objectService.selectedObject = room;
-      action = 'modify';
+      this.selectedRoom = room;
+      this.addEditTitle = "Edit room";
     } else {
-      action = "add";
       room = new Room;
       room.network = this.objectService.selects['network'][0];
-      delete room.accessInRooms;
-      delete room.netMask;
-      delete room.startIP;
-      room.devCount = 32;
       //TODO set defaults configurable
-      room.roomControl = 'allTeachers'
-      room.roomType = 'ComputerRoom'
-      room.hwconfId = 4
+      room.roomType = 'route'
+      this.addEditTitle = "Add room";
+      this.selectedRoom = room;
     }
-    const modal = await this.modalCtrl.create({
-      component: ObjectsEditComponent,
-      cssClass: 'medium-modal',
-      componentProps: {
-        objectType: "room",
-        objectAction: action,
-        object: room
+    this.addEditRoomOpen = true;
+  }
+
+  addEditRoom(){
+    this.disable = true;
+    this.objectService.requestSent();
+    this.sendRequest().subscribe({
+      next: (val) => {
+        this.objectService.responseMessage(val)
+        if(val.code == "OK") {
+          this.addEditRoomOpen = false
+          this.selectedRoom = null
+        }
+        this.disable = false;
       },
-      animated: true,
-      showBackdrop: true
-    });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
+      error: (err) => {
+        this.objectService.errorMessage(err)
+        this.disable = false;
+      },
+      complete:() => {
+        this.disable = false;
       }
-    });
-    (await modal).present();
+    })
+  }
+  sendRequest(){
+    if(this.selectedRoom.id){
+     return this.objectService.modifyObject(this.selectedRoom, "room")
+    }else{
+      return this.objectService.addObject(this.selectedRoom, "room")
+    }
   }
 
   async setDhcp(room: Room) {
