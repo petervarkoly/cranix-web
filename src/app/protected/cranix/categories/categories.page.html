@@ -17,10 +17,10 @@
       matTooltip="{{'Apply actions on the selected objects' | translate }}">
       <ion-icon slot="icon-only" name="ellipsis-vertical-sharp"></ion-icon>
     </ion-button>
-    <ion-button size="small" fill="solid" (click)="openCollums($event)"
+    <!-- ion-button size="small" fill="solid" (click)="openCollums($event)"
       matTooltip="{{'Select the columns to show' | translate }}">
       <ion-icon slot="icon-only" name="apps"></ion-icon>
-    </ion-button>
+    </ion-button -->
   </ion-buttons>
 </ion-toolbar>
 <ion-content *ngIf="!authService.isMD() && !selectedCategory" id="carded">
@@ -43,7 +43,7 @@
           <ion-button fill="clear" size="small" (click)="addEditCategory()" [disabled]="disable">
             <ion-icon slot="icon-only" color="success" name="checkmark-sharp"></ion-icon>
           </ion-button>
-          <ion-button fill="clear" size="small" (click)="selectedCategory=false"  [disabled]="disable">
+          <ion-button fill="clear" size="small" (click)="selectedCategory=null"  [disabled]="disable">
             <ion-icon slot="icon-only" color="danger" name="close"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -65,7 +65,7 @@
           <ion-col>
             <ion-item>
               <ion-label position="stacked"> {{'categoryType'|translate}} </ion-label>
-              <ion-select [(ngModel)]="selectedCategory.categotyType" name="categotyType">
+              <ion-select [(ngModel)]="selectedCategory.categoryType" name="categoryType">
                 <ion-select-option *ngFor="let type of categoryTypes" [value]="type">{{type}}</ion-select-option>
               </ion-select>
             </ion-item>

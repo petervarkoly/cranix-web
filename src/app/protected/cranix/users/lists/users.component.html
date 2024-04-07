@@ -80,8 +80,8 @@
         </ion-item>
         <ion-item>
           <ion-label position="stacked"> {{'role'|translate}} </ion-label>
-          <ion-select [(ngModel)]="selectedUser.role" name="role" [disabled]="selectedUser.id">
-            <ion-select-option *ngFor="let role of roles" [value]="role.role">{{role.desc ? role.desc : role.role}}</ion-select-option>
+          <ion-select [(ngModel)]="selectedUser.role" name="role" [disabled]="selectedUser.id != null">
+            <ion-select-option *ngFor="let role of roles" [value]="role.role">{{(role.desc != null && role.desc != "" ? role.desc : role.role}}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item *ngIf="selectedUser.role == 'students'">

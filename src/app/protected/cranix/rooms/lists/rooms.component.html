@@ -72,27 +72,27 @@
         <div  *ngIf="selectedRoom.roomType != 'route' && selectedRoom.roomType != 'virtualRoom'">
           <ion-item>
             <ion-label position="stacked">{{'devCount'|translate}}</ion-label>
-            <ion-select type="text" [(ngModel)]="selectedRoom.devCount" name="devCount" [compareWith]="objectService.compareFn" [disabled]="selectedRoom.id">
+            <ion-select type="text" [(ngModel)]="selectedRoom.devCount" name="devCount" [compareWith]="objectService.compareFn" [disabled]="selectedRoom.id != null">
               <ion-select-option *ngFor="let option of  objectService.selects['devCount']" value="{{option}}">
                 {{option | translate}}</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">{{'hwconfId'|translate}}</ion-label>
-            <ion-select type="text" [(ngModel)]="selectedRoom.hwconfId" name="hwconfId" [compareWith]="objectService.compareFn" [disabled]="selectedRoom.id">
+            <ion-select type="text" [(ngModel)]="selectedRoom.hwconfId" name="hwconfId" [compareWith]="objectService.compareFn" [disabled]="selectedRoom.id != null">
               <ion-select-option *ngFor="let hw of objectService.allObjects['hwconf']" value="{{hw.id}}">{{hw.name}}</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">{{'roomControl'|translate}}</ion-label>
-            <ion-select type="text" [(ngModel)]="selectedRoom.roomControl" name="roomControl" [compareWith]="objectService.compareFn" [disabled]="selectedRoom.id">
+            <ion-select type="text" [(ngModel)]="selectedRoom.roomControl" name="roomControl" [compareWith]="objectService.compareFn" [disabled]="selectedRoom.id != null">
               <ion-select-option *ngFor="let option of  objectService.selects['roomControl']" value="{{option}}">
                 {{option | translate}}</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">{{'network'|translate}}</ion-label>
-            <ion-select type="text" [(ngModel)]="selectedRoom.network" name="network" [compareWith]="objectService.compareFn" [disabled]="selectedRoom.id">
+            <ion-select type="text" [(ngModel)]="selectedRoom.network" name="network" [compareWith]="objectService.compareFn" [disabled]="selectedRoom.id != null">
               <ion-select-option *ngFor="let option of  objectService.selects['network']" value="{{option}}">
                 {{option | translate}}</ion-select-option>
             </ion-select>
