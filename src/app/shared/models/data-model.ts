@@ -189,6 +189,11 @@ export class Device {
 	inventary?: string = "";
 	locality?: string = "";
 	hwconfId: number = 0;
+	hwconf: Hwconf;
+	ownerId: number;
+	ownerName: string;
+	counter: number;
+	fatClient: boolean;
 	roomId?: any = null;
 	screenShot?;
 	loggedInId?;
@@ -366,18 +371,26 @@ export class Category {
 	validFrom?: any = new Date();
 	validUntil: any = new Date();
 	creatorId?: number = 0;
+	devices?: Device[] = [];
 	deviceIds?: number[] = [];
+	rooms?: Room[] = [];
 	roomIds?: number[] = [];
+	users?: User[] = [];
 	userIds?: number[] = [];
+	groups?: Group[] = [];
 	groupIds?: number[] = [];
+	softwares?: Software[] = [];
 	softwareIds?: number[] = [];
+	announcements?: Announcenement[] = [];
 	announcementIds?: number[] = [];
+	contacts?: Contact[] = [];
 	contactIds?: number[] = [];
+	faqs?: FAQ[] = [];
 	faqIds?: number[] = [];
 	studentsOnly?: boolean = false;
 	publicAccess?: boolean = false;
+	hwconfs?: Hwconf[] = [];
 	hwconfIds?: number[] = [];
-	faqids?: number[];
 	constructor() { }
 }
 

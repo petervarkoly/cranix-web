@@ -9,6 +9,7 @@ import { LanguageService } from 'src/app/services/language.service';
 import { Category } from 'src/app/shared/models/data-model';
 import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer'
 import { ActionsComponent } from 'src/app/shared/actions/actions.component';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-categories',
@@ -38,6 +39,7 @@ export class CategoriesPage implements OnInit {
     public objectService: GenericObjectService,
     public languageS: LanguageService,
     public popoverCtrl: PopoverController,
+    public categoryService: CategoryService
   ) { 
     this.context = { componentParent: this };
     this.objectKeys = Object.getOwnPropertyNames(new Category());
@@ -150,6 +152,7 @@ export class CategoriesPage implements OnInit {
     delete this.gridApi;
     if( category ) {
       this.selectedCategory = category
+      this.categoryService.idsToObjects(this.selectedCategory);
       this.cardTitle = "Edit category";
     } else {
       this.selectedCategory = new Category();
@@ -165,6 +168,7 @@ export class CategoriesPage implements OnInit {
       next: (val) => {
         this.objectService.responseMessage(val)
         if(val.code == "OK") {
+          this.objectService.getAllObject("categorie")
           this.selectedCategory = null
         }
       },
@@ -177,6 +181,8 @@ export class CategoriesPage implements OnInit {
     })
   }
   sendRequest(){
+    this.categoryService.objectsToIds(this.selectedCategory);
+    console.log(this.selectedCategory)
     if(this.selectedCategory.id){
      return this.objectService.modifyObject(this.selectedCategory, "categorie")
     }else{

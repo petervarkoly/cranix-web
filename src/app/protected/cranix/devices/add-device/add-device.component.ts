@@ -82,14 +82,16 @@ export class AddDeviceComponent implements OnInit, OnDestroy {
       console.log('adding Addoc', this.device);
       this.selfS.addDevice(this.device)
         .pipe(takeWhile(() => this.alive))
-        .subscribe((res) => {
-          this.objectService.responseMessage(res);
-          if (res.code == "OK") {
-            this.modalCtrl.dismiss();
-          }
-        },
-          (err) => { },
-          () => { this.disabled = false; })
+        .subscribe({
+          next: (res) => {
+            this.objectService.responseMessage(res);
+            if (res.code == "OK") {
+              this.modalCtrl.dismiss();
+            }
+          },
+          error: (err) => { },
+          complete: () => { this.disabled = false; }
+        })
     } else {
       let newDevice = [];
       let macs = this.device.mac.split('\n');
@@ -110,22 +112,24 @@ export class AddDeviceComponent implements OnInit, OnDestroy {
       console.log(newDevice, this.device.roomId)
       this.roomService.addDevice(newDevice, this.device.roomId)
         .pipe(takeWhile(() => this.alive))
-        .subscribe((responses) => {
-          let response = this.languageService.trans("List of the results:");
-          for (let resp of responses) {
-            response = response + "<br>" + this.languageService.transResponse(resp);
-          }
-          this.objectService.okMessage(response)
-          this.objectService.getAllObject('device');
-        },
-          (err) => {
+        .subscribe({
+          next: (responses) => {
+            let response = this.languageService.trans("List of the results:");
+            for (let resp of responses) {
+              response = response + "<br>" + this.languageService.transResponse(resp);
+            }
+            this.objectService.okMessage(response)
+            this.objectService.getAllObject('device');
+          },
+          error: (err) => {
             this.objectService.errorMessage(err)
             this.disabled = false;
           },
-          () => {
+          complete: () => {
             this.disabled = false;
             this.modalCtrl.dismiss()
-          })
+          }
+        })
     }
   }
 

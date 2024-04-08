@@ -103,9 +103,9 @@ export class DevicesComponent implements OnInit {
   public ngAfterViewInit() {
     while (document.getElementsByTagName('mat-tooltip-component').length > 0) { document.getElementsByTagName('mat-tooltip-component')[0].remove(); }
     if (this.showState) {
-      interval(3000).pipe(takeWhile(() => this.alive)).subscribe((func => {
+      interval(5000).pipe(takeWhile(() => this.alive)).subscribe((func => {
         this.deviceService.getStateOfDevices().subscribe(
-          (val) => { 
+          (val) => {
             for( let dev of this.rowData ){
               if(val[dev.id]) {
                 this.deviceStates[dev.id] = val[dev.id];
@@ -252,6 +252,10 @@ export class DevicesComponent implements OnInit {
     if (!device) {
       return this.addDevice(null);
     }
+    delete device.hwconf
+    delete device.fatClient
+    delete device.ownerId
+    delete device.ownerName
     const modal = await this.modalCtrl.create({
       component: ObjectsEditComponent,
       cssClass: "medium-modal",

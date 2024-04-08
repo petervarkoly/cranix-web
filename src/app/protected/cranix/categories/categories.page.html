@@ -78,7 +78,7 @@
         <ion-item>
           <!-- GROUPS -->
           <ion-label position="stacked">{{'Groups of the categorie' | translate}}</ion-label>
-          <ionic-selectable #groupSelectable [isMultiple]="true" [(ngModel)]="selectedCategory.groupIds"
+          <ionic-selectable #groupSelectable [isMultiple]="true" [(ngModel)]="selectedCategory.groups"
             [ngModelOptions]="{standalone: true}" [items]="objectService.allObjects['group']" itemValueField="id"
             itemTextField="name" [canSearch]="true">
             <ng-template ionicSelectableHeaderTemplate>
@@ -98,7 +98,7 @@
         <!-- USERS -->
         <ion-item>
           <ion-label position="stacked">{{'Users of the categorie' | translate}}</ion-label>
-          <ionic-selectable #userSelectable [isMultiple]="true" [(ngModel)]="selectedCategory.userIds"
+          <ionic-selectable #userSelectable [isMultiple]="true" [(ngModel)]="selectedCategory.users"
             [ngModelOptions]="{standalone: true}" [items]="objectService.allObjects['user']" itemValueField="id"
             itemTextField="fullName" [canSearch]="true">
             <ng-template ionicSelectableHeaderTemplate>
@@ -118,7 +118,7 @@
         <!-- ROOMS -->
         <ion-item>
           <ion-label position="stacked">{{'Rooms of the categorie' | translate}}</ion-label>
-          <ionic-selectable #roomSelectable [isMultiple]="true" [(ngModel)]="selectedCategory.roomIds"
+          <ionic-selectable #roomSelectable [isMultiple]="true" [(ngModel)]="selectedCategory.rooms"
             [ngModelOptions]="{standalone: true}" [items]="objectService.allObjects['room']" itemValueField="id"
             itemTextField="name" [canSearch]="true">
             <ng-template ionicSelectableHeaderTemplate>
@@ -138,7 +138,7 @@
         <!-- Devices -->
         <ion-item>
           <ion-label position="stacked">{{'Devices of the categorie' | translate}}</ion-label>
-          <ionic-selectable #deviceSelectable [isMultiple]="true" [(ngModel)]="selectedCategory.deviceIds"
+          <ionic-selectable #deviceSelectable [isMultiple]="true" [(ngModel)]="selectedCategory.devices"
             [ngModelOptions]="{standalone: true}" [items]="objectService.allObjects['device']" itemValueField="id"
             itemTextField="name" [canSearch]="true">
             <ng-template ionicSelectableHeaderTemplate>
