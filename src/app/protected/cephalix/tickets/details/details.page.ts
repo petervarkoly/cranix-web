@@ -183,6 +183,10 @@ export class DetailsPage implements OnInit {
     }
   }
 
+  public routeToDevice(){
+	  //TODO
+  }
+
   public routeSchool(event) {
     event.stopPropagation();
     var hostname = window.location.hostname;
