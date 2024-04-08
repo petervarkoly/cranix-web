@@ -5,14 +5,20 @@
       <ion-card-title>#{{ticket.id}} {{ticket.title}} {{ticket.created | date:'yy-MM-dd HH:mm'}}</ion-card-title>
       <ion-toolbar>
         <ion-card-subtitle>
-          {{ institute.name }}
-          {{ institute.regCode }}
-          {{ institute.ipVPN }}<br>
+          <div *ngIf="institute != null">
+            {{ institute.name }}
+            {{ institute.regCode }}
+            {{ institute.ipVPN }}<br>
+          </div>
           {{ticket.email}}: {{ticket.lastname}},{{ticket.firstname}}
         </ion-card-subtitle>
         <ion-buttons slot="end">
-          <ion-button *ngIf="institute.ipVPN && institute.ipVPN != ''" color="secondary" fill="clear" size="small"
+          <ion-button *ngIf="institute != null && institute.ipVPN && institute.ipVPN != ''" color="secondary" fill="clear" size="small"
             (click)="routeSchool($event)" matTooltip="{{'Connect the institute in a separate window.' | translate }}">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button *ngIf="ticket.cranixDeviceId != null" color="secondary" fill="clear" size="small"
+            (click)="routeToDevice()" matTooltip="{{'Connect the device in a separate window.' | translate }}">
             <ion-icon name="create-outline"></ion-icon>
           </ion-button>
           <ion-button fill="clear" (click)="router.navigate(['/pages/cephalix/tickets'])">
@@ -28,7 +34,7 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-card-header>
-    <ion-card-content  style="padding: 5px; padding-top: 0px;">
+    <ion-card-content  *ngIf="institute != null" style="padding: 5px; padding-top: 0px;">
       <ion-grid style="padding: 0px;">
         <ion-row>
           <ion-col style="padding: 0px;">

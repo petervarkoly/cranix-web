@@ -58,8 +58,10 @@ export class DetailsPage implements OnInit {
         this.ticketCreator = this.objectService.getObjectById('user', this.ticket.creatorId);
         this.institute   = this.objectService.getObjectById('institute', this.ticket.cephalixInstituteId);
         this.readArcticles();
-        for (let i of this.objectService.allObjects['institute']) {
-          this.institutes.push({ id: i.id, label: i.name + " " + i.locality })
+        if( this.objectService.allObjects['institute'] ) {
+          for (let i of this.objectService.allObjects['institute']) {
+            this.institutes.push({ id: i.id, label: i.name + " " + i.locality })
+          }
         }
         console.log(this.institutes, this.institute)
         if (this.institute) {
