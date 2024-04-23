@@ -49,7 +49,7 @@ export class UsersComponent implements OnInit {
       resizable: true,
       sortable: true,
       hide: false,
-      suppressMenu: true
+      suppressHeaderMenuButton: true
     }
     this.systemService.getSystemConfigValue("DEFAULT_MUST_CHANGE").subscribe(
       (val) => {
@@ -105,7 +105,7 @@ export class UsersComponent implements OnInit {
             cellStyle: { 'padding': '2px', 'line-height': '36px' },
             field: 'actions',
             pinned: 'left',
-            cellRendererFramework: UserActionBTNRenderer
+            cellRenderer: UserActionBTNRenderer
           });
           continue;
         }
@@ -140,7 +140,6 @@ export class UsersComponent implements OnInit {
   onQuickFilterChanged(quickFilter) {
     let filter = (<HTMLInputElement>document.getElementById(quickFilter)).value.toLowerCase();
     this.gridApi.setQuickFilter(filter);
-    this.gridApi.doLayout();
   }
   public redirectToDelete = (user: User) => {
     this.objectService.deleteObjectDialog(user, 'user', '')

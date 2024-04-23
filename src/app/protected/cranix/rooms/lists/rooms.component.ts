@@ -50,7 +50,7 @@ export class RoomsComponent implements OnInit {
       resizable: true,
       sortable: true,
       hide: false,
-      suppressMenu: true
+      suppressHeaderMenuButton: true
     }
   }
   ngOnInit() {
@@ -92,7 +92,7 @@ export class RoomsComponent implements OnInit {
             cellStyle: { 'padding': '1px', 'line-height': '36px' },
             field: 'actions',
             pinned: 'left',
-            cellRendererFramework: RoomActionBTNRenderer
+            cellRenderer: RoomActionBTNRenderer
           });
           continue;
         }
@@ -127,7 +127,6 @@ export class RoomsComponent implements OnInit {
   onQuickFilterChanged(quickFilter) {
     let filter = (<HTMLInputElement>document.getElementById(quickFilter)).value.toLowerCase();
     this.gridApi.setQuickFilter(filter);
-    this.gridApi.doLayout();
   }
   public redirectToDelete = (room: Room) => {
     this.objectService.deleteObjectDialog(room, 'room', '')
