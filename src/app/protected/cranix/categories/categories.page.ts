@@ -113,7 +113,6 @@ export class CategoriesPage implements OnInit {
   onQuickFilterChanged(quickFilter) {
     let filter = (<HTMLInputElement>document.getElementById(quickFilter)).value.toLowerCase();
     this.gridApi.setQuickFilter(filter);
-    this.gridApi.doLayout();
   }
 
   public redirectToDelete = (category: Category) => {
