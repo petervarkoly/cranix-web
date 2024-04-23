@@ -151,7 +151,7 @@ export class DevicesComponent implements OnInit {
               suppressSizeToFit: true,
               cellStyle: { 'padding': '1px', 'line-height': '36px' },
               field: 'status',
-              cellRendererFramework: DeviceStateComponent
+              cellRenderer: DeviceStateComponent
             })
           }
           continue;

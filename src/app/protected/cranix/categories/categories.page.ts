@@ -64,7 +64,7 @@ export class CategoriesPage implements OnInit {
       cellStyle: { 'padding': '2px', 'line-height': '36px' },
       field: 'actions',
       pinned: 'left',
-      cellRendererFramework: EditBTNRenderer
+      cellRenderer: EditBTNRenderer
     };
     for (let key of this.objectKeys) {
       let col = {};
