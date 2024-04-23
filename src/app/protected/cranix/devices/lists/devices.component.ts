@@ -187,7 +187,7 @@ export class DevicesComponent implements OnInit {
 
   onQuickFilterChanged(quickFilter) {
     let filter = (<HTMLInputElement>document.getElementById(quickFilter)).value.toLowerCase();
-    this.gridApi.setQuickFilter(filter);
+    this.gridApi.setGridOption('quickFilterText', filter);
   }
   sizeAll() {
     var allColumnIds = [];
