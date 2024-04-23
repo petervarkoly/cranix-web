@@ -40,7 +40,7 @@ export class CategoriesPage implements OnInit {
     public languageS: LanguageService,
     public popoverCtrl: PopoverController,
     public categoryService: CategoryService
-  ) { 
+  ) {
     this.context = { componentParent: this };
     this.objectKeys = Object.getOwnPropertyNames(new Category());
     this.createColumnDefs();
