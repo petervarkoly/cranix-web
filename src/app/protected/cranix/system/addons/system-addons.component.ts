@@ -1,14 +1,17 @@
+import { IonSelect, IonSelectOption, IonModal, IonButtons, IonButton, IonContent } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { SystemService } from 'src/app/services/system.service';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular/standalone';
 import { LangChangeEvent } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
-  selector: 'cranix-system-addons',
-  templateUrl: './system-addons.component.html',
-  styleUrls: ['./system-addons.component.scss'],
+    selector: 'cranix-system-addons',
+  imports: [ IonSelect, IonSelectOption, IonModal, IonButtons, IonButton, IonContent ],
+    templateUrl: './system-addons.component.html',
+    styleUrls: ['./system-addons.component.scss'],
+    standalone: true,
 })
 export class SystemAddonsComponent implements OnInit {
 

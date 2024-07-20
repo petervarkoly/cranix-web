@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { IonToolbar, IonItem, IonInput, IonLabel, IonIcon, IonButtons, IonButton, IonSearchbar, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption } from '@ionic/angular/standalone';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { ChallengesService } from 'src/app/services/challenges.service';
 import { CrxObjectService } from 'src/app/services/crx-object-service';
@@ -8,10 +9,17 @@ import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'cranix-md-list',
+  imports: [ IonToolbar, IonItem, IonInput, IonLabel, IonIcon, IonButtons, IonButton, IonSearchbar, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption ],
   templateUrl: './cranix-md-list.component.html',
   styleUrls: ['./cranix-md-list.component.scss'],
 })
 export class CranixMdListComponent implements OnInit {
+  public authService = inject(AuthenticationService)
+  private challengeService = inject(ChallengesService)
+  public crxObjectService = inject(CrxObjectService)
+  public languageService = inject(LanguageService)
+  public objectService = inject(GenericObjectService)
+  public utilService = inject(UtilsService
 
   min: number;
   step: number;
@@ -23,12 +31,6 @@ export class CranixMdListComponent implements OnInit {
   @Input() objectType: string;
   @Input() context;
   constructor(
-    public authService: AuthenticationService,
-    private challengeService: ChallengesService,
-    public crxObjectService: CrxObjectService,
-    public languageService: LanguageService,
-    public objectService: GenericObjectService,
-    public utilService: UtilsService
   ) {
     this.authService.log("CranixMdListComponent constructor was called")
     this.utilService.actMdList = this;

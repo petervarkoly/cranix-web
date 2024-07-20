@@ -1,7 +1,8 @@
+import { IonButtons, IonButton, IonIcon, IonCard } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 //own modules
 import { Institute, Notice } from 'src/app/shared/models/cephalix-data-model';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
@@ -9,9 +10,11 @@ import { CephalixService } from 'src/app/services/cephalix.service';
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
 
 @Component({
-  selector: 'cranix-institute-notices',
-  templateUrl: './institute-notices.component.html',
-  styleUrls: ['./institute-notices.component.scss'],
+    selector: 'cranix-institute-notices',
+    imports: [ IonButtons, IonButton, IonIcon, IonCard ],
+    templateUrl: './institute-notices.component.html',
+    styleUrls: ['./institute-notices.component.scss'],
+    standalone: true,
 })
 export class InstituteNoticesComponent implements OnInit {
   object: Institute = null;

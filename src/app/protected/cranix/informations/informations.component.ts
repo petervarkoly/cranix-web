@@ -1,14 +1,17 @@
+import { IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonContent, IonInput, IonCard, IonCardContent, IonCol, IonItem } from '@ionic/angular/standalone';
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { InformationsService } from 'src/app/services/informations.services';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { Announcenement, Contact, FAQ, TaskResponse } from 'src/app/shared/models/data-model';
 
 @Component({
-  selector: 'cranix-informations',
-  templateUrl: './informations.component.html',
-  styleUrls: ['./informations.component.scss'],
+    selector: 'cranix-informations',
+  imports: [ IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonContent, IonInput, IonCard, IonCardContent, IonCol, IonItem ],
+    templateUrl: './informations.component.html',
+    styleUrls: ['./informations.component.scss'],
+    standalone: true,
 })
 export class InformationsComponent implements OnInit {
   segment = "announcement"
@@ -198,8 +201,9 @@ export class InformationsComponent implements OnInit {
 }
 
 @Component({
-  selector: 'add-edit-info-page',
-  templateUrl: 'add-edit-info.html'
+    selector: 'add-edit-info-page',
+    templateUrl: 'add-edit-info.html',
+    standalone: true
 })
 export class AddEditInfoPage implements OnInit {
   info
@@ -279,8 +283,9 @@ export class AddEditInfoPage implements OnInit {
 }
 
 @Component({
-  selector: 'show-responses-page',
-  templateUrl: 'show-responses-page.html'
+    selector: 'show-responses-page',
+    templateUrl: 'show-responses-page.html',
+    standalone: true
 })
 export class ShowResponses implements OnInit {
   responses: TaskResponse[];

@@ -24,7 +24,7 @@ interface UserList {
 
 }
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class UsersService {
 	hostname: string;
 	url: string;

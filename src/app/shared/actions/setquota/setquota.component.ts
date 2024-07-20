@@ -1,9 +1,11 @@
+import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonLabel, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 
 
 @Component({
   selector: 'cranix-setquota',
+  imports: [ IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonLabel, IonInput ],
   templateUrl: './setquota.component.html',
   styleUrls: ['./setquota.component.scss'],
 })

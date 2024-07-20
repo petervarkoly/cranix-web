@@ -1,6 +1,7 @@
+import { IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonBadge } from '@ionic/angular/standalone';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { GridApi, ColumnApi } from 'ag-grid-community';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
@@ -18,10 +19,12 @@ import { UpdateRenderer } from 'src/app/pipes/ag-update-renderer';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { DateCellRenderer } from 'src/app/pipes/ag-date-renderer';
 @Component({
-  selector: 'cranix-institutes-status',
-  templateUrl: './institutes-status.component.html',
-  styleUrls: ['./institutes-status.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'cranix-institutes-status',
+    imports: [ IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonBadge ],
+    templateUrl: './institutes-status.component.html',
+    styleUrls: ['./institutes-status.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: true
 })
 export class InstitutesStatusComponent implements OnInit {
   objectKeys: string[] = [];

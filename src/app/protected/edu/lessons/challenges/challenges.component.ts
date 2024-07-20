@@ -1,6 +1,7 @@
+import { IonContent, IonToolbar, IonButtons, IonButton, IonIcon, IonToggle, IonItem, IonLabel, IonInput, IonFab, IonFabButton, IonFabList, IonModal, IonListHeader, IonSelect, IonSelectOption, IonPopover } from '@ionic/angular/standalone';
 import { ChallengesService } from 'src/app/services/challenges.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { PopoverController } from '@ionic/angular/standalone';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CrxChallenge, CrxQuestion, CrxQuestionAnswer, TeachingSubject } from 'src/app/shared/models/data-model';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
@@ -10,11 +11,17 @@ import { ActionsComponent } from 'src/app/shared/actions/actions.component';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-challenges',
-  templateUrl: './challenges.component.html',
-  styleUrls: ['./challenges.component.scss'],
+    selector: 'app-challenges',
+  imports: [ IonContent, IonToolbar, IonButtons, IonButton, IonIcon, IonToggle, IonItem, IonLabel, IonInput, IonFab, IonFabButton, IonFabList, IonModal, IonListHeader, IonSelect, IonSelectOption, IonPopover ],
+    templateUrl: './challenges.component.html',
+    styleUrls: ['./challenges.component.scss'],
+    standalone: true,
 })
 export class ChallengesComponent implements OnInit {
+  public authService = inject(AuthenticationService)
+  public challengesService = inject(ChallengesService)
+  public objectService = inject(GenericObjectService)
+  public crxObjectService = inject(CrxObjectService)
 
   title: String = "Tests"
   answerToEdit = ""
@@ -44,10 +51,6 @@ export class ChallengesComponent implements OnInit {
 
   @ViewChild('popover') popover;
   constructor(
-    public authService: AuthenticationService,
-    public challengesService: ChallengesService,
-    public objectService: GenericObjectService,
-    public crxObjectService: CrxObjectService,
     public popoverCtrl: PopoverController,
     private languageService: LanguageService,
     private sanitizer: DomSanitizer

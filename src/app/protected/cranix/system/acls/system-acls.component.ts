@@ -1,15 +1,18 @@
+import { IonContent, IonCol, IonTitle, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { LanguageService } from 'src/app/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ManageAclsComponent } from './manage-acls/manage-acls.component';
 
 @Component({
-  selector: 'cranix-system-acls',
-  templateUrl: './system-acls.component.html',
-  styleUrls: ['./system-acls.component.scss'],
+    selector: 'cranix-system-acls',
+  imports: [ IonContent, IonCol, IonTitle, IonInput ],
+    templateUrl: './system-acls.component.html',
+    styleUrls: ['./system-acls.component.scss'],
+    standalone: true,
 })
 export class SystemAclsComponent implements OnInit {
   context;

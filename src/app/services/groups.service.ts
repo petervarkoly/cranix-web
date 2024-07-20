@@ -9,7 +9,7 @@ import { AuthenticationService } from './auth.service';
 import { ServerResponse } from 'src/app/shared/models/server-models';
 import { Group, User } from 'src/app/shared/models/data-model';
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class GroupsService {
 	hostname: string;
 	url: string;

@@ -1,5 +1,6 @@
+import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular/standalone';
 import { Storage } from '@ionic/storage-angular';
 
 //Own stuff
@@ -12,9 +13,11 @@ import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.c
 import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';
 import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
 @Component({
-  selector: 'cranix-adhoc',
-  templateUrl: './adhoc.component.html',
-  styleUrls: ['./adhoc.component.scss'],
+    selector: 'cranix-adhoc',
+  imports: [ IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
+    templateUrl: './adhoc.component.html',
+    styleUrls: ['./adhoc.component.scss'],
+    standalone: true,
 })
 export class AdhocComponent implements OnInit {
 

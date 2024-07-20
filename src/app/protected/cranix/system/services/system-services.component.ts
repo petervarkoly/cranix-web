@@ -1,3 +1,4 @@
+import { IonGrid, IonCol, IonRow, IonCheckbox } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { SystemService } from 'src/app/services/system.service';
 import { ServiceStatus } from 'src/app/shared/models/server-models'
@@ -5,9 +6,11 @@ import { takeWhile } from 'rxjs/operators';
 import { interval, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'cranix-system-services',
-  templateUrl: './system-services.component.html',
-  styleUrls: ['./system-services.component.scss'],
+    selector: 'cranix-system-services',
+  imports: [ IonGrid, IonCol, IonRow, IonCheckbox ],
+    templateUrl: './system-services.component.html',
+    styleUrls: ['./system-services.component.scss'],
+    standalone: true,
 })
 export class SystemServicesComponent implements OnInit {
 

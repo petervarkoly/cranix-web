@@ -1,17 +1,20 @@
+import { IonContent, IonIcon, IonItem, IonButton } from '@ionic/angular/standalone';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from 'src/app/shared/models/data-model';
 import { SelfManagementService } from 'src/app/services/selfmanagement.service';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
 import { TranslateService } from '@ngx-translate/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { SetpasswordComponent } from 'src/app/shared/actions/setpassword/setpassword.component';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'cranix-myself',
-  templateUrl: './myself.component.html',
-  styleUrls: ['./myself.component.scss'],
+    selector: 'cranix-myself',
+  imports: [ IonContent, IonIcon, IonItem, IonButton ],
+    templateUrl: './myself.component.html',
+    styleUrls: ['./myself.component.scss'],
+    standalone: true,
 })
 export class MyselfComponent implements OnInit, OnDestroy {
 

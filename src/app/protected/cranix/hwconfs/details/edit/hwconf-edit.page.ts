@@ -1,3 +1,4 @@
+import { IonRow, IonTitle, IonContent, IonCol, IonToolbar, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
@@ -7,9 +8,11 @@ import { HwconfsService } from 'src/app/services/hwconfs.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'cranix-hwconf-edit',
-  templateUrl: './hwconf-edit.page.html',
-  styleUrls: ['./hwconf-edit.page.scss'],
+    selector: 'cranix-hwconf-edit',
+    imports: [ IonRow, IonTitle, IonContent, IonCol, IonToolbar, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption ],
+    templateUrl: './hwconf-edit.page.html',
+    styleUrls: ['./hwconf-edit.page.scss'],
+    standalone: true,
 })
 export class HwconfEditPage implements OnInit {
   editForm;

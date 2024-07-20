@@ -1,5 +1,6 @@
+import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonInput, IonLabel, IonCheckbox, IonItem } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { sprintf } from "sprintf-js";
 import { CrxActionMap } from '../../models/server-models';
 import { EductaionService } from 'src/app/services/education.service';
@@ -9,6 +10,7 @@ import { takeWhile } from 'rxjs/internal/operators/takeWhile';
 
 @Component({
   selector: 'cranix-files-upload',
+  imports: [ IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonInput, IonLabel, IonCheckbox, IonItem ],
   templateUrl: './files-upload.component.html',
   styleUrls: ['./files-upload.component.scss'],
 })

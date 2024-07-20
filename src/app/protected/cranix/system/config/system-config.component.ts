@@ -1,3 +1,4 @@
+import { IonContent, IonToolbar, IonSegment, IonSegmentButton, IonRow, IonCol, IonItem, IonToggle, IonInput, IonButton, IonIcon, IonButtons, IonLabel } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 
 
@@ -7,9 +8,11 @@ import { SystemConfig } from 'src/app/shared/models/data-model';
 import { SystemService } from 'src/app/services/system.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 @Component({
-  selector: 'cranix-system-config',
-  templateUrl: './system-config.component.html',
-  styleUrls: ['./system-config.component.scss'],
+    selector: 'cranix-system-config',
+  imports: [ IonContent, IonToolbar, IonSegment, IonSegmentButton, IonRow, IonCol, IonItem, IonToggle, IonInput, IonButton, IonIcon, IonButtons, IonLabel ],
+    templateUrl: './system-config.component.html',
+    styleUrls: ['./system-config.component.scss'],
+    standalone: true,
 })
 export class SystemConfigComponent implements OnInit {
 

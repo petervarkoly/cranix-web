@@ -1,7 +1,8 @@
+import { IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonItem, IonInput, IonContent, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption } from '@ionic/angular/standalone';
 import { Component, Inject, Input, LOCALE_ID, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { GridApi, ColumnApi } from 'ag-grid-community';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -20,9 +21,11 @@ import { DateTimeCellRenderer } from 'src/app/pipes/ag-datetime-renderer';
 import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
 
 @Component({
-  selector: 'cranix-mygroups',
-  templateUrl: './mygroups.page.html',
-  styleUrls: ['./mygroups.page.scss'],
+    selector: 'cranix-mygroups',
+  imports: [ IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonItem, IonInput, IonContent, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption ],
+    templateUrl: './mygroups.page.html',
+    styleUrls: ['./mygroups.page.scss'],
+    standalone: true,
 })
 export class MyGroupsPage implements OnInit {
   segment: string = 'education/group';
@@ -389,8 +392,9 @@ export class MyGroupsPage implements OnInit {
 }
 
 @Component({
-  selector: 'cranix-add-edit-guest',
-  templateUrl: './add-edit-guest.html'
+    selector: 'cranix-add-edit-guest',
+    templateUrl: './add-edit-guest.html',
+    standalone: true
 })
 export class AddEditGuestPage implements OnInit {
 

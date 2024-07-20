@@ -1,6 +1,7 @@
+import { IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Component, OnInit, Input } from '@angular/core';
 import { GridApi, ColDef } from 'ag-grid-community';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Storage } from '@ionic/storage-angular';
 
 //own modules
@@ -15,9 +16,11 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { CephalixService } from 'src/app/services/cephalix.service';
 
 @Component({
+  imports: [ IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon ],
   selector: 'cranix-customers',
   templateUrl: './customers.page.html',
   styleUrls: ['./customers.page.scss'],
+  standalone: true,
 })
 export class CustomersPage implements OnInit {
   objectKeys: string[] = [];
@@ -213,8 +216,9 @@ export class CustomersPage implements OnInit {
 }
 
 @Component({
-  selector: 'edit-institutes-component',
-  templateUrl: 'edit-institutes.html'
+    selector: 'edit-institutes-component',
+    templateUrl: 'edit-institutes.html',
+    standalone: true
 })
 export class EditInstitutes implements OnInit {
   context;

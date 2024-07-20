@@ -1,5 +1,6 @@
+import { IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonButtons, IonButton, IonItemDivider, IonGrid, IonCol } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { Storage } from '@ionic/storage-angular';
 //Own stuff
 import { GenericObjectService } from 'src/app/services/generic-object.service';
@@ -11,9 +12,11 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { CreateSupport } from 'src/app/shared/actions/create-support/create-support-page';
 
 @Component({
-  selector: 'cranix-system-status',
-  templateUrl: './system-status.component.html',
-  styleUrls: ['./system-status.component.scss'],
+    selector: 'cranix-system-status',
+  imports: [ IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonButtons, IonButton, IonItemDivider, IonGrid, IonCol ],
+    templateUrl: './system-status.component.html',
+    styleUrls: ['./system-status.component.scss'],
+    standalone: true,
 })
 export class SystemStatusComponent implements OnInit {
 

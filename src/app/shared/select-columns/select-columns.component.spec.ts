@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { SelectColumnsComponent } from './select-columns.component';
 
@@ -9,9 +9,9 @@ describe('SelectColumnsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectColumnsComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    declarations: [SelectColumnsComponent],
+    imports: [IonicModule.forRoot()]
+}).compileComponents();
 
     fixture = TestBed.createComponent(SelectColumnsComponent);
     component = fixture.componentInstance;

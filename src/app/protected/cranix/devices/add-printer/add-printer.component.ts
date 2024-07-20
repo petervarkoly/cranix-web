@@ -1,15 +1,17 @@
+import { IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
 //own stuff
 import { PrintersService } from 'src/app/services/printers.service';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { RoomsService } from 'src/app/services/rooms.service';
 import { Printer, Room, Device } from 'src/app/shared/models/data-model';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { LanguageService } from 'src/app/services/language.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'cranix-add-printer',
+  imports: [ IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput ],
   templateUrl: './add-printer.component.html',
   styleUrls: ['./add-printer.component.scss'],
 })

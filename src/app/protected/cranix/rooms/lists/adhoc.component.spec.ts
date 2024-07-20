@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { AdhocComponent } from './adhoc.component';
 
@@ -9,9 +9,8 @@ describe('AdhocComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdhocComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), AdhocComponent]
+}).compileComponents();
 
     fixture = TestBed.createComponent(AdhocComponent);
     component = fixture.componentInstance;

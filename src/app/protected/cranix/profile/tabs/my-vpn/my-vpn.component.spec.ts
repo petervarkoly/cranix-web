@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { MyVPNComponent } from './my-vpn.component';
 
@@ -9,9 +9,8 @@ describe('MyVPNComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MyVPNComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), MyVPNComponent]
+}).compileComponents();
 
     fixture = TestBed.createComponent(MyVPNComponent);
     component = fixture.componentInstance;

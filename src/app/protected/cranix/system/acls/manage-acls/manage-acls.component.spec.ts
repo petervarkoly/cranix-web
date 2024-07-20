@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { ManageAclsComponent } from './manage-acls.component';
 
@@ -9,9 +9,8 @@ describe('ManageAclsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManageAclsComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), ManageAclsComponent]
+}).compileComponents();
 
     fixture = TestBed.createComponent(ManageAclsComponent);
     component = fixture.componentInstance;

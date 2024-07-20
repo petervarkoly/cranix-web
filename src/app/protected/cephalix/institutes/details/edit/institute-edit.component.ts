@@ -1,3 +1,4 @@
+import { IonSegment, IonSegmentButton, IonButtons, IonButton, IonIcon, IonContent, IonFab, IonFabButton, IonFabList, IonCol, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput, IonCheckbox } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -10,9 +11,11 @@ import { User } from 'src/app/shared/models/data-model';
 import { contracts } from 'src/app/shared/models/cephalix-data-model';
 import { SystemService } from 'src/app/services/system.service';
 @Component({
-  selector: 'cranix-institute-edit',
-  templateUrl: './institute-edit.component.html',
-  styleUrls: ['./institute-edit.component.scss'],
+    selector: 'cranix-institute-edit',
+    imports: [ IonSegment, IonSegmentButton, IonButtons, IonButton, IonIcon, IonContent, IonFab, IonFabButton, IonFabList, IonCol, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput, IonCheckbox ],
+    templateUrl: './institute-edit.component.html',
+    styleUrls: ['./institute-edit.component.scss'],
+    standalone: true,
 })
 export class InstituteEditComponent implements OnInit {
   allAddons: Repository[];

@@ -1,16 +1,19 @@
+import { IonCard, IonCardHeader, IonToolbar, IonButtons, IonButton, IonIcon, IonCardContent } from '@ionic/angular/standalone';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Device } from 'src/app/shared/models/data-model';
 import { ActionsComponent } from 'src/app/shared/actions/actions.component';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular/standalone';
 import { Subscription, interval } from 'rxjs';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
 import { EductaionService } from 'src/app/services/education.service';
 import { WindowRef } from 'src/app/shared/models/ohters'
 
 @Component({
-  selector: 'cranix-roomdev',
-  templateUrl: './roomdev.component.html',
-  styleUrls: ['./roomdev.component.scss'],
+    selector: 'cranix-roomdev',
+  imports: [ IonCard, IonCardHeader, IonToolbar, IonButtons, IonButton, IonIcon, IonCardContent ],
+    templateUrl: './roomdev.component.html',
+    styleUrls: ['./roomdev.component.scss'],
+    standalone: true,
 })
 export class RoomDevComponent implements OnInit, OnDestroy {
 

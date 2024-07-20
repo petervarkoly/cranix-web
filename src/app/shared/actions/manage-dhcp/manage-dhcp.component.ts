@@ -1,3 +1,4 @@
+import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonCol, IonLabel, IonInput, IonItem } from '@ionic/angular/standalone';
 import { Component, OnInit, Input } from '@angular/core';
 import { DHCPOptions, DHCPStatements } from './dhcp-constants';
 import { CrxConfig } from 'src/app/shared/models/data-model';
@@ -6,10 +7,11 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { ServerResponse } from '../../models/server-models';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'cranix-manage-dhcp',
+  imports: [ IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonCol, IonLabel, IonInput, IonItem ],
   templateUrl: './manage-dhcp.component.html',
   styleUrls: ['./manage-dhcp.component.scss'],
 })

@@ -1,9 +1,11 @@
+import { IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonLabel, IonInput, IonItem, IonCheckbox } from '@ionic/angular/standalone';
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { SystemService } from 'src/app/services/system.service';
 
 @Component({
   selector: 'cranix-setpassword',
+  imports: [ IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonLabel, IonInput, IonItem, IonCheckbox ],
   templateUrl: './setpassword.component.html',
   styleUrls: ['./setpassword.component.scss'],
 })

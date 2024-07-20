@@ -1,7 +1,8 @@
+import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonSelect, IonSelectOption, IonItem, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { OutgoingRule } from 'src/app/shared/models/secutiry-model';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { SecurityService } from 'src/app/services/security-service';
 
 class SourceObject {
@@ -9,9 +10,11 @@ class SourceObject {
   public name: string;
 }
 @Component({
-  selector: 'cranix-add-outgoing-rule',
-  templateUrl: './add-outgoing-rule.component.html',
-  styleUrls: ['./add-outgoing-rule.component.scss'],
+    selector: 'cranix-add-outgoing-rule',
+  imports: [ IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonSelect, IonSelectOption, IonItem, IonInput ],
+    templateUrl: './add-outgoing-rule.component.html',
+    styleUrls: ['./add-outgoing-rule.component.scss'],
+    standalone: true,
 })
 export class AddOutgoingRuleComponent implements OnInit {
 

@@ -1,5 +1,6 @@
+import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
-import { AlertController, PopoverController, ModalController } from '@ionic/angular';
+import { AlertController, PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
@@ -17,9 +18,11 @@ import { AddDeviceComponent } from './../add-device/add-device.component';
 import { ManageDhcpComponent } from 'src/app/shared/actions/manage-dhcp/manage-dhcp.component';
 
 @Component({
-  selector: 'cranix-devices',
-  templateUrl: './devices.component.html',
-  styleUrls: ['./devices.component.scss'],
+    selector: 'cranix-devices',
+  imports: [ IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
+    templateUrl: './devices.component.html',
+    styleUrls: ['./devices.component.scss'],
+    standalone: true,
 })
 export class DevicesComponent implements OnInit {
   selectedRoom;

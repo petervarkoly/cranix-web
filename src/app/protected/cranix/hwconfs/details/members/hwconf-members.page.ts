@@ -1,3 +1,4 @@
+import { IonContent, IonItem, IonInput, IonLabel, IonButtons, IonButton, IonIcon, IonSelect, IonSelectOption, IonCol, IonRow } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 //own stuff
 import { GenericObjectService } from 'src/app/services/generic-object.service';
@@ -12,9 +13,11 @@ import { interval } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 
 @Component({
-  selector: 'cranix-hwconf-members',
-  templateUrl: './hwconf-members.page.html',
-  styleUrls: ['./hwconf-members.page.scss'],
+    selector: 'cranix-hwconf-members',
+  imports: [ IonContent, IonItem, IonInput, IonLabel, IonButtons, IonButton, IonIcon, IonSelect, IonSelectOption, IonCol, IonRow ],
+    templateUrl: './hwconf-members.page.html',
+    styleUrls: ['./hwconf-members.page.scss'],
+    standalone: true,
 })
 export class HwconfMembersPage implements OnInit {
   context;

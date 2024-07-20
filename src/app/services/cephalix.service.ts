@@ -17,7 +17,7 @@ export interface InstallSetSync {
 	categoryId: number[]
 }
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class CephalixService {
 
 	hostname: string;

@@ -1,11 +1,13 @@
+import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonLabel, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { CephalixService } from 'src/app/services/cephalix.service';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { CephalixCare, contracts } from 'src/app/shared/models/cephalix-data-model';
 
 @Component({
   selector: 'cranix-set-contract',
+  imports: [ IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonLabel, IonSelect, IonSelectOption ],
   templateUrl: './set-contract.component.html',
   styleUrls: ['./set-contract.component.scss'],
 })

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { UnboundComponent } from './unbound.component';
 
@@ -9,9 +9,8 @@ describe('UnboundComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UnboundComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), UnboundComponent]
+}).compileComponents();
 
     fixture = TestBed.createComponent(UnboundComponent);
     component = fixture.componentInstance;

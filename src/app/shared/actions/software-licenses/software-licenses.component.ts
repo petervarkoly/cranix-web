@@ -1,14 +1,17 @@
+import { IonButtons, IonButton, IonIcon, IonCol, IonLabel, IonSelect, IonSelectOption, IonInput, IonItem, IonRow } from '@ionic/angular/standalone';
 import { Component, OnInit, Input } from '@angular/core';
 import { SoftwareService } from 'src/app/services/softwares.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { License, Software } from 'src/app/shared/models/data-model';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 
 @Component({
-  selector: 'cranix-software-licenses',
-  templateUrl: './software-licenses.component.html',
-  styleUrls: ['./software-licenses.component.scss'],
+    selector: 'cranix-software-licenses',
+  imports: [ IonButtons, IonButton, IonIcon, IonCol, IonLabel, IonSelect, IonSelectOption, IonInput, IonItem, IonRow ],
+    templateUrl: './software-licenses.component.html',
+    styleUrls: ['./software-licenses.component.scss'],
+    standalone: true,
 })
 export class SoftwareLicensesComponent implements OnInit {
 

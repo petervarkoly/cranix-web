@@ -1,6 +1,7 @@
+import { IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi } from 'ag-grid-community';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
@@ -18,9 +19,11 @@ import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-col
 import { WindowRef } from 'src/app/shared/models/ohters';
 
 @Component({
-  selector: 'cranix-institutes',
-  templateUrl: './institutes.component.html',
-  styleUrls: ['./institutes.component.scss'],
+    selector: 'cranix-institutes',
+    imports: [ IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon ],
+    templateUrl: './institutes.component.html',
+    styleUrls: ['./institutes.component.scss'],
+    standalone: true,
 })
 export class InstitutesComponent implements OnInit {
   objectKeys: string[] = [];

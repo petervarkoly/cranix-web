@@ -1,3 +1,4 @@
+import { IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 //Own stuff
 import { AuthenticationService } from 'src/app/services/auth.service';
@@ -6,9 +7,11 @@ import { SoftwareService } from 'src/app/services/softwares.service'
 import { SoftwareStatus } from 'src/app/shared/models/data-model';
 
 @Component({
-  selector: 'cranix-software-status',
-  templateUrl: './software-status.component.html',
-  styleUrls: ['./software-status.component.scss'],
+    selector: 'cranix-software-status',
+  imports: [ IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonSelect, IonSelectOption ],
+    templateUrl: './software-status.component.html',
+    styleUrls: ['./software-status.component.scss'],
+    standalone: true,
 })
 export class SoftwareStatusComponent implements OnInit {
   context;

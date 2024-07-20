@@ -1,10 +1,10 @@
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders, } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Platform, ToastController } from '@ionic/angular';
+import { Platform, ToastController } from '@ionic/angular/standalone';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
-import { isDevMode } from '@angular/core';
+import { isDevMode, inject } from '@angular/core';
 
 
 //Own modules
@@ -16,8 +16,9 @@ import { TeachingSubject } from '../shared/models/data-model';
 @Injectable({
     providedIn: 'root'
 })
-
 export class AuthenticationService {
+    private utilsS  = inject(UtilsService)
+    private languageService = inject(LanguageService)
     authenticationState = new BehaviorSubject(false);
     use2fa: boolean = false;
     crx2fa: string = "";
@@ -50,8 +51,6 @@ export class AuthenticationService {
         private storage: Storage,
         private plt: Platform,
         private toastController: ToastController,
-        private utilsS: UtilsService,
-        private languageService: LanguageService,
         private router: Router
     ) {
         this.plt.ready().then(() => {

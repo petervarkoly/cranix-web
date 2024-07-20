@@ -1,19 +1,22 @@
+import { IonContent, IonRow, IonCol, IonFab, IonIcon, IonFabList, IonSearchbar, IonCardHeader, IonItem, IonInput, IonButton } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 
 //Our Stuff
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
 import { PositivList } from 'src/app/shared/models/data-model'
 import { AuthenticationService } from 'src/app/services/auth.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { LanguageService } from 'src/app/services/language.service';
 import { EductaionService } from 'src/app/services/education.service';
 import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 
 @Component({
-  selector: 'cranix-mypositive',
-  templateUrl: './mypositive.component.html',
-  styleUrls: ['./mypositive.component.scss'],
+    selector: 'cranix-mypositive',
+  imports: [ IonContent, IonRow, IonCol, IonFab, IonIcon, IonFabList, IonSearchbar, IonCardHeader, IonItem, IonInput, IonButton ],
+    templateUrl: './mypositive.component.html',
+    styleUrls: ['./mypositive.component.scss'],
+    standalone: true,
 })
 export class MypositiveComponent implements OnInit {
 

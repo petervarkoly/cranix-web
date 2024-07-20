@@ -1,14 +1,17 @@
+import { IonButtons, IonButton, IonIcon, IonList, IonItem } from '@ionic/angular/standalone';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SelfManagementService } from 'src/app/services/selfmanagement.service';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { AddDeviceComponent } from 'src/app/protected/cranix/devices/add-device/add-device.component';
 
 @Component({
-  selector: 'cranix-my-devices',
-  templateUrl: './my-devices.component.html',
-  styleUrls: ['./my-devices.component.scss'],
+    selector: 'cranix-my-devices',
+  imports: [ IonButtons, IonButton, IonIcon, IonList, IonItem ],
+    templateUrl: './my-devices.component.html',
+    styleUrls: ['./my-devices.component.scss'],
+    standalone: true,
 })
 export class MyDevicesComponent implements OnInit, OnDestroy {
 

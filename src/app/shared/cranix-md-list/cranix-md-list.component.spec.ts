@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { CranixMdListComponent } from './cranix-md-list.component';
 
@@ -9,9 +9,9 @@ describe('CranixMdListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CranixMdListComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    declarations: [CranixMdListComponent],
+    imports: [IonicModule.forRoot()]
+}).compileComponents();
 
     fixture = TestBed.createComponent(CranixMdListComponent);
     component = fixture.componentInstance;

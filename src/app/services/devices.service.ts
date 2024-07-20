@@ -6,7 +6,7 @@ import { UtilsService } from './utils.service';
 import { ServerResponse, CrxActionMap } from 'src/app/shared/models/server-models';
 import { AuthenticationService } from './auth.service';
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class DevicesService {
 
 	hostname: string;

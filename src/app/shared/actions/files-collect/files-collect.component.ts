@@ -1,10 +1,12 @@
+import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonLabel, IonInput, IonCheckbox, IonItem } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { CrxActionMap } from '../../models/server-models';
 import { EductaionService } from 'src/app/services/education.service';
 
 @Component({
   selector: 'cranix-files-collect',
+  imports: [ IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonLabel, IonInput, IonCheckbox, IonItem ],
   templateUrl: './files-collect.component.html',
   styleUrls: ['./files-collect.component.scss'],
 })

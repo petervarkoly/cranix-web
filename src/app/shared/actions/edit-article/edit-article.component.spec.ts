@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { EditArticleComponent } from './edit-article.component';
 
@@ -9,9 +9,8 @@ describe('EditArticleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditArticleComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), EditArticleComponent]
+}).compileComponents();
 
     fixture = TestBed.createComponent(EditArticleComponent);
     component = fixture.componentInstance;

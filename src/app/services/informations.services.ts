@@ -15,7 +15,7 @@ export interface CloneCommand {
 
 }
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class InformationsService {
 
     infoTypes: string[] = ['task', 'announcement', 'faq', 'contact']

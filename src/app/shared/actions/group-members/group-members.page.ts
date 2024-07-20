@@ -1,3 +1,4 @@
+import { IonButtons, IonButton, IonIcon, IonCard, IonCardContent, IonCol, IonTitle, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -7,10 +8,11 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { GroupsService } from 'src/app/services/groups.service';
 import { Group, User } from 'src/app/shared/models/data-model'
 import { AuthenticationService } from 'src/app/services/auth.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'cranix-group-members',
+  imports: [ IonButtons, IonButton, IonIcon, IonCard, IonCardContent, IonCol, IonTitle, IonInput ],
   templateUrl: './group-members.page.html',
   styleUrls: ['./group-members.page.scss'],
 })

@@ -1,3 +1,4 @@
+import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonModal, IonContent, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
@@ -6,9 +7,11 @@ import { SystemService } from 'src/app/services/system.service';
 import { MailAccess } from 'src/app/shared/models/server-models'
 
 @Component({
-  selector: 'app-mailserver',
-  templateUrl: './mailserver.component.html',
-  styleUrls: ['./mailserver.component.scss'],
+    selector: 'app-mailserver',
+  imports: [ IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonModal, IonContent, IonSelect, IonSelectOption ],
+    templateUrl: './mailserver.component.html',
+    styleUrls: ['./mailserver.component.scss'],
+    standalone: true,
 })
 export class MailserverComponent implements OnInit {
 

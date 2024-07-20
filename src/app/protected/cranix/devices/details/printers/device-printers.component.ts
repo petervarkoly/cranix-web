@@ -1,5 +1,6 @@
+import { IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
-import { ToastController, ModalController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular/standalone';
 //own stuff
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { LanguageService } from 'src/app/services/language.service';
@@ -7,9 +8,11 @@ import { DevicesService } from 'src/app/services/devices.service';
 import { Printer, Device } from 'src/app/shared/models/data-model'
 
 @Component({
-  selector: 'cranix-device-printers',
-  templateUrl: './device-printers.component.html',
-  styleUrls: ['./device-printers.component.scss'],
+    selector: 'cranix-device-printers',
+  imports: [ IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonSelect, IonSelectOption ],
+    templateUrl: './device-printers.component.html',
+    styleUrls: ['./device-printers.component.scss'],
+    standalone: true,
 })
 export class DevicePrintersComponent implements OnInit {
   noPrinter: Printer = new Printer();

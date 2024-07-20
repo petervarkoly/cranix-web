@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular/standalone';
 import { CanDeactivate } from '@angular/router';
 
 //Own Stuff
@@ -12,7 +12,7 @@ import { ServerResponse } from 'src/app/shared/models/server-models';
 import { AccessInRoom, IncomingRules, OutgoingRule, RemoteRule, SafeSearch } from '../shared/models/secutiry-model';
 import { Room } from '../shared/models/data-model';
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class SecurityService {
 
   hostname: string;
@@ -336,7 +336,7 @@ export class SecurityService {
   }
 }
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class FirewallCanDeactivate implements CanDeactivate<SecurityService> {
   constructor(
     public languageS: LanguageService,
@@ -353,7 +353,7 @@ export class FirewallCanDeactivate implements CanDeactivate<SecurityService> {
   }
 }
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class ProxyCanDeactivate implements CanDeactivate<SecurityService> {
   constructor(
     public languageS: LanguageService,
@@ -388,7 +388,7 @@ export class ProxyCanDeactivate implements CanDeactivate<SecurityService> {
   }
 }
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class UnboundCanDeactivate implements CanDeactivate<SecurityService> {
   constructor(
     public languageS: LanguageService,

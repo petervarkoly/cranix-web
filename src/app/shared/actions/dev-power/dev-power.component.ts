@@ -1,5 +1,6 @@
+import { IonItem, IonIcon } from '@ionic/angular/standalone';
 import { Component, OnInit, Input } from '@angular/core';
-import { AlertController, PopoverController } from '@ionic/angular';
+import { AlertController, PopoverController } from '@ionic/angular/standalone';
 import { TranslateService } from '@ngx-translate/core';
 import { EductaionService } from 'src/app/services/education.service';
 import { devActionMenu } from '../objects.menus';
@@ -7,6 +8,7 @@ import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'cranix-dev-power',
+  imports: [ IonItem, IonIcon ],
   templateUrl: './dev-power.component.html',
   styleUrls: ['./dev-power.component.scss'],
 })

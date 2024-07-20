@@ -1,10 +1,11 @@
+import { IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonInput, IonItem, IonSelect, IonSelectOption, IonTextarea } from '@ionic/angular/standalone';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 //own stuff
 import { DevicesService } from 'src/app/services/devices.service';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { RoomsService } from 'src/app/services/rooms.service';
 import { Device, Room, Hwconf } from 'src/app/shared/models/data-model';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { LanguageService } from 'src/app/services/language.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { SelfManagementService } from 'src/app/services/selfmanagement.service';
@@ -15,6 +16,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'cranix-add-device',
+  imports: [ IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonInput, IonItem, IonSelect, IonSelectOption, IonTextarea ],
   templateUrl: './add-device.component.html',
   styleUrls: ['./add-device.component.scss'],
 })

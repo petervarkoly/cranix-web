@@ -1,3 +1,4 @@
+import { IonTitle, IonSegment, IonSegmentButton, IonContent, IonToolbar, IonInput, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 
 //Own stuff
@@ -8,8 +9,10 @@ import { LanguageService } from 'src/app/services/language.service';
 import { SynchronizedObject } from 'src/app/shared/models/cephalix-data-model';
 
 @Component({
-  selector: 'cranix-institutes-sync-objects',
-  templateUrl: './institutes-sync-objects.component.html'
+    selector: 'cranix-institutes-sync-objects',
+    imports: [ IonTitle, IonSegment, IonSegmentButton, IonContent, IonToolbar, IonInput, IonButtons, IonButton, IonIcon ],
+    templateUrl: './institutes-sync-objects.component.html',
+    standalone: true
 })
 export class InstitutesSyncObjectsComponent implements OnInit {
 

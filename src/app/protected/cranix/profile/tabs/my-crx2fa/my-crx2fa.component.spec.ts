@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { MyCrx2faComponent } from './my-crx2fa.component';
 
@@ -9,9 +9,8 @@ describe('MyCrx2faComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MyCrx2faComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), MyCrx2faComponent]
+}).compileComponents();
 
     fixture = TestBed.createComponent(MyCrx2faComponent);
     component = fixture.componentInstance;

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { AccessLogComponent } from './access-log.component';
 
@@ -9,9 +9,8 @@ describe('AccessLogComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccessLogComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), AccessLogComponent]
+}).compileComponents();
 
     fixture = TestBed.createComponent(AccessLogComponent);
     component = fixture.componentInstance;

@@ -17,7 +17,7 @@ import { LanguageService } from './language.service';
 import { interval } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class EductaionService {
 
 	sendigData = new BehaviorSubject(false);

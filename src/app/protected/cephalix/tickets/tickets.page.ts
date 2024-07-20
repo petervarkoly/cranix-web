@@ -1,6 +1,7 @@
+import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent, IonSearchbar, IonItemSliding, IonItemOptions, IonItemOption } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi } from 'ag-grid-community';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
 
@@ -19,9 +20,11 @@ import { SupportRequest } from 'src/app/shared/models/data-model';
 import { CreateSupport } from 'src/app/shared/actions/create-support/create-support-page';
 
 @Component({
-  selector: 'cranix-tickets',
-  templateUrl: './tickets.page.html',
-  styleUrls: ['./tickets.page.scss'],
+    selector: 'cranix-tickets',
+    imports: [ IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent, IonSearchbar, IonItemSliding, IonItemOptions, IonItemOption ],
+    templateUrl: './tickets.page.html',
+    styleUrls: ['./tickets.page.scss'],
+    standalone: true,
 })
 export class TicketsPage implements OnInit {
   objectKeys: string[] = [];

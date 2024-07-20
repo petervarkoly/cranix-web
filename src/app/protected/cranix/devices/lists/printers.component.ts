@@ -1,6 +1,7 @@
+import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GridOptions, GridApi, ColumnApi } from 'ag-grid-community';
-import { AlertController, PopoverController, ModalController } from '@ionic/angular';
+import { AlertController, PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
@@ -19,9 +20,11 @@ import { Device, Printer } from 'src/app/shared/models/data-model'
 import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';
 
 @Component({
-  selector: 'cranix-printers',
-  templateUrl: './printers.component.html',
-  styleUrls: ['./printers.component.scss'],
+    selector: 'cranix-printers',
+  imports: [ IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
+    templateUrl: './printers.component.html',
+    styleUrls: ['./printers.component.scss'],
+    standalone: true,
 })
 export class PrintersComponent implements OnInit {
   selectedRoom;

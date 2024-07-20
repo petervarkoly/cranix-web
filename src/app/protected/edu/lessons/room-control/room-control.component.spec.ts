@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { RoomControlComponent } from './room-control.component';
 
@@ -9,9 +9,8 @@ describe('RoomControlComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RoomControlComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), RoomControlComponent]
+}).compileComponents();
 
     fixture = TestBed.createComponent(RoomControlComponent);
     component = fixture.componentInstance;

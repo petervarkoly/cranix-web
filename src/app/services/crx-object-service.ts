@@ -1,19 +1,20 @@
 import { CrxConfig, TeachingSubject } from 'src/app/shared/models/data-model';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UtilsService } from './utils.service';
 import { AuthenticationService } from './auth.service';
 import { ServerResponse } from '../shared/models/server-models';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CrxObjectService {
+    private authService = inject(AuthenticationService)
+    private http = inject(HttpClient)
+    private utils = inject(UtilsService)
     subjects: TeachingSubject[];
     hostname: string;
 
     constructor(
-        private authService: AuthenticationService,
-        private http: HttpClient,
-        private utils: UtilsService,
+        
     ) {
         this.hostname = this.utils.hostName();
     }

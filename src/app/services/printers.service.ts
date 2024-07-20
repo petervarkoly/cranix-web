@@ -5,7 +5,7 @@ import { UtilsService } from './utils.service';
 import { ServerResponse } from 'src/app/shared/models/server-models';
 import { AuthenticationService } from './auth.service';
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class PrintersService {
 
 	hostname: string;

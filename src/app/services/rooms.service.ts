@@ -5,7 +5,7 @@ import { Room, AccessStatus, Printer, Hwconf } from 'src/app/shared/models/data-
 import { ServerResponse } from 'src/app/shared/models/server-models';
 import { AuthenticationService } from './auth.service';
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class RoomsService {
 	hostname: string;
 	url: string;

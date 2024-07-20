@@ -1,3 +1,7 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  @if (logged_in) {
+    <cranix-menue></cranix-menue>
+  } @else {
+    <cranix-login></cranix-login>
+  }
 </ion-app>

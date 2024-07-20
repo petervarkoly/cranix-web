@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { HwconfMembersPage } from './hwconf-members.page';
 
@@ -9,9 +9,8 @@ describe('HwconfMembersPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HwconfMembersPage ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), HwconfMembersPage]
+}).compileComponents();
 
     fixture = TestBed.createComponent(HwconfMembersPage);
     component = fixture.componentInstance;

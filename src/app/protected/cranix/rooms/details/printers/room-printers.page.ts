@@ -1,5 +1,6 @@
+import { IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
-import { ToastController, ModalController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular/standalone';
 //own stuff
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { LanguageService } from 'src/app/services/language.service';
@@ -8,9 +9,11 @@ import { Printer, Room } from 'src/app/shared/models/data-model'
 import { ServerResponse } from 'src/app/shared/models/server-models';
 
 @Component({
-  selector: 'cranix-room-printers',
-  templateUrl: './room-printers.page.html',
-  styleUrls: ['./room-printers.page.scss'],
+    selector: 'cranix-room-printers',
+  imports: [ IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonSelect, IonSelectOption ],
+    templateUrl: './room-printers.page.html',
+    styleUrls: ['./room-printers.page.scss'],
+    standalone: true,
 })
 export class RoomPrintersPage implements OnInit {
   noPrinter: Printer = new Printer;

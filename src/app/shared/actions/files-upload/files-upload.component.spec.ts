@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { FilesUploadComponent } from './files-upload.component';
 
@@ -9,9 +9,9 @@ describe('FilesUploadComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FilesUploadComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    declarations: [FilesUploadComponent],
+    imports: [IonicModule.forRoot()]
+}).compileComponents();
 
     fixture = TestBed.createComponent(FilesUploadComponent);
     component = fixture.componentInstance;

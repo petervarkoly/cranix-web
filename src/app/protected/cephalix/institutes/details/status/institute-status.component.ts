@@ -1,6 +1,7 @@
+import { IonContent, IonItem, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi } from 'ag-grid-community';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
@@ -15,9 +16,11 @@ import { Institute } from 'src/app/shared/models/cephalix-data-model'
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'cranix-institute-status',
-  templateUrl: './institute-status.component.html',
-  styleUrls: ['./institute-status.component.scss'],
+    selector: 'cranix-institute-status',
+    imports: [ IonContent, IonItem, IonInput ],
+    templateUrl: './institute-status.component.html',
+    styleUrls: ['./institute-status.component.scss'],
+    standalone: true,
 })
 export class InstituteStatusComponent implements OnInit {
   object: Institute = null;

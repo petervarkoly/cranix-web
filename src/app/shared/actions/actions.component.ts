@@ -1,8 +1,9 @@
+import { IonListHeader, IonItem, IonIcon } from '@ionic/angular/standalone';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { TranslateService } from '@ngx-translate/core';
 import { AngularCsv } from 'angular-csv-ext/dist/Angular-csv';
-import { AlertController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular/standalone';
 //Own stuff
 import { userMenu, groupMenu, roomMenu, deviceMenu, instituteMenu, hwconfMenu, ticketMenu, printerMenu, studentMenu, eduRoomMenu, crx2faMenu } from './objects.menus';
 import { CrxActionMap, ServerResponse } from 'src/app/shared/models/server-models';
@@ -21,6 +22,7 @@ import { SetValidityComponent } from './set-validity/set-validity.component';
 
 @Component({
   selector: 'cranix-actions',
+  imports: [ IonListHeader, IonItem, IonIcon ],
   templateUrl: './actions.component.html',
   styleUrls: ['./actions.component.scss'],
 })

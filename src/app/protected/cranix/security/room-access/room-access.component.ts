@@ -1,3 +1,4 @@
+import { IonToolbar, IonSegment, IonSegmentButton, IonButtons, IonButton, IonIcon, IonItem, IonInput, IonContent, IonFab, IonFabButton, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { GridApi } from 'ag-grid-community';
 import { AuthenticationService } from 'src/app/services/auth.service';
@@ -5,17 +6,19 @@ import { LanguageService } from 'src/app/services/language.service';
 import { SecurityService } from 'src/app/services/security-service';
 import { AccessInRoom } from 'src/app/shared/models/secutiry-model';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { AddEditRoomAccessComponent } from './add-edit-room-access/add-edit-room-access.component';
 import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';
 import { SystemService } from 'src/app/services/system.service';
 import { ApplyBTNRenderer } from 'src/app/pipes/ag-apply-renderer';
 
 @Component({
-  selector: 'cranix-room-access',
-  templateUrl: './room-access.component.html',
-  styleUrls: ['./room-access.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'cranix-room-access',
+  imports: [ IonToolbar, IonSegment, IonSegmentButton, IonButtons, IonButton, IonIcon, IonItem, IonInput, IonContent, IonFab, IonFabButton, IonGrid, IonRow, IonCol ],
+    templateUrl: './room-access.component.html',
+    styleUrls: ['./room-access.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: true
 })
 export class RoomAccessComponent implements OnInit {
   segment = 'list';

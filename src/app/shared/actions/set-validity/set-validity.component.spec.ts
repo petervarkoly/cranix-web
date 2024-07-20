@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { SetValidityComponent } from './set-validity.component';
 
@@ -9,9 +9,9 @@ describe('SetValidityComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SetValidityComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    declarations: [SetValidityComponent],
+    imports: [IonicModule.forRoot()]
+}).compileComponents();
 
     fixture = TestBed.createComponent(SetValidityComponent);
     component = fixture.componentInstance;

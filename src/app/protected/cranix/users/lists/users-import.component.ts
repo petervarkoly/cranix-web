@@ -1,6 +1,7 @@
+import { IonToolbar, IonButtons, IonButton, IonIcon, IonContent, IonRow, IonCol, IonFab, IonFabButton, IonFabList } from '@ionic/angular/standalone';
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { GridOptions, GridApi, ColumnApi } from 'ag-grid-community';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
 
@@ -14,10 +15,10 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'cranix-users-import',
-  templateUrl: './users-import.component.html',
-  // styleUrls: ['./user-import.component.scss'],
-
+    selector: 'cranix-users-import',
+  imports: [ IonToolbar, IonButtons, IonButton, IonIcon, IonContent, IonRow, IonCol, IonFab, IonFabButton, IonFabList ],
+    templateUrl: './users-import.component.html',
+    standalone: true,
 })
 export class UsersImportComponent implements OnInit {
   alive: boolean = true;

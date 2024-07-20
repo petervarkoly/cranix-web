@@ -1,5 +1,6 @@
+import { IonFab, IonIcon, IonFabList, IonFabButton, IonSearchbar, IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { GridOptions, GridApi, ColumnApi } from 'ag-grid-community';
 //Own stuff
 import { AuthenticationService } from 'src/app/services/auth.service';
@@ -13,9 +14,11 @@ import { Software } from 'src/app/shared/models/data-model';
 import { SoftwareLicensesComponent } from 'src/app/shared/actions/software-licenses/software-licenses.component';
 
 @Component({
-  selector: 'cranix-software-packages',
-  templateUrl: './software-packages.component.html',
-  styleUrls: ['./software-packages.component.scss'],
+    selector: 'cranix-software-packages',
+  imports: [ IonFab, IonIcon, IonFabList, IonFabButton, IonSearchbar, IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton ],
+    templateUrl: './software-packages.component.html',
+    styleUrls: ['./software-packages.component.scss'],
+    standalone: true,
 })
 export class SoftwarePackagesComponent implements OnInit {
   objectKeys: string[] = [];

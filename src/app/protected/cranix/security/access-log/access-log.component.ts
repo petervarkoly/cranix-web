@@ -1,12 +1,15 @@
+import { IonContent, IonItem, IonLabel, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { SystemService } from 'src/app/services/system.service';
 
 @Component({
-  selector: 'cranix-access-log',
-  templateUrl: './access-log.component.html',
-  styleUrls: ['./access-log.component.scss'],
+    selector: 'cranix-access-log',
+  imports: [ IonContent, IonItem, IonLabel, IonInput ],
+    templateUrl: './access-log.component.html',
+    styleUrls: ['./access-log.component.scss'],
+    standalone: true,
 })
 export class AccessLogComponent implements OnInit {
 

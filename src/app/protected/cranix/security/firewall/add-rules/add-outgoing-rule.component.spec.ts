@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { AddOutgoingRuleComponent } from './add-outgoing-rule.component';
 
@@ -9,9 +9,8 @@ describe('AddOutgoingRuleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddOutgoingRuleComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), AddOutgoingRuleComponent]
+}).compileComponents();
 
     fixture = TestBed.createComponent(AddOutgoingRuleComponent);
     component = fixture.componentInstance;

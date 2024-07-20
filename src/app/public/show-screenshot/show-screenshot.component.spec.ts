@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { ShowScreenshotComponent } from './show-screenshot.component';
 
@@ -9,9 +9,8 @@ describe('ShowScreenshotComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShowScreenshotComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), ShowScreenshotComponent]
+}).compileComponents();
 
     fixture = TestBed.createComponent(ShowScreenshotComponent);
     component = fixture.componentInstance;

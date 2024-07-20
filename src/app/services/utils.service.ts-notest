@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { isDevMode } from '@angular/core';
 
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class UtilsService {
 
         public okBrowser: boolean = true;

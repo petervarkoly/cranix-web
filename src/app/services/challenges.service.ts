@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectablei, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CanDeactivate } from '@angular/router';
 
 //own modules
 import { UtilsService } from './utils.service';
 import { AuthenticationService } from './auth.service';
-import { CrxObjectService } from './crx-object-service';
 import { ServerResponse } from 'src/app/shared/models/server-models';
 import { CrxChallenge, CrxQuestion, TeachingSubject } from '../shared/models/data-model';
 import { LanguageService } from './language.service';
@@ -14,14 +13,14 @@ import { LanguageService } from './language.service';
   providedIn: 'root'
 })
 export class ChallengesService {
-
+  private utilsS = inject(UtilsService)
+  private authService = inject(AuthenticationService)
   hostname: string;
   modified: boolean = false;
 
   constructor(
     private http: HttpClient,
-    private utilsS: UtilsService,
-    private authService: AuthenticationService) {
+) {
     this.hostname = this.utilsS.hostName();
   }
 
@@ -109,7 +108,7 @@ export class ChallengesService {
   }
 }
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class ChallengeCanDeactivate implements CanDeactivate<ChallengesService> {
   constructor(
     public languageS: LanguageService,

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { DownloadSoftwaresComponent } from './download-softwares.component';
 
@@ -9,9 +9,9 @@ describe('DownloadSoftwaresComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DownloadSoftwaresComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    declarations: [DownloadSoftwaresComponent],
+    imports: [IonicModule.forRoot()]
+}).compileComponents();
 
     fixture = TestBed.createComponent(DownloadSoftwaresComponent);
     component = fixture.componentInstance;

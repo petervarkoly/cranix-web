@@ -1,11 +1,15 @@
+import { IonSplitPane, IonMenu, IonList, IonListHeader, IonItem, IonMenuToggle, IonIcon, IonFooter, IonButton, IonRouterOutlet } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'cranix-protected',
-  templateUrl: './protected.page.html',
-  styleUrls: ['./protected.page.scss'],
+    selector: 'cranix-menue',
+    imports: [ IonSplitPane, IonMenu, IonList, IonListHeader, IonItem, IonMenuToggle, IonIcon, IonFooter, IonButton, IonRouterOutlet, TranslateModule ],
+    templateUrl: './protected.page.html',
+    styleUrls: ['./protected.page.scss'],
+    standalone: true,
 })
 export class ProtectedPage implements OnInit {
   public appPages = [];
@@ -92,8 +96,9 @@ export class ProtectedPage implements OnInit {
   constructor(
     public location: Location,
     public authService: AuthenticationService
-  ) {
-
+  ) {    
+  }
+  ngOnInit() {
     console.log(this.location.path())
     for (let page of this.defAppPages) {
       if (this.authService.isRouteAllowed(page.url)) {
@@ -107,7 +112,5 @@ export class ProtectedPage implements OnInit {
         this.appPages.push(page);
       }
     }
-  }
-  ngOnInit() {
   }
 }

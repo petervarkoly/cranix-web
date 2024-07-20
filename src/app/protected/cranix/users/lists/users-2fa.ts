@@ -1,6 +1,7 @@
+import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi } from 'ag-grid-community';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular/standalone';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { LanguageService } from 'src/app/services/language.service';
@@ -9,9 +10,9 @@ import { ActionsComponent } from 'src/app/shared/actions/actions.component';
 
 @Component({
     selector: 'cranix-users-2fa',
+  imports: [ IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon ],
     templateUrl: './users-2fa.html',
-    // styleUrls: ['./user-import.component.scss'],
-
+    standalone: true,
 })
 export class Users2faComponent implements OnInit {
     objectKeys: string[] = [];

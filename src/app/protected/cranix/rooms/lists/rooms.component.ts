@@ -1,6 +1,7 @@
+import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi } from 'ag-grid-community';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
@@ -17,9 +18,11 @@ import { RoomPrintersPage } from '../details/printers/room-printers.page';
 import { ManageDhcpComponent } from 'src/app/shared/actions/manage-dhcp/manage-dhcp.component';
 
 @Component({
-  selector: 'cranix-rooms',
-  templateUrl: './rooms.component.html',
-  styleUrls: ['./rooms.component.scss'],
+    selector: 'cranix-rooms',
+  imports: [ IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
+    templateUrl: './rooms.component.html',
+    styleUrls: ['./rooms.component.scss'],
+    standalone: true,
 })
 export class RoomsComponent implements OnInit {
   objectKeys: string[] = Object.getOwnPropertyNames(new Room());

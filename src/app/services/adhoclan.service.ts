@@ -8,7 +8,7 @@ import { AuthenticationService } from './auth.service';
 
 
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class AdHocLanService {
 
     hostname: string;

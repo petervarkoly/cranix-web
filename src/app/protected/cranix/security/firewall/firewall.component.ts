@@ -1,18 +1,21 @@
+import { IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonFab, IonFabButton, IonFabList, IonGrid, IonCol, IonSelect, IonSelectOption, IonItem, IonInput, IonRow } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { IncomingRules, OutgoingRule, RemoteRule } from 'src/app/shared/models/secutiry-model';
 import { LanguageService } from 'src/app/services/language.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { SecurityService } from 'src/app/services/security-service';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { AddOutgoingRuleComponent } from './add-rules/add-outgoing-rule.component';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { AddRemoteRuleComponent } from './add-rules/add-remote-rule.component';
 import { SystemService } from 'src/app/services/system.service';
 
 @Component({
-  selector: 'cranix-firewall',
-  templateUrl: './firewall.component.html',
-  styleUrls: ['./firewall.component.scss'],
+    selector: 'cranix-firewall',
+  imports: [ IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonFab, IonFabButton, IonFabList, IonGrid, IonCol, IonSelect, IonSelectOption, IonItem, IonInput, IonRow ],
+    templateUrl: './firewall.component.html',
+    styleUrls: ['./firewall.component.scss'],
+    standalone: true,
 })
 export class FirewallComponent implements OnInit {
   segment: string = "in";

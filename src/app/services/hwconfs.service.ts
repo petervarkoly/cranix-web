@@ -14,7 +14,7 @@ export interface CloneCommand {
 
 }
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class HwconfsService {
 
 	hostname: string;

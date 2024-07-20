@@ -1,3 +1,4 @@
+import { IonToolbar, IonButtons, IonButton, IonIcon, IonContent, IonItem, IonLabel, IonPopover } from '@ionic/angular/standalone';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { ChallengesService } from 'src/app/services/challenges.service';
@@ -6,9 +7,11 @@ import { CrxChallenge } from 'src/app/shared/models/data-model';
 
 
 @Component({
-  selector: 'app-tests',
-  templateUrl: './tests.component.html',
-  styleUrls: ['../challenges/challenges.component.scss', './tests.component.scss'],
+    selector: 'app-tests',
+  imports: [ IonToolbar, IonButtons, IonButton, IonIcon, IonContent, IonItem, IonLabel, IonPopover ],
+    templateUrl: './tests.component.html',
+    styleUrls: ['../challenges/challenges.component.scss', './tests.component.scss'],
+    standalone: true,
 })
 export class TestsComponent implements OnInit {
 

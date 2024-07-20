@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { SetContractComponent } from './set-contract.component';
 
@@ -9,9 +9,9 @@ describe('SetContractComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SetContractComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    declarations: [SetContractComponent],
+    imports: [IonicModule.forRoot()]
+}).compileComponents();
 
     fixture = TestBed.createComponent(SetContractComponent);
     component = fixture.componentInstance;

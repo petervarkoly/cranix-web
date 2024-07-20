@@ -1,3 +1,4 @@
+import { IonContent, IonIcon, IonSelect, IonSelectOption, IonItem, IonButton } from '@ionic/angular/standalone';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { SelfManagementService } from 'src/app/services/selfmanagement.service';
@@ -5,9 +6,11 @@ import { takeWhile } from 'rxjs/internal/operators/takeWhile';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 
 @Component({
-  selector: 'cranix-my-vpn',
-  templateUrl: './my-vpn.component.html',
-  styleUrls: ['./my-vpn.component.scss'],
+    selector: 'cranix-my-vpn',
+  imports: [ IonContent, IonIcon, IonSelect, IonSelectOption, IonItem, IonButton ],
+    templateUrl: './my-vpn.component.html',
+    styleUrls: ['./my-vpn.component.scss'],
+    standalone: true,
 })
 export class MyVPNComponent implements OnInit,OnDestroy {
 

@@ -1,6 +1,7 @@
+import { IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 
 //Own stuff
 import { AuthenticationService } from 'src/app/services/auth.service';
@@ -12,9 +13,11 @@ import { EditInstallationSetComponent } from 'src/app/protected/cranix/softwares
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 
 @Component({
-  selector: 'cranix-installation-sets',
-  templateUrl: './installation-sets.component.html',
-  styleUrls: ['./installation-sets.component.scss'],
+    selector: 'cranix-installation-sets',
+  imports: [ IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton ],
+    templateUrl: './installation-sets.component.html',
+    styleUrls: ['./installation-sets.component.scss'],
+    standalone: true,
 })
 export class InstallationSetsComponent implements OnInit {
   context;

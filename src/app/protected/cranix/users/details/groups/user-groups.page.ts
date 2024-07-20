@@ -1,6 +1,7 @@
+import { IonButtons, IonButton, IonIcon, IonCol, IonTitle, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 
 //own stuff
 import { LanguageService } from 'src/app/services/language.service';
@@ -9,9 +10,11 @@ import { Group, User } from 'src/app/shared/models/data-model'
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'cranix-user-groups',
-  templateUrl: './user-groups.page.html',
-  styleUrls: ['./user-groups.page.scss'],
+    selector: 'cranix-user-groups',
+  imports: [ IonButtons, IonButton, IonIcon, IonCol, IonTitle, IonInput ],
+    templateUrl: './user-groups.page.html',
+    styleUrls: ['./user-groups.page.scss'],
+    standalone: true,
 })
 export class UserGroupsPage implements OnInit {
   columnDefs = [];

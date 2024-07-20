@@ -5,7 +5,7 @@ import { UtilsService } from './utils.service';
 import { Crx2fa, ServerResponse } from 'src/app/shared/models/server-models';
 import { User, Device, Room } from 'src/app/shared/models/data-model';
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class SelfManagementService {
 
     hostname: string;

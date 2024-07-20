@@ -1,3 +1,4 @@
+import { IonToolbar, IonSegment, IonSegmentButton, IonIcon, IonLabel, IonButtons, IonButton, IonInput, IonItem, IonList } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 
 import { LanguageService } from 'src/app/services/language.service';
@@ -8,9 +9,11 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { ApplyCheckBoxBTNRenderer } from 'src/app/pipes/ag-apply-checkbox-renderer';
 
 @Component({
-  selector: 'cranix-proxy',
-  templateUrl: './proxy.component.html',
-  styleUrls: ['./proxy.component.scss'],
+    selector: 'cranix-proxy',
+  imports: [ IonToolbar, IonSegment, IonSegmentButton, IonIcon, IonLabel, IonButtons, IonButton, IonInput, IonItem, IonList ],
+    templateUrl: './proxy.component.html',
+    styleUrls: ['./proxy.component.scss'],
+    standalone: true,
 })
 export class ProxyComponent implements OnInit {
 

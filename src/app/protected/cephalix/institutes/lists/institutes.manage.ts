@@ -1,6 +1,7 @@
+import { IonSearchbar, IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton } from '@ionic/angular/standalone';
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { GridOptions, GridApi, ColumnApi } from 'ag-grid-community';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 
 //own modules
@@ -12,9 +13,11 @@ import { Institute } from 'src/app/shared/models/cephalix-data-model'
 import { User } from 'src/app/shared/models/data-model';
 
 @Component({
-  selector: 'cranix-institutes',
-  templateUrl: './institutes.manage.html',
-  styleUrls: ['./institutes.manage.scss'],
+    selector: 'cranix-institutes',
+    imports: [ IonSearchbar, IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton ],
+    templateUrl: './institutes.manage.html',
+    styleUrls: ['./institutes.manage.scss'],
+    standalone: true,
 })
 export class InstitutesManage implements OnInit {
   managedIds:      number[] = [];

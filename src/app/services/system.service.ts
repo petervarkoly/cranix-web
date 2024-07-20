@@ -9,7 +9,7 @@ import { ServerResponse, Acl, ServiceStatus, MailAccess } from 'src/app/shared/m
 import { GenericObjectService } from './generic-object.service';
 import { LanguageService } from './language.service';
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class SystemService {
 
 	hostname: string;

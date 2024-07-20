@@ -1,10 +1,11 @@
+import { IonContent, IonButtons, IonButton, IonIcon, IonCardContent, IonGrid, IonCol, IonItem, IonLabel, IonCard, IonCardSubtitle } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 //own
 import { Ticket, Article, Institute } from 'src/app/shared/models/cephalix-data-model';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { CephalixService } from 'src/app/services/cephalix.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { User } from 'src/app/shared/models/data-model';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { WindowRef } from 'src/app/shared/models/ohters';
@@ -13,9 +14,11 @@ class ObjectList {
   label: string;
 }
 @Component({
-  selector: 'cranix-details',
-  templateUrl: './details.page.html',
-  styleUrls: ['./details.page.scss'],
+    selector: 'cranix-details',
+    imports: [ IonContent, IonButtons, IonButton, IonIcon, IonCardContent, IonGrid, IonCol, IonItem, IonLabel, IonCard, IonCardSubtitle ],
+    templateUrl: './details.page.html',
+    styleUrls: ['./details.page.scss'],
+    standalone: true,
 })
 export class DetailsPage implements OnInit {
   ticketId: number;
@@ -217,9 +220,11 @@ export class DetailsPage implements OnInit {
 }
 
 @Component({
-  selector: 'cranix-edit-article',
-  templateUrl: './edit-article.html'
-  //styleUrls: ['./edit-article.scss'],
+    selector: 'cranix-edit-article',
+    templateUrl: './edit-article.html'
+    //styleUrls: ['./edit-article.scss'],
+    ,
+    standalone: true
 })
 export class EditArticle implements OnInit {
 

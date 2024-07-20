@@ -1,6 +1,6 @@
 import { ICellRendererAngularComp } from "ag-grid-angular";
 import { Component, OnDestroy } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular/standalone';
 //Own Stuff
 import { CephalixService } from 'src/app/services/cephalix.service';
 import { WindowRef } from 'src/app/shared/models/ohters'

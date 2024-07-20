@@ -9,7 +9,7 @@ import { Category, Device, Hwconf, Room, SoftwareStatus, Software, License, Inst
 import { GenericObjectService } from './generic-object.service';
 
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class SoftwareService {
 	hostname: string;
 	url: string;

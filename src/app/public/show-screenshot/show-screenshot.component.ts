@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'cranix-show-screenshot',
-  templateUrl: './show-screenshot.component.html',
-  styleUrls: ['./show-screenshot.component.scss'],
+    selector: 'cranix-show-screenshot',
+    templateUrl: './show-screenshot.component.html',
+    styleUrls: ['./show-screenshot.component.scss'],
+    standalone: true,
 })
 export class ShowScreenshotComponent implements OnInit {
 

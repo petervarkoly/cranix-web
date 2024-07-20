@@ -1,6 +1,7 @@
+import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi } from 'ag-grid-community';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
@@ -16,9 +17,10 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { GroupMembersPage } from 'src/app/shared/actions/group-members/group-members.page';
 
 @Component({
-  selector: 'cranix-groups',
-  templateUrl: './groups.page.html',
-  styleUrls: ['./groups.page.scss'],
+    selector: 'cranix-groups',
+    templateUrl: './groups.page.html',
+    styleUrls: ['./groups.page.scss'],
+    standalone: true,
 })
 export class GroupsPage implements OnInit {
   objectKeys: string[] = [];

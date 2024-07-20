@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { ProtectedPage } from './protected.page';
 
@@ -9,9 +9,8 @@ describe('ProtectedPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProtectedPage ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), ProtectedPage]
+}).compileComponents();
 
     fixture = TestBed.createComponent(ProtectedPage);
     component = fixture.componentInstance;

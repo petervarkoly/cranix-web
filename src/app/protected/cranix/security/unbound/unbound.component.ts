@@ -1,3 +1,4 @@
+import { IonToolbar, IonTitle, IonButtons, IonButton, IonIcon, IonSegment, IonSegmentButton, IonItemDivider, IonFab, IonFabButton, IonCol, IonItem, IonInput, IonLabel, IonCheckbox } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { SecurityService } from 'src/app/services/security-service';
@@ -6,9 +7,11 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { SafeSearch } from 'src/app/shared/models/secutiry-model';
 
 @Component({
-  selector: 'cranix-unbound',
-  templateUrl: './unbound.component.html',
-  styleUrls: ['./unbound.component.scss'],
+    selector: 'cranix-unbound',
+  imports: [ IonToolbar, IonTitle, IonButtons, IonButton, IonIcon, IonSegment, IonSegmentButton, IonItemDivider, IonFab, IonFabButton, IonCol, IonItem, IonInput, IonLabel, IonCheckbox ],
+    templateUrl: './unbound.component.html',
+    styleUrls: ['./unbound.component.scss'],
+    standalone: true,
 })
 export class UnboundComponent implements OnInit {
 

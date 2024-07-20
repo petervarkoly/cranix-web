@@ -1,5 +1,6 @@
+import { IonButtons, IonMenuButton, IonTitle, IonLabel, IonButton, IonIcon, IonBadge, IonToolbar } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular/standalone';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage-angular';
 import { interval } from 'rxjs';
@@ -15,6 +16,7 @@ import { Ticket } from 'src/app/shared/models/cephalix-data-model';
 
 @Component({
   selector: 'cranix-toolbar',
+  imports: [ IonButtons, IonMenuButton, IonTitle, IonLabel, IonButton, IonIcon, IonBadge, IonToolbar ],
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
 })

@@ -1,31 +1,32 @@
 import { Component } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage-angular';
 //own services
 import { AuthenticationService } from './services/auth.service';
 import { GenericObjectService } from './services/generic-object.service';
 import { LanguageService } from './services/language.service';
-
+import { LoginPage } from './public/login/login.page';
+import { ProtectedPage } from './protected/protected.page'
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+    selector: 'app-root',
+    imports: [ LoginPage, ProtectedPage ],
+    templateUrl: 'app.component.html',
+    styleUrls: ['app.component.scss'],
+    standalone: true
 })
 export class AppComponent {
+  public logged_in = false;
   constructor(
     private authService: AuthenticationService,
     private genericObjectS: GenericObjectService,
     private languageService: LanguageService,
     private platform: Platform,
-    private router: Router,
-    private storage: Storage
+    private router: Router
   ) {
   }
 
   ngOnInit() {
     console.log("AppComponenet ngOnInit");
-    this.storage.create();
     this.initializeApp();
   }
 
@@ -45,6 +46,7 @@ export class AppComponent {
         console.log("cephalix_token",sessionStorage.getItem('cephalix_token'))
         console.log("shortName",sessionStorage.getItem('shortName'))
         if (state) {
+          this.logged_in = true
           if(!this.authService.session.mustSetup2fa) {
             this.genericObjectS.initialize(true);
           }

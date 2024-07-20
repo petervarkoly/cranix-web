@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { SetquotaComponent } from './setquota.component';
 
@@ -9,9 +9,9 @@ describe('SetquotaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SetquotaComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    declarations: [SetquotaComponent],
+    imports: [IonicModule.forRoot()]
+}).compileComponents();
 
     fixture = TestBed.createComponent(SetquotaComponent);
     component = fixture.componentInstance;

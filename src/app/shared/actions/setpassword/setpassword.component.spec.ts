@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { SetpasswordComponent } from './setpassword.component';
 
@@ -9,9 +9,9 @@ describe('SetpasswordComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SetpasswordComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    declarations: [SetpasswordComponent],
+    imports: [IonicModule.forRoot()]
+}).compileComponents();
 
     fixture = TestBed.createComponent(SetpasswordComponent);
     component = fixture.componentInstance;

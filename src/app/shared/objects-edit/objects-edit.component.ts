@@ -1,5 +1,6 @@
+import { IonHeader, IonTitle, IonLabel, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonInput, IonSelect, IonSelectOption, IonToggle, IonTextarea } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular/standalone';
 import { TranslateService } from '@ngx-translate/core';
 //own
 import { CephalixService } from 'src/app/services/cephalix.service';
@@ -13,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 import { UtilsService } from 'src/app/services/utils.service';
 @Component({
   selector: 'cranix-objects-edit',
+  imports: [ IonHeader, IonTitle, IonLabel, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonInput, IonSelect, IonSelectOption, IonToggle, IonTextarea ],
   templateUrl: './objects-edit.component.html',
   styleUrls: ['./objects-edit.component.scss'],
 })

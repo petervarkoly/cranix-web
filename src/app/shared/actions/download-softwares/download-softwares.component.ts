@@ -1,5 +1,6 @@
+import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular/standalone';
 import { GridOptions, GridApi, ColumnApi } from 'ag-grid-community';
 //Own stuff
 import { SoftwareService } from 'src/app/services/softwares.service';
@@ -11,6 +12,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'cranix-download-softwares',
+  imports: [ IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonInput ],
   templateUrl: './download-softwares.component.html',
   styleUrls: ['./download-softwares.component.scss'],
 })

@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular/standalone';
 // own modules
 import { ServerResponse } from 'src/app/shared/models/server-models';
 import { Group, Package, User } from 'src/app/shared/models/data-model';
@@ -13,6 +13,10 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class GenericObjectService {
+  public authService = inject(AuthenticationService)
+  private languageS = inject(LanguageService)
+  private utilsS = inject(UtilsService)
+  private crxObjectService = inject(CrxObjectService)
   //allObjects: {} = {};
   allObjects: Map<string,Object[]> = new Map<string,Object[]>();
   selectedObject: any = null;
@@ -123,11 +127,7 @@ export class GenericObjectService {
 
   constructor(
     public alertController: AlertController,
-    public authService: AuthenticationService,
     private http: HttpClient,
-    private languageS: LanguageService,
-    private utilsS: UtilsService,
-    private crxObjectService: CrxObjectService,
     public toastController: ToastController,
     private router: Router) {
   }

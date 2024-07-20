@@ -1,5 +1,6 @@
+import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
@@ -15,9 +16,11 @@ import { Hwconf } from 'src/app/shared/models/data-model'
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'cranix-hwconfs',
-  templateUrl: './hwconfs.page.html',
-  styleUrls: ['./hwconfs.page.scss'],
+    selector: 'cranix-hwconfs',
+  imports: [ IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
+    templateUrl: './hwconfs.page.html',
+    styleUrls: ['./hwconfs.page.scss'],
+    standalone: true,
 })
 export class HwconfsPage implements OnInit {
   objectKeys: string[] = [];

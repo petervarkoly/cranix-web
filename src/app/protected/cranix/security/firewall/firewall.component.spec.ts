@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { FirewallComponent } from './firewall.component';
 
@@ -9,9 +9,8 @@ describe('FirewallComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FirewallComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), FirewallComponent]
+}).compileComponents();
 
     fixture = TestBed.createComponent(FirewallComponent);
     component = fixture.componentInstance;

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular/standalone';
 
 import { SoftwareStatusComponent } from './software-status.component';
 
@@ -9,9 +9,8 @@ describe('SoftwareStatusComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SoftwareStatusComponent ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), SoftwareStatusComponent]
+}).compileComponents();
 
     fixture = TestBed.createComponent(SoftwareStatusComponent);
     component = fixture.componentInstance;

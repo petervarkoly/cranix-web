@@ -1,9 +1,11 @@
+import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonLabel } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 
 @Component({
   selector: 'cranix-set-validity',
+  imports: [ IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonLabel ],
   templateUrl: './set-validity.component.html',
   styleUrls: ['./set-validity.component.scss'],
 })

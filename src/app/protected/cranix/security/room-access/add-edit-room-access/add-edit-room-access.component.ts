@@ -1,13 +1,16 @@
+import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput, IonCheckbox } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular/standalone';
 import { TranslateService } from '@ngx-translate/core';
 //own
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { SecurityService } from 'src/app/services/security-service';
 @Component({
-  selector: 'cranix-add-edit-room-access',
-  templateUrl: './add-edit-room-access.component.html',
+    selector: 'cranix-add-edit-room-access',
+  imports: [ IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput, IonCheckbox ],
+    templateUrl: './add-edit-room-access.component.html',
+    standalone: true,
 })
 export class AddEditRoomAccessComponent implements OnInit {
   result: any = {};

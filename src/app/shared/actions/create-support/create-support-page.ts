@@ -1,11 +1,13 @@
+import { IonHeader, IonItem, IonButtons, IonButton, IonIcon, IonModal, IonContent, IonInput, IonLabel, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { SystemService } from 'src/app/services/system.service';
 
 
 @Component({
     selector: 'create-support-page',
+  imports: [ IonHeader, IonItem, IonButtons, IonButton, IonIcon, IonModal, IonContent, IonInput, IonLabel, IonSelect, IonSelectOption ],
     templateUrl: 'create-support.html'
   })
   export class CreateSupport implements OnInit {

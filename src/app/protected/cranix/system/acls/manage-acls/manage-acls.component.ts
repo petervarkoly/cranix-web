@@ -1,12 +1,15 @@
+import { IonButtons, IonButton, IonIcon, IonCol, IonItem } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular/standalone';
 import { SystemService } from 'src/app/services/system.service';
 import { Acl } from 'src/app/shared/models/server-models';
 
 @Component({
-  selector: 'cranix-manage-acls',
-  templateUrl: './manage-acls.component.html',
-  styleUrls: ['./manage-acls.component.scss'],
+    selector: 'cranix-manage-acls',
+  imports: [ IonButtons, IonButton, IonIcon, IonCol, IonItem ],
+    templateUrl: './manage-acls.component.html',
+    styleUrls: ['./manage-acls.component.scss'],
+    standalone: true,
 })
 export class ManageAclsComponent implements OnInit {
 
