@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonButtons, IonButton, IonIcon, IonCard, IonCardContent, IonCol, IonTitle, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -38,7 +40,8 @@ export class GroupMembersPage implements OnInit {
     private languageS: LanguageService,
     private groupS: GroupsService,
     public translateServices: TranslateService
-  ) {}
+  ) {
+    addIcons ({ checkmarkSharp, close });}
 
   ngOnInit() {
     console.log('innerWidth',window.innerWidth)

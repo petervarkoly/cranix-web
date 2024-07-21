@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonLabel, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular/standalone';
@@ -17,6 +19,7 @@ export class SetquotaComponent implements OnInit {
   constructor(
     public modalController: ModalController
   ) {
+    addIcons ({ checkmarkSharp, close });
   }
 
   ngOnInit() {

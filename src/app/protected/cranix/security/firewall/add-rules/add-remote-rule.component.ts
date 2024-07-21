@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { RemoteRule } from 'src/app/shared/models/secutiry-model';
@@ -22,6 +24,7 @@ export class AddRemoteRuleComponent implements OnInit {
     public securityService: SecurityService,
     public modalCtrl: ModalController
   ) {
+    addIcons ({ checkmarkSharp, close });
     for (let dev of this.objectService.allObjects['device']) {
       this.deviceIps.push({ key: dev.id, name: dev.name })
     }

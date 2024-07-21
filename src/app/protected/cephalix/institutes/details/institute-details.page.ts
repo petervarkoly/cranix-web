@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { caretBack, create, statsChart, codeWorking, reader } from 'ionicons/icons';
 import { IonTabBar, IonTabButton, IonIcon } from '@ionic/angular/standalone';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,5 +14,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class InstituteDetailsPage {
   constructor(
     public translateService: TranslateService
-  ) {}
+  ) {
+    addIcons ({ caretBack, create, statsChart, codeWorking, reader });}
 }

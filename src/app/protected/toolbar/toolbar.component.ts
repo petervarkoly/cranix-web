@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { ticket, refresh, book, person, logOut } from 'ionicons/icons';
 import { IonButtons, IonMenuButton, IonTitle, IonLabel, IonButton, IonIcon, IonBadge, IonToolbar } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular/standalone';
@@ -40,6 +42,7 @@ export class ToolbarComponent implements OnInit {
     public modalConroller: ModalController,
     public utilService: UtilsService
   ) {
+    addIcons ({ ticket, refresh, book, person, logOut });
     this.fullName = authService.session.fullName;
     this.roomName = authService.session.roomName;
     this.instituteName = authService.session.instituteName;

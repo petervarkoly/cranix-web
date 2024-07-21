@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { attach, checkmark, checkmarkSharp, close } from 'ionicons/icons';
 import { IonHeader, IonItem, IonButtons, IonButton, IonIcon, IonModal, IonContent, IonInput, IonLabel, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular/standalone';
@@ -19,7 +21,8 @@ import { SystemService } from 'src/app/services/system.service';
       public modalController: ModalController,
       public systemService: SystemService,
       public objectService: GenericObjectService
-    ) { }
+    ) {
+    addIcons ({ attach, checkmark, checkmarkSharp, close }); }
   
     ngOnInit() { }
     onFilesAdded(event) {

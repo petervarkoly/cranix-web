@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, trash, close } from 'ionicons/icons';
 import { IonTitle, IonButtons, IonButton, IonIcon, IonSegment, IonSegmentButton, IonContent, IonRow, IonCol, IonLabel, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular/standalone';
@@ -47,6 +49,7 @@ export class EditInstallationSetComponent implements OnInit {
     private modalCtrl: ModalController,
     public softwareService: SoftwareService
   ) {
+    addIcons ({ checkmarkSharp, trash, close });
     this.deviceColumnDefs = [
       {
         headerName: this.languageS.trans('devices'),

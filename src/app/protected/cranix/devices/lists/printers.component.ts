@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { addCircle, print, ellipsisVerticalSharp, apps } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GridOptions, GridApi, ColumnApi } from 'ag-grid-community';
@@ -50,6 +52,7 @@ export class PrintersComponent implements OnInit {
     public route: Router,
     private storage: Storage
   ) {
+    addIcons ({ addCircle, print, ellipsisVerticalSharp, apps });
     this.context = { componentParent: this };
     this.objectKeys = Object.getOwnPropertyNames(new Printer());
     this.createColumnDefs();

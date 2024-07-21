@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, trash, close } from 'ionicons/icons';
 import { IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
 //own stuff
@@ -42,7 +44,8 @@ export class AddPrinterComponent implements OnInit {
     public modalCtrl: ModalController,
     public objectService: GenericObjectService,
     public roomService: RoomsService
-  ) { }
+  ) {
+    addIcons ({ checkmarkSharp, trash, close }); }
 
   ngOnInit() {
     let subs = this.printersService.getDrivers().subscribe(

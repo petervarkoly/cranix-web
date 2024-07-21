@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { cloudDownload, close } from 'ionicons/icons';
 import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular/standalone';
@@ -32,6 +34,7 @@ export class DownloadSoftwaresComponent implements OnInit {
     private languageS: LanguageService,
     public toastController: ToastController
   ) {
+    addIcons ({ cloudDownload, close });
     this.context = { componentParent: this };
   }
 

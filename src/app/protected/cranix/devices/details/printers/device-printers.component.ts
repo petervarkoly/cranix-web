@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { ToastController, ModalController } from '@ionic/angular/standalone';
@@ -31,6 +33,7 @@ export class DevicePrintersComponent implements OnInit {
     public objectService: GenericObjectService,
     public modalCtrl: ModalController
   ) {
+    addIcons ({ checkmarkSharp, close });
 
   }
 

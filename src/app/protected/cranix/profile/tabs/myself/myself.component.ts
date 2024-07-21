@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { calendar, cube, folder } from 'ionicons/icons';
 import { IonContent, IonIcon, IonItem, IonButton } from '@ionic/angular/standalone';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from 'src/app/shared/models/data-model';
@@ -28,6 +30,7 @@ export class MyselfComponent implements OnInit, OnDestroy {
     public modalController: ModalController,
     public authService: AuthenticationService
   ) {
+    addIcons ({ calendar, cube, folder });
     this.mySelfs.getMySelf()
       .pipe(takeWhile(() => this.alive))
       .subscribe((res) => {

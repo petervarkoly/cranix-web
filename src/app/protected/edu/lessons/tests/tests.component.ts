@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { refresh, close, play, stop, checkmark } from 'ionicons/icons';
 import { IonToolbar, IonButtons, IonButton, IonIcon, IonContent, IonItem, IonLabel, IonPopover } from '@ionic/angular/standalone';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
@@ -24,6 +26,7 @@ export class TestsComponent implements OnInit {
     public authService: AuthenticationService,
     public challengesService: ChallengesService,
     public objectService: GenericObjectService) {
+    addIcons ({ refresh, close, play, stop, checkmark });
     this.context = { componentParent: this };
   }
 

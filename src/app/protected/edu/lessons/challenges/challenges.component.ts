@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { close, download, checkmark, chevronForwardCircleOutline, stopCircleOutline, settings, archive, trash, arrowForwardCircle, addCircle } from 'ionicons/icons';
 import { IonContent, IonToolbar, IonButtons, IonButton, IonIcon, IonToggle, IonItem, IonLabel, IonInput, IonFab, IonFabButton, IonFabList, IonModal, IonListHeader, IonSelect, IonSelectOption, IonPopover } from '@ionic/angular/standalone';
 import { ChallengesService } from 'src/app/services/challenges.service';
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
@@ -55,6 +57,7 @@ export class ChallengesComponent implements OnInit {
     private languageService: LanguageService,
     private sanitizer: DomSanitizer
   ) {
+    addIcons ({ close, download, checkmark, chevronForwardCircleOutline, stopCircleOutline, settings, archive, trash, arrowForwardCircle, addCircle });
     this.context = { componentParent: this };
   }
 

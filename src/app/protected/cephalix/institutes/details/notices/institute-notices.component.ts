@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { addCircle, trash } from 'ionicons/icons';
 import { IonButtons, IonButton, IonIcon, IonCard } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
@@ -27,6 +29,7 @@ export class InstituteNoticesComponent implements OnInit {
     public objectService: GenericObjectService,
     public cephalixService: CephalixService
   ) {
+    addIcons ({ addCircle, trash });
     this.object = <Institute>this.objectService.selectedObject;
   }
 

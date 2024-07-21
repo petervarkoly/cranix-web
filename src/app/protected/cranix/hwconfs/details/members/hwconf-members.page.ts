@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { logoBuffer, send, close } from 'ionicons/icons';
 import { IonContent, IonItem, IonInput, IonLabel, IonButtons, IonButton, IonIcon, IonSelect, IonSelectOption, IonCol, IonRow } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 //own stuff
@@ -49,6 +51,7 @@ export class HwconfMembersPage implements OnInit {
     private hwconfService: HwconfsService,
     private deviceService: DevicesService
   ) {
+    addIcons ({ logoBuffer, send, close });
     this.hwconf = <Hwconf>this.objectService.selectedObject;
     this.hwconfService.getMultiDevs().subscribe(
       (val) => {

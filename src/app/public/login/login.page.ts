@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { informationCircleOutline } from 'ionicons/icons';
 import { IonCard, IonCardHeader, IonCardContent, IonLabel, IonInput, IonIcon, IonButton, IonItem, IonSelect, IonSelectOption, IonFooter } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -34,6 +36,7 @@ export class LoginPage implements OnInit {
         private systemService: SystemService,
         private objectService: GenericObjectService,
     ) {
+    addIcons ({ informationCircleOutline });
         this.instName = this.systemService.getInstituteName();
     }
 

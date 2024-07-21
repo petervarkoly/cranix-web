@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { download } from 'ionicons/icons';
 import { IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 //Own stuff
@@ -32,6 +34,7 @@ export class SoftwareStatusComponent implements OnInit {
     public softwareService: SoftwareService,
     private languageS: LanguageService
   ) {
+    addIcons ({ download });
     this.context = { componentParent: this };
     this.defaultColDef = {
       resizable: true,

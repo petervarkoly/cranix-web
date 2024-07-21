@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonList, IonCheckbox } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular/standalone';
@@ -22,6 +24,7 @@ export class SelectColumnsComponent implements OnInit {
     private modalController: ModalController,
     private storage: Storage,
     public translateService: TranslateService) {
+    addIcons ({ checkmarkSharp, close });
   }
 
   ngOnInit() {

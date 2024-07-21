@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { person, desktop, security, key } from 'ionicons/icons';
 import { IonTabBar, IonTabButton, IonIcon } from '@ionic/angular/standalone';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SelfManagementService } from 'src/app/services/selfmanagement.service';
@@ -20,6 +22,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private selfS: SelfManagementService,
     public authService: AuthenticationService
   ) {
+    addIcons ({ person, desktop, security, key });
     if (this.authService.isAllowed('permitall')) {
       this.selfS.getVPNhave()
         .pipe(takeWhile(() => this.alive))

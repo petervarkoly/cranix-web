@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { caretBack, wifi } from 'ionicons/icons';
 import { IonTabBar, IonTabButton, IonIcon } from '@ionic/angular/standalone';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,5 +13,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class RoomsListsPage {
   constructor(
     public translateService: TranslateService
-  ) {}  
+  ) {
+    addIcons ({ caretBack, wifi });}  
 }

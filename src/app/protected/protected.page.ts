@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { informationCircleOutline } from 'ionicons/icons';
 import { IonSplitPane, IonMenu, IonList, IonListHeader, IonItem, IonMenuToggle, IonIcon, IonFooter, IonButton, IonRouterOutlet } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
@@ -96,7 +98,8 @@ export class ProtectedPage implements OnInit {
   constructor(
     public location: Location,
     public authService: AuthenticationService
-  ) {    
+  ) {
+    addIcons ({ informationCircleOutline });    
   }
   ngOnInit() {
     console.log(this.location.path())

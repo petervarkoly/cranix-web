@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { keySharp, globeSharp, nuclearSharp, arrowRedoCircleOutline, checkmark, printSharp, cloudUpload, cloudDownload, desktop, close } from 'ionicons/icons';
 import { IonToolbar, IonButtons, IonButton, IonIcon, IonModal, IonContent, IonTextarea, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
@@ -37,6 +39,7 @@ export class RoomControlComponent implements OnInit, OnDestroy, AfterViewInit {
     public modalController: ModalController,
     private objectS: GenericObjectService
   ) {
+    addIcons ({ keySharp, globeSharp, nuclearSharp, arrowRedoCircleOutline, checkmark, printSharp, cloudUpload, cloudDownload, desktop, close });
     this.eduS.getMyRooms();
   }
   ngOnInit() {

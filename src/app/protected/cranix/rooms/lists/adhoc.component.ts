@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { addCircle, apps } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular/standalone';
@@ -38,6 +40,7 @@ export class AdhocComponent implements OnInit {
     public popoverCtrl: PopoverController,
     public storage: Storage
   ) {
+    addIcons ({ addCircle, apps });
     this.context = { componentParent: this };
   }
 

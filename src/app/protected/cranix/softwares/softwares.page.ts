@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { hammer, statsChart, create } from 'ionicons/icons';
 import { IonTabBar, IonTabButton, IonIcon } from '@ionic/angular/standalone';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,5 +16,6 @@ export class SoftwaresPage {
   constructor(
     public translateService: TranslateService,
     public authService: AuthenticationService
-  ) {}
+  ) {
+    addIcons ({ hammer, statsChart, create });}
 }

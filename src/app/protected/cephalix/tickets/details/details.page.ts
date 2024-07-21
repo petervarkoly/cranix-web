@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { createOutline, caretBack, lockClosed, checkmarkDoneCircle, close, playBack, playForward, download, checkmark, arrowUndo, buildOutline, mailOpen, mail, trash } from 'ionicons/icons';
 import { IonContent, IonButtons, IonButton, IonIcon, IonCardContent, IonGrid, IonCol, IonItem, IonLabel, IonCard, IonCardSubtitle } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -40,6 +42,7 @@ export class DetailsPage implements OnInit {
     private modalController: ModalController,
     private win: WindowRef
   ) {
+    addIcons ({ createOutline, caretBack, lockClosed, checkmarkDoneCircle, close, playBack, playForward, download, checkmark, arrowUndo, buildOutline, mailOpen, mail, trash });
     this.nativeWindow = win.getNativeWindow();
     this.ticketId = this.route.snapshot.params.id;
   }

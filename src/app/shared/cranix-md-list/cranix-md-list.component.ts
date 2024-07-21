@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { close, addCircle, ellipsisVerticalSharp, arrowBack, arrowForward, arrowForwardCircle, printOutline, stopCircleOutline, chevronForwardCircleOutline, archive, trash, createOutline, server, print, desktop, people, peopleCircle, trashOutline } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonInput, IonLabel, IonIcon, IonButtons, IonButton, IonSearchbar, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption } from '@ionic/angular/standalone';
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
@@ -32,6 +34,7 @@ export class CranixMdListComponent implements OnInit {
   @Input() context;
   constructor(
   ) {
+    addIcons ({ close, addCircle, ellipsisVerticalSharp, arrowBack, arrowForward, arrowForwardCircle, printOutline, stopCircleOutline, chevronForwardCircleOutline, archive, trash, createOutline, server, print, desktop, people, peopleCircle, trashOutline });
     this.authService.log("CranixMdListComponent constructor was called")
     this.utilService.actMdList = this;
   }

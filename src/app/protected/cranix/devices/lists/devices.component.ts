@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { addCircle, ellipsisVerticalSharp } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { AlertController, PopoverController, ModalController } from '@ionic/angular/standalone';
@@ -49,6 +51,7 @@ export class DevicesComponent implements OnInit {
     public route: Router,
     private storage: Storage
   ) {
+    addIcons ({ addCircle, ellipsisVerticalSharp });
 
     this.context = { componentParent: this };
     this.objectKeys = Object.getOwnPropertyNames(new Device());

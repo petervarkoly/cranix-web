@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { refresh, checkmarkSharp, trash, close } from 'ionicons/icons';
 import { IonHeader, IonTitle, IonLabel, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonInput, IonSelect, IonSelectOption, IonToggle, IonTextarea } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular/standalone';
@@ -53,6 +55,7 @@ export class ObjectsEditComponent implements OnInit {
     public translateService: TranslateService,
     public toastController: ToastController
   ) {
+    addIcons ({ refresh, checkmarkSharp, trash, close });
 
   }
   ngOnInit() {

@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { addCircle, refresh, cog, stopCircleOutline, checkmarkSharp, eyeOutline, reload, download, trash, close, arrowForwardCircle } from 'ionicons/icons';
 import { IonToolbar, IonButtons, IonButton, IonIcon, IonContent, IonRow, IonCol, IonFab, IonFabButton, IonFabList } from '@ionic/angular/standalone';
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { GridOptions, GridApi, ColumnApi } from 'ag-grid-community';
@@ -32,7 +34,8 @@ export class UsersImportComponent implements OnInit {
     public popoverCtrl: PopoverController,
     public languageS: LanguageService,
     public route: Router
-  ) { }
+  ) {
+    addIcons ({ addCircle, refresh, cog, stopCircleOutline, checkmarkSharp, eyeOutline, reload, download, trash, close, arrowForwardCircle }); }
 
   ngOnInit() {
     this.refreshImports();

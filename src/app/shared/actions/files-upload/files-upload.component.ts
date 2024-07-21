@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonInput, IonLabel, IonCheckbox, IonItem } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular/standalone';
@@ -30,7 +32,8 @@ export class FilesUploadComponent implements OnInit {
     public modalController: ModalController,
     private objectService: GenericObjectService,
     private languageService: LanguageService
-  ) {}
+  ) {
+    addIcons ({ checkmarkSharp, close });}
 
 
   ngOnDestroy() {

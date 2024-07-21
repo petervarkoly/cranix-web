@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { reload, apps, statsChart, save, alarm, build, close } from 'ionicons/icons';
 import { IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonBadge } from '@ionic/angular/standalone';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { GridApi, ColumnApi } from 'ag-grid-community';
@@ -53,6 +55,7 @@ export class InstitutesStatusComponent implements OnInit {
     public route: Router,
     private storage: Storage
   ) {
+    addIcons ({ reload, apps, statsChart, save, alarm, build, close });
     this.context = { componentParent: this };
     this.rowSelection = 'multiple';
     this.objectKeys = Object.getOwnPropertyNames(new InstituteStatus());

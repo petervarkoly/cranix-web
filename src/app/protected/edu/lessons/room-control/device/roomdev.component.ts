@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { desktop, expandOutline, contractOutline } from 'ionicons/icons';
 import { IonCard, IonCardHeader, IonToolbar, IonButtons, IonButton, IonIcon, IonCardContent } from '@ionic/angular/standalone';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Device } from 'src/app/shared/models/data-model';
@@ -32,6 +34,7 @@ export class RoomDevComponent implements OnInit, OnDestroy {
     public modalCtrl: ModalController,
     public eduS: EductaionService
   ) {
+    addIcons ({ desktop, expandOutline, contractOutline });
     this.nativeWindow = win.getNativeWindow();
   }
 

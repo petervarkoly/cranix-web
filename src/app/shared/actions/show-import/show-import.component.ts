@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { close } from 'ionicons/icons';
 import { IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular/standalone';
@@ -21,6 +23,7 @@ export class ShowImportComponent implements OnInit {
     private modalController: ModalController,
     public translateService: TranslateService
   ) {
+    addIcons ({ close });
   }
 
   ngOnInit() {}

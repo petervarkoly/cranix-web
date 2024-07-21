@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonButtons, IonButton, IonIcon, IonCol, IonTitle, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
@@ -35,6 +37,7 @@ export class UserGroupsPage implements OnInit {
     public modalCtrl: ModalController,
     private  userS: UsersService
   ) {
+    addIcons ({ checkmarkSharp, close });
     this.user = <User>this.objectS.selectedObject;
     this.columnDefs = [
       {

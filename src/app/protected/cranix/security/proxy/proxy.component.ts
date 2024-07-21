@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { settings, happy, sad, addCircle, checkmark, arrowRedo, add, trash } from 'ionicons/icons';
 import { IonToolbar, IonSegment, IonSegmentButton, IonIcon, IonLabel, IonButtons, IonButton, IonInput, IonItem, IonList } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 
@@ -37,6 +39,7 @@ export class ProxyComponent implements OnInit {
     public objectService: GenericObjectService,
     public securityService: SecurityService
   ) {
+    addIcons ({ settings, happy, sad, addCircle, checkmark, arrowRedo, add, trash });
     this.context = { componentParent: this };
   }
 

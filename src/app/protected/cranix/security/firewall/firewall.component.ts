@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { logIn, logOut, shuffle, checkmark, addCircle, trash, arrowRedo, close, arrowForwardCircle, refresh } from 'ionicons/icons';
 import { IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonFab, IonFabButton, IonFabList, IonGrid, IonCol, IonSelect, IonSelectOption, IonItem, IonInput, IonRow } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { IncomingRules, OutgoingRule, RemoteRule } from 'src/app/shared/models/secutiry-model';
@@ -41,6 +43,7 @@ export class FirewallComponent implements OnInit {
     public securityService: SecurityService,
     public systemService: SystemService
   ) {
+    addIcons ({ logIn, logOut, shuffle, checkmark, addCircle, trash, arrowRedo, close, arrowForwardCircle, refresh });
     this.context = { componentParent: this };
     this.defaultColDef = {
       resizable: true,

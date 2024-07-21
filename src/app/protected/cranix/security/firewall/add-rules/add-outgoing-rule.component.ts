@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonSelect, IonSelectOption, IonItem, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { OutgoingRule } from 'src/app/shared/models/secutiry-model';
@@ -27,6 +29,7 @@ export class AddOutgoingRuleComponent implements OnInit {
     public securityService: SecurityService,
     public modalCtrl: ModalController
   ) {
+    addIcons ({ checkmarkSharp, close });
     for (let room of this.securityService.firewallRooms) {
       this.roomIps.push({ key: room.id, name: room.name })
     }

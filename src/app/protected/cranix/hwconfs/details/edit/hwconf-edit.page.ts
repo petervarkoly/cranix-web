@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, removeCircle, trash } from 'ionicons/icons';
 import { IonRow, IonTitle, IonContent, IonCol, IonToolbar, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -29,6 +31,7 @@ export class HwconfEditPage implements OnInit {
     public objectService: GenericObjectService,
     public hwconfsService: HwconfsService
   ) {
+    addIcons ({ checkmarkSharp, removeCircle, trash });
     this.object = <Hwconf>this.objectService.selectedObject;
     this.objectKeys = Object.getOwnPropertyNames(new Hwconf());
     console.log("HwconfEditPage:");

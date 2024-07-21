@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { peopleCircle, people, walk, addCircle, ellipsisVerticalSharp, arrowForwardCircle, trashOutline } from 'ionicons/icons';
 import { IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonItem, IonInput, IonContent, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption } from '@ionic/angular/standalone';
 import { Component, Inject, Input, LOCALE_ID, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
@@ -48,6 +50,7 @@ export class MyGroupsPage implements OnInit {
     public route: Router,
     public translateService: TranslateService
   ) {
+    addIcons ({ peopleCircle, people, walk, addCircle, ellipsisVerticalSharp, arrowForwardCircle, trashOutline });
     this.context = { componentParent: this };
     this.defaultColDef = {
       resizable: true,

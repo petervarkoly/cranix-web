@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { close, trash, addCircle } from 'ionicons/icons';
 import { IonButtons, IonButton, IonIcon, IonCol, IonItem } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular/standalone';
@@ -22,7 +24,8 @@ export class ManageAclsComponent implements OnInit {
   constructor(
     public  modalController: ModalController,
     private systemService: SystemService
-  ) { }
+  ) {
+    addIcons ({ close, trash, addCircle }); }
 
   ngOnInit() {
     if (this.objectType == 'group') {

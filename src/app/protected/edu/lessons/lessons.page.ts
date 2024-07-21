@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { list, room, calendar } from 'ionicons/icons';
 import { IonTabs, IonTabBar, IonTabButton, IonIcon } from '@ionic/angular/standalone';
 import { Component, OnInit} from '@angular/core';
 //own modules
@@ -16,7 +18,8 @@ export class LessonsPage implements OnInit {
     constructor(
       public challengesService: ChallengesService,
       public authS: AuthenticationService
-    ){}
+    ){
+    addIcons ({ list, room, calendar });}
 
     ngOnInit(){
     }

@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { arrowForwardCircle, addCircle, trashOutline, powerOutline, trash, power } from 'ionicons/icons';
 import { IonContent, IonRow, IonCol, IonFab, IonIcon, IonFabList, IonSearchbar, IonCardHeader, IonItem, IonInput, IonButton } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 
@@ -38,7 +40,8 @@ export class MypositiveComponent implements OnInit {
     public languageS: LanguageService,
     public modalCtrl: ModalController,
     public objectService: GenericObjectService
-  ) { }
+  ) {
+    addIcons ({ arrowForwardCircle, addCircle, trashOutline, powerOutline, trash, power }); }
 
   ngOnInit() {
     this.context = { componentParent: this };

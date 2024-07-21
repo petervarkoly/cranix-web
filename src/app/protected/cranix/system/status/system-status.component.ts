@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { arrowForwardCircle, help, trendingUp, arrowRedo, power, helpCircle } from 'ionicons/icons';
 import { IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonButtons, IonButton, IonItemDivider, IonGrid, IonCol } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular/standalone';
@@ -41,6 +43,7 @@ export class SystemStatusComponent implements OnInit {
     public systemService: SystemService,
     public authService: AuthenticationService
   ) {
+    addIcons ({ arrowForwardCircle, help, trendingUp, arrowRedo, power, helpCircle });
     this.systemService.initModule();
   }
 

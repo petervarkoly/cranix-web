@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { refreshCircle } from 'ionicons/icons';
 import { IonContent, IonToolbar, IonSegment, IonSegmentButton, IonInput, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 
@@ -40,6 +42,7 @@ export class InstituteSyncedObjectsComponent implements OnInit {
     public objectService: GenericObjectService,
     private languageS: LanguageService
   ) {
+    addIcons ({ refreshCircle });
     this.institute = <Institute>this.objectService.selectedObject;
     this.context = { componentParent: this };
     this.columnDefs = [

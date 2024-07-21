@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { addCircle, trash, refresh, close, checkmark } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonModal, IonContent, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
@@ -34,7 +36,8 @@ export class MailserverComponent implements OnInit {
     public langService: LanguageService,
     private objectService: GenericObjectService,
     private systemService: SystemService
-  ) { }
+  ) {
+    addIcons ({ addCircle, trash, refresh, close, checkmark }); }
 
   ngOnInit() {
     this.createColumDef()

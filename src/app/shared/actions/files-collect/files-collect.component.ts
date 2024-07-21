@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonLabel, IonInput, IonCheckbox, IonItem } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular/standalone';
@@ -23,6 +25,7 @@ export class FilesCollectComponent implements OnInit {
     public educationController: EductaionService,
     public modalController: ModalController
   ) {
+    addIcons ({ checkmarkSharp, close });
   }
 
   ngOnInit() {

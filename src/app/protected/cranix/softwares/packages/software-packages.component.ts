@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { arrowForwardCircle, cloudDownload, addCircle, refreshOutline } from 'ionicons/icons';
 import { IonFab, IonIcon, IonFabList, IonFabButton, IonSearchbar, IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { PopoverController, ModalController } from '@ionic/angular/standalone';
@@ -38,6 +40,7 @@ export class SoftwarePackagesComponent implements OnInit {
     public softwareService: SoftwareService,
     private languageS: LanguageService
   ) {
+    addIcons ({ arrowForwardCircle, cloudDownload, addCircle, refreshOutline });
     this.context = { componentParent: this };
     this.rowSelection = 'multiple';
     this.objectKeys = Object.getOwnPropertyNames(new Software());

@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { addCircle, trash, refresh, arrowRedo, close, arrowForwardCircle, logIn, mail, print, globe } from 'ionicons/icons';
 import { IonToolbar, IonSegment, IonSegmentButton, IonButtons, IonButton, IonIcon, IonItem, IonInput, IonContent, IonFab, IonFabButton, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { GridApi } from 'ag-grid-community';
@@ -42,6 +44,7 @@ export class RoomAccessComponent implements OnInit {
     public systemService: SystemService,
     public securityService: SecurityService
   ) {
+    addIcons ({ addCircle, trash, refresh, arrowRedo, close, arrowForwardCircle, logIn, mail, print, globe });
     this.context = { componentParent: this };
     this.defaultColDef = {
       flex: 1,

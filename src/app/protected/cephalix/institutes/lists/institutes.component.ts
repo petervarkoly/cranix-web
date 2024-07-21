@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { addCircle, ellipsisVerticalSharp, apps } from 'ionicons/icons';
 import { IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi } from 'ag-grid-community';
@@ -48,6 +50,7 @@ export class InstitutesComponent implements OnInit {
     public route: Router,
     private storage: Storage
   ) {
+    addIcons ({ addCircle, ellipsisVerticalSharp, apps });
     this.context = { componentParent: this };
     this.objectKeys = Object.getOwnPropertyNames(cephalixService.getTemplateInstitute());
     this.createColumnDefs();

@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { codeWorking } from 'ionicons/icons';
 import { IonTitle, IonSegment, IonSegmentButton, IonContent, IonToolbar, IonInput, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 
@@ -30,6 +32,7 @@ export class InstitutesSyncObjectsComponent implements OnInit {
     public objectService: GenericObjectService,
     private languageS: LanguageService
   ) {
+    addIcons ({ codeWorking });
     this.context = { componentParent: this };
     this.columnDefs = [
       {

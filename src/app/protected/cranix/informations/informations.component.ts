@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { newspaper, clipboard, informationCircle, people, create, peopleCircle, addCircle, lockClosedOutline, lockOpenOutline, albums, build, book, trash } from 'ionicons/icons';
 import { IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonContent, IonInput, IonCard, IonCardContent, IonCol, IonItem } from '@ionic/angular/standalone';
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
@@ -28,6 +30,7 @@ export class InformationsComponent implements OnInit {
     public informationsService: InformationsService,
     public modalController: ModalController
   ) {
+    addIcons ({ newspaper, clipboard, informationCircle, people, create, peopleCircle, addCircle, lockClosedOutline, lockOpenOutline, albums, build, book, trash });
     this.owned = this.authService.isAllowed('information.add')
   }
 

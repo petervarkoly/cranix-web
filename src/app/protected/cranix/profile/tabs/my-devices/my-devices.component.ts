@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { addCircle, cube, trash } from 'ionicons/icons';
 import { IonButtons, IonButton, IonIcon, IonList, IonItem } from '@ionic/angular/standalone';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SelfManagementService } from 'src/app/services/selfmanagement.service';
@@ -21,6 +23,7 @@ export class MyDevicesComponent implements OnInit, OnDestroy {
   constructor(private selfS: SelfManagementService,
     public modalCtrl: ModalController,
     public objectService: GenericObjectService) {
+    addIcons ({ addCircle, cube, trash });
 
   }
 

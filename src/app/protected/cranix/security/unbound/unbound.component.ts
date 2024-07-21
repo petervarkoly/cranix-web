@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmark, happy, sad, stopCircle, arrowForwardCircle, addCircle, trash } from 'ionicons/icons';
 import { IonToolbar, IonTitle, IonButtons, IonButton, IonIcon, IonSegment, IonSegmentButton, IonItemDivider, IonFab, IonFabButton, IonCol, IonItem, IonInput, IonLabel, IonCheckbox } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
@@ -31,7 +33,8 @@ export class UnboundComponent implements OnInit {
     private languageS: LanguageService,
     public objectService: GenericObjectService,
     public securityService: SecurityService
-  ) { }
+  ) {
+    addIcons ({ checkmark, happy, sad, stopCircle, arrowForwardCircle, addCircle, trash }); }
 
   ngOnInit() {
     this.securityService.unboundChanged = false;

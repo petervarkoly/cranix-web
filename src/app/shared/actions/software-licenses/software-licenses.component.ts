@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { close, addCircle, checkmark, trash } from 'ionicons/icons';
 import { IonButtons, IonButton, IonIcon, IonCol, IonLabel, IonSelect, IonSelectOption, IonInput, IonItem, IonRow } from '@ionic/angular/standalone';
 import { Component, OnInit, Input } from '@angular/core';
 import { SoftwareService } from 'src/app/services/softwares.service';
@@ -27,7 +29,8 @@ export class SoftwareLicensesComponent implements OnInit {
     public modalController: ModalController,
     public objectService: GenericObjectService,
     public softwareService: SoftwareService
-  ) { }
+  ) {
+    addIcons ({ close, addCircle, checkmark, trash }); }
 
   ngOnInit() {
     let subs = this.softwareService.getSoftwareLicense(this.software.id).subscribe(

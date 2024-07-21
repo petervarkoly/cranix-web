@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonInput, IonItem, IonSelect, IonSelectOption, IonTextarea } from '@ionic/angular/standalone';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 //own stuff
@@ -43,6 +45,7 @@ export class AddDeviceComponent implements OnInit, OnDestroy {
     public roomService: RoomsService,
     private selfS: SelfManagementService
   ) {
+    addIcons ({ checkmarkSharp, close });
   }
 
   ngOnInit() {

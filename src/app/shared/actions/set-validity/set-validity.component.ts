@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonLabel } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular/standalone';
@@ -20,7 +22,8 @@ export class SetValidityComponent implements OnInit {
   constructor(
     public modalController: ModalController,
     public objectService: GenericObjectService
-  ) { }
+  ) {
+    addIcons ({ checkmarkSharp, close }); }
 
   ngOnInit() {}
 

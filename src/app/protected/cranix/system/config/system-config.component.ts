@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { save, close } from 'ionicons/icons';
 import { IonContent, IonToolbar, IonSegment, IonSegmentButton, IonRow, IonCol, IonItem, IonToggle, IonInput, IonButton, IonIcon, IonButtons, IonLabel } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 
@@ -25,7 +27,8 @@ export class SystemConfigComponent implements OnInit {
     public objectService: GenericObjectService,
     public languageService: LanguageService,
     public systemService: SystemService
-  ) { }
+  ) {
+    addIcons ({ save, close }); }
 
   ngOnInit() {
     let sub = this.systemService.getSystemConfiguration().subscribe(

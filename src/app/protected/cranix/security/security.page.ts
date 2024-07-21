@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { key, firewall, proxy, globeOutline, receiptOutline } from 'ionicons/icons';
 import { IonRow, IonTabBar, IonTabButton, IonIcon } from '@ionic/angular/standalone';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,5 +17,6 @@ export class SecurityPage {
   constructor(
     public authS: AuthenticationService,
     public translateService: TranslateService
-  ) {}
+  ) {
+    addIcons ({ key, firewall, proxy, globeOutline, receiptOutline });}
 }

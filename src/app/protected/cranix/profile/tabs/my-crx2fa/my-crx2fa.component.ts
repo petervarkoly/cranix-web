@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmark, trash } from 'ionicons/icons';
 import { IonButton, IonIcon, IonSelect, IonSelectOption, IonLabel, IonInput, IonItem } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
@@ -26,6 +28,7 @@ export class MyCrx2faComponent implements OnInit {
     public objectService: GenericObjectService,
     public platformService: Platform
   ) {
+    addIcons ({ checkmark, trash });
     this.crx2fa = {
        timeStep: 30,
        crx2faAddress: "", 

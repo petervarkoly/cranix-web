@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { addCircle, business, apps } from 'ionicons/icons';
 import { IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Component, OnInit, Input } from '@angular/core';
 import { GridApi, ColDef } from 'ag-grid-community';
@@ -43,6 +45,7 @@ export class CustomersPage implements OnInit {
     public languageS: LanguageService,
     private storage: Storage
   ) {
+    addIcons ({ addCircle, business, apps });
     this.context = { componentParent: this };
     this.objectKeys = Object.getOwnPropertyNames(new Customer());
     this.createColumnDefs();

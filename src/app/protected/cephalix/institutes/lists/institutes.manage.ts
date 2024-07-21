@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { arrowForwardCircle, arrowUndo, checkmark, close } from 'ionicons/icons';
 import { IonSearchbar, IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton } from '@ionic/angular/standalone';
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { GridOptions, GridApi, ColumnApi } from 'ag-grid-community';
@@ -43,6 +45,7 @@ export class InstitutesManage implements OnInit {
     public languageS: LanguageService,
     public route: Router
   ) {
+    addIcons ({ arrowForwardCircle, arrowUndo, checkmark, close });
     this.context = { componentParent: this };
     this.defaultColDef = {
         resizable: true,

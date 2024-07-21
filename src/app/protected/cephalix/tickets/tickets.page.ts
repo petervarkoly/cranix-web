@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { refresh, addCircle, ellipsisVerticalSharp, apps, checkmarkDoneCircle, buildSharp } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent, IonSearchbar, IonItemSliding, IonItemOptions, IonItemOption } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi } from 'ag-grid-community';
@@ -57,6 +59,7 @@ export class TicketsPage implements OnInit {
     private route: Router,
     private storage: Storage
   ) {
+    addIcons ({ refresh, addCircle, ellipsisVerticalSharp, apps, checkmarkDoneCircle, buildSharp });
 
     this.context = { componentParent: this };
     this.objectKeys = Object.getOwnPropertyNames(new Ticket());

@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { close, addCircle, trash } from 'ionicons/icons';
 import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonCol, IonLabel, IonInput, IonItem } from '@ionic/angular/standalone';
 import { Component, OnInit, Input } from '@angular/core';
 import { DHCPOptions, DHCPStatements } from './dhcp-constants';
@@ -32,6 +34,7 @@ export class ManageDhcpComponent implements OnInit {
     private objectService: GenericObjectService,
     public  modalController: ModalController
   ) {
+    addIcons ({ close, addCircle, trash });
     let id = 0;
     for( let value of DHCPOptions ) {
         this.dhcpOptions.push({"id":id,"type":"dhcpOptions","name":value})

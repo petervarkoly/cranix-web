@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { arrowForwardCircle, addCircle, pencilOutline, refreshOutline } from 'ionicons/icons';
 import { IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -38,6 +40,7 @@ export class InstallationSetsComponent implements OnInit {
     public router: Router,
     public softwareService: SoftwareService
   ) {
+    addIcons ({ arrowForwardCircle, addCircle, pencilOutline, refreshOutline });
     this.context = { componentParent: this };
     this.defaultColDef = {
       resizable: true,

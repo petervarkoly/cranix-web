@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, trash, close } from 'ionicons/icons';
 import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput, IonCheckbox } from '@ionic/angular/standalone';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular/standalone';
@@ -27,6 +29,7 @@ export class AddEditRoomAccessComponent implements OnInit {
     public translateService: TranslateService,
     public toastController: ToastController
   ) {
+    addIcons ({ checkmarkSharp, trash, close });
   }
   ngOnInit() {
     if (this.objectAction == 'add') {

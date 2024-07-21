@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { checkmarkSharp, close, eyeOff } from 'ionicons/icons';
 import { IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonLabel, IonInput, IonItem, IonCheckbox } from '@ionic/angular/standalone';
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular/standalone';
@@ -25,6 +27,7 @@ export class SetpasswordComponent implements OnInit {
     public modalController: ModalController,
     public systemService: SystemService
   ) {
+    addIcons ({ checkmarkSharp, close, eyeOff });
     console.log('type is:', this.type);
     this.systemService.getSystemConfigValue("DEFAULT_MUST_CHANGE").subscribe(
       (val) => {

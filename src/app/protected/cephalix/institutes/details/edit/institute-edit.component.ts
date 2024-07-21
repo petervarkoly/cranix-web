@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { eyeOff, checkmarkSharp, refresh, server, arrowDownCircle, download, trash, arrowForwardCircle, checkmark, close } from 'ionicons/icons';
 import { IonSegment, IonSegmentButton, IonButtons, IonButton, IonIcon, IonContent, IonFab, IonFabButton, IonFabList, IonCol, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput, IonCheckbox } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -43,6 +45,7 @@ export class InstituteEditComponent implements OnInit {
     public objectService: GenericObjectService,
     public systemService: SystemService
   ) {
+    addIcons ({ eyeOff, checkmarkSharp, refresh, server, arrowDownCircle, download, trash, arrowForwardCircle, checkmark, close });
     this.systemService.getDnsDomains();
     this.object = JSON.parse(JSON.stringify(this.objectService.selectedObject));
     this.object.adminPW = ""

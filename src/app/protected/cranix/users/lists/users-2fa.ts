@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { ellipsisVerticalSharp } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi } from 'ag-grid-community';
@@ -30,6 +32,7 @@ export class Users2faComponent implements OnInit {
         public objectService: GenericObjectService
 
     ) {
+    addIcons ({ ellipsisVerticalSharp });
 
         this.context = { componentParent: this };
         this.defaultColDef = {

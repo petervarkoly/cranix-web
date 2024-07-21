@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { cube } from 'ionicons/icons';
 import { IonContent, IonIcon, IonSelect, IonSelectOption, IonItem, IonButton } from '@ionic/angular/standalone';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
@@ -21,6 +23,7 @@ export class MyVPNComponent implements OnInit,OnDestroy {
   
   constructor(private selfS: SelfManagementService,
     public objectService: GenericObjectService) {
+    addIcons ({ cube });
     this.supportedOSlist = this.selfS.getSupportedOS()  
   }
 

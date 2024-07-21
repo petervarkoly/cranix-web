@@ -1,3 +1,5 @@
+import { addIcons } from 'ionicons';
+import { addCircle, ellipsisVerticalSharp, apps } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi } from 'ag-grid-community';
@@ -41,6 +43,7 @@ export class UsersComponent implements OnInit {
     private systemService: SystemService,
     private storage: Storage
   ) {
+    addIcons ({ addCircle, ellipsisVerticalSharp, apps });
     this.context = { componentParent: this };
     this.objectKeys = Object.getOwnPropertyNames(new User());
     this.createColumnDefs();
