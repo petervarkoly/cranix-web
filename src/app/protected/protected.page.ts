@@ -1,5 +1,5 @@
 import { addIcons } from 'ionicons';
-import { informationCircleOutline } from 'ionicons/icons';
+import { informationCircleOutline, albums, business, pricetag, people, person, fileTrayStacked, desktop, save, settings, key, school, man, library } from 'ionicons/icons';
 import { IonSplitPane, IonMenu, IonList, IonListHeader, IonItem, IonMenuToggle, IonIcon, IonFooter, IonButton, IonRouterOutlet } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
@@ -49,7 +49,7 @@ export class ProtectedPage implements OnInit {
     {
       title: 'Rooms',
       url: '/pages/cranix/rooms',
-      icon: 'room'
+      icon: 'business'
     },
     {
       title: 'Devices',
@@ -59,7 +59,7 @@ export class ProtectedPage implements OnInit {
     {
       title: 'Softwares',
       url: '/pages/cranix/softwares',
-      icon: 'software'
+      icon: 'save'
     },
     {
       title: 'System',
@@ -69,7 +69,7 @@ export class ProtectedPage implements OnInit {
     {
       title: 'Security',
       url: '/pages/cranix/security',
-      icon: 'security'
+      icon: 'key'
     },
     {
       title: 'Lessons',
@@ -99,7 +99,7 @@ export class ProtectedPage implements OnInit {
     public location: Location,
     public authService: AuthenticationService
   ) {
-    addIcons ({ informationCircleOutline });    
+    addIcons ({ informationCircleOutline, albums, business, pricetag, people, person, fileTrayStacked, desktop, save, settings, key, school, man, library });
   }
   ngOnInit() {
     console.log(this.location.path())
