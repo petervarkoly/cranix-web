@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { logoBuffer, send, close } from 'ionicons/icons';
 import { IonContent, IonItem, IonInput, IonLabel, IonButtons, IonButton, IonIcon, IonSelect, IonSelectOption, IonCol, IonRow } from '@ionic/angular/standalone';
@@ -16,7 +21,7 @@ import { takeWhile } from 'rxjs/operators';
 
 @Component({
     selector: 'cranix-hwconf-members',
-  imports: [ IonContent, IonItem, IonInput, IonLabel, IonButtons, IonButton, IonIcon, IonSelect, IonSelectOption, IonCol, IonRow ],
+  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonContent, IonItem, IonInput, IonLabel, IonButtons, IonButton, IonIcon, IonSelect, IonSelectOption, IonCol, IonRow ],
     templateUrl: './hwconf-members.page.html',
     styleUrls: ['./hwconf-members.page.scss'],
     standalone: true,

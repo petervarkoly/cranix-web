@@ -1,9 +1,14 @@
+import { TranslateModule } from '@ngx-translate/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgIf } from '@angular/common';
 import { Component } from "@angular/core";
 
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
     selector: 'action-syn-object-renderer',
+    imports: [ TranslateModule, MatTooltipModule, NgIf ],
+    standalone: true,
     template: `
     <div class="name-action">
         <div *ngIf="to">

@@ -1,3 +1,6 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { IonContent, IonItem, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GridApi, ColumnApi } from 'ag-grid-community';
@@ -17,7 +20,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'cranix-institute-status',
-    imports: [ IonContent, IonItem, IonInput ],
+    imports: [ AgGridAngular, TranslateModule, CranixToolbarComponent, IonContent, IonItem, IonInput ],
     templateUrl: './institute-status.component.html',
     styleUrls: ['./institute-status.component.scss'],
     standalone: true,

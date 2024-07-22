@@ -1,13 +1,20 @@
+import { TranslateModule } from '@ngx-translate/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgIf } from '@angular/common';
 import { Component } from "@angular/core";
 
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
     selector: 'yesno-cell-text',
-    /*template: `
+    /*imports: [ TranslateModule, MatTooltipModule, NgIf ],
+    standalone: true,
+    template: `
         <ion-checkbox  *ngIf="params.data" class="ion-align-self-center" [checked]="checked" color="success" (ionChange)="toggle($event)"></ion-checkbox>
         `*/
-        template: `
+        imports: [ TranslateModule, MatTooltipModule, NgIf ],
+    standalone: true,
+    template: `
         <ion-button *ngIf="params.data" style="padding-horizontal : 2px" fill="clear" size="small" (click)="toggle($event)" matTooltip="{{'apply' | translate }}">
             <ion-icon name="checkmark-circle" color="tertiary"></ion-icon>
         </ion-button>

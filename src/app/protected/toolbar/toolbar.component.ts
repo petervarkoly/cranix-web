@@ -1,3 +1,5 @@
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { ticket, refresh, book, person, logOut } from 'ionicons/icons';
 import { IonButtons, IonMenuButton, IonTitle, IonLabel, IonButton, IonIcon, IonBadge, IonToolbar } from '@ionic/angular/standalone';
@@ -7,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage-angular';
 import { interval } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
+import { NgIf } from '@angular/common'
 //Own module
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { LanguageService } from 'src/app/services/language.service';
@@ -18,11 +21,12 @@ import { Ticket } from 'src/app/shared/models/cephalix-data-model';
 
 @Component({
   selector: 'cranix-toolbar',
-  imports: [ IonButtons, IonMenuButton, IonTitle, IonLabel, IonButton, IonIcon, IonBadge, IonToolbar ],
+  imports: [ MatTooltipModule, NgIf, TranslateModule, IonButtons, IonMenuButton, IonTitle, IonLabel, IonButton, IonIcon, IonBadge, IonToolbar ],
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
+  standalone: true
 })
-export class ToolbarComponent implements OnInit {
+export class CranixToolbarComponent implements OnInit {
 
   roomName: string = "";
   fullName: string = "";

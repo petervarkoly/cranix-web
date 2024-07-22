@@ -1,8 +1,11 @@
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { eyeOff, checkmarkSharp, refresh, server, arrowDownCircle, download, trash, arrowForwardCircle, checkmark, close } from 'ionicons/icons';
 import { IonSegment, IonSegmentButton, IonButtons, IonButton, IonIcon, IonContent, IonFab, IonFabButton, IonFabList, IonCol, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput, IonCheckbox } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 //Own stuff
 import { GenericObjectService } from 'src/app/services/generic-object.service';
@@ -14,7 +17,7 @@ import { contracts } from 'src/app/shared/models/cephalix-data-model';
 import { SystemService } from 'src/app/services/system.service';
 @Component({
     selector: 'cranix-institute-edit',
-    imports: [ IonSegment, IonSegmentButton, IonButtons, IonButton, IonIcon, IonContent, IonFab, IonFabButton, IonFabList, IonCol, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput, IonCheckbox ],
+    imports: [ NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonSegment, IonSegmentButton, IonButtons, IonButton, IonIcon, IonContent, IonFab, IonFabButton, IonFabList, IonCol, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput, IonCheckbox ],
     templateUrl: './institute-edit.component.html',
     styleUrls: ['./institute-edit.component.scss'],
     standalone: true,

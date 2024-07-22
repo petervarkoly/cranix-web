@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { peopleCircle, people, walk, addCircle, ellipsisVerticalSharp, arrowForwardCircle, trashOutline } from 'ionicons/icons';
 import { IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonItem, IonInput, IonContent, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption } from '@ionic/angular/standalone';
@@ -6,7 +11,6 @@ import { formatDate } from '@angular/common';
 import { GridApi, ColumnApi } from 'ag-grid-community';
 import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
 //own modules
 import { ActionsComponent } from 'src/app/shared/actions/actions.component';
@@ -24,7 +28,7 @@ import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
 
 @Component({
     selector: 'cranix-mygroups',
-  imports: [ IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonItem, IonInput, IonContent, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption ],
+  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonItem, IonInput, IonContent, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption ],
     templateUrl: './mygroups.page.html',
     styleUrls: ['./mygroups.page.scss'],
     standalone: true,
@@ -48,7 +52,6 @@ export class MyGroupsPage implements OnInit {
     public popoverCtrl: PopoverController,
     public languageS: LanguageService,
     public route: Router,
-    public translateService: TranslateService
   ) {
     addIcons ({ peopleCircle, people, walk, addCircle, ellipsisVerticalSharp, arrowForwardCircle, trashOutline });
     this.context = { componentParent: this };

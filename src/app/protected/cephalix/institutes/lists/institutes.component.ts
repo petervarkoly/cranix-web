@@ -1,10 +1,15 @@
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { addCircle, ellipsisVerticalSharp, apps } from 'ionicons/icons';
 import { IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
-import { GridApi, ColumnApi } from 'ag-grid-community';
+import { AgGridAngular } from 'ag-grid-angular'
+import { GridApi } from 'ag-grid-community';
 import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+import { NgIf } from '@angular/common'
 import { Storage } from '@ionic/storage-angular';
 
 //own modules
@@ -18,11 +23,10 @@ import { InstituteActionCellRenderer } from 'src/app/pipes/ag-institute-action-r
 import { LanguageService } from 'src/app/services/language.service';
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
-import { WindowRef } from 'src/app/shared/models/ohters';
 
 @Component({
     selector: 'cranix-institutes',
-    imports: [ IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon ],
+    imports: [ NgIf, MatTooltipModule, AgGridAngular, TranslateModule, CranixToolbarComponent, IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon ],
     templateUrl: './institutes.component.html',
     styleUrls: ['./institutes.component.scss'],
     standalone: true,
@@ -34,13 +38,11 @@ export class InstitutesComponent implements OnInit {
   columnDefs = [];
   defaultColDef = {};
   gridApi: GridApi;
-  columnApi: ColumnApi;
   context;
   nativeWindow: any
   now: number = 0;
 
   constructor(
-    private win: WindowRef,
     public authService: AuthenticationService,
     public cephalixService: CephalixService,
     public objectService: GenericObjectService,
@@ -61,7 +63,7 @@ export class InstitutesComponent implements OnInit {
       suppressHeaderMenuButton: true,
       minWidth: 110
     };
-    this.nativeWindow = win.getNativeWindow()
+    this.nativeWindow = window
   }
 
   async ngOnInit() {
@@ -123,7 +125,6 @@ export class InstitutesComponent implements OnInit {
 
   onGridReady(params) {
     this.gridApi = params.api;
-    this.columnApi = params.columnApi;
     this.gridApi.sizeColumnsToFit();
   }
   selectionChanged() {
@@ -171,7 +172,7 @@ export class InstitutesComponent implements OnInit {
   async redirectToEdit(institute: Institute) {
     if (institute) {
       this.objectService.selectedObject = institute;
-      this.route.navigate(['/pages/cephalix/institutes/' + institute.id]);
+      this.route.navigate(['/protected/cephalix/institutes/' + institute.id]);
     } else {
       const modal = await this.modalCtrl.create({
         component: ObjectsEditComponent,

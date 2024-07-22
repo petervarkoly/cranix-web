@@ -1,24 +1,24 @@
 <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="all">
-        <ion-icon name="caret-back"></ion-icon>
-        <ion-label>{{ 'All institutes' | translate}}</ion-label>
-      </ion-tab-button>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="all">
+      <ion-icon name="caret-back"></ion-icon>
+      <ion-label>{{ 'All institutes' | translate}}</ion-label>
+    </ion-tab-button>
 
-      <ion-tab-button tab="status">
-        <ion-icon name="stats-chart"></ion-icon>
-        <ion-label>{{ 'Status' | translate}}</ion-label>
-      </ion-tab-button>
-      
-      <ion-tab-button tab="sync">
-        <ion-icon name="code-working"></ion-icon>
-        <ion-label>{{ 'Sync objects' | translate}}</ion-label>
-      </ion-tab-button>
+    <ion-tab-button tab="status">
+      <ion-icon name="stats-chart"></ion-icon>
+      <ion-label>{{ 'Status' | translate}}</ion-label>
+    </ion-tab-button>
 
-      <ion-tab-button tab="manage" *ngIf="authService.session.name == 'Administrator'">
-        <ion-icon name="people-outline"></ion-icon>
-        <ion-label>{{ 'Manage institutes' | translate}}</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
+    <ion-tab-button tab="sync">
+      <ion-icon name="code-working"></ion-icon>
+      <ion-label>{{ 'Sync objects' | translate}}</ion-label>
+    </ion-tab-button>
+    @if( authService.session.name == 'Administrator' ) {
+    <ion-tab-button tab="manage">
+      <ion-icon name="people-outline"></ion-icon>
+      <ion-label>{{ 'Manage institutes' | translate}}</ion-label>
+    </ion-tab-button>
+    }
+  </ion-tab-bar>
 </ion-tabs>
-

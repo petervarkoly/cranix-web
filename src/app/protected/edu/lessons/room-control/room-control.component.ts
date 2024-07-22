@@ -1,3 +1,7 @@
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { keySharp, globeSharp, nuclearSharp, arrowRedoCircleOutline, checkmark, printSharp, cloudUpload, cloudDownload, desktop, close } from 'ionicons/icons';
 import { IonToolbar, IonButtons, IonButton, IonIcon, IonModal, IonContent, IonTextarea, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
@@ -6,14 +10,14 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { Room } from 'src/app/shared/models/data-model';
 import { EductaionService } from 'src/app/services/education.service';
 import { takeWhile } from 'rxjs/operators';
-import { PopoverController, IonSelect, ModalController } from '@ionic/angular/standalone';
+import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { ActionsComponent } from 'src/app/shared/actions/actions.component';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { FilesCollectComponent } from 'src/app/shared/actions/files-collect/files-collect.component';
 import { FilesUploadComponent } from 'src/app/shared/actions/files-upload/files-upload.component';
 @Component({
     selector: 'cranix-room-control',
-  imports: [ IonToolbar, IonButtons, IonButton, IonIcon, IonModal, IonContent, IonTextarea, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol ],
+  imports: [ NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonButtons, IonButton, IonIcon, IonModal, IonContent, IonTextarea, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol ],
     templateUrl: './room-control.component.html',
     styleUrls: ['./room-control.component.scss'],
     standalone: true,

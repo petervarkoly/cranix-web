@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { codeWorking } from 'ionicons/icons';
 import { IonTitle, IonSegment, IonSegmentButton, IonContent, IonToolbar, IonInput, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
@@ -12,7 +17,7 @@ import { SynchronizedObject } from 'src/app/shared/models/cephalix-data-model';
 
 @Component({
     selector: 'cranix-institutes-sync-objects',
-    imports: [ IonTitle, IonSegment, IonSegmentButton, IonContent, IonToolbar, IonInput, IonButtons, IonButton, IonIcon ],
+    imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonTitle, IonSegment, IonSegmentButton, IonContent, IonToolbar, IonInput, IonButtons, IonButton, IonIcon ],
     templateUrl: './institutes-sync-objects.component.html',
     standalone: true
 })

@@ -10,14 +10,13 @@ import { SystemService } from 'src/app/services/system.service';
 import { LoginForm } from 'src/app/shared/models/server-models';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgIf, NgFor, AsyncPipe } from '@angular/common';
-import { } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 
 
 
 @Component({
     selector: 'cranix-login',
-    imports: [FormsModule, AsyncPipe, TranslateModule, IonCard, IonCardHeader, IonCardContent, IonLabel, IonInput, IonIcon, IonButton, IonItem, IonSelect, IonSelectOption, IonFooter],
+    imports: [FormsModule, AsyncPipe, TranslateModule, IonCard, IonCardHeader, IonCardContent, IonLabel, IonInput, IonIcon, IonButton, IonItem, IonSelect, IonSelectOption, IonFooter, NgFor, NgIf],
     templateUrl: './login.page.html',
     styleUrls: ['./login.page.scss'],
     standalone: true,

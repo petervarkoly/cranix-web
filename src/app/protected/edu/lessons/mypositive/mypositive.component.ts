@@ -1,3 +1,7 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { arrowForwardCircle, addCircle, trashOutline, powerOutline, trash, power } from 'ionicons/icons';
 import { IonContent, IonRow, IonCol, IonFab, IonIcon, IonFabList, IonSearchbar, IonCardHeader, IonItem, IonInput, IonButton } from '@ionic/angular/standalone';
@@ -15,7 +19,7 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 
 @Component({
     selector: 'cranix-mypositive',
-  imports: [ IonContent, IonRow, IonCol, IonFab, IonIcon, IonFabList, IonSearchbar, IonCardHeader, IonItem, IonInput, IonButton ],
+  imports: [ AgGridAngular, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonContent, IonRow, IonCol, IonFab, IonIcon, IonFabList, IonSearchbar, IonCardHeader, IonItem, IonInput, IonButton ],
     templateUrl: './mypositive.component.html',
     styleUrls: ['./mypositive.component.scss'],
     standalone: true,

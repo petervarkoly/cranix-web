@@ -1,3 +1,6 @@
+import { TranslateModule } from '@ngx-translate/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgIf } from '@angular/common';
 import { ICellRendererAngularComp } from "ag-grid-angular";
 import { Component, OnDestroy } from '@angular/core';
 import { ToastController } from '@ionic/angular/standalone';
@@ -7,6 +10,8 @@ import { WindowRef } from 'src/app/shared/models/ohters'
 
 @Component({
     selector: 'uuid-cell',
+    imports: [ TranslateModule, MatTooltipModule, NgIf ],
+    standalone: true,
     template: `<div class="uuid-flex">
     <ion-button fill="clear" size="small" (click)="details($event)" matTooltip="{{'modify' | translate }}">
         <ion-icon name="build-sharp"></ion-icon>

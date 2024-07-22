@@ -1,15 +1,18 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { IonContent, IonCol, IonTitle, IonInput } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { ModalController } from '@ionic/angular/standalone';
 import { LanguageService } from 'src/app/services/language.service';
-import { TranslateService } from '@ngx-translate/core';
 import { ManageAclsComponent } from './manage-acls/manage-acls.component';
 
 @Component({
     selector: 'cranix-system-acls',
-  imports: [ IonContent, IonCol, IonTitle, IonInput ],
+    imports: [ AgGridAngular, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonContent, IonCol, IonTitle, IonInput ],
     templateUrl: './system-acls.component.html',
     styleUrls: ['./system-acls.component.scss'],
     standalone: true,
@@ -31,11 +34,12 @@ export class SystemAclsComponent implements OnInit {
     suppressHeaderMenuButton : true
   }
 
-  constructor(public authService: AuthenticationService,
+  constructor(
+    public authService: AuthenticationService,
     private objectService: GenericObjectService,
     public modalCtrl: ModalController,
     private languageS: LanguageService,
-    public translateServices: TranslateService) { }
+  ) { }
 
   ngOnInit() {
     this.context = { componentParent: this };

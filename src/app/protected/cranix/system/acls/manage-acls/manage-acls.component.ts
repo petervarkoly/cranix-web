@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { close, trash, addCircle } from 'ionicons/icons';
 import { IonButtons, IonButton, IonIcon, IonCol, IonItem } from '@ionic/angular/standalone';
@@ -8,7 +9,7 @@ import { Acl } from 'src/app/shared/models/server-models';
 
 @Component({
     selector: 'cranix-manage-acls',
-  imports: [ IonButtons, IonButton, IonIcon, IonCol, IonItem ],
+  imports: [ TranslateModule, IonButtons, IonButton, IonIcon, IonCol, IonItem ],
     templateUrl: './manage-acls.component.html',
     styleUrls: ['./manage-acls.component.scss'],
     standalone: true,

@@ -30,7 +30,7 @@ bootstrapApplication(AppComponent, {
         provideRouter(routes, withPreloading(PreloadAllModules), withComponentInputBinding()),
         importProvidersFrom([
             IonicStorageModule.forRoot(),
-            TranslateModule.forRoot(provideTranslation())
+            TranslateModule.forRoot(provideTranslation()),
         ])
     ],
 });

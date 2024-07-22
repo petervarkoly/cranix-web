@@ -1,3 +1,6 @@
+import { NgIf, NgFor } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { cube } from 'ionicons/icons';
 import { IonContent, IonIcon, IonSelect, IonSelectOption, IonItem, IonButton } from '@ionic/angular/standalone';
@@ -9,7 +12,7 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 
 @Component({
     selector: 'cranix-my-vpn',
-  imports: [ IonContent, IonIcon, IonSelect, IonSelectOption, IonItem, IonButton ],
+  imports: [ NgIf, NgFor, TranslateModule, CranixToolbarComponent, IonContent, IonIcon, IonSelect, IonSelectOption, IonItem, IonButton ],
     templateUrl: './my-vpn.component.html',
     styleUrls: ['./my-vpn.component.scss'],
     standalone: true,

@@ -1,9 +1,12 @@
+import { DatePipe } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { addCircle, trash } from 'ionicons/icons';
 import { IonButtons, IonButton, IonIcon, IonCard } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ModalController } from '@ionic/angular/standalone';
 //own modules
 import { Institute, Notice } from 'src/app/shared/models/cephalix-data-model';
@@ -13,7 +16,7 @@ import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.c
 
 @Component({
     selector: 'cranix-institute-notices',
-    imports: [ IonButtons, IonButton, IonIcon, IonCard ],
+    imports: [ DatePipe, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonButtons, IonButton, IonIcon, IonCard ],
     templateUrl: './institute-notices.component.html',
     styleUrls: ['./institute-notices.component.scss'],
     standalone: true,

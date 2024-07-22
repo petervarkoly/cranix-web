@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { ellipsisVerticalSharp } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
@@ -12,7 +17,7 @@ import { ActionsComponent } from 'src/app/shared/actions/actions.component';
 
 @Component({
     selector: 'cranix-users-2fa',
-  imports: [ IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon ],
+  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon ],
     templateUrl: './users-2fa.html',
     standalone: true,
 })

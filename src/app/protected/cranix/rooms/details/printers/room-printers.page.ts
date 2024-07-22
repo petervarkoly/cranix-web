@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
@@ -12,7 +13,7 @@ import { ServerResponse } from 'src/app/shared/models/server-models';
 
 @Component({
     selector: 'cranix-room-printers',
-  imports: [ IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonSelect, IonSelectOption ],
+  imports: [ TranslateModule, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonSelect, IonSelectOption ],
     templateUrl: './room-printers.page.html',
     styleUrls: ['./room-printers.page.scss'],
     standalone: true,

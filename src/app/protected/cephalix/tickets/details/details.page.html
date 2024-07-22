@@ -15,14 +15,14 @@
             (click)="routeSchool($event)" matTooltip="{{'Connect the institute in a separate window.' | translate }}">
             <ion-icon name="create-outline"></ion-icon>
           </ion-button>
-          <ion-button fill="clear" (click)="router.navigate(['/pages/cephalix/tickets'])">
+          <ion-button fill="clear" (click)="router.navigate(['/protected/cephalix/tickets'])">
             <ion-icon slot="icon-only" name="caret-back"></ion-icon>
           </ion-button>
           <ion-button fill="clear" (click)="assigneTicketToMe()">
             <ion-icon color="warning" slot="icon-only" name="lock-closed"></ion-icon>
           </ion-button>
           <ion-button fill="clear" matTooltip="{{'Close the ticket.' | translate }}"
-            (click)="objectService.deleteObjectDialog(this.ticket, 'ticket', '/pages/cephalix/tickets')">
+            (click)="objectService.deleteObjectDialog(this.ticket, 'ticket', '/protected/cephalix/tickets')">
             <ion-icon color="danger" slot="icon-only" name="checkmark-done-circle"></ion-icon>
           </ion-button>
         </ion-buttons>

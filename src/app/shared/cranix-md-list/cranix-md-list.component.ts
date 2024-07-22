@@ -1,3 +1,4 @@
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { addIcons } from 'ionicons';
 import { close, addCircle, ellipsisVerticalSharp, arrowBack, arrowForward, arrowForwardCircle, printOutline, stopCircleOutline, chevronForwardCircleOutline, archive, trash, createOutline, server, print, desktop, people, peopleCircle, trashOutline } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonInput, IonLabel, IonIcon, IonButtons, IonButton, IonSearchbar, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption } from '@ionic/angular/standalone';
@@ -11,7 +12,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'cranix-md-list',
-  imports: [ IonToolbar, IonItem, IonInput, IonLabel, IonIcon, IonButtons, IonButton, IonSearchbar, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption ],
+  imports: [ MatTooltipModule, IonToolbar, IonItem, IonInput, IonLabel, IonIcon, IonButtons, IonButton, IonSearchbar, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption ],
   templateUrl: './cranix-md-list.component.html',
   styleUrls: ['./cranix-md-list.component.scss'],
 })

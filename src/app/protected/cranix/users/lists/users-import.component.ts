@@ -1,3 +1,7 @@
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { addCircle, refresh, cog, stopCircleOutline, checkmarkSharp, eyeOutline, reload, download, trash, close, arrowForwardCircle } from 'ionicons/icons';
 import { IonToolbar, IonButtons, IonButton, IonIcon, IonContent, IonRow, IonCol, IonFab, IonFabButton, IonFabList } from '@ionic/angular/standalone';
@@ -18,7 +22,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'cranix-users-import',
-  imports: [ IonToolbar, IonButtons, IonButton, IonIcon, IonContent, IonRow, IonCol, IonFab, IonFabButton, IonFabList ],
+  imports: [ NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonButtons, IonButton, IonIcon, IonContent, IonRow, IonCol, IonFab, IonFabButton, IonFabList ],
     templateUrl: './users-import.component.html',
     standalone: true,
 })

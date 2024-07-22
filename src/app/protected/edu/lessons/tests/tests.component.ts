@@ -1,3 +1,7 @@
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { refresh, close, play, stop, checkmark } from 'ionicons/icons';
 import { IonToolbar, IonButtons, IonButton, IonIcon, IonContent, IonItem, IonLabel, IonPopover } from '@ionic/angular/standalone';
@@ -10,7 +14,7 @@ import { CrxChallenge } from 'src/app/shared/models/data-model';
 
 @Component({
     selector: 'app-tests',
-  imports: [ IonToolbar, IonButtons, IonButton, IonIcon, IonContent, IonItem, IonLabel, IonPopover ],
+  imports: [ NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonButtons, IonButton, IonIcon, IonContent, IonItem, IonLabel, IonPopover ],
     templateUrl: './tests.component.html',
     styleUrls: ['../challenges/challenges.component.scss', './tests.component.scss'],
     standalone: true,

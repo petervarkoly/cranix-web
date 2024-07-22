@@ -16,11 +16,10 @@
         </ion-list-header>
         @for( p of appPages; track p.title ) {
           <ion-menu-toggle auto-hide="false">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
-              style="background-color : {{ location.path().startsWith(p.url) ? 'var(--ion-color-secondary)' : 'var(--ion-color-primary-tint)' }};">
-              <ion-icon size="small" style="margin-right: 10px;" color="#ffffff" slot="start" [ios]="p.icon + '-outline'"
-                [md]="p.icon + '-sharp'">
-              </ion-icon>
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"  routerLinkActive="selected">
+              <!--ion-icon size="small" style="margin-right: 10px;" color="#ffffff" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'">
+              </ion-icon -->
+              <ion-icon size="small" style="margin-right: 10px;" color="#ffffff" slot="start" [name]="p.icon"></ion-icon>
               <ion-label>{{ p.title | translate }}</ion-label>
             </ion-item>
           </ion-menu-toggle>

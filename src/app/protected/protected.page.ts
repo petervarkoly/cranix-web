@@ -5,10 +5,11 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
     selector: 'cranix-menue',
-    imports: [ IonSplitPane, IonMenu, IonList, IonListHeader, IonItem, IonMenuToggle, IonIcon, IonFooter, IonButton, IonRouterOutlet, TranslateModule ],
+    imports: [ TranslateModule, RouterLink, RouterLinkActive, IonSplitPane, IonMenu, IonList, IonListHeader, IonItem, IonMenuToggle, IonIcon, IonFooter, IonButton, IonRouterOutlet ],
     templateUrl: './protected.page.html',
     styleUrls: ['./protected.page.scss'],
     standalone: true,
@@ -18,77 +19,77 @@ export class ProtectedPage implements OnInit {
   private defAppPages = [
     {
       title: 'Customers',
-      url: '/pages/cephalix/customers',
+      url: '/protected/cephalix/customers',
       icon: 'albums'
     },
     {
       title: 'Institutes',
-      url: '/pages/cephalix/institutes/all',
+      url: '/protected/cephalix/institutes',
       icon: 'business'
     },
     {
       title: 'Tickets',
-      url: '/pages/cephalix/tickets',
+      url: '/protected/cephalix/tickets',
       icon: 'pricetags'
     },
     {
       title: 'Groups',
-      url: '/pages/cranix/groups',
+      url: '/protected/cranix/groups',
       icon: 'people'
     },
     {
       title: 'Users',
-      url: '/pages/cranix/users',
+      url: '/protected/cranix/users',
       icon: 'person'
     },
     {
       title: 'HWConfs',
-      url: '/pages/cranix/hwconfs',
+      url: '/protected/cranix/hwconfs',
       icon: 'file-tray-stacked'
     },
     {
       title: 'Rooms',
-      url: '/pages/cranix/rooms',
+      url: '/protected/cranix/rooms',
       icon: 'business'
     },
     {
       title: 'Devices',
-      url: '/pages/cranix/devices',
+      url: '/protected/cranix/devices',
       icon: 'desktop'
     },
     {
       title: 'Softwares',
-      url: '/pages/cranix/softwares',
+      url: '/protected/cranix/softwares',
       icon: 'save'
     },
     {
       title: 'System',
-      url: '/pages/cranix/system',
+      url: '/protected/cranix/system',
       icon: 'settings'
     },
     {
       title: 'Security',
-      url: '/pages/cranix/security',
+      url: '/protected/cranix/security',
       icon: 'key'
     },
     {
       title: 'Lessons',
-      url: '/pages/edu/lessons',
+      url: '/protected/edu/lessons',
       icon: 'school'
     },
     {
       title: 'Profile',
-      url: '/pages/cranix/profile',
+      url: '/protected/cranix/profile',
       icon: 'man'
     },
     {
       title: 'MyGroups',
-      url: '/pages/cranix/mygroups',
+      url: '/protected/cranix/mygroups',
       icon: "people"
     },
     {
       title: "Informations",
-      url: '/pages/cranix/informations',
+      url: '/protected/cranix/informations',
       icon: 'library'
     }
   ];
@@ -107,9 +108,9 @@ export class ProtectedPage implements OnInit {
       if (this.authService.isRouteAllowed(page.url)) {
         if (page.title == 'Lessons') {
           if (this.authService.isAllowed('challenge.manage')) {
-            page.url = "/pages/edu/lessons/challenges"
+            page.url = "/protected/edu/lessons/challenges"
           } else {
-            page.url = "/pages/edu/lessons/tests"
+            page.url = "/protected/edu/lessons/tests"
           }
         }
         this.appPages.push(page);

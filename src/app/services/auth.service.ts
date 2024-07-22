@@ -327,34 +327,34 @@ export class AuthenticationService {
      */
     public isRouteAllowed(route: string) {
         switch (route) {
-            case "/pages/cephalix/customers": { return this.isAllowed('customer.manage') }
-            case "/pages/cephalix/institutes": { return this.isAllowed('cephalix.manage') }
-            case "/pages/cephalix/institutes/all": { return this.isAllowed('cephalix.manage') }
-            case "/pages/cephalix/tickets": { return this.isAllowed('cephalix.ticket') }
-            case "/pages/cranix/devices": { return this.isAllowed('device.manage') }
-            case "/pages/cranix/devices/all": { return this.isAllowed('device.manage') }
-            case "/pages/cranix/groups": { return this.isAllowed('group.manage') }
+            case "/protected/cephalix/customers": { return this.isAllowed('customer.manage') }
+            case "/protected/cephalix/institutes": { return this.isAllowed('cephalix.manage') }
+            case "/protected/cephalix/institutes/all": { return this.isAllowed('cephalix.manage') }
+            case "/protected/cephalix/tickets": { return this.isAllowed('cephalix.ticket') }
+            case "/protected/cranix/devices": { return this.isAllowed('device.manage') }
+            case "/protected/cranix/devices/all": { return this.isAllowed('device.manage') }
+            case "/protected/cranix/groups": { return this.isAllowed('group.manage') }
             //TODO may be it can be configured
-            case "/pages/cranix/informations": { return this.isAllowed('permitall') }
-            case "/pages/cranix/hwconfs": { return this.isAllowed('hwconf.manage') }
-            case "/pages/cranix/rooms": { return this.isAllowed('room.manage') }
-            case "/pages/cranix/rooms/all": { return this.isAllowed('room.manage') }
-            case "/pages/cranix/users": { return this.isAllowed('user.manage') }
-            case "/pages/cranix/users/all": { return this.isAllowed('user.manage') }
-            case "/pages/cranix/system": { return this.isAllowed('system.status') }
-            case "/pages/cranix/softwares": { return this.isAllowed('software.manage') }
-            case "/pages/cranix/security": { return this.isOneOfAllowed(['system.firewall', 'system.proxy']) }
+            case "/protected/cranix/informations": { return this.isAllowed('permitall') }
+            case "/protected/cranix/hwconfs": { return this.isAllowed('hwconf.manage') }
+            case "/protected/cranix/rooms": { return this.isAllowed('room.manage') }
+            case "/protected/cranix/rooms/all": { return this.isAllowed('room.manage') }
+            case "/protected/cranix/users": { return this.isAllowed('user.manage') }
+            case "/protected/cranix/users/all": { return this.isAllowed('user.manage') }
+            case "/protected/cranix/system": { return this.isAllowed('system.status') }
+            case "/protected/cranix/softwares": { return this.isAllowed('software.manage') }
+            case "/protected/cranix/security": { return this.isOneOfAllowed(['system.firewall', 'system.proxy']) }
             //TODO education.challenges
-            case "/pages/edu/lessons": { return this.isAllowed('permitall') }
-            case "/pages/edu/lessons/tests": { return this.isAllowed('permitall') }
-            case "/pages/edu/lessons/challenges": { return this.isAllowed('challenge.manage') }
-            case "/pages/edu/lessons/roomcontrol": { return this.isAllowed('education.rooms') }
-            case "/pages/cranix/profile": { return this.isOneOfAllowed(['permitall','2fa.use']) }
-            case "/pages/cranix/profile/myself": { return this.isAllowed('permitall') }
-            case "/pages/cranix/profile/mydevice": { return this.isAllowed('permitall') }
-            case "/pages/cranix/profile/crx2fa": { return this.isAllowed('2fa.use') }
-            case "/pages/cranix/mygroups": { return this.isAllowed('education.groups') }
-            case "/pages/cranix/myusers": { return this.isAllowed('education.users') }
+            case "/protected/edu/lessons": { return this.isAllowed('permitall') }
+            case "/protected/edu/lessons/tests": { return this.isAllowed('permitall') }
+            case "/protected/edu/lessons/challenges": { return this.isAllowed('challenge.manage') }
+            case "/protected/edu/lessons/roomcontrol": { return this.isAllowed('education.rooms') }
+            case "/protected/cranix/profile": { return this.isOneOfAllowed(['permitall','2fa.use']) }
+            case "/protected/cranix/profile/myself": { return this.isAllowed('permitall') }
+            case "/protected/cranix/profile/mydevice": { return this.isAllowed('permitall') }
+            case "/protected/cranix/profile/crx2fa": { return this.isAllowed('2fa.use') }
+            case "/protected/cranix/mygroups": { return this.isAllowed('education.groups') }
+            case "/protected/cranix/myusers": { return this.isAllowed('education.users') }
             case "institutes/:id": { return this.isAllowed('cephalix.modify') }
             case "customers/:id": { return this.isAllowed('customer.modify') }
             case "tickets/:id": { return this.isAllowed('cephalix.ticket') }

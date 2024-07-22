@@ -1,3 +1,5 @@
+import { NgIf, NgFor } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonInput, IonItem, IonSelect, IonSelectOption, IonTextarea } from '@ionic/angular/standalone';
@@ -18,7 +20,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'cranix-add-device',
-  imports: [ IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonInput, IonItem, IonSelect, IonSelectOption, IonTextarea ],
+  imports: [ NgIf, NgFor, TranslateModule, IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonInput, IonItem, IonSelect, IonSelectOption, IonTextarea ],
   templateUrl: './add-device.component.html',
   styleUrls: ['./add-device.component.scss'],
 })

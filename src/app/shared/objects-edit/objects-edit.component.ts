@@ -1,3 +1,4 @@
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { addIcons } from 'ionicons';
 import { refresh, checkmarkSharp, trash, close } from 'ionicons/icons';
 import { IonHeader, IonTitle, IonLabel, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonInput, IonSelect, IonSelectOption, IonToggle, IonTextarea } from '@ionic/angular/standalone';
@@ -16,7 +17,7 @@ import { HttpClient } from '@angular/common/http';
 import { UtilsService } from 'src/app/services/utils.service';
 @Component({
   selector: 'cranix-objects-edit',
-  imports: [ IonHeader, IonTitle, IonLabel, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonInput, IonSelect, IonSelectOption, IonToggle, IonTextarea ],
+  imports: [ MatTooltipModule, IonHeader, IonTitle, IonLabel, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonInput, IonSelect, IonSelectOption, IonToggle, IonTextarea ],
   templateUrl: './objects-edit.component.html',
   styleUrls: ['./objects-edit.component.scss'],
 })

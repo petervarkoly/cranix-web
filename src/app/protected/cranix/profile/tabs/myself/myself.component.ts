@@ -1,3 +1,7 @@
+import { DatePipe } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { calendar, cube, folder } from 'ionicons/icons';
 import { IonContent, IonIcon, IonItem, IonButton } from '@ionic/angular/standalone';
@@ -5,7 +9,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from 'src/app/shared/models/data-model';
 import { SelfManagementService } from 'src/app/services/selfmanagement.service';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
-import { TranslateService } from '@ngx-translate/core';
 import { ModalController } from '@ionic/angular/standalone';
 import { SetpasswordComponent } from 'src/app/shared/actions/setpassword/setpassword.component';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
@@ -13,7 +16,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'cranix-myself',
-  imports: [ IonContent, IonIcon, IonItem, IonButton ],
+  imports: [ DatePipe, NgIf, NgFor, TranslateModule, CranixToolbarComponent, IonContent, IonIcon, IonItem, IonButton ],
     templateUrl: './myself.component.html',
     styleUrls: ['./myself.component.scss'],
     standalone: true,
@@ -25,7 +28,6 @@ export class MyselfComponent implements OnInit, OnDestroy {
 
   constructor(
     private mySelfs: SelfManagementService,
-    public translateService: TranslateService,
     public objectService: GenericObjectService,
     public modalController: ModalController,
     public authService: AuthenticationService

@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { addCircle, business, apps } from 'ionicons/icons';
 import { IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
@@ -18,7 +23,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { CephalixService } from 'src/app/services/cephalix.service';
 
 @Component({
-  imports: [ IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon ],
+  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon ],
   selector: 'cranix-customers',
   templateUrl: './customers.page.html',
   styleUrls: ['./customers.page.scss'],

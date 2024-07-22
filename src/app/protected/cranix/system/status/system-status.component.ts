@@ -1,3 +1,7 @@
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { arrowForwardCircle, help, trendingUp, arrowRedo, power, helpCircle } from 'ionicons/icons';
 import { IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonButtons, IonButton, IonItemDivider, IonGrid, IonCol } from '@ionic/angular/standalone';
@@ -15,7 +19,7 @@ import { CreateSupport } from 'src/app/shared/actions/create-support/create-supp
 
 @Component({
     selector: 'cranix-system-status',
-  imports: [ IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonButtons, IonButton, IonItemDivider, IonGrid, IonCol ],
+  imports: [ NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonButtons, IonButton, IonItemDivider, IonGrid, IonCol ],
     templateUrl: './system-status.component.html',
     styleUrls: ['./system-status.component.scss'],
     standalone: true,

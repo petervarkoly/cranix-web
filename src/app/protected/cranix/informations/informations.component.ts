@@ -1,3 +1,8 @@
+import { DatePipe } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { newspaper, clipboard, informationCircle, people, create, peopleCircle, addCircle, lockClosedOutline, lockOpenOutline, albums, build, book, trash } from 'ionicons/icons';
 import { IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonContent, IonInput, IonCard, IonCardContent, IonCol, IonItem } from '@ionic/angular/standalone';
@@ -10,7 +15,7 @@ import { Announcenement, Contact, FAQ, TaskResponse } from 'src/app/shared/model
 
 @Component({
     selector: 'cranix-informations',
-  imports: [ IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonContent, IonInput, IonCard, IonCardContent, IonCol, IonItem ],
+  imports: [ DatePipe, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonContent, IonInput, IonCard, IonCardContent, IonCol, IonItem ],
     templateUrl: './informations.component.html',
     styleUrls: ['./informations.component.scss'],
     standalone: true,

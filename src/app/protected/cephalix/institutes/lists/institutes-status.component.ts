@@ -1,8 +1,14 @@
+import { DatePipe } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { reload, apps, statsChart, save, alarm, build, close } from 'ionicons/icons';
 import { IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonBadge } from '@ionic/angular/standalone';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { GridApi, ColumnApi } from 'ag-grid-community';
+import { AgGridAngular } from 'ag-grid-angular'
+import { GridApi } from 'ag-grid-community';
 import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
@@ -22,7 +28,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { DateCellRenderer } from 'src/app/pipes/ag-date-renderer';
 @Component({
     selector: 'cranix-institutes-status',
-    imports: [ IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonBadge ],
+    imports: [ DatePipe, NgIf, NgFor, MatTooltipModule, AgGridAngular, TranslateModule, CranixToolbarComponent, IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonBadge ],
     templateUrl: './institutes-status.component.html',
     styleUrls: ['./institutes-status.component.scss'],
     encapsulation: ViewEncapsulation.None,
@@ -35,7 +41,6 @@ export class InstitutesStatusComponent implements OnInit {
   columnDefs = [];
   defaultColDef = {};
   gridApi: GridApi;
-  columnApi: ColumnApi;
   rowSelection;
   context;
   title = 'app';
@@ -268,7 +273,6 @@ export class InstitutesStatusComponent implements OnInit {
   }
   onGridReady(params) {
     this.gridApi = params.api;
-    this.columnApi = params.columnApi;
     this.gridApi.sizeColumnsToFit();
   }
   headerHeightSetter() {
@@ -314,7 +318,7 @@ export class InstitutesStatusComponent implements OnInit {
   }
   redirectToEdit(status: InstituteStatus) {
     this.objectService.selectedObject = this.objectService.getObjectById("institute", status.cephalixInstituteId);
-    this.route.navigate([`/pages/cephalix/institutes/${status.cephalixInstituteId}`]);
+    this.route.navigate([`/protected/cephalix/institutes/${status.cephalixInstituteId}`]);
   }
 
   /**

@@ -1,3 +1,7 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { refreshCircle } from 'ionicons/icons';
 import { IonContent, IonToolbar, IonSegment, IonSegmentButton, IonInput, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
@@ -13,7 +17,7 @@ import { SyncObjectRenderer } from 'src/app/pipes/ag-sync-object-renderer';
 
 @Component({
     selector: 'cranix-institute-synced-objects',
-    imports: [ IonContent, IonToolbar, IonSegment, IonSegmentButton, IonInput, IonButtons, IonButton, IonIcon ],
+    imports: [ AgGridAngular, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonContent, IonToolbar, IonSegment, IonSegmentButton, IonInput, IonButtons, IonButton, IonIcon ],
     templateUrl: './institute-synced-objects.component.html',
     standalone: true
 })

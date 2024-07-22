@@ -52,34 +52,34 @@ export class AppComponent {
           }
           if(this.authService.session.mustSetup2fa) {
             console.log('initializeApp: 2FA must be set up');
-            this.router.navigate(['pages/cranix/profile/crx2fa']);
+            this.router.navigate(['protected/cranix/profile/crx2fa']);
           } else if(this.authService.session.mustChange) {
             this.genericObjectS.warningMessage(this.languageService.trans('Your password is expired. You have to change it.'));
             console.log('initializeApp: Password must be changed');
-            this.router.navigate(['pages/cranix/profile/myself']);
+            this.router.navigate(['protected/cranix/profile/myself']);
           } else if(this.authService.requestedPath) {
             console.log('initializeApp: requestedPath is defined');
             this.router.navigate([this.authService.requestedPath]);
             this.authService.requestedPath = undefined;
           } else if( this.authService.isAllowed('cephalix.manage')) {
-            console.log('pages/cephalix/institutes/all');
-            this.router.navigate(['pages/cephalix/institutes/all']);
+            console.log('protected/cephalix/institutes/all');
+            this.router.navigate(['protected/cephalix/institutes/all']);
           } else if ( this.authService.isAllowed('user.manage') ) {
-            console.log('pages/cranix/users/all');
-            this.router.navigate(['pages/cranix/users/all']);
+            console.log('protected/cranix/users/all');
+            this.router.navigate(['protected/cranix/users/all']);
           } else if ( this.authService.session['role'] == 'teachers' ) {
-            console.log('pages/cranix/mygroups');
-            this.router.navigate(['pages/cranix/mygroups']);
+            console.log('protected/cranix/mygroups');
+            this.router.navigate(['protected/cranix/mygroups']);
           } else {
-            console.log('pages/cranix/profile/myself');
-            this.router.navigate(['pages/cranix/profile/myself']);
+            console.log('protected/cranix/profile/myself');
+            this.router.navigate(['protected/cranix/profile/myself']);
           }
         } else if( sessionStorage.getItem('screenShot') ) {
           this.router.navigate(['public/showScreen']);
         } else if (sessionStorage.getItem('cephalix_token')) {
           this.authService.token     = sessionStorage.getItem('cephalix_token');
           this.authService.loadSession();
-          this.router.navigate(['pages/cranix/users/all']);
+          this.router.navigate(['protected/cranix/users/all']);
         } else {
           this.router.navigate(['login']);
         }

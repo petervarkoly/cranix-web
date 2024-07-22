@@ -33,26 +33,20 @@
     </ion-card-content>
     }@else {
     <ion-card-content>
-      <ion-list>
+      <ion-list [inset]="true">
         <ion-item>
-          <ion-label style="width: 120px;">
-            {{'username'|translate}}
-          </ion-label>
-          <ion-input [(ngModel)]="user.username" name="username" type="text" autocomplete="off" required></ion-input>
+          <ion-input label="{{'username'|translate}}" [(ngModel)]="user.username" name="username" type="text" autocomplete="off" required></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label style="width: 120px;">
-            {{'password'|translate}}
-          </ion-label>
-          <ion-input [(ngModel)]="user.password" name="password" [type]="showPassword ? 'text' : 'password'"
+          <ion-input  label="{{'password'|translate}}" [(ngModel)]="user.password" name="password" [type]="showPassword ? 'text' : 'password'"
             autocomplete="off" required></ion-input>
           <ion-icon slot="end" [name]="showPassword ? 'eye-off' : 'eye'"
             (click)="showPassword = !showPassword"></ion-icon>
         </ion-item>
-        <ion-button style="margin-top: 10px;" expand="full" color="primary" (click)="login()"
+        <ion-item lines="none">
+          <ion-button style="margin-top: 10px;" expand="full" color="primary" (click)="login()"
           [disabled]="!loginForm.valid">{{'login'|translate}}</ion-button>
-        <!-- ion-toast [isOpen]="authService.passwordFalse" message="{{'Pin fals'|translate}}" [duration]="5000"
-        (didDismiss)="authService.passwordFalse=false"></ion-toast -->
+        </ion-item>
       </ion-list>
     </ion-card-content>
     }

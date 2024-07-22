@@ -1,3 +1,5 @@
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { IonSelect, IonSelectOption, IonModal, IonButtons, IonButton, IonContent } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { SystemService } from 'src/app/services/system.service';
@@ -8,7 +10,7 @@ import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
     selector: 'cranix-system-addons',
-  imports: [ IonSelect, IonSelectOption, IonModal, IonButtons, IonButton, IonContent ],
+  imports: [ TranslateModule, CranixToolbarComponent, IonSelect, IonSelectOption, IonModal, IonButtons, IonButton, IonContent ],
     templateUrl: './system-addons.component.html',
     styleUrls: ['./system-addons.component.scss'],
     standalone: true,

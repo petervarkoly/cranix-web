@@ -1,3 +1,7 @@
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { close, download, checkmark, chevronForwardCircleOutline, stopCircleOutline, settings, archive, trash, arrowForwardCircle, addCircle } from 'ionicons/icons';
 import { IonContent, IonToolbar, IonButtons, IonButton, IonIcon, IonToggle, IonItem, IonLabel, IonInput, IonFab, IonFabButton, IonFabList, IonModal, IonListHeader, IonSelect, IonSelectOption, IonPopover } from '@ionic/angular/standalone';
@@ -14,7 +18,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'app-challenges',
-  imports: [ IonContent, IonToolbar, IonButtons, IonButton, IonIcon, IonToggle, IonItem, IonLabel, IonInput, IonFab, IonFabButton, IonFabList, IonModal, IonListHeader, IonSelect, IonSelectOption, IonPopover ],
+  imports: [ NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonContent, IonToolbar, IonButtons, IonButton, IonIcon, IonToggle, IonItem, IonLabel, IonInput, IonFab, IonFabButton, IonFabList, IonModal, IonListHeader, IonSelect, IonSelectOption, IonPopover ],
     templateUrl: './challenges.component.html',
     styleUrls: ['./challenges.component.scss'],
     standalone: true,

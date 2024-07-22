@@ -1,3 +1,4 @@
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { addIcons } from 'ionicons';
 import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonButtons, IonButton, IonIcon, IonCard, IonCardContent, IonCol, IonTitle, IonInput } from '@ionic/angular/standalone';
@@ -14,7 +15,7 @@ import { ModalController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'cranix-group-members',
-  imports: [ IonButtons, IonButton, IonIcon, IonCard, IonCardContent, IonCol, IonTitle, IonInput ],
+  imports: [ MatTooltipModule, IonButtons, IonButton, IonIcon, IonCard, IonCardContent, IonCol, IonTitle, IonInput ],
   templateUrl: './group-members.page.html',
   styleUrls: ['./group-members.page.scss'],
 })

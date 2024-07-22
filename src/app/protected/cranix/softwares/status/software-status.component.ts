@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { download } from 'ionicons/icons';
 import { IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
@@ -10,7 +15,7 @@ import { SoftwareStatus } from 'src/app/shared/models/data-model';
 
 @Component({
     selector: 'cranix-software-status',
-  imports: [ IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonSelect, IonSelectOption ],
+  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonSelect, IonSelectOption ],
     templateUrl: './software-status.component.html',
     styleUrls: ['./software-status.component.scss'],
     standalone: true,

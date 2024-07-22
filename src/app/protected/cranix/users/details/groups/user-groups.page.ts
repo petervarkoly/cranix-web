@@ -1,3 +1,6 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonButtons, IonButton, IonIcon, IonCol, IonTitle, IonInput } from '@ionic/angular/standalone';
@@ -13,7 +16,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'cranix-user-groups',
-  imports: [ IonButtons, IonButton, IonIcon, IonCol, IonTitle, IonInput ],
+  imports: [ AgGridAngular, MatTooltipModule, TranslateModule, IonButtons, IonButton, IonIcon, IonCol, IonTitle, IonInput ],
     templateUrl: './user-groups.page.html',
     styleUrls: ['./user-groups.page.scss'],
     standalone: true,

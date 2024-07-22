@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
@@ -11,7 +12,7 @@ import { Printer, Device } from 'src/app/shared/models/data-model'
 
 @Component({
     selector: 'cranix-device-printers',
-  imports: [ IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonSelect, IonSelectOption ],
+  imports: [ TranslateModule, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonSelect, IonSelectOption ],
     templateUrl: './device-printers.component.html',
     styleUrls: ['./device-printers.component.scss'],
     standalone: true,

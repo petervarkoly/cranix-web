@@ -1,9 +1,14 @@
+import { TranslateModule } from '@ngx-translate/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgIf } from '@angular/common';
 import { Component } from "@angular/core";
 
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
     selector: 'yesno-cell',
+    imports: [ TranslateModule, MatTooltipModule, NgIf ],
+    standalone: true,
     template: `
         <ion-button *ngIf="params.value != null && active" fill="clear" size="small"
             [color]="params.value ? 'success' : 'danger'" (click)="toggle($event)">

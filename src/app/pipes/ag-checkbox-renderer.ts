@@ -1,9 +1,14 @@
+import { TranslateModule } from '@ngx-translate/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgIf } from '@angular/common';
 import { Component } from "@angular/core";
 
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
     selector: 'yesno-cell-text',
+    imports: [ TranslateModule, MatTooltipModule, NgIf ],
+    standalone: true,
     template: `
     <ion-checkbox  *ngIf="params.data"
     class="ion-align-self-center"

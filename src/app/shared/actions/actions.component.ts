@@ -1,3 +1,4 @@
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { IonListHeader, IonItem, IonIcon } from '@ionic/angular/standalone';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { PopoverController, ModalController } from '@ionic/angular/standalone';
@@ -22,7 +23,7 @@ import { SetValidityComponent } from './set-validity/set-validity.component';
 
 @Component({
   selector: 'cranix-actions',
-  imports: [ IonListHeader, IonItem, IonIcon ],
+  imports: [ MatTooltipModule, IonListHeader, IonItem, IonIcon ],
   templateUrl: './actions.component.html',
   styleUrls: ['./actions.component.scss'],
 })

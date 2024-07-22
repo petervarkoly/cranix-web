@@ -1,9 +1,14 @@
+import { TranslateModule } from '@ngx-translate/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgIf } from '@angular/common';
 import { Component } from "@angular/core";
 
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
     selector: 'edit-cell',
+    imports: [ TranslateModule, MatTooltipModule, NgIf ],
+    standalone: true,
     template: `
         <ion-button style="padding-horizontal : 2px" fill="clear" size="small" (click)="details($event)" matTooltip="{{'edit' | translate }}">
              <ion-icon name="build-sharp"></ion-icon>

@@ -1,3 +1,8 @@
+import { DatePipe } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { createOutline, caretBack, lockClosed, checkmarkDoneCircle, close, playBack, playForward, download, checkmark, arrowUndo, buildOutline, mailOpen, mail, trash } from 'ionicons/icons';
 import { IonContent, IonButtons, IonButton, IonIcon, IonCardContent, IonGrid, IonCol, IonItem, IonLabel, IonCard, IonCardSubtitle } from '@ionic/angular/standalone';
@@ -17,7 +22,7 @@ class ObjectList {
 }
 @Component({
     selector: 'cranix-details',
-    imports: [ IonContent, IonButtons, IonButton, IonIcon, IonCardContent, IonGrid, IonCol, IonItem, IonLabel, IonCard, IonCardSubtitle ],
+    imports: [ DatePipe, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonContent, IonButtons, IonButton, IonIcon, IonCardContent, IonGrid, IonCol, IonItem, IonLabel, IonCard, IonCardSubtitle ],
     templateUrl: './details.page.html',
     styleUrls: ['./details.page.scss'],
     standalone: true,

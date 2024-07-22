@@ -1,3 +1,7 @@
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { save, close } from 'ionicons/icons';
 import { IonContent, IonToolbar, IonSegment, IonSegmentButton, IonRow, IonCol, IonItem, IonToggle, IonInput, IonButton, IonIcon, IonButtons, IonLabel } from '@ionic/angular/standalone';
@@ -11,7 +15,7 @@ import { SystemService } from 'src/app/services/system.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 @Component({
     selector: 'cranix-system-config',
-  imports: [ IonContent, IonToolbar, IonSegment, IonSegmentButton, IonRow, IonCol, IonItem, IonToggle, IonInput, IonButton, IonIcon, IonButtons, IonLabel ],
+  imports: [ NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonContent, IonToolbar, IonSegment, IonSegmentButton, IonRow, IonCol, IonItem, IonToggle, IonInput, IonButton, IonIcon, IonButtons, IonLabel ],
     templateUrl: './system-config.component.html',
     styleUrls: ['./system-config.component.scss'],
     standalone: true,

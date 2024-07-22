@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { addCircle, trash, refresh, arrowRedo, close, arrowForwardCircle, logIn, mail, print, globe } from 'ionicons/icons';
 import { IonToolbar, IonSegment, IonSegmentButton, IonButtons, IonButton, IonIcon, IonItem, IonInput, IonContent, IonFab, IonFabButton, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
@@ -16,7 +21,7 @@ import { ApplyBTNRenderer } from 'src/app/pipes/ag-apply-renderer';
 
 @Component({
     selector: 'cranix-room-access',
-  imports: [ IonToolbar, IonSegment, IonSegmentButton, IonButtons, IonButton, IonIcon, IonItem, IonInput, IonContent, IonFab, IonFabButton, IonGrid, IonRow, IonCol ],
+  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonSegment, IonSegmentButton, IonButtons, IonButton, IonIcon, IonItem, IonInput, IonContent, IonFab, IonFabButton, IonGrid, IonRow, IonCol ],
     templateUrl: './room-access.component.html',
     styleUrls: ['./room-access.component.scss'],
     encapsulation: ViewEncapsulation.None,

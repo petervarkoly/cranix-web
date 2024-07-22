@@ -1,18 +1,21 @@
+import { TranslateModule } from '@ngx-translate/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Component } from "@angular/core";
 
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
     selector: 'update-cell-renderer',
+    imports: [ TranslateModule, MatTooltipModule ],
+    standalone: true,
     template: `
-        <ng-template [ngIf]="doUpate" [ngIfElse]="elseBlock">
+	@if( doUpate ) {
             <ion-button fill="clear" size="small" (click)="update($event)" matTooltip="{{ updates }}" matTooltipPosition="after">
                  <ion-icon slot="icon-only" color="danger" name="trending-up" style="height:20px;width:20px"></ion-icon>
             </ion-button>
-        </ng-template>
-        <ng-template #elseBlock>
+	} @else {
             <ion-icon  slot="icon-only" color="success" name="checkmark-sharp" style="height:20px;width:20px"></ion-icon>
-        </ng-template>
+	}
         `
 })
 

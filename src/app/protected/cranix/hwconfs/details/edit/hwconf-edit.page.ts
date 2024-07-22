@@ -1,8 +1,11 @@
+import { DatePipe } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { checkmarkSharp, removeCircle, trash } from 'ionicons/icons';
 import { IonRow, IonTitle, IonContent, IonCol, IonToolbar, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { Hwconf } from 'src/app/shared/models/data-model';
 import { FormBuilder } from '@angular/forms';
@@ -11,7 +14,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'cranix-hwconf-edit',
-    imports: [ IonRow, IonTitle, IonContent, IonCol, IonToolbar, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption ],
+    imports: [ DatePipe, NgIf, NgFor, MatTooltipModule, TranslateModule, IonRow, IonTitle, IonContent, IonCol, IonToolbar, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption ],
     templateUrl: './hwconf-edit.page.html',
     styleUrls: ['./hwconf-edit.page.scss'],
     standalone: true,
@@ -26,7 +29,6 @@ export class HwconfEditPage implements OnInit {
   tools: string[] = ["partimage", "partclone", "dd", "dd_rescue", "Zpartclone"];
   constructor(
     public authService: AuthenticationService,
-    public translateService: TranslateService,
     public formBuilder: FormBuilder,
     public objectService: GenericObjectService,
     public hwconfsService: HwconfsService

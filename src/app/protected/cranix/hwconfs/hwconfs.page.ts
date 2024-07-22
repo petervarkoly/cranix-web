@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { addCircle, ellipsisVerticalSharp, apps } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent } from '@ionic/angular/standalone';
@@ -19,7 +24,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'cranix-hwconfs',
-  imports: [ IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
+  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
     templateUrl: './hwconfs.page.html',
     styleUrls: ['./hwconfs.page.scss'],
     standalone: true,
@@ -162,7 +167,7 @@ export class HwconfsPage implements OnInit {
   async redirectToEdit(hwconf: Hwconf) {
     if (hwconf) {
       this.objectService.selectedObject = hwconf;
-      let err = this.route.navigate(['/pages/cranix/hwconfs/' + hwconf.id]);
+      let err = this.route.navigate(['/protected/cranix/hwconfs/' + hwconf.id]);
       console.log(err)
     } else {
       const modal = await this.modalCtrl.create({

@@ -9,7 +9,7 @@
         <ion-label>{{ 'myDevice' | translate }}</ion-label>
       </ion-tab-button>
       <ion-tab-button *ngIf="vpn && authService.isAllowed('permitall')" tab="myVPN" >
-        <ion-icon name="security" ></ion-icon>
+        <ion-icon name="hand-left" ></ion-icon>
         <ion-label>{{ 'VPN' | translate }}</ion-label>
       </ion-tab-button>
       <ion-tab-button *ngIf="authService.isAllowed('2fa.use')" tab="crx2fa" >

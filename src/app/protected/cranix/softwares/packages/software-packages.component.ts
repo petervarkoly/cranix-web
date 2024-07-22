@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { arrowForwardCircle, cloudDownload, addCircle, refreshOutline } from 'ionicons/icons';
 import { IonFab, IonIcon, IonFabList, IonFabButton, IonSearchbar, IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton } from '@ionic/angular/standalone';
@@ -17,7 +22,7 @@ import { SoftwareLicensesComponent } from 'src/app/shared/actions/software-licen
 
 @Component({
     selector: 'cranix-software-packages',
-  imports: [ IonFab, IonIcon, IonFabList, IonFabButton, IonSearchbar, IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton ],
+  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonFab, IonIcon, IonFabList, IonFabButton, IonSearchbar, IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton ],
     templateUrl: './software-packages.component.html',
     styleUrls: ['./software-packages.component.scss'],
     standalone: true,

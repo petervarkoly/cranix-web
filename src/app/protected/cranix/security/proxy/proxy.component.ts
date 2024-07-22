@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { settings, happy, sad, addCircle, checkmark, arrowRedo, add, trash } from 'ionicons/icons';
 import { IonToolbar, IonSegment, IonSegmentButton, IonIcon, IonLabel, IonButtons, IonButton, IonInput, IonItem, IonList } from '@ionic/angular/standalone';
@@ -12,7 +17,7 @@ import { ApplyCheckBoxBTNRenderer } from 'src/app/pipes/ag-apply-checkbox-render
 
 @Component({
     selector: 'cranix-proxy',
-  imports: [ IonToolbar, IonSegment, IonSegmentButton, IonIcon, IonLabel, IonButtons, IonButton, IonInput, IonItem, IonList ],
+  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonSegment, IonSegmentButton, IonIcon, IonLabel, IonButtons, IonButton, IonInput, IonItem, IonList ],
     templateUrl: './proxy.component.html',
     styleUrls: ['./proxy.component.scss'],
     standalone: true,

@@ -1,3 +1,6 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { checkmarkSharp, trash, close } from 'ionicons/icons';
 import { IonTitle, IonButtons, IonButton, IonIcon, IonSegment, IonSegmentButton, IonContent, IonRow, IonCol, IonLabel, IonInput } from '@ionic/angular/standalone';
@@ -11,7 +14,7 @@ import { Software, Hwconf, Room, Device, Category, Installation } from 'src/app/
 import { SoftwareService } from 'src/app/services/softwares.service';
 @Component({
     selector: 'cranix-edit-installation-set',
-  imports: [ IonTitle, IonButtons, IonButton, IonIcon, IonSegment, IonSegmentButton, IonContent, IonRow, IonCol, IonLabel, IonInput ],
+  imports: [ AgGridAngular, NgIf, NgFor, TranslateModule, IonTitle, IonButtons, IonButton, IonIcon, IonSegment, IonSegmentButton, IonContent, IonRow, IonCol, IonLabel, IonInput ],
     templateUrl: './edit-installation-set.component.html',
     styleUrls: ['./edit-installation-set.component.scss'],
     standalone: true,

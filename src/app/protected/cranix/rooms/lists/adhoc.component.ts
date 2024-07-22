@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { addCircle, apps } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent } from '@ionic/angular/standalone';
@@ -16,7 +21,7 @@ import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';
 import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
 @Component({
     selector: 'cranix-adhoc',
-  imports: [ IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
+  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
     templateUrl: './adhoc.component.html',
     styleUrls: ['./adhoc.component.scss'],
     standalone: true,

@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { addCircle, trash, refresh, close, checkmark } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonModal, IonContent, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
@@ -10,7 +15,7 @@ import { MailAccess } from 'src/app/shared/models/server-models'
 
 @Component({
     selector: 'app-mailserver',
-  imports: [ IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonModal, IonContent, IonSelect, IonSelectOption ],
+  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonModal, IonContent, IonSelect, IonSelectOption ],
     templateUrl: './mailserver.component.html',
     styleUrls: ['./mailserver.component.scss'],
     standalone: true,

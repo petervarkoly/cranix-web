@@ -1,3 +1,5 @@
+import { NgIf, NgFor } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonSelect, IonSelectOption, IonItem, IonInput } from '@ionic/angular/standalone';
@@ -13,7 +15,7 @@ class SourceObject {
 }
 @Component({
     selector: 'cranix-add-outgoing-rule',
-  imports: [ IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonSelect, IonSelectOption, IonItem, IonInput ],
+  imports: [ NgIf, NgFor, TranslateModule, IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonSelect, IonSelectOption, IonItem, IonInput ],
     templateUrl: './add-outgoing-rule.component.html',
     styleUrls: ['./add-outgoing-rule.component.scss'],
     standalone: true,

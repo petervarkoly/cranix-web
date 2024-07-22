@@ -1,3 +1,7 @@
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { addCircle, cube, trash } from 'ionicons/icons';
 import { IonButtons, IonButton, IonIcon, IonList, IonItem } from '@ionic/angular/standalone';
@@ -10,7 +14,7 @@ import { AddDeviceComponent } from 'src/app/protected/cranix/devices/add-device/
 
 @Component({
     selector: 'cranix-my-devices',
-  imports: [ IonButtons, IonButton, IonIcon, IonList, IonItem ],
+  imports: [ NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonButtons, IonButton, IonIcon, IonList, IonItem ],
     templateUrl: './my-devices.component.html',
     styleUrls: ['./my-devices.component.scss'],
     standalone: true,

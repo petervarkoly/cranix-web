@@ -1,5 +1,7 @@
+import { NgIf, NgFor } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
-import { list, room, calendar } from 'ionicons/icons';
+import { list, business, calendar } from 'ionicons/icons';
 import { IonTabs, IonTabBar, IonTabButton, IonIcon } from '@ionic/angular/standalone';
 import { Component, OnInit} from '@angular/core';
 //own modules
@@ -8,7 +10,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'cranix-lessons',
-  imports: [ IonTabs, IonTabBar, IonTabButton, IonIcon ],
+  imports: [ NgIf, NgFor, TranslateModule, IonTabs, IonTabBar, IonTabButton, IonIcon ],
     templateUrl: './lessons.page.html',
     standalone: true,
 })
@@ -19,7 +21,7 @@ export class LessonsPage implements OnInit {
       public challengesService: ChallengesService,
       public authS: AuthenticationService
     ){
-    addIcons ({ list, room, calendar });}
+    addIcons ({ list, business, calendar });}
 
     ngOnInit(){
     }

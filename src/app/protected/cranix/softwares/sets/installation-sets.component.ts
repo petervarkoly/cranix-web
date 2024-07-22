@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { arrowForwardCircle, addCircle, pencilOutline, refreshOutline } from 'ionicons/icons';
 import { IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton } from '@ionic/angular/standalone';
@@ -16,7 +21,7 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 
 @Component({
     selector: 'cranix-installation-sets',
-  imports: [ IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton ],
+  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton ],
     templateUrl: './installation-sets.component.html',
     styleUrls: ['./installation-sets.component.scss'],
     standalone: true,

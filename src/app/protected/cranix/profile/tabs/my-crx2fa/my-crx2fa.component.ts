@@ -1,3 +1,6 @@
+import { NgIf, NgFor } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { checkmark, trash } from 'ionicons/icons';
 import { IonButton, IonIcon, IonSelect, IonSelectOption, IonLabel, IonInput, IonItem } from '@ionic/angular/standalone';
@@ -10,7 +13,7 @@ import { Crx2fa } from 'src/app/shared/models/server-models';
 
 @Component({
     selector: 'app-my-crx2fa',
-  imports: [ IonButton, IonIcon, IonSelect, IonSelectOption, IonLabel, IonInput, IonItem ],
+  imports: [ NgIf, NgFor, TranslateModule, CranixToolbarComponent, IonButton, IonIcon, IonSelect, IonSelectOption, IonLabel, IonInput, IonItem ],
     templateUrl: './my-crx2fa.component.html',
     styleUrls: ['./my-crx2fa.component.scss'],
     standalone: true,

@@ -1,8 +1,13 @@
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { arrowForwardCircle, arrowUndo, checkmark, close } from 'ionicons/icons';
 import { IonSearchbar, IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton } from '@ionic/angular/standalone';
-import { Component, OnInit, AfterContentInit } from '@angular/core';
-import { GridOptions, GridApi, ColumnApi } from 'ag-grid-community';
+import { Component, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common'
+import { GridApi } from 'ag-grid-community';
+import { AgGridAngular } from 'ag-grid-angular'
 import { PopoverController, ModalController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 
@@ -11,12 +16,11 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { CephalixService } from 'src/app/services/cephalix.service';
-import { Institute } from 'src/app/shared/models/cephalix-data-model'
 import { User } from 'src/app/shared/models/data-model';
 
 @Component({
     selector: 'cranix-institutes',
-    imports: [ IonSearchbar, IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton ],
+    imports: [ NgIf, MatTooltipModule, AgGridAngular, TranslateModule, CranixToolbarComponent, IonSearchbar, IonContent, IonFab, IonIcon, IonFabList, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton ],
     templateUrl: './institutes.manage.html',
     styleUrls: ['./institutes.manage.scss'],
     standalone: true,
@@ -31,7 +35,6 @@ export class InstitutesManage implements OnInit {
   columnDefs = [];
   defaultColDef = {};
   gridApi: GridApi;
-  columnApi: ColumnApi;
   context;
   title = 'app';
   rowData = [];
@@ -94,7 +97,6 @@ export class InstitutesManage implements OnInit {
 
   onGridReady(params) {
     this.gridApi = params.api;
-    this.columnApi = params.columnApi;
     this.gridApi.setRowData(this.managerUsers);
     params.columnApi.autoSizeColumns();
     this.gridApi.addEventListener('rowClicked', this.userRowClickedHandler);
@@ -188,15 +190,6 @@ export class InstitutesManage implements OnInit {
     params.api.sizeColumnsToFit();
     params.columnApi.autoSizeColumns();
     //this.sizeAll();
-  }
-
-  sizeAll(skip) {
-    var allColumnIds = [];
-    this.columnApi.getColumns().forEach((column) => {
-      allColumnIds.push(column.getColId());
-    });
-    //this.gridApi.sizeColumnsToFit();
-    this.columnApi.autoSizeColumns(allColumnIds, skip);
   }
 
   sizeToFit() {

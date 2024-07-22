@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { addCircle, ellipsisVerticalSharp, apps } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent } from '@ionic/angular/standalone';
@@ -21,7 +26,7 @@ import { ManageDhcpComponent } from 'src/app/shared/actions/manage-dhcp/manage-d
 
 @Component({
     selector: 'cranix-rooms',
-  imports: [ IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
+  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
     templateUrl: './rooms.component.html',
     styleUrls: ['./rooms.component.scss'],
     standalone: true,
@@ -254,6 +259,6 @@ export class RoomsComponent implements OnInit {
 
   public devices(room: Room) {
     this.objectService.selectedRoom = room;
-    this.route.navigate(['/pages/cranix/devices']);
+    this.route.navigate(['/protected/cranix/devices']);
   }
 }

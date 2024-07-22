@@ -1,3 +1,7 @@
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { checkmark, happy, sad, stopCircle, arrowForwardCircle, addCircle, trash } from 'ionicons/icons';
 import { IonToolbar, IonTitle, IonButtons, IonButton, IonIcon, IonSegment, IonSegmentButton, IonItemDivider, IonFab, IonFabButton, IonCol, IonItem, IonInput, IonLabel, IonCheckbox } from '@ionic/angular/standalone';
@@ -10,7 +14,7 @@ import { SafeSearch } from 'src/app/shared/models/secutiry-model';
 
 @Component({
     selector: 'cranix-unbound',
-  imports: [ IonToolbar, IonTitle, IonButtons, IonButton, IonIcon, IonSegment, IonSegmentButton, IonItemDivider, IonFab, IonFabButton, IonCol, IonItem, IonInput, IonLabel, IonCheckbox ],
+  imports: [ NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon, IonSegment, IonSegmentButton, IonItemDivider, IonFab, IonFabButton, IonCol, IonItem, IonInput, IonLabel, IonCheckbox ],
     templateUrl: './unbound.component.html',
     styleUrls: ['./unbound.component.scss'],
     standalone: true,

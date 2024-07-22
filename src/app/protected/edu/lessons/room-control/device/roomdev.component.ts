@@ -1,3 +1,5 @@
+import { NgIf, NgFor } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { desktop, expandOutline, contractOutline } from 'ionicons/icons';
 import { IonCard, IonCardHeader, IonToolbar, IonButtons, IonButton, IonIcon, IonCardContent } from '@ionic/angular/standalone';
@@ -12,7 +14,7 @@ import { WindowRef } from 'src/app/shared/models/ohters'
 
 @Component({
     selector: 'cranix-roomdev',
-  imports: [ IonCard, IonCardHeader, IonToolbar, IonButtons, IonButton, IonIcon, IonCardContent ],
+  imports: [ NgIf, NgFor, TranslateModule, IonCard, IonCardHeader, IonToolbar, IonButtons, IonButton, IonIcon, IonCardContent ],
     templateUrl: './roomdev.component.html',
     styleUrls: ['./roomdev.component.scss'],
     standalone: true,

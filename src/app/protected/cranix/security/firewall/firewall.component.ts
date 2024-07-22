@@ -1,3 +1,8 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { logIn, logOut, shuffle, checkmark, addCircle, trash, arrowRedo, close, arrowForwardCircle, refresh } from 'ionicons/icons';
 import { IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonFab, IonFabButton, IonFabList, IonGrid, IonCol, IonSelect, IonSelectOption, IonItem, IonInput, IonRow } from '@ionic/angular/standalone';
@@ -14,7 +19,7 @@ import { SystemService } from 'src/app/services/system.service';
 
 @Component({
     selector: 'cranix-firewall',
-  imports: [ IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonFab, IonFabButton, IonFabList, IonGrid, IonCol, IonSelect, IonSelectOption, IonItem, IonInput, IonRow ],
+  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonFab, IonFabButton, IonFabList, IonGrid, IonCol, IonSelect, IonSelectOption, IonItem, IonInput, IonRow ],
     templateUrl: './firewall.component.html',
     styleUrls: ['./firewall.component.scss'],
     standalone: true,

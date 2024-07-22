@@ -1,9 +1,14 @@
+import { TranslateModule } from '@ngx-translate/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgIf } from '@angular/common';
 import { Component } from "@angular/core";
 
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
     selector: 'room-action-cell-renderer',
+    imports: [ TranslateModule, MatTooltipModule, NgIf ],
+    standalone: true,
     template: `
     <div *ngIf="params.data.name != 'ANON_DHCP' && params.data.roomType != 'ANON_DHCP'">
         <ion-button style="padding-horizontal : 2px" fill="clear" size="small" (click)="details($event)" matTooltip="{{'edit' | translate }}">
@@ -43,7 +48,7 @@ export class RoomActionBTNRenderer implements ICellRendererAngularComp {
     public devices(event) {
         event.stopPropagation();
         this.params.context.componentParent.objectService.selectedRoom = this.params.data;
-        this.params.context.componentParent.route.navigate(['/pages/cranix/devices']);
+        this.params.context.componentParent.route.navigate(['/protected/cranix/devices']);
     }
     public setPrinters(event) {
         event.stopPropagation();

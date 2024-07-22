@@ -1,3 +1,6 @@
+import { NgIf, NgFor } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { IonGrid, IonCol, IonRow, IonCheckbox } from '@ionic/angular/standalone';
 import { Component, OnInit } from '@angular/core';
 import { SystemService } from 'src/app/services/system.service';
@@ -7,7 +10,7 @@ import { interval, Subscription } from 'rxjs';
 
 @Component({
     selector: 'cranix-system-services',
-  imports: [ IonGrid, IonCol, IonRow, IonCheckbox ],
+  imports: [ NgIf, NgFor, TranslateModule, CranixToolbarComponent, IonGrid, IonCol, IonRow, IonCheckbox ],
     templateUrl: './system-services.component.html',
     styleUrls: ['./system-services.component.scss'],
     standalone: true,

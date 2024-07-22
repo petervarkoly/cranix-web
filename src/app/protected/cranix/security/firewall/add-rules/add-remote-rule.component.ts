@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { checkmarkSharp, close } from 'ionicons/icons';
 import { IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonInput } from '@ionic/angular/standalone';
@@ -9,7 +10,7 @@ import { SecurityService } from 'src/app/services/security-service';
 
 @Component({
     selector: 'cranix-add-remote-rule',
-  imports: [ IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonInput ],
+  imports: [ TranslateModule, IonHeader, IonButtons, IonButton, IonIcon, IonContent, IonList, IonLabel, IonInput ],
     templateUrl: './add-remote-rule.component.html',
     styleUrls: ['./add-remote-rule.component.scss'],
     standalone: true,

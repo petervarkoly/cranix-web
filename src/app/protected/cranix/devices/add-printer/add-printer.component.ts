@@ -1,3 +1,5 @@
+import { NgIf, NgFor } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { addIcons } from 'ionicons';
 import { checkmarkSharp, trash, close } from 'ionicons/icons';
 import { IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput } from '@ionic/angular/standalone';
@@ -13,7 +15,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'cranix-add-printer',
-  imports: [ IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput ],
+  imports: [ NgIf, NgFor, TranslateModule, IonHeader, IonTitle, IonButtons, IonButton, IonIcon, IonContent, IonList, IonItem, IonLabel, IonSelect, IonSelectOption, IonInput ],
   templateUrl: './add-printer.component.html',
   styleUrls: ['./add-printer.component.scss'],
 })

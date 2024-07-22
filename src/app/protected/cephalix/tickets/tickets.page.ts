@@ -1,3 +1,9 @@
+import { DatePipe } from '@angular/common';
+import { AgGridAngular } from 'ag-grid-angular';
+import { NgIf, NgFor } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
+import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { addIcons } from 'ionicons';
 import { refresh, addCircle, ellipsisVerticalSharp, apps, checkmarkDoneCircle, buildSharp } from 'ionicons/icons';
 import { IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent, IonSearchbar, IonItemSliding, IonItemOptions, IonItemOption } from '@ionic/angular/standalone';
@@ -23,7 +29,7 @@ import { CreateSupport } from 'src/app/shared/actions/create-support/create-supp
 
 @Component({
     selector: 'cranix-tickets',
-    imports: [ IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent, IonSearchbar, IonItemSliding, IonItemOptions, IonItemOption ],
+    imports: [ DatePipe, AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent, IonSearchbar, IonItemSliding, IonItemOptions, IonItemOption ],
     templateUrl: './tickets.page.html',
     styleUrls: ['./tickets.page.scss'],
     standalone: true,
@@ -193,11 +199,11 @@ export class TicketsPage implements OnInit {
   ticketClickHandle(event) {
     //console.log(event)
     if (event.column.colId != 'id') {
-      event.context.componentParent.route.navigate(['/pages/cephalix/tickets/' + event.data.id])
+      event.context.componentParent.route.navigate(['/protected/cephalix/tickets/' + event.data.id])
     }
   }
   public redirectToDelete = (ticket: Ticket) => {
-    this.objectService.deleteObjectDialog(ticket, 'ticket', '/pages/cephalix/tickets')
+    this.objectService.deleteObjectDialog(ticket, 'ticket', '/protected/cephalix/tickets')
   }
   /**
  * Open the actions menu with the selected object ids.
@@ -234,7 +240,7 @@ export class TicketsPage implements OnInit {
   }
   async redirectToEdit(ticket: Ticket) {
     if (ticket) {
-      this.route.navigate(['/pages/cephalix/tickets/' + ticket.id]);
+      this.route.navigate(['/protected/cephalix/tickets/' + ticket.id]);
     } else {
       var mySupport = new SupportRequest();
       mySupport.lastname = this.authService.session.fullName.replace("(","").replace(")","")
