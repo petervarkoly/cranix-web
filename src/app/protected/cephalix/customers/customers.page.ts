@@ -1,3 +1,4 @@
+import { CranixMdListComponent } from 'src/app/shared/cranix-md-list/cranix-md-list.component'
 import { AgGridAngular } from 'ag-grid-angular';
 import { NgIf, NgFor } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -23,7 +24,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { CephalixService } from 'src/app/services/cephalix.service';
 
 @Component({
-  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon ],
+  imports: [ CranixMdListComponent, AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon ],
   selector: 'cranix-customers',
   templateUrl: './customers.page.html',
   styleUrls: ['./customers.page.scss'],

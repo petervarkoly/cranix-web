@@ -1,3 +1,4 @@
+import { CranixMdListComponent } from 'src/app/shared/cranix-md-list/cranix-md-list.component'
 import { AgGridAngular } from 'ag-grid-angular';
 import { NgIf, NgFor } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -24,18 +25,17 @@ import { UserGroupsPage } from '../details/groups/user-groups.page';
 import { SystemService } from 'src/app/services/system.service';
 
 @Component({
-    selector: 'cranix-users',
-  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
-    templateUrl: './users.component.html',
+    selector: 'cranix-users-list',
+  imports: [ CranixMdListComponent, AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
+    templateUrl: './users-list.component.html',
     standalone: true
 })
-export class UsersComponent implements OnInit {
+export class UsersListComponent implements OnInit {
   objectKeys: string[] = [];
   displayedColumns: string[] = ['uid', 'uuid', 'givenName', 'surName', 'role', 'classes', 'actions'];
   columnDefs = [];
   defaultColDef = {};
   gridApi: GridApi;
-  columnApi: ColumnApi;
   context;
   rowData = [];
   defaultMustChange: boolean = true;
@@ -116,7 +116,6 @@ export class UsersComponent implements OnInit {
   }
   onGridReady(params) {
     this.gridApi = params.api;
-    this.columnApi = params.columnApi;
     this.gridApi.sizeColumnsToFit();
   }
 

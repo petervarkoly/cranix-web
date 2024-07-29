@@ -9,12 +9,14 @@ import { CrxObjectService } from 'src/app/services/crx-object-service';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { NgFor, NgIf, NgForOf} from '@angular/common'
 
 @Component({
   selector: 'cranix-md-list',
-  imports: [ MatTooltipModule, IonToolbar, IonItem, IonInput, IonLabel, IonIcon, IonButtons, IonButton, IonSearchbar, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption ],
+  imports: [ MatTooltipModule, IonToolbar, IonItem, IonInput, IonLabel, IonIcon, IonButtons, IonButton, IonSearchbar, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption, NgFor, NgForOf, NgIf ],
   templateUrl: './cranix-md-list.component.html',
   styleUrls: ['./cranix-md-list.component.scss'],
+  standalone: true
 })
 export class CranixMdListComponent implements OnInit {
   public authService = inject(AuthenticationService)
@@ -22,7 +24,7 @@ export class CranixMdListComponent implements OnInit {
   public crxObjectService = inject(CrxObjectService)
   public languageService = inject(LanguageService)
   public objectService = inject(GenericObjectService)
-  public utilService = inject(UtilsService
+  public utilService = inject(UtilsService)
 
   min: number;
   step: number;

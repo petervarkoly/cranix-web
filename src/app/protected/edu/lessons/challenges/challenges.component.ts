@@ -1,3 +1,4 @@
+import { CranixMdListComponent } from 'src/app/shared/cranix-md-list/cranix-md-list.component'
 import { NgIf, NgFor } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
@@ -18,7 +19,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'app-challenges',
-  imports: [ NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonContent, IonToolbar, IonButtons, IonButton, IonIcon, IonToggle, IonItem, IonLabel, IonInput, IonFab, IonFabButton, IonFabList, IonModal, IonListHeader, IonSelect, IonSelectOption, IonPopover ],
+  imports: [ CranixMdListComponent, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonContent, IonToolbar, IonButtons, IonButton, IonIcon, IonToggle, IonItem, IonLabel, IonInput, IonFab, IonFabButton, IonFabList, IonModal, IonListHeader, IonSelect, IonSelectOption, IonPopover ],
     templateUrl: './challenges.component.html',
     styleUrls: ['./challenges.component.scss'],
     standalone: true,

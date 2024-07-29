@@ -1,3 +1,4 @@
+import { CranixMdListComponent } from 'src/app/shared/cranix-md-list/cranix-md-list.component'
 import { AgGridAngular } from 'ag-grid-angular';
 import { NgIf, NgFor } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -28,7 +29,7 @@ import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
 
 @Component({
     selector: 'cranix-mygroups',
-  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonItem, IonInput, IonContent, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption ],
+  imports: [ CranixMdListComponent, AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonIcon, IonButtons, IonButton, IonItem, IonInput, IonContent, IonFab, IonFabButton, IonFabList, IonItemSliding, IonNote, IonCheckbox, IonItemOptions, IonItemOption ],
     templateUrl: './mygroups.page.html',
     styleUrls: ['./mygroups.page.scss'],
     standalone: true,

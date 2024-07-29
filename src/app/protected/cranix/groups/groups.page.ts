@@ -1,3 +1,4 @@
+import { CranixMdListComponent } from 'src/app/shared/cranix-md-list/cranix-md-list.component'
 import { AgGridAngular } from 'ag-grid-angular';
 import { NgIf, NgFor } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -24,7 +25,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { GroupMembersPage } from 'src/app/shared/actions/group-members/group-members.page';
 
 @Component({
-    imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, CranixToolbarComponent, TranslateModule, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
+    imports: [ CranixMdListComponent, AgGridAngular, NgIf, NgFor, MatTooltipModule, CranixToolbarComponent, TranslateModule, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
     selector: 'cranix-groups',
     templateUrl: './groups.page.html',
     styleUrls: ['./groups.page.scss'],

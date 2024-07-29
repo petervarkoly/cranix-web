@@ -240,23 +240,7 @@ export const routes: Routes = [
   },
   {
     path: 'protected/cranix/users',
-    loadComponent: () => import('./protected/cranix/users/lists/users-lists.page').then(m => m.UsersListsPage)
-  },
-  {
-    path: 'protected/cranix/users/lists',
-    loadComponent: () => import('./protected/cranix/users/lists/users-2fa').then(m => m.Users2faComponent)
-  },
-  {
-    path: 'protected/cranix/users/lists',
-    loadComponent: () => import('./protected/cranix/users/lists/users-import.component').then(m => m.UsersImportComponent)
-  },
-  {
-    path: 'protected/cranix/users/lists',
-    loadComponent: () => import('./protected/cranix/users/lists/users-lists.page').then(m => m.UsersListsPage)
-  },
-  {
-    path: 'protected/cranix/users/lists',
-    loadComponent: () => import('./protected/cranix/users/lists/users.component').then(m => m.UsersComponent)
+    loadComponent: () => import('./protected/cranix/users/users.component').then(m => m.UsersComponent)
   },
   {
     path: 'protected/edu/lessons/challenges',

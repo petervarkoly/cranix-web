@@ -1,3 +1,4 @@
+import { CranixMdListComponent } from 'src/app/shared/cranix-md-list/cranix-md-list.component'
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
 import { CranixToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
@@ -26,7 +27,7 @@ import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-col
 
 @Component({
     selector: 'cranix-institutes',
-    imports: [ NgIf, MatTooltipModule, AgGridAngular, TranslateModule, CranixToolbarComponent, IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon ],
+    imports: [ CranixMdListComponent, NgIf, MatTooltipModule, AgGridAngular, TranslateModule, CranixToolbarComponent, IonContent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon ],
     templateUrl: './institutes.component.html',
     styleUrls: ['./institutes.component.scss'],
     standalone: true,

@@ -1,3 +1,4 @@
+import { CranixMdListComponent } from 'src/app/shared/cranix-md-list/cranix-md-list.component'
 import { AgGridAngular } from 'ag-grid-angular';
 import { NgIf, NgFor } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -28,7 +29,7 @@ import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';
 
 @Component({
     selector: 'cranix-printers',
-  imports: [ AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
+  imports: [ CranixMdListComponent, AgGridAngular, NgIf, NgFor, MatTooltipModule, TranslateModule, CranixToolbarComponent, IonToolbar, IonItem, IonLabel, IonInput, IonButtons, IonButton, IonIcon, IonContent ],
     templateUrl: './printers.component.html',
     styleUrls: ['./printers.component.scss'],
     standalone: true,
