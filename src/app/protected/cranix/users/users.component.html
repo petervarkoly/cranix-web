@@ -1,0 +1,22 @@
+<cranix-toolbar *ngIf="segment=='users'" title="{{'Manage users' | translate}}"></cranix-toolbar>
+<cranix-toolbar *ngIf="segment=='import'" title="{{'Manage user imports' | translate}}"></cranix-toolbar>
+<cranix-toolbar *ngIf="segment=='crx2fa'" title="{{'Manage CRANIX 2FA' | translate}}"></cranix-toolbar>
+<ion-header>
+  <ion-segment (ionChange)="segmentChanged($event)" color="secondary" value="users">
+    <ion-segment-button value="users" layout="icon-start">
+      <ion-label *ngIf="!authService.isMD()">{{'Users' | translate}}</ion-label>
+      <ion-icon name="people"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="import" layout="icon-end">
+      <ion-label *ngIf="!authService.isMD()">{{'Import users' | translate}}</ion-label>
+      <ion-icon name="list"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button *ngIf="authService.isAllowed('2fa.manage')" value="crx2fa" layout="icon-end">
+      <ion-label *ngIf="!authService.isMD()">{{'CRX2fa' | translate}}</ion-label>
+      <ion-icon name="key"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>  
+</ion-header>
+<cranix-users-list *ngIf="segment=='users'"></cranix-users-list>
+<cranix-users-import *ngIf="segment=='import'"></cranix-users-import>
+<cranix-users-2fa *ngIf="segment=='crx2fa'"></cranix-users-2fa>
