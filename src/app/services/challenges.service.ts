@@ -4,8 +4,7 @@ import { CanDeactivate } from '@angular/router';
 
 //own modules
 import { UtilsService } from './utils.service';
-import { AuthenticationService } from './auth.service';
-import { CrxObjectService } from './crx-object-service';
+import { AuthenticationService } from './auth.service';;
 import { ServerResponse } from 'src/app/shared/models/server-models';
 import { CrxChallenge, CrxQuestion, TeachingSubject } from '../shared/models/data-model';
 import { LanguageService } from './language.service';

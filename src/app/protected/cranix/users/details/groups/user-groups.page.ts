@@ -18,10 +18,10 @@ export class UserGroupsPage implements OnInit {
   columnDefs = [];
   memberApi: GridApi;
   noMemberApi: GridApi;
-  memberSelection: Group[] =[];
-  noMemberSelection: Group[] =[];
-  memberData: Group[] =[];
-  noMemberData: Group[] =[];
+  memberSelection: Group[] = [];
+  noMemberSelection: Group[] = [];
+  memberData: Group[] = [];
+  noMemberData: Group[] = [];
   user;
 
   constructor(
@@ -29,12 +29,12 @@ export class UserGroupsPage implements OnInit {
     private objectS: GenericObjectService,
     private languageS: LanguageService,
     public modalCtrl: ModalController,
-    private  userS: UsersService
+    private userS: UsersService
   ) {
     this.user = <User>this.objectS.selectedObject;
     this.columnDefs = [
       {
-        headerName:  this.languageS.trans('name'),
+        headerName: this.languageS.trans('name'),
         sortable: true,
         field: 'name',
         headerCheckboxSelection: this.authService.settings.headerCheckboxSelection,
@@ -83,19 +83,19 @@ export class UserGroupsPage implements OnInit {
   onNoMemberFilterChanged() {
     this.noMemberApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById("noMemberFilter")).value);
   }
-  
+
   applyChanges() {
     let groups: number[] = [];
     let rmGroups: number[] = [];
-    for ( let g of this.noMemberSelection ) {
+    for (let g of this.noMemberSelection) {
       groups.push(g.id);
     }
-    for(let g of this.memberSelection) {
+    for (let g of this.memberSelection) {
       rmGroups.push(g.id);
     }
-    
-    for( let g of this.memberData ){
-      if( rmGroups.indexOf(g.id) == -1) {
+
+    for (let g of this.memberData) {
+      if (rmGroups.indexOf(g.id) == -1) {
         groups.push(g.id)
       }
     }
@@ -103,20 +103,18 @@ export class UserGroupsPage implements OnInit {
     this.authService.log(groups);
     this.noMemberSelection = [];
     this.memberSelection = [];
-    let subM = this.userS.setUsersGroups(this.user.id,groups).subscribe(
-      (val) => { this.readGroups() } ,
-      (err)  => { this.authService.log(err)},
-      () => { subM.unsubscribe()});
+    let subM = this.userS.setUsersGroups(this.user.id, groups).subscribe(
+      (val) => { this.readGroups() },
+      (err) => { this.authService.log(err) },
+      () => { subM.unsubscribe() });
   }
 
   readGroups() {
-    let subM = this.userS.getUsersGroups(this.user.id).subscribe(
-      (val) => { this.memberData = val } ,
-      (err)  => { this.authService.log(err)},
-      () => { subM.unsubscribe()});
-    let subNM = this.userS.getUsersAvailableGroups(this.user.id).subscribe(
-      (val) => { this.noMemberData = val } ,
-      (err)  => { this.authService.log(err)},
-      () => { subNM.unsubscribe()})
-    }
+    this.userS.getUsersGroups(this.user.id).subscribe(
+      (val) => { this.memberData = val }
+    );
+    this.userS.getUsersAvailableGroups(this.user.id).subscribe(
+      (val) => { this.noMemberData = val }
+    );
+  }
 }

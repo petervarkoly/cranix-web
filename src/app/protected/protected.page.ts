@@ -51,6 +51,11 @@ export class ProtectedPage implements OnInit {
       icon: 'desktop'
     },
     {
+      title: 'Calendar',
+      url: '/pages/cranix/calendar',
+      icon: 'calendar'
+    },
+    {
       title: 'Softwares',
       url: '/pages/cranix/softwares',
       icon: 'software'

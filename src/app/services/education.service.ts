@@ -3,13 +3,12 @@
 //import { ServerResponse } from 'app/main/shared/data-model';
 //import { Observable } from 'rxjs/Observable';
 //import { Device, Room, User, Group } from '../data-model';
-import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UtilsService } from './utils.service';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { AbstractControl } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 //import { ServerResponse } from 'http';
-import { AccessStatus, Room, Device, User, Group, Category, PositivList, SmartRoom, SmartRoomStatus, EduRoom, GuestUsers } from '../shared/models/data-model';
+import { AccessStatus, Room, Device, PositivList, SmartRoom, SmartRoomStatus, EduRoom, GuestUsers } from '../shared/models/data-model';
 import { ServerResponse } from 'src/app/shared/models/server-models';
 import { AuthenticationService } from './auth.service';
 import { GenericObjectService } from './generic-object.service';
@@ -60,7 +59,6 @@ export class EductaionService {
 	setWorkstationPassword(rId: number, pw: any) {
 		this.url = `${this.hostname}/education/rooms/${rId}/actionWithMap/setPassword`;
 		return this.http.post<ServerResponse>(this.url, pw, { headers: this.authService.headers });
-
 	}
 
 	// Calls on positiv list

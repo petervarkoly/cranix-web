@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs/internal/Observable';
-import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Device, InstallStateDev, Printer } from 'src/app/shared/models/data-model';
 import { UtilsService } from './utils.service';

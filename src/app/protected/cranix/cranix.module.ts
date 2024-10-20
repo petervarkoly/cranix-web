@@ -1,4 +1,3 @@
-import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
 import { NgModule }            from '@angular/core';
 import { CommonModule }        from '@angular/common';
 //Own Stuff
@@ -13,12 +12,14 @@ import { SoftwaresPageModule } from './softwares/softwares.module';
 import { SystemPageModule }    from './system/system.module';
 import { ProfileModule }       from './profile/profile.module';
 import { UsersListsPageModule } from './users/lists/users-lists.module';
+import { CalendarPageModule } from './calendar/calendar.module';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
+    CalendarPageModule,
     DevicesListsModule,
     HwconfsPageModule,
     GroupsPageModule,

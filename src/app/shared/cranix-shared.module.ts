@@ -8,7 +8,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ToolbarComponent } from 'src/app/protected/toolbar/toolbar.component';
 import { IonicModule } from '@ionic/angular';
-import { IonicSelectableComponent } from 'ionic-selectable'
+import {
+  IonicSelectableComponent,
+  IonicSelectableCloseButtonTemplateDirective,
+  IonicSelectableItemIconTemplateDirective,
+  IonicSelectableHeaderTemplateDirective,
+  IonicSelectableValueTemplateDirective,
+  IonicSelectablePlaceholderTemplateDirective
+} from 'ionic-selectable'
 import { TranslateModule } from '@ngx-translate/core';
 import { PipesModule } from 'src/app/pipes/pipe-modules';
 import { AgGridModule } from 'ag-grid-angular';
@@ -111,6 +118,11 @@ import { simpleToolbarOptions } from 'src/app/shared/models/constants'
     CommonModule,
     AgChartsModule,
     IonicSelectableComponent,
+    IonicSelectableCloseButtonTemplateDirective,
+    IonicSelectableItemIconTemplateDirective,
+    IonicSelectableHeaderTemplateDirective,
+    IonicSelectableValueTemplateDirective,
+    IonicSelectablePlaceholderTemplateDirective,
     AgGridModule,
     FormsModule,
     IonicModule,
@@ -122,7 +134,7 @@ import { simpleToolbarOptions } from 'src/app/shared/models/constants'
     PipesModule,
     TranslateModule,
     QuillModule.forRoot({
-      modules: { toolbar: simpleToolbarOptions},
+      modules: { toolbar: simpleToolbarOptions },
     }),
   ], exports: [
     CommonModule,
@@ -139,8 +151,13 @@ import { simpleToolbarOptions } from 'src/app/shared/models/constants'
     TranslateModule,
     ToolbarComponent,
     CranixMdListComponent,
-    IonicSelectableComponent
+    IonicSelectableComponent,
+    IonicSelectableCloseButtonTemplateDirective,
+    IonicSelectableItemIconTemplateDirective,
+    IonicSelectableHeaderTemplateDirective,
+    IonicSelectableValueTemplateDirective,
+    IonicSelectablePlaceholderTemplateDirective,
   ],
-  providers: [WindowRef,CanActivateViaAcls ]
+  providers: [WindowRef, CanActivateViaAcls]
 })
 export class CranixSharedModule { }
