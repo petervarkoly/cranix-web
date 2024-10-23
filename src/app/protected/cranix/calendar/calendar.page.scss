@@ -28,15 +28,47 @@
 
 :host ::ng-deep {
   .monthview-container {
-      height: auto !important;
+    height: auto !important;
   }
 
   .monthview-datetable td {
     height: 100px;
     max-height: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0px;
   }
 
   .event-detail-container {
-      display: none;
+    display: none;
+  }
+
+  .monthview-datetable th {
+    background-color: #3a87ad;
+    text-align: center;
+  }
+
+  .monthview-primary-with-event {
+    color: white;
+  }
+
+  .weekview-header th {
+    background-color: #3a87ad;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+
+  .weekview-allday-table {
+    height: 50px;
+    position: relative;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+  }
+
+  .dayview-category-header {
+    background-color: #3a87ad;
+    position: relative;
+    font-size: 14px;
   }
 }

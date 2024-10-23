@@ -526,7 +526,7 @@ export class CrxChallengeAnswer {
 
 export class CrxCalendar {
 	id: number
-	creator_id: number
+	creatorId: number
 	created: Date
 	modified: Date
 	uuid: string

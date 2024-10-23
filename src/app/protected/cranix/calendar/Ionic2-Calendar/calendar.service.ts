@@ -164,20 +164,22 @@ export class CalendarService {
 
     getEventOccurences(event: IEvent, utcStartTime: number, utcEndTime: number): IOccurence[] {
         let occurences: IOccurence[] = []
-        if( event.startTime > event.endTime) {
-            return occurences
+        let oneDay = 86400000
+        let eventUTCStartTime = 0
+        let eventUTCEndTime = 0
+        try {
+            eventUTCStartTime = event.startTime.getTime()
+            eventUTCEndTime = event.endTime.getTime()
+        } catch(e) {
+            console.log(event)
+            console.log(e.message)
         }
         if (!event.rruleFreq) {
-            let eventUTCStartTime: number
-            let eventUTCEndTime: number
-            if (event.allDay) {
-                eventUTCStartTime = event.startTime.getTime()
-                eventUTCEndTime = event.endTime.getTime()
-            } else {
-                    eventUTCStartTime = Date.UTC(event.startTime.getFullYear(), event.startTime.getMonth(), event.startTime.getDate())
-                    eventUTCEndTime = Date.UTC(event.endTime.getFullYear(), event.endTime.getMonth(), event.endTime.getDate() + 1)
+            if (!event.allDay) {
+                eventUTCStartTime = Date.UTC(event.startTime.getFullYear(), event.startTime.getMonth(), event.startTime.getDate())
+                eventUTCEndTime = Date.UTC(event.endTime.getFullYear(), event.endTime.getMonth(), event.endTime.getDate()) + oneDay
             }
-            if( eventUTCEndTime > utcStartTime && eventUTCStartTime < utcEndTime ) {
+            if (eventUTCEndTime > utcStartTime && eventUTCStartTime < utcEndTime) {
                 occurences.push({
                     eventUTCStartTime: eventUTCStartTime,
                     eventUTCEndTime: eventUTCEndTime
@@ -185,16 +187,20 @@ export class CalendarService {
             }
             return occurences
         }
-        if(event.rruleUntil && event.rruleUntil.getTime() < utcStartTime ){
+        if (event.rruleUntil && event.rruleUntil.getTime() < utcStartTime) {
             return occurences;
         }
-        for( let match of moment(event.startTime.getDate()).recur(utcStartTime,utcEndTime).every(event.rruleInterval, event.rruleFreq).all('L') ){
-            let matchDate = new Date(match)
-            let eventUTCStartTime = Date.UTC(matchDate.getFullYear(), matchDate.getMonth(), matchDate.getDate())
-            occurences.push({
-                eventUTCStartTime: eventUTCStartTime,
-                eventUTCEndTime: eventUTCStartTime + 86400000
-            })
+        let dayLenOfIssue = Math.floor((eventUTCEndTime - eventUTCStartTime) / oneDay)
+        let time = utcStartTime - dayLenOfIssue * oneDay
+        let recurrence = moment.unix(eventUTCStartTime / 1000).recur().every(event.rruleInterval, event.rruleFreq)
+        while (time < utcEndTime + 1) {
+            if (recurrence.matches(time)) {
+                occurences.push({
+                    eventUTCStartTime: time,
+                    eventUTCEndTime: time + (dayLenOfIssue + 1) * oneDay
+                })
+            }
+            time += oneDay
         }
         return occurences
     }

@@ -18,7 +18,7 @@
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-    padding: 8px;
+    padding: 1px;
     line-height: 20px;
     vertical-align: top;
 }
@@ -58,11 +58,11 @@
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
     background-color: #f9f9f9;
+    padding: 1px;
 }
 
 .monthview-primary-with-event {
-    background-color: #3a87ad;
-    color: white;
+    color: black;
 }
 
 .monthview-current {
@@ -80,6 +80,7 @@
 }
 
 .monthview-datetable th {
+    background-color: #3a87ad;
     text-align: center;
 }
 

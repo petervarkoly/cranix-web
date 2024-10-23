@@ -5,7 +5,7 @@ import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
 import { IEvent } from './Ionic2-Calendar/calendar.interface';
 
-import { Group } from 'src/app/shared/models/data-model';
+import { CrxCalendar, Group } from 'src/app/shared/models/data-model';
 import { UsersService } from 'src/app/services/users.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { CrxCalendarService } from 'src/app/services/crx-calendar.service';
@@ -19,9 +19,7 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
 })
 export class CalendarPage {
   @ViewChild(CalendarComponent) myCalendar!: CalendarComponent;
-  double = [
-    '00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'
-  ]
+  double = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09']
   eventMinuteValues = "0,5,10,15,20,25,30,35,40,45,50,55"
   calendars: Group[] = [];
   selectedCalendars: Group[];
@@ -29,14 +27,14 @@ export class CalendarPage {
   rruleFrequents = [
     'days', 'weeks', 'months'
   ]
-  categories = ['private'];
+  categories = ['private', 'individual'];
   isModalOpen: boolean = false;
   addEditEventTitle: string = "Add Event"
   eventSource: any[] = [];
   viewTitle: any;
 
   selectedEvent: any;
-
+  oneDay = 86400000;
   isToday: boolean;
   calendar = {
     mode: 'month' as CalendarMode,
@@ -81,19 +79,21 @@ export class CalendarPage {
   };
 
   constructor(
-    private authS: AuthenticationService,
+    private authService: AuthenticationService,
     private calendarS: CrxCalendarService,
     private objectS: GenericObjectService,
     private userS: UsersService
 
   ) {
-    this.userS.getUsersGroups(this.authS.session.userId).subscribe(
+    this.userS.getUsersGroups(this.authService.session.userId).subscribe(
       (val) => {
         this.calendars = val
         this.selectedCalendars = val
         this.selectedCalendarIds = []
         for (let group of val) {
           this.selectedCalendarIds.push(group.id)
+          this.categories.push(group.name)
+          this.calendar.dayviewCategorySource = new Set(this.categories)
         }
       }
     );
@@ -101,9 +101,22 @@ export class CalendarPage {
     this.loadData();
   }
 
-  isCalendarSelected(groupIds: number[]) {
-    for(let a of groupIds){
-      if(this.selectedCalendarIds.includes(a)) return true;
+  isCalendarSelected(event: CrxCalendar) {
+    //console.log(event.id)
+    if (event.category == 'private' || event.category == 'individual') return true;
+    for (let a of event.groupIds) {
+      if (this.selectedCalendarIds.includes(a)) return true;
+    }
+    return false;
+  }
+
+  isWritable() {
+    if (this.selectedEvent) {
+      //New event
+      if (!this.selectedEvent.id) return true;
+      //Owned event
+      if (this.selectedEvent.creatorId == this.authService.session.userId) return true;
+      //TODO additional rights.
     }
     return false;
   }
@@ -112,10 +125,10 @@ export class CalendarPage {
     this.calendarS.get().subscribe(
       (val) => {
         this.eventSource = []
-        for(let event of val) {
+        for (let event of val) {
           event.startTime = new Date(event.startTime)
           event.endTime = new Date(event.endTime)
-          if( event.rruleUntil) {
+          if (event.rruleUntil) {
             event.rruleUntil = new Date(event.rruleUntil)
           }
           this.eventSource.push(event)
@@ -156,13 +169,17 @@ export class CalendarPage {
     );
   }
 
+  getDouble(num: number) {
+    if (this.double[num]) return this.double[num]
+    return num
+  }
   toIonISOString(dt: Date | undefined) {
     if (dt) {
       return dt.getFullYear() + "-" +
-        this.double[dt.getMonth() + 1] + "-" +
-        this.double[dt.getDate()] + "T" +
-        this.double[dt.getHours()] + ":" +
-        this.double[dt.getMinutes()]
+        this.getDouble(dt.getMonth() + 1) + "-" +
+        this.getDouble(dt.getDate()) + "T" +
+        this.getDouble(dt.getHours()) + ":" +
+        this.getDouble(dt.getMinutes())
     }
     return ""
   }
@@ -170,8 +187,8 @@ export class CalendarPage {
   toIonDate(dt: Date | undefined) {
     if (dt) {
       return dt.getFullYear() + "-" +
-        this.double[dt.getMonth() + 1] + "-" +
-        this.double[dt.getDate()]
+        this.getDouble(dt.getMonth() + 1) + "-" +
+        this.getDouble(dt.getDate())
     }
     return ""
   }
@@ -184,9 +201,12 @@ export class CalendarPage {
       this.selectedEvent.endTime = this.toIonISOString(new Date(this.selectedEvent.endTime))
     }
   }
-  onEventSelected(event: IEvent) {
-    this.selectedEvent = event;
-    console.log('Event selected befor:', event);
+
+  onEventSelected(event) {
+    this.selectedEvent = {}
+    for( let key of Object.getOwnPropertyNames(event)) {
+      this.selectedEvent[key] = event[key]
+    }
     if (this.selectedEvent.allDay) {
       this.selectedEvent.startTime = this.toIonDate(<Date>event.startTime)
       this.selectedEvent.endTime = this.toIonDate(<Date>event.endTime)
@@ -194,25 +214,24 @@ export class CalendarPage {
       this.selectedEvent.startTime = this.toIonISOString(<Date>event.startTime)
       this.selectedEvent.endTime = this.toIonISOString(<Date>event.endTime)
     }
-
     if (event.rruleFreq) {
       this.selectedEvent.recurring = true
       this.selectedEvent.rruleUntil = this.toIonDate(<Date>event.rruleUntil)
     }
     this.addEditEventTitle = "Edit Event"
     this.isModalOpen = true
-    console.log('Event selected after:', event);
   }
 
   addNewEvent() {
     if (this.isModalOpen == true) return;
-    let selectedTime = new Date();
-
+    let now = this.toIonISOString(new Date());
     this.selectedEvent = {
       allDay: false,
       title: "",
-      startTime: this.toIonISOString(<Date>selectedTime),
-      endTime: this.toIonISOString(<Date>selectedTime),
+      desciption: "",
+      location: "",
+      startTime: now,
+      endTime: now,
       recurring: false,
       rruleFreq: null,
       rruleInterval: null,
@@ -237,34 +256,47 @@ export class CalendarPage {
       rruleUntil: undefined,
       category: ev.category ? ev.category : 'private'
     }
-    console.log(this.selectedEvent)
     this.addEditEventTitle = "Add Event"
     this.toggleAddEditModal(true);
     console.log(ev)
   }
 
   addEditEvent(modal: any) {
-    console.log(this.selectedEvent)
     modal.dismiss()
     this.isModalOpen = false
     this.selectedEvent.startTime = new Date(this.selectedEvent.startTime)
     this.selectedEvent.endTime = new Date(this.selectedEvent.endTime)
+    if(this.selectedEvent.allDay) {
+      let delay = this.selectedEvent.endTime.getTime() - this.selectedEvent.startTime.getTime();
+      this.selectedEvent.startTime.setTime(
+        this.selectedEvent.startTime.getTime() + 
+        this.selectedEvent.startTime.getTimezoneOffset()*60*1000
+      );
+      this.selectedEvent.endTime.setTime(
+        this.selectedEvent.startTime.getTime() + ((delay + 1) * this.oneDay) - 1
+      );
+    }
     if (this.selectedEvent.recurring && this.selectedEvent.rruleUntil) {
       this.selectedEvent.rruleUntil = new Date(this.selectedEvent.rruleUntil)
     }
     console.log(this.selectedEvent)
     if (this.selectedEvent.id) {
       this.calendarS.modify(this.selectedEvent).subscribe(
-        (val) => { this.objectS.responseMessage(val) }
+        (val) => {
+          this.loadData()
+          this.objectS.responseMessage(val)
+        }
       )
     } else {
       this.calendarS.add(this.selectedEvent).subscribe(
-        (val) => { this.objectS.responseMessage(val) }
+        (val) => {
+          this.loadData()
+          this.objectS.responseMessage(val)
+        }
       )
     }
     this.calendar.currentDate = this.selectedEvent.selectedTime;
-    this.selectedEvent = undefined
-    console.log(this.eventSource)
+    this.selectedEvent = {}
   }
 
   changeMode(mode: any) {

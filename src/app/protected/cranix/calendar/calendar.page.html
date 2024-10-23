@@ -22,19 +22,45 @@
 </ion-toolbar>
 <ion-content [fullscreen]="true">
   <ion-row>
-    <ion-col size="4">
-      <ion-button (click)="toDay()" expand="block" fill="outline">
+    <!-- Move back one screen of the slides -->
+    <ion-col size="1">
+      <ion-button expand="block" fill="solid" (click)="back()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="1">
+      <ion-button fill="solid" (click)="toDay()" expand="block" fill="outline">
         {{'today'|translate}}
       </ion-button>
     </ion-col>
-    <ion-col size="4">
+    <!-- Move forward one screen of the slides -->
+    <ion-col size="1">
+      <ion-button expand="block" fill="solid" (click)="next()">
+        <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="6" class="ion-text-center">
+      <h2>{{ viewTitle }}</h2>
+    </ion-col>
+    <ion-col size="3">
       <ion-item>
-        <ion-label position="stacked">{{'calendars' | translate}}</ion-label>
-        <ionic-selectable #ionicSelectCalendars itemValueField="id" itemTextField="name"
+        <!-- ion-label position="stacked">{{'calendars' | translate}}</ion-label -->
+        <ionic-selectable #ionicSelectCalendars itemValueField="id" itemTextField="description"
           (onChange)="selectedCalendarsChanged()" [isMultiple]="true" [(ngModel)]="selectedCalendars"
           [ngModelOptions]="{standalone: true}" [items]="calendars" [canSearch]="true">
-          <ng-template ionicSelectableCloseButtonTemplate>
-            <ion-icon name="close" color="danger"></ion-icon>
+          <ng-template ionicSelectableHeaderTemplate>
+            <ion-header color="primary">
+              <ion-toolbar>
+                <ion-title>
+                  {{ "Select the calendars to show" | translate }}
+                </ion-title>
+                <ion-buttons slot="end">
+                  <ion-button ion-button (click)="ionicSelectCalendars.close()">
+                    <ion-icon color="danger" name="close"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
           </ng-template>
           <ng-template ionicSelectableValueTemplate let-ports="value">
             <div class="ionic-selectable-value-item">
@@ -43,29 +69,6 @@
           </ng-template>
         </ionic-selectable>
       </ion-item>
-      <!-- ion-select [(ngModel)]="selectedCategories" [multiple]="true" name="selectedCategories"
-        label="{{ 'Select Categories' | translate}}" label-placement="floating" fill="outline">
-        <ion-select-option *ngFor="let cat of categories" [value]="cat">{{cat}}</ion-select-option>
-      </ion-select -->
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <!-- Move back one screen of the slides -->
-    <ion-col size="2">
-      <ion-button fill="clear" (click)="back()">
-        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-col>
-
-    <ion-col size="8" class="ion-text-center">
-      <h2>{{ viewTitle }}</h2>
-    </ion-col>
-
-    <!-- Move forward one screen of the slides -->
-    <ion-col size="2">
-      <ion-button fill="clear" (click)="next()">
-        <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
-      </ion-button>
     </ion-col>
   </ion-row>
   <calendar [autoSelect]="false" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
@@ -85,129 +88,168 @@
       <div>{{view.dates[row*7+col].label}}</div>
       <div class="indicator-container">
         <div class="event-indicator" *ngFor="let e of view.dates[row*7+col].events">
-          <div *ngIf="e.category == 'private' || isCalendarSelected(e.groupIds)" style="background-color: {{e.color}};"
-            (click)="onEventSelected(e)">{{e.title}}</div>
+          <div *ngIf="isCalendarSelected(e)" class="calendar-event-inner" style="background-color: {{e.color}};"
+            (click)="onEventSelected(e)">
+            {{e.title}}</div>
         </div>
       </div>
     </div>
   </ng-template>
   <ng-template #crxAllDayEventTemplate let-displayEvent="displayEvent">
-    <div *ngIf="displayEvent.event.category == 'private' || isCalendarSelected(displayEvent.event.groupIds)"
-      class="calendar-event-inner" style="background-color: {{displayEvent.event.color}};">
-      {{displayEvent.event.title}}</div>
+    <ion-label *ngIf="isCalendarSelected(displayEvent.event)" class="calendar-event-inner"
+      style="background-color: {{displayEvent.event.color}};">
+      {{displayEvent.event.title}}</ion-label>
   </ng-template>
   <ng-template #crxNormalEventTemplate let-displayEvent="displayEvent">
-    <div *ngIf="displayEvent.event.category == 'private' || isCalendarSelected(displayEvent.event.groupIds)"
-      class="calendar-event-inner" style="background-color: {{displayEvent.event.color}};">
+    <div *ngIf="isCalendarSelected(displayEvent.event)" class="calendar-event-inner"
+      style="background-color: {{displayEvent.event.color}};">
       {{displayEvent.event.title}}</div>
   </ng-template>
   <ion-modal #addEditEventModal [isOpen]="isModalOpen">
     <ng-template>
-        <form #addEditEventForm="ngForm">
-          <ion-header color="primary">
-            <ion-toolbar color="primary">
-              <ion-title>{{addEditEventTitle|translate}}</ion-title>
-              <ion-buttons slot="end">
-                <ion-button class="ion-no-margin" (click)="addEditEvent(addEditEventModal)"
-                  [disabled]="!addEditEventForm.valid">
-                  <ion-icon slot="icon-only" color="success" name="checkmark-sharp"></ion-icon>
-                </ion-button>
-                <ion-button fill="clear" size="small" (click)="toggleAddEditModal(false)">
-                  <ion-icon slot="icon-only" color="danger" name="close"></ion-icon>
-                </ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ion-header>
-          <ion-content [fullscreen]="true">
-            <ion-list [inset]="true">
-              <ion-item>
-                <ion-input [(ngModel)]="selectedEvent.title" name="title" type="text" label="{{'title'|translate}}*"
-                  required></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-input [(ngModel)]="selectedEvent.description" name="description" type="text-area" label="{{'description'|translate}}"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-input [(ngModel)]="selectedEvent.location" name="location" type="text" label="{{'location'|translate}}"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-toggle [(ngModel)]="selectedEvent.allDay" name="allDay" labelPlacement="start"
-                  (ionChange)="adaptEventTimes()">{{'allDay'|translate}}</ion-toggle>
-              </ion-item>
-              @if(selectedEvent.allDay) {
-              <ion-item>
-                <ion-input [(ngModel)]="selectedEvent.startTime" name="startTime" type="date" label="{{'From'|translate}}*"
-                  required></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-input [(ngModel)]="selectedEvent.endTime" name="endTime" type="date" label="{{'Until|translate'}}*"
-                  required></ion-input>
-              </ion-item>
-              } @else {
-              <ion-item>
-                <ion-label>{{'From'|translate}}</ion-label>
-                <ion-datetime-button datetime="eventStartTime"></ion-datetime-button>
-              </ion-item>
-              <ion-item>
-                <ion-label>{{'Until'|translate}}</ion-label>
-                <ion-datetime-button datetime="eventEndTime"></ion-datetime-button>
-              </ion-item>
-              <ion-modal [keepContentsMounted]="true">
-                <ng-template>
-                  <ion-datetime id="eventStartTime" [(ngModel)]="selectedEvent.startTime" name="startTime"
-                    [minuteValues]="eventMinuteValues"></ion-datetime>
-                </ng-template>
-              </ion-modal>
-              <ion-modal [keepContentsMounted]="true">
-                <ng-template>
-                  <ion-datetime id="eventEndTime" [(ngModel)]="selectedEvent.endTime" name="endTime"
-                    [minuteValues]="eventMinuteValues"></ion-datetime>
-                </ng-template>
-              </ion-modal>
+      @if(selectedEvent){
+      <form #addEditEventForm="ngForm">
+        <ion-header color="primary">
+          <ion-toolbar color="primary">
+            <ion-title>{{addEditEventTitle|translate}}</ion-title>
+            <ion-buttons slot="end">
+              @if(isWritable()) {
+              <ion-button class="ion-no-margin" (click)="addEditEvent(addEditEventModal)"
+                [disabled]="!addEditEventForm.valid">
+                <ion-icon slot="icon-only" color="success" name="checkmark-sharp"></ion-icon>
+              </ion-button>
               }
-              <ion-item>
-                <ion-label position="stacked">{{'Groups for the event' | translate}}</ion-label>
-                <ionic-selectable #ionicSelectGroups itemValueField="id" itemTextField="name" [isMultiple]="true"
-                  [(ngModel)]="selectedEvent.groups" [ngModelOptions]="{standalone: true}" [items]="calendars"
-                  [canSearch]="true">
-                  <ng-template ionicSelectableCloseButtonTemplate>
-                    <ion-icon name="close" color="danger"></ion-icon>
-                  </ng-template>
-                </ionic-selectable>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">{{'Users for the event' | translate}}</ion-label>
-                <ionic-selectable #ionicSelectUsers itemValueField="id" itemTextField="fullName" [isMultiple]="true"
-                  [(ngModel)]="selectedEvent.users" [ngModelOptions]="{standalone: true}" [items]="objectS.allObjects['user']"
-                  [canSearch]="true">
-                  <ng-template ionicSelectableCloseButtonTemplate>
-                    <ion-icon name="close" color="danger"></ion-icon>
-                  </ng-template>
-                </ionic-selectable>
-              </ion-item>
-            </ion-list>
-            <ion-list [inset]="true">
-              <ion-item>
-                <ion-toggle [(ngModel)]="selectedEvent.recurring" name="recurring"
-                  labelPlacement="start">{{'Recurring'|translate}}</ion-toggle>
-              </ion-item>
-              <ion-item>
-                <ion-select [(ngModel)]="selectedEvent.rruleFreq" name="rruleFreq" label="Freq" labelPlacement="start"
-                  [disabled]="!selectedEvent.recurring">
-                  <ion-select-option *ngFor="let freq of rruleFrequents" [value]="freq">{{freq}}</ion-select-option>
-                </ion-select>
-              </ion-item>
-              <ion-item>
-                <ion-input [(ngModel)]="selectedEvent.rruleInterval" name="rruleInterval" type="number" label="{{'Interval'|translate}}"
-                  [disabled]="!selectedEvent.recurring"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-input [(ngModel)]="selectedEvent.rruleUntil" name="rruleUntil" type="date" label="{{'Until'|translate}}"
-                  [disabled]="!selectedEvent.recurring"></ion-input>
-              </ion-item>
-            </ion-list>
-          </ion-content>
-        </form>
+              <ion-button fill="clear" size="small" (click)="toggleAddEditModal(false)">
+                <ion-icon slot="icon-only" color="danger" name="close"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content [fullscreen]="true">
+          <ion-list [inset]="true">
+            <ion-item>
+              <ion-input [(ngModel)]="selectedEvent.title" name="title" type="text" labelPlacement="fixed"
+                label="{{'title'|translate}}*" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="selectedEvent.description" name="description" type="text-area"
+                labelPlacement="fixed" label="{{'description'|translate}}"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="selectedEvent.location" name="location" type="text" labelPlacement="fixed"
+                label="{{'location'|translate}}"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-toggle [(ngModel)]="selectedEvent.allDay" name="allDay" labelPlacement="start"
+                (ionChange)="adaptEventTimes()">{{'allDay'|translate}}</ion-toggle>
+            </ion-item>
+            @if(selectedEvent.allDay) {
+            <ion-item>
+              <ion-input [(ngModel)]="selectedEvent.startTime" name="startTime" type="date" labelPlacement="fixed"
+                label="{{'From'|translate}}*" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="selectedEvent.endTime" name="endTime" type="date" labelPlacement="fixed"
+                label="{{'Until'|translate}}*" required></ion-input>
+            </ion-item>
+            } @else {
+            <ion-item>
+              <ion-label>{{'From'|translate}}</ion-label>
+              <ion-datetime-button datetime="eventStartTime"></ion-datetime-button>
+            </ion-item>
+            <ion-item>
+              <ion-label>{{'Until'|translate}}</ion-label>
+              <ion-datetime-button datetime="eventEndTime"></ion-datetime-button>
+            </ion-item>
+            }
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime id="eventStartTime" [(ngModel)]="selectedEvent.startTime" name="startTime"
+                  [minuteValues]="eventMinuteValues"></ion-datetime>
+              </ng-template>
+            </ion-modal>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime id="eventEndTime" [(ngModel)]="selectedEvent.endTime" name="endTime"
+                  [minuteValues]="eventMinuteValues"></ion-datetime>
+              </ng-template>
+            </ion-modal>
+            <ion-item>
+              <ion-label>{{'Groups for the Event' | translate}}</ion-label>
+              <ionic-selectable #ionicSelectGroups itemValueField="id" itemTextField="description" [isMultiple]="true"
+                [(ngModel)]="selectedEvent.groups" [ngModelOptions]="{standalone: true}" [items]="calendars"
+                [canSearch]="true">
+                <ng-template ionicSelectableHeaderTemplate>
+                  <ion-header color="primary">
+                    <ion-toolbar>
+                      <ion-title>
+                        {{ "Select groups for the event" | translate }}
+                      </ion-title>
+                      <ion-buttons slot="end">
+                        <ion-button ion-button (click)="ionicSelectGroups.close()">
+                          <ion-icon color="danger" name="close"></ion-icon>
+                        </ion-button>
+                      </ion-buttons>
+                    </ion-toolbar>
+                  </ion-header>
+                </ng-template>
+                <ng-template ionicSelectableValueTemplate let-ports="value">
+                  <div class="ionic-selectable-value-item">
+                    {{ports.length}} {{'groups are seleceted'|translate}}
+                  </div>
+                </ng-template>
+              </ionic-selectable>
+            </ion-item>
+            <ion-item>
+              <ion-label>{{'Users for the event' | translate}}</ion-label>
+              <ionic-selectable #ionicSelectUsers itemValueField="id" itemTextField="fullName" [isMultiple]="true"
+                [(ngModel)]="selectedEvent.users" [ngModelOptions]="{standalone: true}"
+                [items]="objectS.allObjects['user']" [canSearch]="true">
+                <ng-template ionicSelectableHeaderTemplate>
+                  <ion-header color="primary">
+                    <ion-toolbar>
+                      <ion-title>
+                        {{ "Select users for the event" | translate }}
+                      </ion-title>
+                      <ion-buttons slot="end">
+                        <ion-button ion-button (click)="ionicSelectUsers.close()">
+                          <ion-icon color="danger" name="close"></ion-icon>
+                        </ion-button>
+                      </ion-buttons>
+                    </ion-toolbar>
+                  </ion-header>
+                </ng-template>
+                <ng-template ionicSelectableValueTemplate let-ports="value">
+                  <div class="ionic-selectable-value-item">
+                    {{ports.length}} {{'users are seleceted'|translate}}
+                  </div>
+                </ng-template>
+              </ionic-selectable>
+            </ion-item>
+          </ion-list>
+          <ion-list [inset]="true">
+            <ion-item>
+              <ion-toggle [(ngModel)]="selectedEvent.recurring" name="recurring"
+                labelPlacement="start">{{'Recurring'|translate}}</ion-toggle>
+            </ion-item>
+            <ion-item>
+              <ion-select [(ngModel)]="selectedEvent.rruleFreq" name="rruleFreq" label="Freq" labelPlacement="start"
+                [disabled]="!selectedEvent.recurring">
+                <ion-select-option *ngFor="let freq of rruleFrequents" [value]="freq">{{freq}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="selectedEvent.rruleInterval" name="rruleInterval" type="number"
+                label="{{'Interval'|translate}}" [disabled]="!selectedEvent.recurring"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="selectedEvent.rruleUntil" name="rruleUntil" type="date"
+                label="{{'Until'|translate}}" [disabled]="!selectedEvent.recurring"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </form>
+      }
     </ng-template>
   </ion-modal>
 </ion-content>
