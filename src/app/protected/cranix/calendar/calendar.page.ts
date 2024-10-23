@@ -267,11 +267,12 @@ export class CalendarPage {
     this.selectedEvent.startTime = new Date(this.selectedEvent.startTime)
     this.selectedEvent.endTime = new Date(this.selectedEvent.endTime)
     if(this.selectedEvent.allDay) {
-      let delay = this.selectedEvent.endTime.getTime() - this.selectedEvent.startTime.getTime();
-      this.selectedEvent.startTime.setTime(
+      let delay = Math.floor((this.selectedEvent.endTime.getTime() - this.selectedEvent.startTime.getTime())/this.oneDay);
+      console.log(delay)
+      /*this.selectedEvent.startTime.setTime(
         this.selectedEvent.startTime.getTime() + 
         this.selectedEvent.startTime.getTimezoneOffset()*60*1000
-      );
+      );*/
       this.selectedEvent.endTime.setTime(
         this.selectedEvent.startTime.getTime() + ((delay + 1) * this.oneDay) - 1
       );
