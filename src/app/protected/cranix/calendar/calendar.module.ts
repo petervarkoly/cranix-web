@@ -5,10 +5,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CalendarPage } from './calendar.page';
-import { NgCalendarModule } from './Ionic2-Calendar';
-
 import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
 import { CanActivateViaAcls } from 'src/app/services/auth-guard.service';
+import { CalendarModule } from 'angular-calendar';
+import { DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
     IonicModule,
-    NgCalendarModule
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   declarations: [CalendarPage],
   providers: [TranslateService]

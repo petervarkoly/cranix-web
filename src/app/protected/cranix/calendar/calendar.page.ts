@@ -1,10 +1,36 @@
-import { Component, ViewChild } from '@angular/core';
-import { CalendarComponent, CalendarMode, QueryMode, Step } from './Ionic2-Calendar';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ViewChild,
+  TemplateRef,
+  ChangeDetectorRef,
+} from '@angular/core';
+import {
+  startOfDay,
+  endOfDay,
+  subDays,
+  addDays,
+  endOfMonth,
+  isSameDay,
+  isSameMonth,
+  addHours,
+} from 'date-fns';
+import { RRule } from 'rrule';
+import { Subject } from 'rxjs';
+import {
+  CalendarEvent,
+  CalendarEventAction,
+  CalendarEventTimesChangedEvent,
+  CalendarDayViewBeforeRenderEvent,
+  CalendarMonthViewBeforeRenderEvent,
+  CalendarWeekViewBeforeRenderEvent,
+  CalendarView
+} from 'angular-calendar';
+import * as moment from 'moment'
+import { EventColor, ViewPeriod } from 'calendar-utils';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
-import { IEvent } from './Ionic2-Calendar/calendar.interface';
-
 import { CrxCalendar, Group } from 'src/app/shared/models/data-model';
 import { UsersService } from 'src/app/services/users.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
@@ -18,9 +44,15 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
   styleUrls: ['calendar.page.scss'],
 })
 export class CalendarPage {
-  @ViewChild(CalendarComponent) myCalendar!: CalendarComponent;
+  view: CalendarView = CalendarView.Month;
+  CalendarView = CalendarView;
+
+  viewPeriod?: ViewPeriod;
+
+  viewDate: Date = new Date();
   double = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09']
   eventMinuteValues = "0,5,10,15,20,25,30,35,40,45,50,55"
+  yearValues = ['2024','2025','2026']
   calendars: Group[] = [];
   selectedCalendars: Group[];
   selectedCalendarIds: number[];
@@ -30,60 +62,25 @@ export class CalendarPage {
   categories = ['private', 'individual'];
   isModalOpen: boolean = false;
   addEditEventTitle: string = "Add Event"
-  eventSource: any[] = [];
+  events: any[] = [];
+  recurringEvents: any[] = [];
+  normalEvents: any[] = [];
   viewTitle: any;
-
+  minDate: string;
+  maxDate: string;
   selectedEvent: any;
   oneDay = 86400000;
   isToday: boolean;
-  calendar = {
-    mode: 'month' as CalendarMode,
-    queryMode: 'local' as QueryMode,
-    step: 30 as Step,
-    currentDate: new Date(),
-    dateFormatter: {
-      formatWeekViewHourColumn: function (date: Date) {
-        return date.getHours().toString();
-      },
-      formatDayViewHourColumn: function (date: Date) {
-        return date.getHours().toString();
-      }
-    },
-    formatDay: "'Day' dd",
-    formatDayHeader: "'Day' EEE",
-    formatDayTitle: "'Day' MMMM dd, yyyy",
-    formatWeekTitle: "'Week' w",
-    formatWeekViewDayHeader: "'Day' EEE d",
-    formatHourColumn: "H",
-    showEventDetail: false,
-    startingDayMonth: 1,
-    startingDayWeek: 1,
-    allDayLabel: 'testallday',
-    noEventsLabel: 'None',
-    timeInterval: 15,
-    autoSelect: false,
-    locale: 'de-DE',
-    dir: 'rtl',
-    scrollToHour: 11,
-    preserveScrollPosition: true,
-    lockSwipeToPrev: true,
-    lockSwipeToNext: true,
-    lockSwipes: true,
-    startHour: 7,
-    endHour: 20,
-    sliderOptions: {
-      spaceBetween: 10,
-    },
-    dayviewCategorySource: new Set(this.categories),
-    dayviewShowCategoryView: true,
-  };
+  refresh = new Subject<void>();
+  activeDayIsOpen: boolean = true;
 
+  /* Constructor */
   constructor(
     private authService: AuthenticationService,
     private calendarS: CrxCalendarService,
     private objectS: GenericObjectService,
-    private userS: UsersService
-
+    private userS: UsersService,
+    private cdr: ChangeDetectorRef
   ) {
     this.userS.getUsersGroups(this.authService.session.userId).subscribe(
       (val) => {
@@ -93,12 +90,19 @@ export class CalendarPage {
         for (let group of val) {
           this.selectedCalendarIds.push(group.id)
           this.categories.push(group.name)
-          this.calendar.dayviewCategorySource = new Set(this.categories)
         }
       }
     );
     this.isToday = false;
     this.loadData();
+  }
+
+
+  adjustMinMaxDate() {
+    let min = new Date();
+    let max  = new Date(min.getTime() + 3600*86400000)
+    this.minDate = this.toIonISOString(min);
+    this.maxDate = this.toIonISOString(max)
   }
 
   isCalendarSelected(event: CrxCalendar) {
@@ -124,39 +128,119 @@ export class CalendarPage {
   loadData() {
     this.calendarS.get().subscribe(
       (val) => {
-        this.eventSource = []
+        this.events = []
+        this.recurringEvents = []
+        this.normalEvents = []
         for (let event of val) {
-          event.startTime = new Date(event.startTime)
-          event.endTime = new Date(event.endTime)
-          if (event.rruleUntil) {
-            event.rruleUntil = new Date(event.rruleUntil)
+          event.start = new Date(event.start)
+          event.end = new Date(event.end)
+          if (event.rruleFreq) {
+            if(event.rruleUntil) {
+              event.rruleUntil = new Date(event.rruleUntil)
+            }
+            this.recurringEvents.push(event)
+          } else {
+            this.events.push(event)
+            this.normalEvents.push(event)
           }
-          this.eventSource.push(event)
+          
         }
-        console.log(this.eventSource)
+        console.log(this.events)
       }
     )
+  }
+
+  /*
+  * Handle calendar events
+  */
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    console.log(date, events)
+    if (isSameMonth(date, this.viewDate)) {
+      if (
+        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        events.length === 0
+      ) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+      }
+      this.viewDate = date;
+    }
+  }
+
+  eventTimesChanged({
+    event,
+    newStart,
+    newEnd,
+  }: CalendarEventTimesChangedEvent): void {
+    console.log(event,newStart,newEnd)
+    this.events = this.events.map((iEvent) => {
+      if (iEvent === event) {
+        return {
+          ...event,
+          start: newStart,
+          end: newEnd,
+        };
+      }
+      return iEvent;
+    });
+    this.handleEvent('Dropped or resized', event);
+  }
+
+  handleEvent(action: string, event: CalendarEvent): void {
+    console.log(action, event)
+  }
+
+  updateCalendarEvents(
+    viewRender:
+      | CalendarMonthViewBeforeRenderEvent
+      | CalendarWeekViewBeforeRenderEvent
+      | CalendarDayViewBeforeRenderEvent
+  ): void {
+    if (
+      !this.viewPeriod ||
+      !moment(this.viewPeriod.start).isSame(viewRender.period.start) ||
+      !moment(this.viewPeriod.end).isSame(viewRender.period.end)
+    ) {
+      this.viewPeriod = viewRender.period;
+      this.events = [];
+      for( let event of this.normalEvents) {
+        this.events.push(event);
+      }
+
+      this.recurringEvents.forEach((event) => {
+        const rule: RRule = new RRule({
+          ...event.rrule,
+          dtstart: moment(viewRender.period.start).startOf('day').toDate(),
+          until: moment(viewRender.period.end).endOf('day').toDate(),
+        });
+        const { title, color } = event;
+
+        rule.all().forEach((date) => {
+          this.events.push({
+            title,
+            color,
+            start: moment(date).toDate(),
+          });
+        });
+      });
+      this.cdr.detectChanges();
+    }
+  }
+
+  setView(view: CalendarView) {
+    this.view = view;
+  }
+
+  closeOpenMonthViewDay() {
+    this.activeDayIsOpen = false;
   }
 
   toggleAddEditModal(open: boolean) {
     this.isModalOpen = open
   }
 
-  segmentChanged(event: any) {
-    this.calendar.mode = <CalendarMode>event.detail.value;
-  }
-  next() {
-    this.myCalendar.slideNext();
-  }
-
-  back() {
-    this.myCalendar.slidePrev();
-  }
-
-  toDay() {
-    this.calendar.currentDate = new Date()
-  }
-  selectedCalendarsChanged() {
+ selectedCalendarsChanged() {
     this.selectedCalendarIds = []
     for (let group of this.selectedCalendars) {
       this.selectedCalendarIds.push(group.id)
@@ -296,50 +380,7 @@ export class CalendarPage {
         }
       )
     }
-    this.calendar.currentDate = this.selectedEvent.selectedTime;
+    //this.calendar.currentDate = this.selectedEvent.startTime;
     this.selectedEvent = {}
   }
-
-  changeMode(mode: any) {
-    this.calendar.mode = mode;
-  }
-
-  today() {
-    this.calendar.currentDate = new Date()
-  }
-
-  onCurrentDateChanged(ev: Date) {
-    /* var today = new Date();
-    today.setHours(0, 0, 0, 0);
-    ev.setHours(0, 0, 0, 0);
-    this.isToday = today.getTime() === ev.getTime(); */
-    console.log('Currently viewed date: ' + ev);
-  }
-
-  onRangeChanged(ev: any) {
-    console.log(
-      'range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime
-    );
-  }
-
-  onDayHeaderSelected = (ev: {
-    selectedTime: Date;
-    events: any[];
-    disabled: boolean;
-  }) => {
-    console.log(
-      'Selected day: ' +
-      ev.selectedTime +
-      ', hasEvents: ' +
-      (ev.events !== undefined && ev.events.length !== 0) +
-      ', disabled: ' +
-      ev.disabled
-    );
-  };
-
-  markDisabled = (date: Date) => {
-    var current = new Date();
-    current.setHours(0, 0, 0);
-    return date < current;
-  };
 }

@@ -531,8 +531,8 @@ export class CrxCalendar {
 	modified: Date
 	uuid: string
 	allDay: boolean
-	startTime: Date
-	endTime: Date
+	start: Date
+	end: Date
 	title: string
 	description: string
 	location: string
