@@ -219,9 +219,9 @@
                 labelPlacement="start">{{'Recurring'|translate}}</ion-toggle>
             </ion-item>
             <ion-item>
-              <ion-select [(ngModel)]="selectedEvent.rrule.freq" name="rruleFreq" label="{{'Freq|translate'}}" labelPlacement="start"
+              <ion-select [(ngModel)]="selectedEvent.rrule.freq" name="rruleFreq" label="{{'Freq'|translate}}" labelPlacement="start"
                 [disabled]="!eventRecurring">
-                <ion-select-option *ngFor="let freq of rruleFrequents" [value]="freq">{{freq | translate}}</ion-select-option>
+                <ion-select-option *ngFor="let freq of rruleFrequents; index as i" [value]="i">{{freq | translate}}</ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item>
@@ -233,15 +233,15 @@
                 label="{{'Count'|translate}}" [disabled]="!eventRecurring"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-select [(ngModel)]="selectedEvent.rrule.byweekday" name="byweekday" label="{{'Weekday'}}" labelPlacement="start"
+              <ion-select [(ngModel)]="selectedEvent.rrule.byweekday" name="byweekday" label="{{'Weekday'|translate}}" labelPlacement="start" [multiple]="true"
                 [disabled]="!eventRecurring">
                 <ion-select-option *ngFor="let day of rruleDays" [value]="day">{{day | translate}}</ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item>
-              <ion-select [(ngModel)]="selectedEvent.rrule.byweekday" name="byweekday" label="{{'Weekday'}}" labelPlacement="start"
+              <ion-select [(ngModel)]="selectedEvent.rrule.byweekday" name="byweekday" label="{{'Month'|translate}}" labelPlacement="start" [multiple]="true"
                 [disabled]="!eventRecurring">
-                <ion-select-option *ngFor="let month of rruleMonths; index as i" [value]="i">{{month | translate}}</ion-select-option>
+                <ion-select-option *ngFor="let month of rruleMonths; index as j" [value]="j">{{month | translate}}</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-list>

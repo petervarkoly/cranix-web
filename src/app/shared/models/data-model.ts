@@ -524,6 +524,17 @@ export class CrxChallengeAnswer {
 	constructor() { }
 }
 
+export class RecuringRule{
+	id?: number
+	freq?: number = 2
+	interval?: number = 1
+	count?: number
+	byweekday?: string[] = []
+	bymonth?: number[] = []
+	bysetpos?: number[] = []
+	bymonthday?: number[] = []
+	until?: Date
+}
 export class CrxCalendar {
 	id: number
 	creatorId: number
@@ -536,13 +547,11 @@ export class CrxCalendar {
 	title: string
 	description: string
 	location: string
-	rruleFreq: any
-	rruleInterval: any
-	rruleUntil: any
 	userIds: number[] = []
 	groupIds: number[] = []
 	groups: Group[] = []
 	users: User[] = []
 	category: string = 'private'
-	color: string 
+	color: string
+	rrule: RecuringRule
 }

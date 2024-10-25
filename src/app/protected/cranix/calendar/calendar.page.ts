@@ -31,7 +31,7 @@ import { EventColor, ViewPeriod } from 'calendar-utils';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
-import { CrxCalendar, Group } from 'src/app/shared/models/data-model';
+import { CrxCalendar, Group, RecuringRule } from 'src/app/shared/models/data-model';
 import { UsersService } from 'src/app/services/users.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { CrxCalendarService } from 'src/app/services/crx-calendar.service';
@@ -144,9 +144,9 @@ export class CalendarPage {
         for (let event of val) {
           event.start = new Date(event.start)
           event.end = new Date(event.end)
-          if (event.rruleFreq) {
-            if (event.rruleUntil) {
-              event.rruleUntil = new Date(event.rruleUntil)
+          if (event.rrule.freq) {
+            if (event.rrule.until) {
+              event.rrule.until = new Date(event.rrule.until)
             }
             this.recurringEvents.push(event)
           } else {
@@ -156,6 +156,7 @@ export class CalendarPage {
 
         }
         console.log(this.events)
+        console.log(this.recurringEvents)
       }
     )
   }
@@ -210,7 +211,7 @@ export class CalendarPage {
       this.selectedEvent.start = this.toIonISOString(<Date>event.start)
       this.selectedEvent.end = this.toIonISOString(<Date>event.end)
     }
-    if (event.rruleFreq) {
+    if (event.rrule.freq) {
       this.selectedEvent.recurring = true
       this.selectedEvent.rruleUntil = this.toIonDate(<Date>event.rruleUntil)
     }
@@ -234,7 +235,7 @@ export class CalendarPage {
       for (let event of this.normalEvents) {
         this.events.push(event);
       }
-
+      console.log("updateCalendarEvents")
       this.recurringEvents.forEach((event) => {
         const rule: RRule = new RRule({
           ...event.rrule,
@@ -242,8 +243,8 @@ export class CalendarPage {
           until: moment(viewRender.period.end).endOf('day').toDate(),
         });
         const { title, color } = event;
-
         rule.all().forEach((date) => {
+          console.log("updateCalendarEvents 2" )
           this.events.push({
             title,
             color,
@@ -305,11 +306,11 @@ export class CalendarPage {
   }
   adaptEventTimes() {
     if (this.selectedEvent.allDay) {
-      this.selectedEvent.startTime = this.toIonDate(new Date(this.selectedEvent.startTime))
-      this.selectedEvent.endTime = this.toIonDate(new Date(this.selectedEvent.endTime))
+      this.selectedEvent.start = this.toIonDate(new Date(this.selectedEvent.start))
+      this.selectedEvent.end = this.toIonDate(new Date(this.selectedEvent.end))
     } else {
-      this.selectedEvent.startTime = this.toIonISOString(new Date(this.selectedEvent.startTime))
-      this.selectedEvent.endTime = this.toIonISOString(new Date(this.selectedEvent.endTime))
+      this.selectedEvent.start = this.toIonISOString(new Date(this.selectedEvent.start))
+      this.selectedEvent.end = this.toIonISOString(new Date(this.selectedEvent.end))
     }
   }
 
@@ -325,12 +326,10 @@ export class CalendarPage {
       title: "",
       desciption: "",
       location: "",
-      startTime: now,
-      endTime: now,
+      start: now,
+      end: now,
       recurring: false,
-      rruleFreq: null,
-      rruleInterval: null,
-      rruleUntil: undefined,
+      rrule: new RecuringRule(),
       category: 'private'
     }
     console.log(this.selectedEvent)
@@ -343,8 +342,8 @@ export class CalendarPage {
     this.selectedEvent = {
       allDay: false,
       title: "",
-      startTime: this.toIonISOString(<Date>ev.selectedTime),
-      endTime: this.toIonISOString(<Date>ev.selectedTime),
+      start: this.toIonISOString(<Date>ev.selectedTime),
+      end: this.toIonISOString(<Date>ev.selectedTime),
       recurring: false,
       rruleFreq: null,
       rruleInterval: null,
@@ -359,17 +358,17 @@ export class CalendarPage {
   addEditEvent(modal: any) {
     modal.dismiss()
     this.isModalOpen = false
-    this.selectedEvent.startTime = new Date(this.selectedEvent.startTime)
-    this.selectedEvent.endTime = new Date(this.selectedEvent.endTime)
+    this.selectedEvent.start = new Date(this.selectedEvent.start)
+    this.selectedEvent.end = new Date(this.selectedEvent.end)
     if (this.selectedEvent.allDay) {
-      let delay = Math.floor((this.selectedEvent.endTime.getTime() - this.selectedEvent.startTime.getTime()) / this.oneDay);
+      let delay = Math.floor((this.selectedEvent.end.getTime() - this.selectedEvent.start.getTime()) / this.oneDay);
       console.log(delay)
-      /*this.selectedEvent.startTime.setTime(
-        this.selectedEvent.startTime.getTime() + 
-        this.selectedEvent.startTime.getTimezoneOffset()*60*1000
+      /*this.selectedEvent.start.setTime(
+        this.selectedEvent.start.getTime() + 
+        this.selectedEvent.start.getTimezoneOffset()*60*1000
       );*/
-      this.selectedEvent.endTime.setTime(
-        this.selectedEvent.startTime.getTime() + ((delay + 1) * this.oneDay) - 1
+      this.selectedEvent.end.setTime(
+        this.selectedEvent.start.getTime() + ((delay + 1) * this.oneDay) - 1
       );
     }
     if (this.selectedEvent.recurring && this.selectedEvent.rruleUntil) {
@@ -391,7 +390,7 @@ export class CalendarPage {
         }
       )
     }
-    //this.calendar.currentDate = this.selectedEvent.startTime;
+    //this.calendar.currentDate = this.selectedEvent.start;
     this.selectedEvent = {}
   }
 }
