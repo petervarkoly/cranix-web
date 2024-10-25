@@ -1,44 +1,79 @@
+@if(authService.isMD()) {
+<cranix-toolbar
+  title="{{'Calendar' | translate}} {{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}"></cranix-toolbar>
+} @else {
 <cranix-toolbar title="{{'Calendar' | translate}}"></cranix-toolbar>
 <ion-toolbar class="page-toolbar">
-  <ion-grid>
-    <ion-row>
-      <ion-col size="3">
-        <ion-button mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
-          <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
-        </ion-button>
-        <ion-button mwlCalendarToday [(viewDate)]="viewDate">
-		{{'today'|translate}}
-        </ion-button>
-        <ion-button mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
-          <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
-        </ion-button>
-      </ion-col>
-      <ion-col size="6">
-        {{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}
-      </ion-col>
-      <ion-col size="3">
-        <ion-button (click)="setView(CalendarView.Month)">
-          {{'Month'|translate}}
-        </ion-button>
-        <ion-button (click)="setView(CalendarView.Week)">
-          {{'Week'|translate}}
-        </ion-button>
-        <ion-button (click)="setView(CalendarView.Day)">
-          {{'Day'|translate}}
-        </ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button fill="solid" (click)="loadData()">
-          <ion-icon name="refresh" slot="icon-only"></ion-icon>
-        </ion-button>
-        <ion-button fill="solid" (click)="addNewEvent()">
-          <ion-icon name="add-circle" slot="icon-only"></ion-icon>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-buttons slot="start">
+    <ion-button mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+      (viewDateChange)="closeOpenMonthViewDay()">
+      &lt;&lt;
+    </ion-button>
+    <ion-button mwlCalendarToday [(viewDate)]="viewDate">
+      {{'today'|translate}}
+    </ion-button>
+    <ion-button mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
+      &gt;&gt;
+    </ion-button>
+  </ion-buttons>
+  <center>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</center>
+  <ion-buttons slot="end">
+    <ion-button (click)="setView(CalendarView.Month)">
+      {{'Month'|translate}}
+    </ion-button>
+    <ion-button (click)="setView(CalendarView.Week)">
+      {{'Week'|translate}}
+    </ion-button>
+    <ion-button (click)="setView(CalendarView.Day)">
+      {{'Day'|translate}}
+    </ion-button>
+    <ion-button fill="solid" (click)="loadData()">
+      <ion-icon name="refresh" slot="icon-only"></ion-icon>
+    </ion-button>
+    <ion-button fill="solid" (click)="addNewEvent()">
+      <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-buttons>
 </ion-toolbar>
+}
 <ion-content [fullscreen]="true">
+  @if(authService.isMD()) {
+  <ion-fab slot="fixed" vertical="top" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()">
+        &gt;&gt;
+      </ion-fab-button>
+      <ion-fab-button mwlCalendarToday [(viewDate)]="viewDate">
+        {{'today'|translate}}
+      </ion-fab-button>
+      <ion-fab-button mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()">
+        &lt;&lt;
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="bottom">
+      <ion-fab-button (click)="setView(CalendarView.Month)">
+        {{'Month'|translate}}
+      </ion-fab-button>
+      <ion-fab-button (click)="setView(CalendarView.Week)">
+        {{'Week'|translate}}
+      </ion-fab-button>
+      <ion-fab-button (click)="setView(CalendarView.Day)">
+        {{'Day'|translate}}
+      </ion-fab-button>
+      <ion-fab-button (click)="loadData()">
+        <ion-icon name="refresh"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="addNewEvent()">
+        <ion-icon name="add-circle"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  }
   <div [ngSwitch]="view">
     <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
       [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
@@ -94,11 +129,11 @@
             </ion-item>
             @if(selectedEvent.allDay) {
             <ion-item>
-              <ion-input [(ngModel)]="selectedEvent.startTime" name="startTime" type="date" labelPlacement="fixed"
+              <ion-input [(ngModel)]="selectedEvent.start" name="startTime" type="date" labelPlacement="fixed"
                 label="{{'From'|translate}}*" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="selectedEvent.endTime" name="endTime" type="date" labelPlacement="fixed"
+              <ion-input [(ngModel)]="selectedEvent.end" name="endTime" type="date" labelPlacement="fixed"
                 label="{{'Until'|translate}}*" required></ion-input>
             </ion-item>
             } @else {
@@ -113,14 +148,14 @@
             }
             <ion-modal [keepContentsMounted]="true">
               <ng-template>
-                <ion-datetime id="eventStartTime" [(ngModel)]="selectedEvent.startTime" name="startTime"
+                <ion-datetime id="eventStartTime" [(ngModel)]="selectedEvent.start" name="startTimeModal"
                   [minuteValues]="eventMinuteValues" [yearValues]="yearValues" [min]="minDate"
                   [max]="maxDate"></ion-datetime>
               </ng-template>
             </ion-modal>
             <ion-modal [keepContentsMounted]="true">
               <ng-template>
-                <ion-datetime id="eventEndTime" [(ngModel)]="selectedEvent.endTime" name="endTime"
+                <ion-datetime id="eventEndTime" [(ngModel)]="selectedEvent.end" name="endTimeModal"
                   [minuteValues]="eventMinuteValues" [yearValues]="yearValues" [min]="minDate"
                   [max]="maxDate"></ion-datetime>
               </ng-template>
@@ -180,22 +215,34 @@
           </ion-list>
           <ion-list [inset]="true">
             <ion-item>
-              <ion-toggle [(ngModel)]="selectedEvent.recurring" name="recurring"
+              <ion-toggle [(ngModel)]="eventRecurring" name="recurring"
                 labelPlacement="start">{{'Recurring'|translate}}</ion-toggle>
             </ion-item>
             <ion-item>
-              <ion-select [(ngModel)]="selectedEvent.rruleFreq" name="rruleFreq" label="Freq" labelPlacement="start"
-                [disabled]="!selectedEvent.recurring">
-                <ion-select-option *ngFor="let freq of rruleFrequents" [value]="freq">{{freq}}</ion-select-option>
+              <ion-select [(ngModel)]="selectedEvent.rrule.freq" name="rruleFreq" label="{{'Freq|translate'}}" labelPlacement="start"
+                [disabled]="!eventRecurring">
+                <ion-select-option *ngFor="let freq of rruleFrequents" [value]="freq">{{freq | translate}}</ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="selectedEvent.rruleInterval" name="rruleInterval" type="number"
-                label="{{'Interval'|translate}}" [disabled]="!selectedEvent.recurring"></ion-input>
+              <ion-input [(ngModel)]="selectedEvent.rrule.interval" name="rruleInterval" type="number"
+                label="{{'Interval'|translate}}" [disabled]="!eventRecurring"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="selectedEvent.rruleUntil" name="rruleUntil" type="date"
-                label="{{'Until'|translate}}" [disabled]="!selectedEvent.recurring"></ion-input>
+              <ion-input [(ngModel)]="selectedEvent.rrule.count" name="rruleCount" type="number"
+                label="{{'Count'|translate}}" [disabled]="!eventRecurring"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-select [(ngModel)]="selectedEvent.rrule.byweekday" name="byweekday" label="{{'Weekday'}}" labelPlacement="start"
+                [disabled]="!eventRecurring">
+                <ion-select-option *ngFor="let day of rruleDays" [value]="day">{{day | translate}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-select [(ngModel)]="selectedEvent.rrule.byweekday" name="byweekday" label="{{'Weekday'}}" labelPlacement="start"
+                [disabled]="!eventRecurring">
+                <ion-select-option *ngFor="let month of rruleMonths; index as i" [value]="i">{{month | translate}}</ion-select-option>
+              </ion-select>
             </ion-item>
           </ion-list>
         </ion-content>

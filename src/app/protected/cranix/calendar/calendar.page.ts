@@ -52,13 +52,23 @@ export class CalendarPage {
   viewDate: Date = new Date();
   double = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09']
   eventMinuteValues = "0,5,10,15,20,25,30,35,40,45,50,55"
-  yearValues = ['2024','2025','2026']
+  yearValues = ['2024', '2025', '2026']
   calendars: Group[] = [];
   selectedCalendars: Group[];
   selectedCalendarIds: number[];
   rruleFrequents = [
-    'days', 'weeks', 'months'
+    'YEARLY',
+    'MONTHLY',
+    'WEEKLY',
+    'DAILY',
+    'HOURLY',
+    'MINUTELY',
+    'SECONDLY'
   ]
+  rruleDays = [ '', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU']
+  rruleMonths = [ '', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+  eventRecurring: boolean = false
   categories = ['private', 'individual'];
   isModalOpen: boolean = false;
   addEditEventTitle: string = "Add Event"
@@ -100,7 +110,7 @@ export class CalendarPage {
 
   adjustMinMaxDate() {
     let min = new Date();
-    let max  = new Date(min.getTime() + 3600*86400000)
+    let max = new Date(min.getTime() + 3600 * 86400000)
     this.minDate = this.toIonISOString(min);
     this.maxDate = this.toIonISOString(max)
   }
@@ -135,7 +145,7 @@ export class CalendarPage {
           event.start = new Date(event.start)
           event.end = new Date(event.end)
           if (event.rruleFreq) {
-            if(event.rruleUntil) {
+            if (event.rruleUntil) {
               event.rruleUntil = new Date(event.rruleUntil)
             }
             this.recurringEvents.push(event)
@@ -143,7 +153,7 @@ export class CalendarPage {
             this.events.push(event)
             this.normalEvents.push(event)
           }
-          
+
         }
         console.log(this.events)
       }
@@ -173,7 +183,7 @@ export class CalendarPage {
     newStart,
     newEnd,
   }: CalendarEventTimesChangedEvent): void {
-    console.log(event,newStart,newEnd)
+    console.log(event, newStart, newEnd)
     this.events = this.events.map((iEvent) => {
       if (iEvent === event) {
         return {
@@ -187,8 +197,25 @@ export class CalendarPage {
     this.handleEvent('Dropped or resized', event);
   }
 
-  handleEvent(action: string, event: CalendarEvent): void {
+  handleEvent(action: string, event: any): void {
     console.log(action, event)
+    this.selectedEvent = {}
+    for (let key of Object.getOwnPropertyNames(event)) {
+      this.selectedEvent[key] = event[key]
+    }
+    if (this.selectedEvent.allDay) {
+      this.selectedEvent.start = this.toIonDate(<Date>event.start)
+      this.selectedEvent.end = this.toIonDate(<Date>event.end)
+    } else {
+      this.selectedEvent.start = this.toIonISOString(<Date>event.start)
+      this.selectedEvent.end = this.toIonISOString(<Date>event.end)
+    }
+    if (event.rruleFreq) {
+      this.selectedEvent.recurring = true
+      this.selectedEvent.rruleUntil = this.toIonDate(<Date>event.rruleUntil)
+    }
+    this.addEditEventTitle = "Edit Event"
+    this.isModalOpen = true
   }
 
   updateCalendarEvents(
@@ -204,7 +231,7 @@ export class CalendarPage {
     ) {
       this.viewPeriod = viewRender.period;
       this.events = [];
-      for( let event of this.normalEvents) {
+      for (let event of this.normalEvents) {
         this.events.push(event);
       }
 
@@ -240,7 +267,7 @@ export class CalendarPage {
     this.isModalOpen = open
   }
 
- selectedCalendarsChanged() {
+  selectedCalendarsChanged() {
     this.selectedCalendarIds = []
     for (let group of this.selectedCalendars) {
       this.selectedCalendarIds.push(group.id)
@@ -287,23 +314,7 @@ export class CalendarPage {
   }
 
   onEventSelected(event) {
-    this.selectedEvent = {}
-    for( let key of Object.getOwnPropertyNames(event)) {
-      this.selectedEvent[key] = event[key]
-    }
-    if (this.selectedEvent.allDay) {
-      this.selectedEvent.startTime = this.toIonDate(<Date>event.startTime)
-      this.selectedEvent.endTime = this.toIonDate(<Date>event.endTime)
-    } else {
-      this.selectedEvent.startTime = this.toIonISOString(<Date>event.startTime)
-      this.selectedEvent.endTime = this.toIonISOString(<Date>event.endTime)
-    }
-    if (event.rruleFreq) {
-      this.selectedEvent.recurring = true
-      this.selectedEvent.rruleUntil = this.toIonDate(<Date>event.rruleUntil)
-    }
-    this.addEditEventTitle = "Edit Event"
-    this.isModalOpen = true
+
   }
 
   addNewEvent() {
@@ -350,8 +361,8 @@ export class CalendarPage {
     this.isModalOpen = false
     this.selectedEvent.startTime = new Date(this.selectedEvent.startTime)
     this.selectedEvent.endTime = new Date(this.selectedEvent.endTime)
-    if(this.selectedEvent.allDay) {
-      let delay = Math.floor((this.selectedEvent.endTime.getTime() - this.selectedEvent.startTime.getTime())/this.oneDay);
+    if (this.selectedEvent.allDay) {
+      let delay = Math.floor((this.selectedEvent.endTime.getTime() - this.selectedEvent.startTime.getTime()) / this.oneDay);
       console.log(delay)
       /*this.selectedEvent.startTime.setTime(
         this.selectedEvent.startTime.getTime() + 
