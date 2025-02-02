@@ -13,6 +13,7 @@ class ObjectList {
   label: string;
 }
 @Component({
+  standalone: false,
   selector: 'cranix-details',
   templateUrl: './details.page.html',
   styleUrls: ['./details.page.scss'],
@@ -215,6 +216,7 @@ export class DetailsPage implements OnInit {
 }
 
 @Component({
+  standalone: false,
   selector: 'cranix-edit-article',
   templateUrl: './edit-article.html'
   //styleUrls: ['./edit-article.scss'],

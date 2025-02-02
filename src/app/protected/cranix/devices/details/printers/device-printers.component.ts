@@ -7,6 +7,7 @@ import { DevicesService } from 'src/app/services/devices.service';
 import { Printer, Device } from 'src/app/shared/models/data-model'
 
 @Component({
+  standalone: false,
   selector: 'cranix-device-printers',
   templateUrl: './device-printers.component.html',
   styleUrls: ['./device-printers.component.scss'],

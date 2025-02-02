@@ -6,6 +6,7 @@ import { ModalController } from '@ionic/angular';
 import { AddDeviceComponent } from 'src/app/protected/cranix/devices/add-device/add-device.component';
 
 @Component({
+  standalone: false,
   selector: 'cranix-my-devices',
   templateUrl: './my-devices.component.html',
   styleUrls: ['./my-devices.component.scss'],

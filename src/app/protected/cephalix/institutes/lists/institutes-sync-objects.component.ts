@@ -8,6 +8,7 @@ import { LanguageService } from 'src/app/services/language.service';
 import { GridApi } from 'ag-grid-community';
 
 @Component({
+  standalone: false,
   selector: 'cranix-institutes-sync-objects',
   templateUrl: './institutes-sync-objects.component.html'
 })

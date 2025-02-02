@@ -9,6 +9,7 @@ import { LanguageService } from 'src/app/services/language.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
+  standalone: false,
   selector: 'cranix-add-printer',
   templateUrl: './add-printer.component.html',
   styleUrls: ['./add-printer.component.scss'],

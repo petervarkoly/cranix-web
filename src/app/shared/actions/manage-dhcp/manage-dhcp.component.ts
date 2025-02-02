@@ -9,6 +9,7 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { ModalController } from '@ionic/angular';
 
 @Component({
+  standalone: false,
   selector: 'cranix-manage-dhcp',
   templateUrl: './manage-dhcp.component.html',
   styleUrls: ['./manage-dhcp.component.scss'],

@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 
 
 @Component({
+  standalone: false,
   selector: 'cranix-setquota',
   templateUrl: './setquota.component.html',
   styleUrls: ['./setquota.component.scss'],

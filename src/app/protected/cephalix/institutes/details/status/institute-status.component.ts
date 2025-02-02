@@ -15,6 +15,7 @@ import { Institute } from 'src/app/shared/models/cephalix-data-model'
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
+  standalone: false,
   selector: 'cranix-institute-status',
   templateUrl: './institute-status.component.html',
   styleUrls: ['./institute-status.component.scss'],

@@ -6,6 +6,7 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { Announcenement, Contact, FAQ, TaskResponse } from 'src/app/shared/models/data-model';
 
 @Component({
+  standalone: false,
   selector: 'cranix-informations',
   templateUrl: './informations.component.html',
   styleUrls: ['./informations.component.scss'],
@@ -198,6 +199,7 @@ export class InformationsComponent implements OnInit {
 }
 
 @Component({
+  standalone: false,
   selector: 'add-edit-info-page',
   templateUrl: 'add-edit-info.html'
 })
@@ -279,6 +281,7 @@ export class AddEditInfoPage implements OnInit {
 }
 
 @Component({
+  standalone: false,
   selector: 'show-responses-page',
   templateUrl: 'show-responses-page.html'
 })

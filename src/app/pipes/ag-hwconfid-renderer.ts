@@ -2,7 +2,8 @@ import {Component} from "@angular/core";
 import {ICellRendererAngularComp} from "ag-grid-angular";
 
 @Component({
-    selector: 'hwconfid-cell',
+    standalone: false,
+  selector: 'hwconfid-cell',
     template: `{{ params.value | idToName:'hwconf' }}`,
 })
 export class HwconfIdCellRenderer implements ICellRendererAngularComp {

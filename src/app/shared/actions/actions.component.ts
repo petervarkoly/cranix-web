@@ -20,6 +20,7 @@ import { SetValidityComponent } from './set-validity/set-validity.component';
 
 
 @Component({
+  standalone: false,
   selector: 'cranix-actions',
   templateUrl: './actions.component.html',
   styleUrls: ['./actions.component.scss'],

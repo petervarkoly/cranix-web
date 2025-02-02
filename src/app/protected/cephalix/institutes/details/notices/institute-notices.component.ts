@@ -9,6 +9,7 @@ import { CephalixService } from 'src/app/services/cephalix.service';
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
 
 @Component({
+  standalone: false,
   selector: 'cranix-institute-notices',
   templateUrl: './institute-notices.component.html',
   styleUrls: ['./institute-notices.component.scss'],

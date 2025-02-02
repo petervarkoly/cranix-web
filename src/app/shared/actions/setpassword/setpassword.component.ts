@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { SystemService } from 'src/app/services/system.service';
 
 @Component({
+  standalone: false,
   selector: 'cranix-setpassword',
   templateUrl: './setpassword.component.html',
   styleUrls: ['./setpassword.component.scss'],

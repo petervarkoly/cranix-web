@@ -3,7 +3,8 @@ import { Component } from "@angular/core";
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
-    selector: 'yesno-cell-text',
+    standalone: false,
+  selector: 'yesno-cell-text',
     /*template: `
         <ion-checkbox  *ngIf="params.data" class="ion-align-self-center" [checked]="checked" color="success" (ionChange)="toggle($event)"></ion-checkbox>
         `*/

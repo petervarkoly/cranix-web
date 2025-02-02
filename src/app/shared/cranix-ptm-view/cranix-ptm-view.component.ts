@@ -13,6 +13,7 @@ import { SystemService } from 'src/app/services/system.service';
 import { interval, takeWhile } from 'rxjs';
 
 @Component({
+  standalone: false,
   selector: 'cranix-ptm-view',
   templateUrl: './cranix-ptm-view.component.html',
   styleUrl: './cranix-ptm-view.component.css'

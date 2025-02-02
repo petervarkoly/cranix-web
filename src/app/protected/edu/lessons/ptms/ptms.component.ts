@@ -9,6 +9,7 @@ import { ParentTeacherMeeting, PTMEvent, PTMTeacherInRoom, Room, User } from 'sr
 import { WindowRef } from 'src/app/shared/models/ohters';
 
 @Component({
+  standalone: false,
   selector: 'app-ptms',
   templateUrl: './ptms.component.html',
   styleUrl: './ptms.component.css'

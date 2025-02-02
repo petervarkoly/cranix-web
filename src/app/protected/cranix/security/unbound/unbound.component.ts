@@ -6,6 +6,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { SafeSearch } from 'src/app/shared/models/secutiry-model';
 
 @Component({
+  standalone: false,
   selector: 'cranix-unbound',
   templateUrl: './unbound.component.html',
   styleUrls: ['./unbound.component.scss'],

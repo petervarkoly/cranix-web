@@ -16,6 +16,7 @@ import { Hwconf } from 'src/app/shared/models/data-model'
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
+  standalone: false,
   selector: 'cranix-hwconfs',
   templateUrl: './hwconfs.page.html',
   styleUrls: ['./hwconfs.page.scss'],

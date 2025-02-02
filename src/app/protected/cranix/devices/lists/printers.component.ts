@@ -19,6 +19,7 @@ import { Device, Printer } from 'src/app/shared/models/data-model'
 import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';
 
 @Component({
+  standalone: false,
   selector: 'cranix-printers',
   templateUrl: './printers.component.html',
   styleUrls: ['./printers.component.scss'],

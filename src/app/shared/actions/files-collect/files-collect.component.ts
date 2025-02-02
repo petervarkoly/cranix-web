@@ -4,6 +4,7 @@ import { CrxActionMap } from '../../models/server-models';
 import { EductaionService } from 'src/app/services/education.service';
 
 @Component({
+  standalone: false,
   selector: 'cranix-files-collect',
   templateUrl: './files-collect.component.html',
   styleUrls: ['./files-collect.component.scss'],

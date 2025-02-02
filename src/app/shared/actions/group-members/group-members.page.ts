@@ -10,6 +10,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { ModalController } from '@ionic/angular';
 
 @Component({
+  standalone: false,
   selector: 'cranix-group-members',
   templateUrl: './group-members.page.html',
   styleUrls: ['./group-members.page.scss'],

@@ -8,6 +8,7 @@ import { Group, PTMTeacherInRoom, ParentTeacherMeeting, Room, TeachingSubject, U
 import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer'
 
 @Component({
+  standalone: false,
   selector: 'app-manage-parents',
   templateUrl: './manage-parents.component.html',
   styleUrl: './manage-parents.component.css'

@@ -12,6 +12,7 @@ import { Institute } from 'src/app/shared/models/cephalix-data-model'
 import { User } from 'src/app/shared/models/data-model';
 
 @Component({
+  standalone: false,
   selector: 'cranix-institutes',
   templateUrl: './institutes.manage.html',
   styleUrls: ['./institutes.manage.scss'],

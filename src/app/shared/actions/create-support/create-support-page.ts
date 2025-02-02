@@ -5,7 +5,8 @@ import { SystemService } from 'src/app/services/system.service';
 
 
 @Component({
-    selector: 'create-support-page',
+    standalone: false,
+  selector: 'create-support-page',
     templateUrl: 'create-support.html'
   })
   export class CreateSupport implements OnInit {

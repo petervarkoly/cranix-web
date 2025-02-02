@@ -9,6 +9,7 @@ import { takeWhile } from 'rxjs/operators';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
+  standalone: false,
   selector: 'cranix-show-import',
   templateUrl: './show-import.component.html',
   styleUrls: ['./show-import.component.scss'],

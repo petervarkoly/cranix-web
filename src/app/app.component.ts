@@ -8,6 +8,7 @@ import { GenericObjectService } from './services/generic-object.service';
 import { LanguageService } from './services/language.service';
 
 @Component({
+  standalone: false,
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']

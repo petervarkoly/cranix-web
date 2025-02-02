@@ -8,7 +8,8 @@ import { ActionsComponent } from 'src/app/shared/actions/actions.component';
 
 
 @Component({
-    selector: 'cranix-users-2fa',
+    standalone: false,
+  selector: 'cranix-users-2fa',
     templateUrl: './users-2fa.html',
     // styleUrls: ['./user-import.component.scss'],
 

@@ -3,7 +3,8 @@ import { Component } from "@angular/core";
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
-    selector: 'action-syn-object-renderer',
+    standalone: false,
+  selector: 'action-syn-object-renderer',
     template: `
     <div class="name-action">
         <div *ngIf="to">

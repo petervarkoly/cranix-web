@@ -11,6 +11,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { CreateSupport } from 'src/app/shared/actions/create-support/create-support-page';
 
 @Component({
+  standalone: false,
   selector: 'cranix-system-status',
   templateUrl: './system-status.component.html',
   styleUrls: ['./system-status.component.scss'],

@@ -3,7 +3,8 @@ import { Component } from "@angular/core";
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
-    selector: 'action-cell-renderer',
+    standalone: false,
+  selector: 'action-cell-renderer',
     template: `
     <div class="name-action">
         <div *ngIf="id">#{{ id }}</div>

@@ -3,7 +3,8 @@ import { Component } from "@angular/core";
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
-    selector: 'group-action-cell-renderer',
+    standalone: false,
+  selector: 'group-action-cell-renderer',
     template: `
         <ion-button *ngIf="mayEdit" style="padding-horizontal : 2px" fill="clear" size="small" (click)="details($event)" matTooltip="{{'edit' | translate }}">
              <ion-icon name="build-sharp"></ion-icon>

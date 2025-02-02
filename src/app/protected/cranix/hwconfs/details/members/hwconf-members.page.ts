@@ -13,6 +13,7 @@ import { interval } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 
 @Component({
+  standalone: false,
   selector: 'cranix-hwconf-members',
   templateUrl: './hwconf-members.page.html',
   styleUrls: ['./hwconf-members.page.scss'],

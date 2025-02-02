@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 import { SecurityService } from 'src/app/services/security-service';
 
 @Component({
+  standalone: false,
   selector: 'cranix-add-remote-rule',
   templateUrl: './add-remote-rule.component.html',
   styleUrls: ['./add-remote-rule.component.scss'],

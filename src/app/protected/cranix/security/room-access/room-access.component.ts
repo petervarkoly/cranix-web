@@ -12,6 +12,7 @@ import { SystemService } from 'src/app/services/system.service';
 import { ApplyBTNRenderer } from 'src/app/pipes/ag-apply-renderer';
 
 @Component({
+  standalone: false,
   selector: 'cranix-room-access',
   templateUrl: './room-access.component.html',
   styleUrls: ['./room-access.component.scss'],

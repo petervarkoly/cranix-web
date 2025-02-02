@@ -11,6 +11,7 @@ import { AddRemoteRuleComponent } from './add-rules/add-remote-rule.component';
 import { SystemService } from 'src/app/services/system.service';
 
 @Component({
+  standalone: false,
   selector: 'cranix-firewall',
   templateUrl: './firewall.component.html',
   styleUrls: ['./firewall.component.scss'],

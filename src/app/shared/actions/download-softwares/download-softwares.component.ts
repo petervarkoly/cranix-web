@@ -10,6 +10,7 @@ import { LanguageService } from 'src/app/services/language.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
+  standalone: false,
   selector: 'cranix-download-softwares',
   templateUrl: './download-softwares.component.html',
   styleUrls: ['./download-softwares.component.scss'],

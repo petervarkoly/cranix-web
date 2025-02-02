@@ -10,6 +10,7 @@ import { User } from 'src/app/shared/models/data-model';
 import { contracts } from 'src/app/shared/models/cephalix-data-model';
 import { SystemService } from 'src/app/services/system.service';
 @Component({
+  standalone: false,
   selector: 'cranix-institute-edit',
   templateUrl: './institute-edit.component.html',
   styleUrls: ['./institute-edit.component.scss'],

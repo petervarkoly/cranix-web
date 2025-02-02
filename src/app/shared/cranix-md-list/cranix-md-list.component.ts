@@ -7,6 +7,7 @@ import { LanguageService } from 'src/app/services/language.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
+  standalone: false,
   selector: 'cranix-md-list',
   templateUrl: './cranix-md-list.component.html',
   styleUrls: ['./cranix-md-list.component.scss'],

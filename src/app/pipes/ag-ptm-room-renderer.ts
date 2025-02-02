@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 
 @Component({
+  standalone: false,
   selector: 'room-renderer',
   template: `@if(params.value != "0") {
   @if(context.isPtmManager) {

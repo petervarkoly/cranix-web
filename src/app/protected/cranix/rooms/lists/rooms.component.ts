@@ -17,6 +17,7 @@ import { RoomPrintersPage } from '../details/printers/room-printers.page';
 import { ManageDhcpComponent } from 'src/app/shared/actions/manage-dhcp/manage-dhcp.component';
 
 @Component({
+  standalone: false,
   selector: 'cranix-rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss'],

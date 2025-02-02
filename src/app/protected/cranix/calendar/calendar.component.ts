@@ -18,6 +18,7 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
+  standalone: false,
   selector: 'crx-calendar',
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css'

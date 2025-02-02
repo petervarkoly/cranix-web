@@ -4,6 +4,7 @@ import { SystemService } from 'src/app/services/system.service';
 import { Acl } from 'src/app/shared/models/server-models';
 
 @Component({
+  standalone: false,
   selector: 'cranix-manage-acls',
   templateUrl: './manage-acls.component.html',
   styleUrls: ['./manage-acls.component.scss'],

@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ManageAclsComponent } from './manage-acls/manage-acls.component';
 
 @Component({
+  standalone: false,
   selector: 'cranix-system-acls',
   templateUrl: './system-acls.component.html',
   styleUrls: ['./system-acls.component.scss'],

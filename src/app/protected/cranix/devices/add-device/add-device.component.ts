@@ -14,6 +14,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
+  standalone: false,
   selector: 'cranix-add-device',
   templateUrl: './add-device.component.html',
   styleUrls: ['./add-device.component.scss'],

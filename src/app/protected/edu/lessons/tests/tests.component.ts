@@ -6,6 +6,7 @@ import { CrxChallenge } from 'src/app/shared/models/data-model';
 
 
 @Component({
+  standalone: false,
   selector: 'app-tests',
   templateUrl: './tests.component.html',
   styleUrls: ['../challenges/challenges.component.scss', './tests.component.scss'],

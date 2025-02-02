@@ -20,6 +20,7 @@ import { DateTimeCellRenderer } from 'src/app/pipes/ag-datetime-renderer';
 import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
 
 @Component({
+  standalone: false,
   selector: 'cranix-mygroups',
   templateUrl: './mygroups.page.html',
   styleUrls: ['./mygroups.page.scss'],
@@ -387,6 +388,7 @@ export class MyGroupsPage implements OnInit {
 }
 
 @Component({
+  standalone: false,
   selector: 'cranix-add-edit-guest',
   templateUrl: './add-edit-guest.html'
 })

@@ -11,6 +11,7 @@ import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 
 @Component({
+  standalone: false,
   selector: 'cranix-mypositive',
   templateUrl: './mypositive.component.html',
   styleUrls: ['./mypositive.component.scss'],

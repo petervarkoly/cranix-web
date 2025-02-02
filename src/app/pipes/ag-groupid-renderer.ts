@@ -2,7 +2,8 @@ import {Component} from "@angular/core";
 import {ICellRendererAngularComp} from "ag-grid-angular";
 
 @Component({
-    selector: 'groupid-cell',
+    standalone: false,
+  selector: 'groupid-cell',
     template: `{{ params.value | idToName:'group' }}`,
 })
 export class GroupIdCellRenderer implements ICellRendererAngularComp {

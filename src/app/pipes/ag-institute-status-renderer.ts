@@ -3,7 +3,8 @@ import { Component } from "@angular/core";
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
-    selector: 'institut-status-cell-renderer',
+    standalone: false,
+  selector: 'institut-status-cell-renderer',
     template: `
     <ion-button fill="clear" size="small" (click)="details($event)" matTooltip="{{'modify' | translate }}">
         <ion-icon name="build-sharp"></ion-icon>

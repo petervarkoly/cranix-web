@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
+  standalone: false,
   selector: 'cranix-protected',
   templateUrl: './protected.page.html',
   styleUrls: ['./protected.page.scss'],

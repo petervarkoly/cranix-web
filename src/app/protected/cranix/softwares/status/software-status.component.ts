@@ -7,6 +7,7 @@ import { SoftwareService } from 'src/app/services/softwares.service'
 import { SoftwareStatus } from 'src/app/shared/models/data-model';
 
 @Component({
+  standalone: false,
   selector: 'cranix-software-status',
   templateUrl: './software-status.component.html',
   styleUrls: ['./software-status.component.scss'],

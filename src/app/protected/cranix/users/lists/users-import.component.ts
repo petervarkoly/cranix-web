@@ -13,6 +13,7 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
+  standalone: false,
   selector: 'cranix-users-import',
   templateUrl: './users-import.component.html',
   // styleUrls: ['./user-import.component.scss'],

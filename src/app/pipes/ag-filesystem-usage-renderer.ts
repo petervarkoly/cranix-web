@@ -3,7 +3,8 @@ import { Component } from "@angular/core";
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
-    selector: 'file-system-usage-renderer',
+    standalone: false,
+  selector: 'file-system-usage-renderer',
     template: `<span [style]="style">{{value}}</span>`
 })
 

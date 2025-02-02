@@ -8,6 +8,7 @@ import { Printer, Room } from 'src/app/shared/models/data-model'
 import { ServerResponse } from 'src/app/shared/models/server-models';
 
 @Component({
+  standalone: false,
   selector: 'cranix-room-printers',
   templateUrl: './room-printers.page.html',
   styleUrls: ['./room-printers.page.scss'],

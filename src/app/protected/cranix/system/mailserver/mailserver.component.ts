@@ -6,6 +6,7 @@ import { SystemService } from 'src/app/services/system.service';
 import { MailAccess } from 'src/app/shared/models/server-models'
 
 @Component({
+  standalone: false,
   selector: 'app-mailserver',
   templateUrl: './mailserver.component.html',
   styleUrls: ['./mailserver.component.scss'],

@@ -12,6 +12,7 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { UtilsService } from 'src/app/services/utils.service';
 @Component({
+  standalone: false,
   selector: 'cranix-objects-edit',
   templateUrl: './objects-edit.component.html',
   styleUrls: ['./objects-edit.component.scss'],

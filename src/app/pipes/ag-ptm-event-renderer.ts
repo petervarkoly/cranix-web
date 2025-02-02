@@ -3,6 +3,7 @@ import { PTMEvent } from 'src/app/shared/models/data-model';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 
 @Component({
+  standalone: false,
   selector: 'event-renderer',
   template: `@if(event){
   @if(event.blocked){

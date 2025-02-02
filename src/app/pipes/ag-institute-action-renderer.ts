@@ -6,7 +6,8 @@ import { CephalixService } from 'src/app/services/cephalix.service';
 import { WindowRef } from 'src/app/shared/models/ohters'
 
 @Component({
-    selector: 'uuid-cell',
+    standalone: false,
+  selector: 'uuid-cell',
     template: `<div class="uuid-flex">
     <ion-button fill="clear" size="small" (click)="details($event)" matTooltip="{{'modify' | translate }}">
         <ion-icon name="build-sharp"></ion-icon>

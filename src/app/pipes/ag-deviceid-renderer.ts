@@ -2,7 +2,8 @@ import {Component} from "@angular/core";
 import {ICellRendererAngularComp} from "ag-grid-angular";
 
 @Component({
-    selector: 'deviceid-cell',
+    standalone: false,
+  selector: 'deviceid-cell',
     template: `{{ params.value | idToName:'device' }}`,
 })
 export class DeviceIdCellRenderer implements ICellRendererAngularComp {

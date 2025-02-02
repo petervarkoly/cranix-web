@@ -3,7 +3,8 @@ import { Component } from "@angular/core";
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
-    selector: 'apply-cell',
+    standalone: false,
+  selector: 'apply-cell',
     template: `
         <ion-button *ngIf="params.data" style="padding-horizontal : 2px" fill="clear" size="small" (click)="apply($event)" matTooltip="{{'apply' | translate }}">
             <ion-icon name="checkmark-circle" color="tertiary"></ion-icon>

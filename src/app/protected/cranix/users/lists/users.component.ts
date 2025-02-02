@@ -16,6 +16,7 @@ import { UserGroupsPage } from '../details/groups/user-groups.page';
 import { SystemService } from 'src/app/services/system.service';
 
 @Component({
+  standalone: false,
   selector: 'cranix-users',
   templateUrl: './users.component.html'
 })

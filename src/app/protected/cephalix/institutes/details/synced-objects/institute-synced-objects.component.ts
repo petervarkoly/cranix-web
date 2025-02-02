@@ -10,6 +10,7 @@ import { Institute, SynchronizedObject } from 'src/app/shared/models/cephalix-da
 import { SyncObjectRenderer } from 'src/app/pipes/ag-sync-object-renderer';
 
 @Component({
+  standalone: false,
   selector: 'cranix-institute-synced-objects',
   templateUrl: './institute-synced-objects.component.html'
 })
