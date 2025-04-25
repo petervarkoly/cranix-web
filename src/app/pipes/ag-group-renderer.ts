@@ -5,8 +5,12 @@ import { ICellRendererAngularComp } from "ag-grid-angular";
 @Component({
     selector: 'group-action-cell-renderer',
     template: `
+
         <ion-button *ngIf="mayEdit" style="padding-horizontal : 2px" fill="clear" size="small" (click)="details($event)" matTooltip="{{'edit' | translate }}">
              <ion-icon name="build-sharp"></ion-icon>
+        </ion-button>
+        <ion-button  style="padding-horizontal : 2px" fill="clear" (click)="openNotice($event)" matTooltip="{{'notices' | translate }}">
+            <ion-icon slot="icon-only" name="clipboard" color="tertiary"></ion-icon>
         </ion-button>
         <ion-button *ngIf="mayEdit" style="padding-horizontal : 2px" fill="clear" size="small" (click)="members($event)" matTooltip="{{'Members of the group:' | translate }}">
              <ion-icon name="people-circle"></ion-icon>
@@ -47,6 +51,10 @@ export class GroupActionBTNRenderer implements ICellRendererAngularComp {
     public delete(event) {
         event.stopPropagation();
         this.params.context.componentParent.redirectToDelete(this.params.data);
+    }
+    public openNotice(event) {
+        event.stopPropagation();
+        this.params.context.componentParent.openNotice(this.params.data);
     }
 
     refresh(params: any): boolean {

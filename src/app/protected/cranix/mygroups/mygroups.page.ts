@@ -18,6 +18,8 @@ import { EductaionService } from 'src/app/services/education.service';
 import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';
 import { DateTimeCellRenderer } from 'src/app/pipes/ag-datetime-renderer';
 import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
+import { CranixNoticesComponent } from 'src/app/shared/cranix-notices/cranix-notices.component';
+import { UserActionBTNRenderer } from 'src/app/pipes/ag-user-renderer';
 
 @Component({
   selector: 'cranix-mygroups',
@@ -53,7 +55,7 @@ export class MyGroupsPage implements OnInit {
     }
   }
   async ngOnInit() {
-    while ( !this.objectService.allObjects['education/user'] ) {
+    while (!this.objectService.allObjects['education/user']) {
       await new Promise(f => setTimeout(f, 1000));
     }
     if (this.authService.isMD()) {
@@ -68,9 +70,9 @@ export class MyGroupsPage implements OnInit {
   segmentChanged(event) {
     this.segment = event.detail.value;
     switch (this.segment) {
-      case 'education/group':   { this.groupColumnDefs(); break; }
-      case 'education/user': { this.userColumnDefs();  break; }
-      case 'education/guestUser':   { this.guestColumnDefs(); break; }
+      case 'education/group': { this.groupColumnDefs(); break; }
+      case 'education/user': { this.userColumnDefs(); break; }
+      case 'education/guestUser': { this.guestColumnDefs(); break; }
     }
   }
 
@@ -93,7 +95,7 @@ export class MyGroupsPage implements OnInit {
       },
       {
         headerName: "",
-        minWidth: 150,
+        minWidth: 200,
         suppressSizeToFit: true,
         cellStyle: { 'padding': '2px' },
         field: 'actions',
@@ -128,6 +130,14 @@ export class MyGroupsPage implements OnInit {
         headerCheckboxSelectionFilteredOnly: true,
         headerCheckboxSelection: true,
         checkboxSelection: this.authService.settings.checkboxSelection
+      },
+      {
+        headerName: "",
+        minWidth: 200,
+        suppressSizeToFit: true,
+        cellStyle: { 'padding': '2px' },
+        field: 'actions',
+        cellRenderer: UserActionBTNRenderer
       },
       {
         field: 'uid',
@@ -241,7 +251,7 @@ export class MyGroupsPage implements OnInit {
               obj.uid.toLowerCase().indexOf(filter) != -1 ||
               obj.givenName.toLowerCase().indexOf(filter) != -1 ||
               obj.surName.toLowerCase().indexOf(filter) != -1 ||
-              ( obj.classes && obj.classes.toLowerCase().indexOf(filter) != -1 )
+              (obj.classes && obj.classes.toLowerCase().indexOf(filter) != -1)
             ) {
               this.rowData.push(obj)
             }
@@ -272,7 +282,7 @@ export class MyGroupsPage implements OnInit {
   * Open the actions menu with the selected object ids.
   * @param ev
   */
-  async openActions(ev: any, object ) {
+  async openActions(ev: any, object) {
     if (object) {
       this.objectService.selectedIds.push(object.id)
       this.objectService.selection.push(object)
@@ -349,9 +359,9 @@ export class MyGroupsPage implements OnInit {
     });
     modal.onDidDismiss().then((dataReturned) => {
       switch (this.segment) {
-        case 'education/group':   { this.groupColumnDefs(); break; }
-        case 'education/user': { this.userColumnDefs();  break; }
-        case 'education/guestUser':   { this.guestColumnDefs(); break; }
+        case 'education/group': { this.groupColumnDefs(); break; }
+        case 'education/user': { this.userColumnDefs(); break; }
+        case 'education/guestUser': { this.guestColumnDefs(); break; }
       }
       if (dataReturned.data) {
         this.authService.log("Object was created or modified", dataReturned.data)
@@ -383,6 +393,19 @@ export class MyGroupsPage implements OnInit {
       }
     });
     (await modal).present();
+  }
+
+  async openNotice(object) {
+    let objectType = this.segment == "education/user" ? "user" : "group"
+    const modal = await this.modalCtrl.create({
+      component: CranixNoticesComponent,
+      componentProps: {
+        selectedObject: object,
+        objectType: objectType
+      },
+      cssClass: 'big-modal'
+    })
+    modal.present();
   }
 }
 
@@ -427,5 +450,6 @@ export class AddEditGuestPage implements OnInit {
       }
     );
   }
+
 }
 

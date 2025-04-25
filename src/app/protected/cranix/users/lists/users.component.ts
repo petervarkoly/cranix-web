@@ -14,6 +14,7 @@ import { User } from 'src/app/shared/models/data-model'
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { UserGroupsPage } from '../details/groups/user-groups.page';
 import { SystemService } from 'src/app/services/system.service';
+import { CranixNoticesComponent } from 'src/app/shared/cranix-notices/cranix-notices.component';
 
 @Component({
   selector: 'cranix-users',
@@ -49,6 +50,7 @@ export class UsersComponent implements OnInit {
     public authService: AuthenticationService,
     public objectService: GenericObjectService,
     public modalCtrl: ModalController,
+    private modalController: ModalController,
     public popoverCtrl: PopoverController,
     public languageS: LanguageService,
     private systemService: SystemService,
@@ -119,6 +121,17 @@ export class UsersComponent implements OnInit {
     }
     this.columnDefs = columnDefs;
     console.log(this.columnDefs)
+  }
+  async openNotice(object) {
+    const modal = await this.modalController.create({
+      component: CranixNoticesComponent,
+      componentProps: {
+        selectedObject: object,
+        objectType: "user"
+      },
+      cssClass: 'big-modal'
+    })
+    modal.present();
   }
   onGridReady(params) {
     this.gridApi = params.api;

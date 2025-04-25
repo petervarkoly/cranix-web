@@ -8,6 +8,9 @@ import { ICellRendererAngularComp } from "ag-grid-angular";
         <ion-button style="padding-horizontal : 2px" fill="clear" size="small" (click)="details($event)" matTooltip="{{'edit' | translate }}">
              <ion-icon name="build-sharp"></ion-icon>
         </ion-button>
+        <ion-button  style="padding-horizontal : 2px" fill="clear" size="small" (click)="openNotice($event)" matTooltip="{{'notice' | translate }}">
+            <ion-icon slot="icon-only" name="clipboard" color="tertiary"></ion-icon>
+        </ion-button>
         <ion-button style="padding-horizontal : 2px" fill="clear" size="small" (click)="groups($event)" matTooltip="{{'groups' | translate }}">
              <ion-icon name="people"></ion-icon>
         </ion-button>
@@ -17,13 +20,13 @@ import { ICellRendererAngularComp } from "ag-grid-angular";
         <ion-button style="padding-horizontal : 2px" fill="clear"  size="small" (click)="delete($event)" matTooltip="{{'delete' | translate }}">
             <ion-icon color="danger" name="trash-outline" ></ion-icon>
         </ion-button>
-        ` 
+        `
 })
 
 export class UserActionBTNRenderer implements ICellRendererAngularComp {
     private params: any;
 
-    agInit(params: any ): void {
+    agInit(params: any): void {
         this.params = params;
     }
 
@@ -35,7 +38,7 @@ export class UserActionBTNRenderer implements ICellRendererAngularComp {
         event.stopPropagation();
         this.params.context.componentParent.redirectToGroups(this.params.data);
     }
-    public openAction(event){
+    public openAction(event) {
         event.stopPropagation();
         this.params.context.componentParent.openActions(event, this.params.data)
     }
@@ -43,8 +46,12 @@ export class UserActionBTNRenderer implements ICellRendererAngularComp {
         event.stopPropagation();
         this.params.context.componentParent.redirectToDelete(this.params.data);
     }
-
+    public openNotice(event) {
+        event.stopPropagation();
+        this.params.context.componentParent.openNotice(this.params.data);
+    }
     refresh(params: any): boolean {
         return true;
     }
+
 }

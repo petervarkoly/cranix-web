@@ -313,7 +313,8 @@ export class CranixMdListComponent implements OnInit {
       componentProps: {
         selectedObject: object,
         objectType: this.objectType
-      }
+      },
+      cssClass: 'big-modal'
     })
     modal.present();
   }
