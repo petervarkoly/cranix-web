@@ -8,9 +8,11 @@ import { ICellRendererAngularComp } from "ag-grid-angular";
         <ion-button style="padding-horizontal : 2px" fill="clear" size="small" (click)="details($event)" matTooltip="{{'edit' | translate }}">
              <ion-icon name="build-sharp"></ion-icon>
         </ion-button>
+        @if(useNotice){
         <ion-button  style="padding-horizontal : 2px" fill="clear" size="small" (click)="openNotice($event)" matTooltip="{{'notice' | translate }}">
             <ion-icon slot="icon-only" name="clipboard" color="tertiary"></ion-icon>
         </ion-button>
+        }
         <ion-button style="padding-horizontal : 2px" fill="clear" size="small" (click)="groups($event)" matTooltip="{{'groups' | translate }}">
              <ion-icon name="people"></ion-icon>
         </ion-button>
@@ -25,9 +27,12 @@ import { ICellRendererAngularComp } from "ag-grid-angular";
 
 export class UserActionBTNRenderer implements ICellRendererAngularComp {
     private params: any;
+    public useNotice: boolean = false;
 
     agInit(params: any): void {
         this.params = params;
+        this.useNotice = this.params.context.componentParent.useNotice;
+        console.log(params.context)
     }
 
     public details(event) {

@@ -9,9 +9,11 @@ import { ICellRendererAngularComp } from "ag-grid-angular";
         <ion-button *ngIf="mayEdit" style="padding-horizontal : 2px" fill="clear" size="small" (click)="details($event)" matTooltip="{{'edit' | translate }}">
              <ion-icon name="build-sharp"></ion-icon>
         </ion-button>
+        @if(useNotice){
         <ion-button  style="padding-horizontal : 2px" fill="clear" (click)="openNotice($event)" matTooltip="{{'notices' | translate }}">
             <ion-icon slot="icon-only" name="clipboard" color="tertiary"></ion-icon>
         </ion-button>
+        }
         <ion-button *ngIf="mayEdit" style="padding-horizontal : 2px" fill="clear" size="small" (click)="members($event)" matTooltip="{{'Members of the group:' | translate }}">
              <ion-icon name="people-circle"></ion-icon>
         </ion-button>
@@ -27,13 +29,13 @@ import { ICellRendererAngularComp } from "ag-grid-angular";
 export class GroupActionBTNRenderer implements ICellRendererAngularComp {
     private params: any;
     public mayEdit: boolean = false;
-
+    public useNotice: boolean = false;
     agInit(params: any): void {
         this.params = params;
         if (this.params.data) {
-            this.mayEdit = params.context.componentParent.authService.isAllowed('group.modify') ||
-                (params.context.componentParent.authService.session.userId == params.data.creatorId);
+            this.mayEdit = params.context.componentParent.mayGroupEdit || (params.context.componentParent.authService.session.userId == params.data.creatorId);
         }
+        this.useNotice = this.params.context.componentParent.useNotice;
     }
 
     public details(event) {

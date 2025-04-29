@@ -46,6 +46,7 @@ export class UsersComponent implements OnInit {
   context;
   rowData = [];
   defaultMustChange: boolean = true;
+  useNotice: boolean = false;
   constructor(
     public authService: AuthenticationService,
     public objectService: GenericObjectService,
@@ -71,6 +72,8 @@ export class UsersComponent implements OnInit {
         }
       }
     )
+    this.useNotice = this.authService.isAllowed('notice.use')
+    console.log(this.useNotice)
   }
 
   async ngOnInit() {

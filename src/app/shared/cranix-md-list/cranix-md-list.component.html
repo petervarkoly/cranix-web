@@ -181,7 +181,7 @@
         <ion-icon slot="icon-only" name="people"></ion-icon>
       </ion-item-option>
       }
-      @if(objectType.indexOf('user') != -1 || objectType.indexOf('group') != -1){
+      @if(useNotice && (objectType.indexOf('user') != -1 || objectType.indexOf('group') != -1)){
       <ion-item-option (click)="openNotice(object)">
         <ion-icon slot="icon-only" name="clipboard" color="tertiary"></ion-icon>
       </ion-item-option>

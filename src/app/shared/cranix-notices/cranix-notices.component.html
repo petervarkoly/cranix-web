@@ -38,6 +38,9 @@
         <ion-input label="{{'weighting'|translate}}: " type="number" [(ngModel)]="selectedNotice.weighting"></ion-input>
     </ion-item>
     <ion-item>
+        <ion-label>{{'Comment'|translate}} </ion-label>
+    </ion-item>
+    <ion-item>
         <quill-editor [styles]="{ height: '600px' }" [(ngModel)]="selectedNotice.text">
             <div quill-editor-toolbar>
                 <span class="ql-formats">

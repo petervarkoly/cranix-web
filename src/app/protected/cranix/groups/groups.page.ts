@@ -28,7 +28,8 @@ export class GroupsPage implements OnInit {
   defaultColDef = {};
   gridApi: GridApi;
   context;
-
+  useNotice: boolean = false
+  mayGroupEdit: boolean = false
   constructor(
     public authService: AuthenticationService,
     public objectService: GenericObjectService,
@@ -47,6 +48,8 @@ export class GroupsPage implements OnInit {
       hide: false,
       suppressHeaderMenuButton: true
     }
+    this.useNotice = this.authService.isAllowed('notice.use')
+    this.mayGroupEdit = this.authService.isOneOfAllowed(['group.modify','group.manage'])
   }
   ngOnInit() {
     this.storage.get('GroupsPage.displayedColumns').then((val) => {
