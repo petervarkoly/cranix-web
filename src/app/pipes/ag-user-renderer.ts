@@ -32,7 +32,6 @@ export class UserActionBTNRenderer implements ICellRendererAngularComp {
     agInit(params: any): void {
         this.params = params;
         this.useNotice = this.params.context.componentParent.useNotice;
-        console.log(params.context)
     }
 
     public details(event) {

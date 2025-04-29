@@ -35,7 +35,8 @@ export class MyGroupsPage implements OnInit {
   rowSelection;
   context;
   rowData = [];
-
+  useNotice: boolean = false;
+  mayGroupEdit: boolean = false;
   constructor(
     public authService: AuthenticationService,
     public educationService: EductaionService,
@@ -46,6 +47,9 @@ export class MyGroupsPage implements OnInit {
     public route: Router,
     public translateService: TranslateService
   ) {
+
+    this.useNotice = this.authService.isAllowed('notice.use')
+    this.mayGroupEdit = this.authService.isOneOfAllowed(['group.modify','group.manage'])
     this.context = { componentParent: this };
     this.defaultColDef = {
       resizable: true,

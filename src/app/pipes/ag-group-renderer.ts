@@ -10,7 +10,7 @@ import { ICellRendererAngularComp } from "ag-grid-angular";
              <ion-icon name="build-sharp"></ion-icon>
         </ion-button>
         @if(useNotice){
-        <ion-button  style="padding-horizontal : 2px" fill="clear" (click)="openNotice($event)" matTooltip="{{'notices' | translate }}">
+        <ion-button  style="padding-horizontal : 2px" fill="clear" size="small" (click)="openNotice($event)" matTooltip="{{'notices' | translate }}">
             <ion-icon slot="icon-only" name="clipboard" color="tertiary"></ion-icon>
         </ion-button>
         }
