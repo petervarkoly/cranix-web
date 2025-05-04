@@ -55,10 +55,10 @@
     <ion-toggle justify="start" [(ngModel)]="overView" name="openedOnly">{{'Overview'|translate}}</ion-toggle>
     <ion-button (click)="release()" [disabled]="releasing">{{'Release all shown cards'|translate}}</ion-button>
 </ion-item>
-<ion-grid>
+<ion-grid [fixed]="true">
     <ion-row>
         @for(request of reviewRequests; track request.id; let idx = $index ){
-        <ion-col size="2">
+        <ion-col size="2" size-xs="12" size-sm="12" size-md="6" size-lg="3" size-xl="2">
             <ion-card>
                 <ion-card-header>
                     <ion-toolbar>
