@@ -1,6 +1,9 @@
 @if(isNoticeOpen){
 <ion-header>
     <ion-toolbar color="primary">
+        <ion-title>
+            {{'Notice for:'}} {{selectedObject.surName}}, {{selectedObject.givenName}}
+        </ion-title>
         <ion-buttons slot="end">
             <ion-button (click)="saveNotice()" [disabled]="isDisabled">
                 <ion-icon name="checkmark" color="success"></ion-icon>
@@ -20,6 +23,11 @@
     <ion-item>
         <ion-input label="{{'Title'|translate}}: " [(ngModel)]="selectedNotice.title"
             placeholder="{{'Insert title'|translate}}"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>
+            {{'created'|translate}} {{selectedNotice.created|date:"yyyy-MM-dd"}}; {{'modified'|translate}} {{selectedNotice.modified|date:"yyyy-MM-dd"}}
+        </ion-label>
     </ion-item>
     <ion-item>
         @if( selectedNotice.issueType == "PTMEvent" ) {
@@ -110,9 +118,12 @@
                     <ion-card-header>
                         <ion-toolbar>
                             <ion-label>
-                                {{labels[notice.id]}}
+                                {{labels[notice.id]}} {{notice.grading}} {{notice.weighting}}
                             </ion-label>
                             <ion-buttons slot="end">
+                                <ion-button fill="clear" (click)="openNotice(notice)">
+                                    <ion-icon name="build"></ion-icon>
+                                </ion-button>
                                 <ion-button fill="clear" (click)="deleteNotice(notice)">
                                     <ion-icon name="trash" color="danger"></ion-icon>
                                 </ion-button>
@@ -120,11 +131,10 @@
                         </ion-toolbar>
                     </ion-card-header>
                     <ion-card-content>
-                        <ion-item [button]="true" (click)="openNotice(notice)">
+                        <ion-item lines="none" [button]="true" (click)="openNotice(notice)">
                             <ion-label>
                                 <b>{{notice.title}}</b><br>
                                 <p>{{'created'|translate}} {{notice.created|date:"yyyy-MM-dd"}}</p>
-                                <p>{{'modified'|translate}} {{notice.modified|date:"yyyy-MM-dd"}}</p>
                             </ion-label>
                         </ion-item>
                     </ion-card-content>

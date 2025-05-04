@@ -1,6 +1,12 @@
 /*
 * File select design
 */
+
+ion-segment .segment-button-checked {
+  background-color: #4a7a81; /* Deine Wunschfarbe */
+  //color: #ffffff; /* Textfarbe, falls nötig */
+}
+
 .button-file {
   min-width            : 150px;
   color                : #fff;
