@@ -20,7 +20,7 @@ export class CheckBoxBTNRenderer implements ICellRendererAngularComp {
     agInit(params: any ): void {
         this.params = params;
         this.field = this.params.colDef.field;
-        this.index = this.params.rowIndex;
+        this.index = this.params.node.rowIndex;
     }
 
     public toggle(event) {
