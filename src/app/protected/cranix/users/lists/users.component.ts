@@ -22,6 +22,7 @@ import { CranixNoticesComponent } from 'src/app/shared/cranix-notices/cranix-not
 })
 export class UsersComponent implements OnInit {
   objectKeys: string[] = [
+    "id",
     "uid",
     "uuid",
     "surName",
@@ -31,6 +32,8 @@ export class UsersComponent implements OnInit {
     "role",
     "mustChange",
     "classes",
+    "emailAddress",
+    "telefonNumber",
     "mailAliases",
     "msQuota",
     "fsQuota",
@@ -38,6 +41,21 @@ export class UsersComponent implements OnInit {
     "fsQuotaUsed",
     "created",
     "modified"
+  ];
+  newObjectKeys: string[] = [
+    "uid",
+    "uuid",
+    "surName",
+    "givenName",
+    "birthDay",
+    "password",
+    "role",
+    "mustChange",
+    "emailAddress",
+    "telefonNumber",
+    "mailAliases",
+    "msQuota",
+    "fsQuota"
   ];
   displayedColumns: string[] = ['uid', 'uuid', 'givenName', 'surName', 'role', 'classes', 'actions'];
   columnDefs = [];
@@ -212,6 +230,7 @@ export class UsersComponent implements OnInit {
 
   async redirectToEdit(user: User) {
     let action = "modify";
+    let keys = this.objectKeys
     if (!user) {
       user = new User();
       user.mustChange = this.defaultMustChange;
@@ -219,6 +238,7 @@ export class UsersComponent implements OnInit {
       delete user.fsQuotaUsed;
       delete user.mailAliases;
       delete user.classes;
+      keys = this.newObjectKeys
       action = 'add';
     }
     const modal = await this.modalCtrl.create({
@@ -228,7 +248,7 @@ export class UsersComponent implements OnInit {
         objectType: "user",
         objectAction: action,
         object: user,
-        objectKeys: this.objectKeys
+        objectKeys: keys
       },
       animated: true,
       showBackdrop: true

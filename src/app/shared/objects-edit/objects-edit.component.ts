@@ -24,6 +24,8 @@ export class ObjectsEditComponent implements OnInit {
   objectId: number;
   objectActionTitle: string = "";
   fixedRole: string;
+  labelPlacement: string = "stacked"
+  toggleLabelPlacement: string = "start"
 
   patterns = {
     'room': {
@@ -162,6 +164,7 @@ export class ObjectsEditComponent implements OnInit {
     this.fileToUpload = event.target.files.item(0);
     console.log(this.fileToUpload)
   }
+
   defaultAction(object) {
     let subs = this.objectService.applyAction(object, this.objectType, this.objectAction).subscribe(
       (val) => {
