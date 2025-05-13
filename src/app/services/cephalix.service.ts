@@ -240,6 +240,12 @@ export class CephalixService {
 		return this.http.put<ServerResponse>(this.url, null, { headers: this.authService.headers });
 	}
 
+	mergeTickets(ticketId: number, toTicketId: number) {
+		this.url = this.hostname + `/tickets/${ticketId}/${toTicketId}`;
+		console.log(this.url)
+		return this.http.put<ServerResponse>(this.url, null, { headers: this.authService.headers });
+	  }
+
 	deleteArticle(articleId: number) {
 		this.url = this.hostname + `/tickets/articles/${articleId}`;
 		console.log(this.url)

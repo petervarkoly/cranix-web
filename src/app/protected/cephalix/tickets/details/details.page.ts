@@ -4,10 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Ticket, Article, Institute } from 'src/app/shared/models/cephalix-data-model';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { CephalixService } from 'src/app/services/cephalix.service';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { User } from 'src/app/shared/models/data-model';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { WindowRef } from 'src/app/shared/models/ohters';
+import { LanguageService } from 'src/app/services/language.service';
+import { tick } from '@angular/core/testing';
 class ObjectList {
   id: number;
   label: string;
@@ -28,13 +30,17 @@ export class DetailsPage implements OnInit {
   ticketCreator: User;
   workers: User[];
   nativeWindow: any
+  isOpenMergeTicketModal: boolean = false;
+  tickets: Ticket[];
   constructor(
-    private route: ActivatedRoute,
     public router: Router,
     public objectService: GenericObjectService,
+    private alertController: AlertController,
     private authService: AuthenticationService,
-    private cephlixS: CephalixService,
+    private cephalixService: CephalixService,
+    private languageS: LanguageService,
     private modalController: ModalController,
+    private route: ActivatedRoute,
     private win: WindowRef
   ) {
     this.nativeWindow = win.getNativeWindow();
@@ -44,7 +50,7 @@ export class DetailsPage implements OnInit {
 
   ngOnInit() {
     console.log("Ticket details ngOnInit called", this.ticketId)
-    this.cephlixS.getTicketById(this.ticketId).subscribe({
+    this.cephalixService.getTicketById(this.ticketId).subscribe({
       next: (val) => {
         console.log("getTicketById was called", this.ticketId)
         this.workers = this.objectService.allObjects['user'].filter(o => o.role == 'sysadmins').sort((a, b) => a.fullName > b.label ? 0 : 1);
@@ -75,7 +81,7 @@ export class DetailsPage implements OnInit {
 
   public readArcticles() {
     this.articles = [];
-    this.cephlixS.getArticklesOfTicket(this.ticketId).subscribe(
+    this.cephalixService.getArticklesOfTicket(this.ticketId).subscribe(
       (val) => {
         this.articles = val
       }
@@ -86,7 +92,7 @@ export class DetailsPage implements OnInit {
     this.ticket.creatorId = this.authService.session.userId;
     this.ticketCreator.fullName = this.authService.session.fullName;
     this.ticketCreator.id = this.authService.session.userId;
-    this.cephlixS.modifyTicket(this.ticket).subscribe({
+    this.cephalixService.modifyTicket(this.ticket).subscribe({
       next: (val) => {
         this.objectService.responseMessage(val);
         this.objectService.getAllObject('ticket');
@@ -99,7 +105,7 @@ export class DetailsPage implements OnInit {
 
   public setCreator() {
     this.ticket.creatorId = this.ticketCreator.id
-    this.cephlixS.modifyTicket(this.ticket).subscribe({
+    this.cephalixService.modifyTicket(this.ticket).subscribe({
       next: (val) => {
         this.objectService.responseMessage(val);
         this.objectService.getAllObject('ticket');
@@ -132,11 +138,72 @@ export class DetailsPage implements OnInit {
     (await modal).present();
   }
 
-  public noticeToArticle(article: Article) {
-    //TODO
+  public filterTickets(){
+    let filter = ""
+    if(document.getElementById('crxSearchFilter')){
+      filter = (<HTMLInputElement>document.getElementById('crxSearchFilter')).value.toLowerCase();
+    }
+    let tmp = []
+    let found: boolean = false
+    let myFilter = filter.toLowerCase().split(" ");
+    for( let ticket of this.objectService.allObjects['ticket']){
+      if(ticket.id == this.ticketId) {
+        continue
+      }
+      found = true
+      for(let f of myFilter){
+        if(! ( ticket.title.toLowerCase().indexOf(f) > -1 || ticket.lastname.toLowerCase().indexOf(f) > -1 || ticket.lastname.toLowerCase().indexOf(f) > -1 )){
+          found = false
+          break
+        }
+      }
+      if(found){
+        tmp.push(ticket)
+      }
+    }
+    this.tickets = tmp;
+  }
+
+  public closeMergeTicket(modal){
+    this.isOpenMergeTicketModal = false;
+    modal.dismiss()
+  }
+  public openMergeTicket(){
+    this.filterTickets()
+    this.isOpenMergeTicketModal = true
+  }
+  async presentMergeAlert(ticket: Ticket, modal) {
+    const alert = await this.alertController.create({
+      header: this.languageS.trans('Confirm!'),
+      subHeader: this.languageS.trans('Do you realy want to merge these tickets? You can not undo this.'),
+      message: this.ticket.title + " ==> " + ticket.title,
+      buttons: [
+        {
+          text: this.languageS.trans('Cancel'),
+          role: 'cancel',
+        }, {
+          text: 'OK',
+          handler: () => {
+            this.mergeTickets(ticket.id, modal)
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+  public mergeTickets(toTicketId: number, modal) {
+    this.cephalixService.mergeTickets(this.ticketId, toTicketId).subscribe(
+      (val) => {
+        this.objectService.responseMessage(val)
+        modal.dismiss();
+        this.isOpenMergeTicketModal = true
+        this.router.navigate([`/pages/cephalix/tickets/${toTicketId}`])
+      }
+    )
   }
   public deleteArticle(article: Article) {
-    let sub = this.cephlixS.deleteArticle(article.id).subscribe(
+    let sub = this.cephalixService.deleteArticle(article.id).subscribe(
       (val) => {
         this.objectService.responseMessage(val)
         if (val.code == "OK") {
@@ -147,7 +214,7 @@ export class DetailsPage implements OnInit {
       () => { sub.unsubscribe() })
   }
   public setSeenOnArticle(article: Article) {
-    let sub = this.cephlixS.setSeenOnArticle(article.id).subscribe(
+    let sub = this.cephalixService.setSeenOnArticle(article.id).subscribe(
       (val) => {
         this.objectService.responseMessage(val)
         if (val.code == "OK") {
@@ -160,7 +227,7 @@ export class DetailsPage implements OnInit {
 
   public setInstitute() {
     this.objectService.requestSent();
-    this.cephlixS.setInstituteForTicket(this.ticketId, this.instObject.id).subscribe(
+    this.cephalixService.setInstituteForTicket(this.ticketId, this.instObject.id).subscribe(
       (val) => {
         this.objectService.responseMessage(val)
         this.institute = this.objectService.getObjectById('institute', this.instObject.id);
@@ -184,7 +251,7 @@ export class DetailsPage implements OnInit {
     var hostname = window.location.hostname;
     var protocol = window.location.protocol;
     var port = window.location.port;
-    let sub = this.cephlixS.getInstituteToken(this.institute.id)
+    let sub = this.cephalixService.getInstituteToken(this.institute.id)
       .subscribe({
         next: (res) => {
           console.log("Get token from:" + this.institute.uuid)

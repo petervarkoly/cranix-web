@@ -1,8 +1,9 @@
 <cranix-toolbar title="{{'Manage tickets' | translate}}"></cranix-toolbar>
-<ion-content *ngIf="ticket">
+@if(ticket){
+<ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>#{{ticket.id}} {{ticket.title}} {{ticket.created | date:'yy-MM-dd HH:mm'}}</ion-card-title>
+      <ion-card-title>#{{ticket.id}}, {{ticket.created | date:'yyyy-MM-dd HH:mm'}}, {{ticket.title}}</ion-card-title>
       <ion-toolbar>
         <ion-card-subtitle>
           {{ institute.name }}
@@ -11,12 +12,18 @@
           {{ticket.email}}: {{ticket.lastname}},{{ticket.firstname}}
         </ion-card-subtitle>
         <ion-buttons slot="end">
-          <ion-button *ngIf="institute.ipVPN && institute.ipVPN != ''" color="secondary" fill="clear" size="small"
-            (click)="routeSchool($event)" matTooltip="{{'Connect the institute in a separate window.' | translate }}">
-            <ion-icon name="create-outline"></ion-icon>
-          </ion-button>
+
           <ion-button fill="clear" (click)="router.navigate(['/pages/cephalix/tickets'])">
             <ion-icon slot="icon-only" name="caret-back"></ion-icon>
+          </ion-button>
+          @if(institute.ipVPN && institute.ipVPN != ''){
+          <ion-button color="secondary" fill="clear" size="small" (click)="routeSchool($event)"
+            matTooltip="{{'Connect the institute in a separate window.' | translate }}">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+          }
+          <ion-button fill="clear" (click)="openMergeTicket()">
+            <ion-icon color="warning" slot="icon-only" name="git-merge"></ion-icon>
           </ion-button>
           <ion-button fill="clear" (click)="assigneTicketToMe()">
             <ion-icon color="warning" slot="icon-only" name="lock-closed"></ion-icon>
@@ -28,22 +35,15 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-card-header>
-    <ion-card-content  style="padding: 5px; padding-top: 0px;">
+    <ion-card-content style="padding: 5px; padding-top: 0px;">
       <ion-grid style="padding: 0px;">
         <ion-row>
           <ion-col style="padding: 0px;">
             <ion-item lines="none">
               <ion-label position="stacked">{{'Ticket Owner'| translate}}</ion-label>
-              <ionic-selectable
-                #selectTicketCreator
-                item-content
-                [(ngModel)]="ticketCreator"
-                [ngModelOptions]="{standalone: true}"
-                [items]="workers"
-                itemValueField="id"
-                itemTextField="fullName"
-                [canSearch]="true"
-                (onChange)="setCreator()">
+              <ionic-selectable #selectTicketCreator item-content [(ngModel)]="ticketCreator"
+                [ngModelOptions]="{standalone: true}" [items]="workers" itemValueField="id" itemTextField="fullName"
+                [canSearch]="true" (onChange)="setCreator()">
                 <ng-template ionicSelectableHeaderTemplate>
                   <ion-toolbar>
                     <ion-title>
@@ -90,36 +90,45 @@
       </ion-grid>
     </ion-card-content>
   </ion-card>
-  <ion-card *ngFor="let article of articles">
+  @for(article of articles; track article.id){
+  <ion-card>
     <ion-card-header>
       <ion-toolbar>
         <ion-card-subtitle [color]="article.articleType == 'O' ? 'warning' : article.seen ? 'success' : 'danger'">
           {{article.created | date:'yyyy-MM-dd HH:mm'}}
-          <ion-icon *ngIf="article.articleType == 'O'" name="play-back"></ion-icon>
-          <ion-icon *ngIf="article.articleType == 'I'" name="play-forward"></ion-icon>
+          @if(article.articleType == 'O'){
+          <ion-icon name="play-back"></ion-icon>
+          }@else{
+          <ion-icon name="play-forward"></ion-icon>
+          }
         </ion-card-subtitle>
         <ion-buttons slot="end">
-          <div *ngFor="let picture of article.pictures">
-            <ion-button size="small" fill="clear" target="_blank" [href]="picture">
-              <ion-icon slot="icon-only" name="download"></ion-icon>
-            </ion-button>
-          </div>
-          <ion-button *ngIf="article.articleType == 'I'" [color]="article.seen ? 'success' : 'danger'" fill="clear"
-            (click)="setSeenOnArticle(article)" matTooltip="{{'Set article as seen.' | translate }}">
+          @for(picture of article.pictures; track pictures){
+          <ion-button size="small" fill="clear" target="_blank" [href]="picture">
+            <ion-icon slot="icon-only" name="download"></ion-icon>
+          </ion-button>
+          }
+          @if(article.articleType == 'O'){
+          <ion-button [color]="article.seen ? 'success' : 'danger'" fill="clear" (click)="setSeenOnArticle(article)"
+            matTooltip="{{'Set article as seen.' | translate }}">
             <ion-icon slot="icon-only" name="checkmark"></ion-icon>
           </ion-button>
-          <ion-button *ngIf="article.articleType == 'I'" fill="clear" (click)="answerArticle(article)"
-            matTooltip="{{'Answer the article.' | translate }}">
+          <ion-button fill="clear" (click)="answerArticle(article)" matTooltip="{{'Answer the article.' | translate }}">
             <ion-icon slot="icon-only" name="arrow-undo"></ion-icon>
           </ion-button>
-          <ion-button *ngIf="article.articleType == 'O'" fill="clear" (click)="answerArticle(article)"
+          }@else{
+          <ion-button fill="clear" (click)="answerArticle(article)"
             matTooltip="{{'Edit the answer and resend it.' | translate }}">
             <ion-icon slot="icon-only" name="build-outline"></ion-icon>
           </ion-button>
+          }
           <ion-button fill="clear" (click)="toggleArticle(article.id)"
             matTooltip="{{'Open or close the article.' | translate }}">
-            <ion-icon *ngIf="!articleOpen[article.id]" slot="icon-only" name="mail-open"></ion-icon>
-            <ion-icon *ngIf="articleOpen[article.id]" slot="icon-only" name="mail"></ion-icon>
+            @if(articleOpen[article.id]){
+            <ion-icon slot="icon-only" name="mail"></ion-icon>
+            }@else{
+            <ion-icon slot="icon-only" name="mail-open"></ion-icon>
+            }
           </ion-button>
           <ion-button fill="clear" (click)="deleteArticle(article)">
             <ion-icon slot="icon-only" color="danger" name="trash"></ion-icon>
@@ -128,13 +137,45 @@
       </ion-toolbar>
     </ion-card-header>
     <ion-card-content style="height: 50px; padding: 5px; padding-top: 0px;" [id]="'article' + article.id">
-      <ng-template [ngIf]="isHTML(article.text)" [ngIfElse]="textArea">
-        <div [innerHTML]="article.text"></div>
-      </ng-template>
-      <ng-template #textArea>
-        <div [innerText]="article.text"></div>
-      </ng-template>
-      <!-- quill-view-html style="padding: 0px;" [content]="article.text" format="text" theme="snow"></quill-view-html -->
+      @if(isHTML(article.text)){
+      <div [innerHTML]="article.text"></div>
+      }@else{
+      <div [innerText]="article.text"></div>
+      }
     </ion-card-content>
   </ion-card>
+  }
 </ion-content>
+}
+<ion-modal #mergeTicketModal [isOpen]="isOpenMergeTicketModal">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>
+          {{'Search for ticket to merge'|translate}}
+        </ion-title>
+        <ion-buttons slot="end">
+          <ion-button class="ion-no-margin" (click)="closeMergeTicket(mergeTicketModal)">
+            <ion-icon slot="icon-only" color="danger" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+      <ion-item>
+        <ion-searchbar placeholder="{{'search' | translate }}" (input)="filterTickets()"
+          id="crxSearchFilter"></ion-searchbar>
+      </ion-item>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ul class="radiolist">
+          @for(o of tickets; track o.id){
+          <li>
+            <input type="radio" (click)="presentMergeAlert(o,mergeTicketModal)" [id]="o.id" name="cranixSearchList">
+            <label [for]="o.id">#{{o.id}} {{o.lastname}} {{o.firstname}} {{o.title}}</label>
+          </li>
+          }
+        </ul>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>
