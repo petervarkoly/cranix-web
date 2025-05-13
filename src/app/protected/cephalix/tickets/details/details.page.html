@@ -103,7 +103,7 @@
           }
         </ion-card-subtitle>
         <ion-buttons slot="end">
-          @for(picture of article.pictures; track pictures){
+          @for(picture of article.pictures; track picture){
           <ion-button size="small" fill="clear" target="_blank" [href]="picture">
             <ion-icon slot="icon-only" name="download"></ion-icon>
           </ion-button>
