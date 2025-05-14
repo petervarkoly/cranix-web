@@ -1,95 +1,84 @@
 <cranix-toolbar title="{{'Manage tickets' | translate}}"></cranix-toolbar>
 @if(ticket){
+<ion-toolbar class="page-toolbar-full">
+  <ion-title>#{{ticket.id}}, {{ticket.created | date:'yyyy-MM-dd HH:mm'}}, {{ticket.title}}<br>
+    {{ institute.name }} {{ institute.regCode }} {{ institute.ipVPN }}<br>
+    {{ticket.email}} {{ticket.lastname}},{{ticket.firstname}}
+  </ion-title>
+  <ion-buttons slot="end">
+    <ion-button fill="clear" (click)="router.navigate(['/pages/cephalix/tickets'])">
+      <ion-icon slot="icon-only" name="caret-back"></ion-icon>
+    </ion-button>
+    @if(institute.ipVPN && institute.ipVPN != ''){
+    <ion-button color="secondary" fill="clear" size="small" (click)="routeToInstitute($event)"
+      matTooltip="{{'Connect the institute in a separate window.' | translate }}">
+      <ion-icon name="create"></ion-icon>
+    </ion-button>
+    }<ion-button fill="clear" (click)="openMergeTicket()">
+      <ion-icon color="warning" slot="icon-only" name="git-merge"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" (click)="assigneTicketToMe()">
+      <ion-icon color="warning" slot="icon-only" name="lock-closed"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" matTooltip="{{'Close the ticket.' | translate }}"
+      (click)="objectService.deleteObjectDialog(this.ticket, 'ticket', '/pages/cephalix/tickets')">
+      <ion-icon color="danger" slot="icon-only" name="checkmark-done-circle"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-grid style="padding: 0px;">
+    <ion-row>
+      <ion-col style="padding: 0px;">
+        <ion-item lines="none">
+          <ion-label position="stacked">{{'Ticket Owner'| translate}}</ion-label>
+          <ionic-selectable #selectTicketCreator item-content [(ngModel)]="ticketCreator"
+            [ngModelOptions]="{standalone: true}" [items]="workers" itemValueField="id" itemTextField="fullName"
+            [canSearch]="true" (onChange)="setCreator()">
+            <ng-template ionicSelectableHeaderTemplate>
+              <ion-toolbar color="primary">
+                <ion-title>
+                  {{ "Select the owner of the ticket" | translate }}
+                </ion-title>
+                <ion-buttons slot="end">
+                  <ion-button ion-button (click)="selectTicketCreator.close()">
+                    <ion-icon color="danger" name="close"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ng-template>
+            <ng-template ionicSelectableItemIconTemplate>
+              <div></div>
+            </ng-template>
+          </ionic-selectable>
+        </ion-item>
+      </ion-col>
+      <ion-col style="padding: 0px;">
+        <ion-item lines="none">
+          <ion-label position="stacked">{{'Institute'| translate}}</ion-label>
+          <ionic-selectable #selectInstitute item-content [(ngModel)]="instObject" [ngModelOptions]="{standalone: true}"
+            [items]="institutes" itemValueField="id" itemTextField="label" [canSearch]="true"
+            (onChange)="setInstitute()">
+            <ng-template ionicSelectableHeaderTemplate>
+              <ion-toolbar color="primary">
+                <ion-title>
+                  {{ "Select the institute of the ticket" | translate }}
+                </ion-title>
+                <ion-buttons slot="end">
+                  <ion-button ion-button (click)="selectInstitute.close()">
+                    <ion-icon color="danger" name="close"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ng-template>
+            <ng-template ionicSelectableItemIconTemplate>
+              <div></div>
+            </ng-template>
+          </ionic-selectable>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-toolbar>
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>#{{ticket.id}}, {{ticket.created | date:'yyyy-MM-dd HH:mm'}}, {{ticket.title}}</ion-card-title>
-      <ion-toolbar>
-        <ion-card-subtitle>
-          {{ institute.name }}
-          {{ institute.regCode }}
-          {{ institute.ipVPN }}<br>
-          {{ticket.email}}: {{ticket.lastname}},{{ticket.firstname}}
-        </ion-card-subtitle>
-        <ion-buttons slot="end">
-
-          <ion-button fill="clear" (click)="router.navigate(['/pages/cephalix/tickets'])">
-            <ion-icon slot="icon-only" name="caret-back"></ion-icon>
-          </ion-button>
-          @if(institute.ipVPN && institute.ipVPN != ''){
-          <ion-button color="secondary" fill="clear" size="small" (click)="routeSchool($event)"
-            matTooltip="{{'Connect the institute in a separate window.' | translate }}">
-            <ion-icon name="create-outline"></ion-icon>
-          </ion-button>
-          }
-          <ion-button fill="clear" (click)="openMergeTicket()">
-            <ion-icon color="warning" slot="icon-only" name="git-merge"></ion-icon>
-          </ion-button>
-          <ion-button fill="clear" (click)="assigneTicketToMe()">
-            <ion-icon color="warning" slot="icon-only" name="lock-closed"></ion-icon>
-          </ion-button>
-          <ion-button fill="clear" matTooltip="{{'Close the ticket.' | translate }}"
-            (click)="objectService.deleteObjectDialog(this.ticket, 'ticket', '/pages/cephalix/tickets')">
-            <ion-icon color="danger" slot="icon-only" name="checkmark-done-circle"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-card-header>
-    <ion-card-content style="padding: 5px; padding-top: 0px;">
-      <ion-grid style="padding: 0px;">
-        <ion-row>
-          <ion-col style="padding: 0px;">
-            <ion-item lines="none">
-              <ion-label position="stacked">{{'Ticket Owner'| translate}}</ion-label>
-              <ionic-selectable #selectTicketCreator item-content [(ngModel)]="ticketCreator"
-                [ngModelOptions]="{standalone: true}" [items]="workers" itemValueField="id" itemTextField="fullName"
-                [canSearch]="true" (onChange)="setCreator()">
-                <ng-template ionicSelectableHeaderTemplate>
-                  <ion-toolbar>
-                    <ion-title>
-                      {{ "Select the owner of the ticket" | translate }}
-                    </ion-title>
-                    <ion-buttons slot="end">
-                      <ion-button ion-button (click)="selectTicketCreator.close()">
-                        <ion-icon color="danger" name="close"></ion-icon>
-                      </ion-button>
-                    </ion-buttons>
-                  </ion-toolbar>
-                </ng-template>
-                <ng-template ionicSelectableItemIconTemplate>
-                  <div></div>
-                </ng-template>
-              </ionic-selectable>
-            </ion-item>
-          </ion-col>
-          <ion-col style="padding: 0px;">
-            <ion-item lines="none">
-              <ion-label position="stacked">{{'Institute'| translate}}</ion-label>
-              <ionic-selectable #selectInstitute item-content [(ngModel)]="instObject"
-                [ngModelOptions]="{standalone: true}" [items]="institutes" itemValueField="id" itemTextField="label"
-                [canSearch]="true" (onChange)="setInstitute()">
-                <ng-template ionicSelectableHeaderTemplate>
-                  <ion-toolbar>
-                    <ion-title>
-                      {{ "Select the institute of the ticket" | translate }}
-                    </ion-title>
-                    <ion-buttons slot="end">
-                      <ion-button ion-button (click)="selectInstitute.close()">
-                        <ion-icon color="danger" name="close"></ion-icon>
-                      </ion-button>
-                    </ion-buttons>
-                  </ion-toolbar>
-                </ng-template>
-                <ng-template ionicSelectableItemIconTemplate>
-                  <div></div>
-                </ng-template>
-              </ionic-selectable>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
   @for(article of articles; track article.id){
   <ion-card>
     <ion-card-header>
@@ -119,7 +108,7 @@
           }@else{
           <ion-button fill="clear" (click)="answerArticle(article)"
             matTooltip="{{'Edit the answer and resend it.' | translate }}">
-            <ion-icon slot="icon-only" name="build-outline"></ion-icon>
+            <ion-icon slot="icon-only" name="pencil"></ion-icon>
           </ion-button>
           }
           <ion-button fill="clear" (click)="toggleArticle(article.id)"

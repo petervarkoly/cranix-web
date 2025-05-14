@@ -246,7 +246,7 @@ export class DetailsPage implements OnInit {
     }
   }
 
-  public routeSchool(event) {
+  public routeToInstitute(event) {
     event.stopPropagation();
     var hostname = window.location.hostname;
     var protocol = window.location.protocol;

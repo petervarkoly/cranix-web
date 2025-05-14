@@ -1,8 +1,9 @@
 <ion-header translucent>
-  <ion-toolbar>
-    <ion-title>{{ 'Answer:' | translate }} {{ticket.title}}</ion-title>
-    <ion-subtitle>{{article.created | date:'yy-MM-dd HH:mm'}} {{article.title}} {{article.sender}}
-    </ion-subtitle>
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{ 'Answer:' | translate }} {{ticket.title}}<br>
+      {{article.created | date:'yy-MM-dd HH:mm'}} {{article.title}} {{article.sender}}
+    </ion-title>
     <ion-buttons slot="end">
       <ion-button id="add-attachment">
         <ion-icon slot="icon-only" name="attach"></ion-icon>
@@ -37,7 +38,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-  <quill-editor [styles]="{ height: '450px'}" [(ngModel)]="newText" name="description"
+  <quill-editor [styles]="{ height: '100%'}" [(ngModel)]="newText" name="description"
     placeholder="{{'Insert your issue ...'| translate}}">
     <div quill-editor-toolbar>
       <span class="ql-formats">
