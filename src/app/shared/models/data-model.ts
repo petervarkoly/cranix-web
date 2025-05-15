@@ -626,7 +626,7 @@ export class IdRequest {
 
 export class CrxNotice {
 	id: number = 0
-	creator: User = new User
+	creator: User = new User()
 	created: Date | string = new Date()
 	modified: Date | string = new Date()
 	reminder: Date | string = ""
@@ -639,4 +639,29 @@ export class CrxNotice {
 	objectId: number = 0
 	issueType: string = ""
 	issueId: number = 0
+}
+
+export class CrxTicketArticle {
+	id: number = 0
+	creator: User = new User()
+	created: Date | string = new Date()
+	modified: Date | string = new Date()
+	reminder: Date | string = new Date()
+	seen: boolean = false
+	workTime: number = 0
+	text: string = ""
+}
+
+export class CrxTicket {
+	id: number = 0
+	creator: User = new User()
+	assignee: User = new User()
+	created: Date | string = new Date()
+	modified: Date | string = new Date()
+	title: string = ""
+	ticketStatus: string = "N"
+	rooms: Room[] = []
+	devices: Device[] = []
+	printers: Printer[] = []
+	text: string = ""
 }
