@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 //own
-import { Ticket, Article, Institute } from 'src/app/shared/models/cephalix-data-model';
+import { Ticket, Article, Institute, Customer } from 'src/app/shared/models/cephalix-data-model';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { CephalixService } from 'src/app/services/cephalix.service';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -9,7 +9,7 @@ import { User } from 'src/app/shared/models/data-model';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { WindowRef } from 'src/app/shared/models/ohters';
 import { LanguageService } from 'src/app/services/language.service';
-import { tick } from '@angular/core/testing';
+import { el } from '@fullcalendar/core/internal-common';
 class ObjectList {
   id: number;
   label: string;
@@ -26,6 +26,9 @@ export class DetailsPage implements OnInit {
   institute: Institute;
   institutes: ObjectList[] = [];
   instObject: ObjectList = new ObjectList;
+  customer: Customer
+  customers: ObjectList[] = [];
+  customerObject: ObjectList = new ObjectList;
   articleOpen = {};
   ticketCreator: User;
   workers: User[];
@@ -57,11 +60,20 @@ export class DetailsPage implements OnInit {
         this.ticket = val;
         this.ticketCreator = this.objectService.getObjectById('user', this.ticket.creatorId);
         this.institute = this.objectService.getObjectById('institute', this.ticket.cephalixInstituteId);
+        this.customer = this.objectService.getObjectById('customer', this.ticket.cephalixCustomerId);
         this.readArcticles();
         for (let i of this.objectService.allObjects['institute']) {
           this.institutes.push({ id: i.id, label: i.name + " " + i.locality })
         }
-        console.log(this.institutes, this.institute)
+        for (let i of this.objectService.allObjects['customer']) {
+          this.customers.push({ id: i.id, label: i.name + " " + i.locality })
+        }
+        if(this.customer){
+          this.customerObject.id = this.customer.id
+          this.customerObject.label = this.customer.name + " " + this.customer.locality
+        }else{
+          this.customer = new Customer();
+        }
         if (this.institute) {
           this.instObject.id = this.institute.id
           this.instObject.label = this.institute.name + " " + this.institute.locality
@@ -236,6 +248,16 @@ export class DetailsPage implements OnInit {
     )
   }
 
+  public setCustomer() {
+    this.objectService.requestSent();
+    this.cephalixService.setCustomerForTicket(this.ticketId, this.customerObject.id).subscribe(
+      (val) => {
+        this.objectService.responseMessage(val)
+        this.customer = this.objectService.getObjectById('customer', this.customerObject.id);
+        this.objectService.getAllObject('ticket');
+      }
+    )
+  }
   toggleArticle(id) {
     if (this.articleOpen[id]) {
       (<HTMLInputElement>document.getElementById("article" + id)).style.height = "50px"

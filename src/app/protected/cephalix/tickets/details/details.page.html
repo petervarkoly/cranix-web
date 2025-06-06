@@ -75,6 +75,30 @@
           </ionic-selectable>
         </ion-item>
       </ion-col>
+      <ion-col style="padding: 0px;">
+        <ion-item lines="none">
+          <ion-label position="stacked">{{'Customer'| translate}}</ion-label>
+          <ionic-selectable #selectCustomer item-content [(ngModel)]="customerObject" [ngModelOptions]="{standalone: true}"
+            [items]="objectService.allObjects['customer']" itemValueField="id" itemTextField="name" [canSearch]="true"
+            (onChange)="setCustomer()">
+            <ng-template ionicSelectableHeaderTemplate>
+              <ion-toolbar color="primary">
+                <ion-title>
+                  {{ "Select the institute of the ticket" | translate }}
+                </ion-title>
+                <ion-buttons slot="end">
+                  <ion-button ion-button (click)="selectCustomer.close()">
+                    <ion-icon color="danger" name="close"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ng-template>
+            <ng-template ionicSelectableItemIconTemplate>
+              <div></div>
+            </ng-template>
+          </ionic-selectable>
+        </ion-item>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-toolbar>

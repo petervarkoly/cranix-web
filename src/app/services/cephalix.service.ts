@@ -136,7 +136,12 @@ export class CephalixService {
 	}
 
 	setInstituteForTicket(ticketId: number, instituteId: number) {
-		this.url = this.hostname + `/tickets/${ticketId}/institutes/${instituteId}`;
+		this.url = this.hostname + `/tickets/${ticketId}/institute/${instituteId}`;
+		console.log(this.url);
+		return this.http.put<ServerResponse>(this.url, null, { headers: this.authService.headers });
+	}
+	setCustomerForTicket(ticketId: number, customerId: number) {
+		this.url = this.hostname + `/tickets/${ticketId}/customer/${customerId}`;
 		console.log(this.url);
 		return this.http.put<ServerResponse>(this.url, null, { headers: this.authService.headers });
 	}

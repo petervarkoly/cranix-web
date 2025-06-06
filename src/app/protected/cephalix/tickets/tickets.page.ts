@@ -120,6 +120,12 @@ export class TicketsPage implements OnInit {
           }
           break;
         }
+        case 'cephalixCustomerId': {
+          col['valueGetter'] = function (params) {
+            return params.context['componentParent'].objectService.idToName('customer', params.data.cephalixCustomerId);
+          }
+          break;
+        }
         case 'creatorId': {
           col['valueGetter'] = function (params) {
             return params.context['componentParent'].objectService.idToName('user', params.data.creatorId);
