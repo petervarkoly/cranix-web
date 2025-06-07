@@ -20,6 +20,8 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
   selectedLabel: string = ""
 
   @Output() callback = new EventEmitter<any>();
+  @Output() onChange: EventEmitter<{ value: any }> = new EventEmitter();
+
   @Input({ required: true }) objectType: string
   @Input() context
   @Input() items: any[]
@@ -95,6 +97,7 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
     if(this.callback){
       this.callback.emit();
     }
+    this.onChange.emit({value: this.selection})
     this.closeModal(modal)
   }
   doSelect(o: any) {
@@ -111,6 +114,7 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
     if(this.callback){
       this.callback.emit();
     }
+    this.onChange.emit({value: this.selection})
     this.closeModal(modal)
   }
   onQuickFilterChanged() {
@@ -122,5 +126,12 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
       }
     }
     this.rowData = tmp;
+  }
+   _emitValueChange() {
+    this.propagateOnChange(this.selection);
+
+    this.onChange.emit({
+      value: this.selection
+    });
   }
 }
