@@ -1,6 +1,12 @@
 <cranix-toolbar title="{{'Manage tickets' | translate}}"></cranix-toolbar>
 @if(ticket){
 <ion-toolbar class="page-toolbar-full">
+  @if(authService.isMD()){
+  <ion-title>
+    #{{ticket.id}}, {{ticket.created | date:'yyyy-MM-dd HH:mm'}}<br>
+    {{ ticket.title }}
+  </ion-title>
+  }@else{
   <ion-title>#{{ticket.id}}, {{ticket.created | date:'yyyy-MM-dd HH:mm'}}, {{ticket.title}}<br>
     {{ institute.name }} {{ institute.regCode }} {{ institute.ipVPN }}<br>
     {{ticket.email}} {{ticket.lastname}},{{ticket.firstname}}
@@ -25,6 +31,9 @@
       <ion-icon color="danger" slot="icon-only" name="checkmark-done-circle"></ion-icon>
     </ion-button>
   </ion-buttons>
+  }
+</ion-toolbar>
+<ion-toolbar>
   <ion-grid style="padding: 0px;">
     <ion-row>
       <ion-col style="padding: 0px;">
@@ -78,9 +87,9 @@
       <ion-col style="padding: 0px;">
         <ion-item lines="none">
           <ion-label position="stacked">{{'Customer'| translate}}</ion-label>
-          <ionic-selectable #selectCustomer item-content [(ngModel)]="customerObject" [ngModelOptions]="{standalone: true}"
-            [items]="objectService.allObjects['customer']" itemValueField="id" itemTextField="name" [canSearch]="true"
-            (onChange)="setCustomer()">
+          <ionic-selectable #selectCustomer item-content [(ngModel)]="customerObject"
+            [ngModelOptions]="{standalone: true}" [items]="objectService.allObjects['customer']" itemValueField="id"
+            itemTextField="name" [canSearch]="true" (onChange)="setCustomer()">
             <ng-template ionicSelectableHeaderTemplate>
               <ion-toolbar color="primary">
                 <ion-title>
@@ -103,6 +112,36 @@
   </ion-grid>
 </ion-toolbar>
 <ion-content>
+  @if(authService.isMD()){
+  <ion-fab slot="fixed" vertical="center" horizontal="end">
+    <ion-fab-button size="small">
+      <ion-icon name="arrow-forward-circle"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button fill="clear" (click)="router.navigate(['/pages/cephalix/tickets'])">
+        <ion-icon name="caret-back"></ion-icon>
+      </ion-fab-button>
+      @if(institute.ipVPN && institute.ipVPN != ''){
+      <ion-fab-button fill="clear" (click)="routeToInstitute($event)"
+        matTooltip="{{'Connect the institute in a separate window.' | translate }}">
+        <ion-icon color="secondary" name="create"></ion-icon>
+      </ion-fab-button>
+      }<ion-fab-button fill="clear" (click)="openMergeTicket()">
+        <ion-icon color="warning" name="git-merge"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button fill="clear" (click)="assigneTicketToMe()">
+        <ion-icon color="warning" name="lock-closed"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button fill="clear" matTooltip="{{'Close the ticket.' | translate }}"
+        (click)="objectService.deleteObjectDialog(this.ticket, 'ticket', '/pages/cephalix/tickets')">
+        <ion-icon color="danger" name="checkmark-done-circle"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+  {{ institute.name }}<br>
+  {{ institute.ipVPN }}<br>
+  {{ticket.email}} {{ticket.lastname}}, {{ticket.firstname}}
+  }
   @for(article of articles; track article.id){
   <ion-card>
     <ion-card-header>
