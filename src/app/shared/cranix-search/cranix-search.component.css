@@ -112,7 +112,6 @@ ul.radiolist input[type="radio"]:checked::before {
 	font-size:17px;
   margin: 4px;
   min-width: 100px;
-  max-width: 200px;
 	text-decoration:none;
   padding: 4px;
   white-space: nowrap;

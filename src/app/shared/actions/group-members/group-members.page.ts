@@ -66,7 +66,7 @@ export class GroupMembersPage implements OnInit {
   addMember(id: number){
     this.objectS.requestSent()
     this.groupS.putUserToGroup(id, this.group.id).subscribe(
-      (val) => { 
+      (val) => {
         this.objectS.responseMessage(val)
         this.readMembers()
       }
@@ -75,7 +75,7 @@ export class GroupMembersPage implements OnInit {
   deleteMember(id: number){
     this.objectS.requestSent()
     this.groupS.deletUserFromGroup(id, this.group.id).subscribe(
-      (val) => { 
+      (val) => {
         this.objectS.responseMessage(val)
         this.readMembers()
       }
@@ -88,7 +88,7 @@ export class GroupMembersPage implements OnInit {
         this.memberData = val
         this.memberRowData = val
         this.groupS.getAvailiableMembers(this.group.id).subscribe(
-          (val) => { 
+          (val) => {
             this.noMemberData = val;
             this.noMemberRowData = val;
           }

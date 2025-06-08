@@ -21,7 +21,6 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
 
   @Output() callback = new EventEmitter<any>();
   @Output() onChange: EventEmitter<{ value: any }> = new EventEmitter();
-
   @Input({ required: true }) objectType: string
   @Input() context
   @Input() items: any[]
@@ -48,9 +47,10 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
     if (this.multiple) {
       this.selection = []
     }
-    if( typeof(this.itemTextField) == "string") {
+    if( typeof this.itemTextField  == "string") {
       this.itemTextField = [this.itemTextField]
     }
+    console.log(this.itemTextField)
     this.emptyLabel = 'Select ' + this.objectType
     this.selectedLabel = this.objectType + 'selected.'
     this.rowData = this.items
@@ -61,6 +61,7 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
 
   writeValue(value: any) {
     console.log("write value called")
+    console.log(value)
     this.selection = value;
   }
   registerOnChange(method: any): void {
@@ -70,7 +71,6 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
     this.propagateOnTouched = method;
   }
   openModal() {
-    console.log(this.openModal)
     this.isCranixSearchModalOpen = true
   }
   closeModal(modal){
@@ -95,6 +95,7 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
     }
   }
   select(o: any, modal) {
+    console.log(o)
     this.selection = o;
     this.propagateOnChange(this.selection);
     if(this.callback){
@@ -126,7 +127,7 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
     for (let o of this.items) {
       //TODO split filter also
       for( let field of this.itemTextField){
-        if (o[field].indexOf(filter) > -1) {
+        if (o[field] && o[field].indexOf(filter) > -1) {
           tmp.push(o)
           break;
         }
