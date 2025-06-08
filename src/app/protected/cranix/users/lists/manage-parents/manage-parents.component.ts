@@ -5,7 +5,7 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { ParentsService } from 'src/app/services/parents.service';
 import { UtilsService } from 'src/app/services/utils.service';
-import { Group, PTMTeacherInRoom, ParentTeacherMeeting, Room, TeachingSubject, User } from 'src/app/shared/models/data-model';
+import { Group, PTMTeacherInRoom, ParentTeacherMeeting, User } from 'src/app/shared/models/data-model';
 import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer'
 
 @Component({
