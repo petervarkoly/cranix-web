@@ -27,10 +27,10 @@ export class DetailsPage implements OnInit {
   isOpenMergeTicketModal: boolean = false;
   tickets: Ticket[];
   constructor(
+    public authService: AuthenticationService,
     public router: Router,
     public objectService: GenericObjectService,
     private alertController: AlertController,
-    private authService: AuthenticationService,
     private cephalixService: CephalixService,
     private languageS: LanguageService,
     private modalController: ModalController,

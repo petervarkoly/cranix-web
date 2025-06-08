@@ -17,17 +17,18 @@
         <ion-label>{{'Select the users to remove from the group.'|translate}}</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
-        <ion-list [inset]="true">
-          <ion-item>
-            <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onMemberFilterChanged()"
-              id="memberFilter"></ion-input>
-          </ion-item>
+        <ion-item lines="none">
+          <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onMemberFilterChanged()"
+            id="memberFilter"></ion-input>
+        </ion-item>
+        <div class="button-container">
           @for(o of memberRowData; track o.id){
-          <ion-item button detail lines="full" (click)="deleteMember(o.id)">
-            {{o.fullName}}
-          </ion-item>
+          <button (click)="deleteMember(o.id)" class="minus">{{o.fullName}}</button>
+          <!-- ion-item button detail lines="full" (click)="deleteMember(o.id)">
+              {{o.fullName}}
+            </ion-item-->
           }
-        </ion-list>
+        </div>
       </div>
     </ion-accordion>
     <ion-accordion value="second">
@@ -35,17 +36,18 @@
         <ion-label>{{'Select the users to add to the group.'|translate}}</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
-        <ion-list [inset]="true">
-          <ion-item>
-            <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onNoMemberFilterChanged()"
-              id="noMemberFilter"></ion-input>
-          </ion-item>
+        <ion-item lines="none">
+          <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onNoMemberFilterChanged()"
+            id="noMemberFilter"></ion-input>
+        </ion-item>
+        <div class="button-container">
           @for(o of noMemberRowData; track o.id){
-          <ion-item button detail lines="full" (click)="addMember(o.id)">
-            {{o.fullName}}
-          </ion-item>
+          <button (click)="addMember(o.id)" class="pluss">{{o.fullName}}</button>
+          <!-- ion-item button detail lines="full" (click)="addMember(o.id)">
+              {{o.fullName}}
+            </ion-item -->
           }
-        </ion-list>
+        </div>
       </div>
     </ion-accordion>
   </ion-accordion-group>
@@ -57,16 +59,19 @@
           <ion-list-header lines="full" color="medium">
             {{'Select the users to remove from the group.'|translate}}
           </ion-list-header>
-          <ion-item>
+          <ion-item lines="none">
             <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onMemberFilterChanged()"
               id="memberFilter">
             </ion-input>
           </ion-item>
-          @for(o of memberRowData; track o.id){
-          <ion-item button detail lines="full" (click)="deleteMember(o.id)">
-            {{o.fullName}}
-          </ion-item>
-          }
+          <div class="button-container">
+            @for(o of memberRowData; track o.id){
+            <button (click)="deleteMember(o.id)" class="minus">{{o.fullName}}</button>
+            <!-- ion-item button detail lines="full" (click)="deleteMember(o.id)">
+              {{o.fullName}}
+            </ion-item -->
+            }
+          </div>
         </ion-list>
       </ion-col>
       <ion-col size=12 sizeMd=12 sizeLg=6 sizeXl=6>
@@ -79,11 +84,14 @@
               id="noMemberFilter">
             </ion-input>
           </ion-item>
-          @for(o of noMemberRowData; track o.id){
-          <ion-item button detail lines="full" (click)="addMember(o.id)">
-            {{o.fullName}}
-          </ion-item>
-          }
+          <div class="button-container">
+            @for(o of noMemberRowData; track o.id){
+            <button (click)="addMember(o.id)" class="pluss">{{o.fullName}}</button>
+            <!-- ion-item button detail lines="full" (click)="addMember(o.id)">
+              {{o.fullName}}
+            </ion-item -->
+            }
+          </div>
         </ion-list>
       </ion-col>
     </ion-row>
