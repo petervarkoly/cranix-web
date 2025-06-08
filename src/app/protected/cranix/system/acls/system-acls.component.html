@@ -1,5 +1,45 @@
 <cranix-toolbar title="{{ 'Manage system acls for groups and users' | translate}}"></cranix-toolbar>
 <ion-content id="carded">
+  @if(authService.isMD()){
+  <ion-accordion-group>
+    <ion-accordion value="groups">
+      <ion-item slot="header" color="light">
+        <ion-label>{{'Groups'|translate}}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-list>
+          <ion-item>
+            <ion-input type="text" placeholder="{{'search' | translate }}" (input)="groupFilterChanged()"
+              id="groupFilter"></ion-input>
+          </ion-item>
+          @for(o of groupsData; track o.id){
+          <ion-item button detail lines="full" (click)="manageAcls('group',o)">
+            {{o.name}} {{o.description}}
+          </ion-item>
+          }
+        </ion-list>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="users">
+      <ion-item slot="header" color="light">
+        <ion-label>{{'User'|translate}}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-list>
+          <ion-item>
+            <ion-input type="text" placeholder="{{'search' | translate }}" (input)="userFilterChanged()"
+              id="userFilter"></ion-input>
+          </ion-item>
+          @for(o of usersData; track o.id){
+          <ion-item button detail lines="full" (click)="manageAcls('user',o)">
+            {{o.fullName}}
+          </ion-item>
+          }
+        </ion-list>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+  }@else{
   <ion-grid>
     <ion-row>
       <ion-col size=12 sizeMd=12 sizeLg=6 sizeXl=6>
@@ -30,4 +70,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  }
 </ion-content>
