@@ -11,8 +11,9 @@ import { Acl } from 'src/app/shared/models/server-models';
 export class ManageAclsComponent implements OnInit {
 
   name = "";
-  availabeAcls = [];
-  acls = [];
+  availabeAcls: Acl[] = [];
+  acls: Acl[] = [];
+  rowData: Acl[] = []
 
   @Input() objectType;
   @Input() object;
@@ -33,22 +34,49 @@ export class ManageAclsComponent implements OnInit {
   readAcls() {
     this.acls = []
     this.availabeAcls = []
+    let tmp = []
     let sub1 = this.systemService.getAclsOfObject(this.objectType, this.object.id).subscribe(
       (val) => {
         this.acls = val
-        this.acls.sort((a, b) => (a.acl > b.acl) ? 1 : (b.acl > a.acl) ? -1 : 0)
-      },
-      (err) => { console.log(err) },
-      () => { sub1.unsubscribe() }
+        let sub2 = this.systemService.getAvailableAclsOfObject(this.objectType, this.object.id).subscribe(
+          (val) => {
+            for(let o of this.acls){
+              this.availabeAcls.push(o)
+            }
+            for(let o of val){
+              this.availabeAcls.push(o)
+            }
+            this.availabeAcls.sort((a, b) => (a.acl > b.acl) ? 1 : (b.acl > a.acl) ? -1 : 0)
+            for( let o of this.availabeAcls){
+              tmp.push(o)
+            }
+            this.rowData = tmp
+          }
+        )
+      }
     )
-    let sub2 = this.systemService.getAvailableAclsOfObject(this.objectType, this.object.id).subscribe(
-      (val) => {
-        this.availabeAcls = val
-        this.availabeAcls.sort((a, b) => (a.acl > b.acl) ? 1 : (b.acl > a.acl) ? -1 : 0)
-      },
-      (err) => { console.log(err) },
-      () => { sub2.unsubscribe() }
-    )
+  }
+
+  onQuickFilterChanged(){
+    let filter = (<HTMLInputElement>document.getElementById('aclsFilter')).value.toLowerCase();
+    console.log(filter)
+    let tmp: Acl[] =[]
+    for(let o of this.availabeAcls){
+      if(o.acl.indexOf(filter) != -1){
+        tmp.push(o)
+      }
+    }
+    console.log(tmp.length)
+    this.rowData = tmp
+    console.log("Data copied")
+  }
+  isAllowed(acl: Acl){
+    for(let o of this.acls){
+      if(o.id && o.id == acl.id){
+        return true;
+      }
+    }
+    return false;
   }
 
   removeAcl(acl: Acl) {
