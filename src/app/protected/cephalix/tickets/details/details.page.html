@@ -39,75 +39,20 @@
       <ion-col style="padding: 0px;">
         <ion-item lines="none">
           <ion-label position="stacked">{{'Ticket Owner'| translate}}</ion-label>
-          <ionic-selectable #selectTicketCreator item-content [(ngModel)]="ticketCreator"
-            [ngModelOptions]="{standalone: true}" [items]="workers" itemValueField="id" itemTextField="fullName"
-            [canSearch]="true" (onChange)="setCreator()">
-            <ng-template ionicSelectableHeaderTemplate>
-              <ion-toolbar color="primary">
-                <ion-title>
-                  {{ "Select the owner of the ticket" | translate }}
-                </ion-title>
-                <ion-buttons slot="end">
-                  <ion-button ion-button (click)="selectTicketCreator.close()">
-                    <ion-icon color="danger" name="close"></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-              </ion-toolbar>
-            </ng-template>
-            <ng-template ionicSelectableItemIconTemplate>
-              <div></div>
-            </ng-template>
-          </ionic-selectable>
+          <cranix-search objectType="user" [items]="workers" [(ngModel)]="ticketCreator" name="selecteWorker" (onChange)="setCreator()" itemTextField="fullName"></cranix-search>
         </ion-item>
       </ion-col>
       <ion-col style="padding: 0px;">
         <ion-item lines="none">
           <ion-label position="stacked">{{'Institute'| translate}}</ion-label>
-          <ionic-selectable #selectInstitute item-content [(ngModel)]="instObject" [ngModelOptions]="{standalone: true}"
-            [items]="institutes" itemValueField="id" itemTextField="label" [canSearch]="true"
-            (onChange)="setInstitute()">
-            <ng-template ionicSelectableHeaderTemplate>
-              <ion-toolbar color="primary">
-                <ion-title>
-                  {{ "Select the institute of the ticket" | translate }}
-                </ion-title>
-                <ion-buttons slot="end">
-                  <ion-button ion-button (click)="selectInstitute.close()">
-                    <ion-icon color="danger" name="close"></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-              </ion-toolbar>
-            </ng-template>
-            <ng-template ionicSelectableItemIconTemplate>
-              <div></div>
-            </ng-template>
-          </ionic-selectable>
+          <cranix-search objectType="institute" [(ngModel)]="institute" name="selecteInstitue" (onChange)="setInstitute()" [itemTextField]="['name','locality']"></cranix-search>
         </ion-item>
       </ion-col>
       <ion-col style="padding: 0px;">
         <ion-item lines="none">
           <ion-label position="stacked">{{'Customer'| translate}}</ion-label>
-          <cranix-select objectType="customer" [(ngModel)]="customerObject" (onChange)="setCustomer()" [itemTextField]="['name','locality']">
-          </cranix-select>
-          <!-- ionic-selectable #selectCustomer item-content [(ngModel)]="customerObject"
-            [ngModelOptions]="{standalone: true}" [items]="objectService.allObjects['customer']" itemValueField="id"
-            itemTextField="name" [canSearch]="true" (onChange)="setCustomer()">
-            <ng-template ionicSelectableHeaderTemplate>
-              <ion-toolbar color="primary">
-                <ion-title>
-                  {{ "Select the institute of the ticket" | translate }}
-                </ion-title>
-                <ion-buttons slot="end">
-                  <ion-button ion-button (click)="selectCustomer.close()">
-                    <ion-icon color="danger" name="close"></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-              </ion-toolbar>
-            </ng-template>
-            <ng-template ionicSelectableItemIconTemplate>
-              <div></div>
-            </ng-template>
-          </ionic-selectable -->
+          <cranix-search objectType="customer" [(ngModel)]="customer" name="selectedCustomer" (onChange)="setCustomer()" [itemTextField]="['name','locality']">
+          </cranix-search>
         </ion-item>
       </ion-col>
     </ion-row>
