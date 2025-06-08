@@ -3,7 +3,7 @@
     @if(multiple){
     {{selection.length}} {{selectedLabel|translate}}
     }@else{
-    {{selection[itemTextField]}}
+    @for(field of itemTextField; track field){ {{selection[field]}} &nbsp; }
     }
     }@else{
     {{emptyLabel|translate}}
@@ -44,7 +44,9 @@
                 @for(o of rowData; track o.id){
                 <li>
                     <input type="checkbox" (click)="doSelect(o)" [id]="o[itemTextField]" [checked]="isSelected(o.id)">
-                    <label [for]="o[itemTextField]">{{o[itemTextField]}}</label>
+                    <label [for]="o[itemTextField]">
+                        @for(field of itemTextField; track field){ {{o[field]}} }
+                    </label>
                 </li>
                 }
             </ul>
@@ -54,7 +56,9 @@
                 <li>
                     <input type="radio" (click)="select(o,cranixSearchModal)" [id]="o[itemTextField]"
                         name="cranixSearchList" [checked]="selection && o.id == selection.id">
-                    <label [for]="o[itemTextField]">{{o[itemTextField]}}</label>
+                    <label [for]="o[itemTextField]">
+                        @for(field of itemTextField; track field){ {{o[field]}} &nbsp; }
+                    </label>
                 </li>
                 }
             </ul>

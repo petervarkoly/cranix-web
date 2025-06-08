@@ -23,7 +23,7 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
   @Input({ required: true }) objectType: string
   @Input() context
   @Input() items: any[]
-  @Input() itemTextField: string
+  @Input() itemTextField: string|string[]
   @Input() multiple: boolean
   constructor(
     private objectService: GenericObjectService
@@ -45,6 +45,9 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
     }
     if (this.multiple) {
       this.selection = []
+    }
+    if( typeof(this.itemTextField) == "string") {
+      this.itemTextField = [this.itemTextField]
     }
     this.emptyLabel = 'Select ' + this.objectType
     this.selectedLabel = this.objectType + 'selected.'
@@ -117,8 +120,12 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
     let filter = (<HTMLInputElement>document.getElementById('crxSearchFilter')).value.toLowerCase();
     let tmp = []
     for (let o of this.items) {
-      if (o[this.itemTextField].indexOf(filter) > -1) {
-        tmp.push(o)
+      //TODO split filter also
+      for( let field of this.itemTextField){
+        if (o[field].indexOf(filter) > -1) {
+          tmp.push(o)
+          break;
+        }
       }
     }
     this.rowData = tmp;
