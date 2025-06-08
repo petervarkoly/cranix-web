@@ -9,11 +9,6 @@ import { User } from 'src/app/shared/models/data-model';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { WindowRef } from 'src/app/shared/models/ohters';
 import { LanguageService } from 'src/app/services/language.service';
-import { el } from '@fullcalendar/core/internal-common';
-class ObjectList {
-  id: number;
-  label: string;
-}
 @Component({
   selector: 'cranix-details',
   templateUrl: './details.page.html',
@@ -24,11 +19,7 @@ export class DetailsPage implements OnInit {
   ticket: Ticket;
   articles: Article[] = [new Article()];
   institute: Institute;
-  institutes: ObjectList[] = [];
-  instObject: ObjectList = new ObjectList;
   customer: Customer
-  customers: ObjectList[] = [];
-  customerObject: ObjectList = new ObjectList;
   articleOpen = {};
   ticketCreator: User;
   workers: User[];
@@ -56,31 +47,12 @@ export class DetailsPage implements OnInit {
     this.cephalixService.getTicketById(this.ticketId).subscribe({
       next: (val) => {
         console.log("getTicketById was called", this.ticketId)
-        this.workers = this.objectService.allObjects['user'].filter(o => o.role == 'sysadmins').sort((a, b) => a.fullName > b.label ? 0 : 1);
+        this.workers = this.objectService.allObjects['user'].filter(o => o.role == 'sysadmins').sort((a, b) => a.fullName > b.fullName ? 0 : 1);
         this.ticket = val;
         this.ticketCreator = this.objectService.getObjectById('user', this.ticket.creatorId);
         this.institute = this.objectService.getObjectById('institute', this.ticket.cephalixInstituteId);
         this.customer = this.objectService.getObjectById('customer', this.ticket.cephalixCustomerId);
         this.readArcticles();
-        for (let i of this.objectService.allObjects['institute']) {
-          this.institutes.push({ id: i.id, label: i.name + " " + i.locality })
-        }
-        for (let i of this.objectService.allObjects['customer']) {
-          this.customers.push({ id: i.id, label: i.name + " " + i.locality })
-        }
-        if(this.customer){
-          this.customerObject.id = this.customer.id
-          this.customerObject.label = this.customer.name + " " + this.customer.locality
-        }else{
-          this.customer = new Customer();
-        }
-        if (this.institute) {
-          this.instObject.id = this.institute.id
-          this.instObject.label = this.institute.name + " " + this.institute.locality
-        } else {
-          this.institute = new Institute()
-          this.instObject = new ObjectList()
-        }
       },
       error: (err) => { console.log(err) },
       complete: () => { }
@@ -239,10 +211,9 @@ export class DetailsPage implements OnInit {
 
   public setInstitute() {
     this.objectService.requestSent();
-    this.cephalixService.setInstituteForTicket(this.ticketId, this.instObject.id).subscribe(
+    this.cephalixService.setInstituteForTicket(this.ticketId, this.institute.id).subscribe(
       (val) => {
         this.objectService.responseMessage(val)
-        this.institute = this.objectService.getObjectById('institute', this.instObject.id);
         this.objectService.getAllObject('ticket');
       }
     )
@@ -250,10 +221,10 @@ export class DetailsPage implements OnInit {
 
   public setCustomer() {
     this.objectService.requestSent();
-    this.cephalixService.setCustomerForTicket(this.ticketId, this.customerObject.id).subscribe(
+    console.log(this.customer)
+    this.cephalixService.setCustomerForTicket(this.ticketId, this.customer.id).subscribe(
       (val) => {
         this.objectService.responseMessage(val)
-        this.customer = this.objectService.getObjectById('customer', this.customerObject.id);
         this.objectService.getAllObject('ticket');
       }
     )
