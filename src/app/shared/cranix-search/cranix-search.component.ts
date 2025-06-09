@@ -16,8 +16,6 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
   isCranixSearchModalOpen: boolean = false;
   rowData = []
   selection: any|any[]
-  emptyLabel: string = ""
-  selectedLabel: string = ""
 
   @Output() callback = new EventEmitter<any>();
   @Output() onChange: EventEmitter<{ value: any }> = new EventEmitter();
@@ -26,6 +24,8 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
   @Input() items: any[]
   @Input() itemTextField: string|string[]
   @Input() multiple: boolean
+  @Input() emptyLabel: string
+  @Input() selectedLabel: string
   constructor(
     private objectService: GenericObjectService
   ) { }
@@ -33,26 +33,25 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
   ngOnInit(): void {
     console.log("CranixSearchComponent")
     if (typeof this.items == "undefined") {
-      console.log("items undefined")
       this.items = this.objectService.allObjects[this.objectType]
     }
     if (typeof this.multiple == "undefined") {
-      console.log("multiple undefined")
       this.multiple = false;
     }
     if (typeof this.itemTextField == "undefined") {
-      console.log("itemTextField undefined")
-      this.itemTextField = "name";
+      this.itemTextField = ["name"];
+    }else if( typeof this.itemTextField  == "string") {
+      this.itemTextField = [this.itemTextField]
+    }
+    if( typeof this.emptyLabel == "undefined"){
+      this.emptyLabel = 'Select ' + this.objectType
+    }
+    if( typeof this.selectedLabel == "undefined"){
+      this.selectedLabel = this.objectType + ' selected.'
     }
     if (this.multiple) {
       this.selection = []
     }
-    if( typeof this.itemTextField  == "string") {
-      this.itemTextField = [this.itemTextField]
-    }
-    console.log(this.itemTextField)
-    this.emptyLabel = 'Select ' + this.objectType
-    this.selectedLabel = this.objectType + 'selected.'
     this.rowData = this.items
   }
 
