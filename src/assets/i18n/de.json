@@ -1,4 +1,7 @@
 {
+    "Show and remove member.":"Mitglieder zeigen/entfernen",
+    "Add new member.":"Mitglieder zufügen",
+    "The actions are executed immediately when you click on the user name.":"Die Aktionen werden bei Klick auf den Benutzernamen sofort ausgeführt.",
     "There is no PTM":"Zurzeit gibt es keinen geplanten Sprechtag",
     "%s ( %s %s ) was created with password '%s'": "%s ( %s %s ) wurde mit dem Passwort '%s' angelegt.",
     "%s was created successfully.": "%s wurde erfolgreich erstellt.",
@@ -404,8 +407,6 @@
     "Select the groups the user must be removed from.": "Gruppen markieren, aus denen der Benutzer entfernt werden soll.",
     "Select the room to control": "Wählen Sie den zu überwachenden Raum aus.",
     "Select the type of your CRANIX 2FA Type": "Wählen Sie den 2FA Typ",
-    "Select the users to add to the group.": "Neue Mitglieder der Gruppe markieren!",
-    "Select the users to remove from the group.": "Aus der Gruppe zu löschende Benutzer markieren!",
     "Select user": "Benutzer wählen",
     "Select users for the event": "Benutzer wählen",
     "Select your child for the event": "Wählen Sie das betroffene Kind",
