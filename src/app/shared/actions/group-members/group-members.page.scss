@@ -28,3 +28,8 @@
     margin-right: 5px; /* Abstand zum Text */
     color: red; /* Optional, Farbe des + Zeichens */
   }
+
+ion-accordion.accordion-expanding ion-item[slot="header"],
+ion-accordion.accordion-expanded ion-item[slot="header"] {
+  --color: red;
+}
