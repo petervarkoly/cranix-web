@@ -3,14 +3,9 @@ ion-item {
     --padding-start: 2px;
 }
 
-ion-label {
-    margin-top: 2px;
-    margin-bottom: 2px;
-}
-
 ion-note {
     margin-left: 2px;
-    margin-right: 2px;
+    margin-right: 6px;
 }
 
 ion-checkbox {
@@ -34,3 +29,12 @@ p {
 .pair {
     background-color: darkgray;
 }
+
+.divclass {
+    flex: 1; /* Gleiche Breite, teilt den Platz gleich auf */
+    display: flex;
+    flex-direction: column; /* Für Zeilenaufteilung innerhalb der Divs, falls nötig */
+    overflow: hidden; /* Verhindert Überlauf */
+    text-overflow: ellipsis; /* Bei Überlauf "..." anzeigen */
+    white-space: nowrap; /* Kein Zeilenumbruch, Text bleibt in einer Zeile */
+  }
