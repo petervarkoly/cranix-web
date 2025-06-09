@@ -10,11 +10,16 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-item>
+    <ion-label  style="text-align: center; display: block;">
+      {{'The actions are executed immediately when you click on the user name.'|translate}}
+    </ion-label>
+  </ion-item>
   @if(authService.isMD()){
   <ion-accordion-group>
     <ion-accordion value="first">
-      <ion-item slot="header" color="light">
-        <ion-label>{{'Select the users to remove from the group.'|translate}}</ion-label>
+      <ion-item slot="header">
+        <ion-label>{{'Show and remove member.'|translate}}</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
         <ion-item lines="none">
@@ -24,16 +29,13 @@
         <div class="button-container">
           @for(o of memberRowData; track o.id){
           <button (click)="deleteMember(o.id)" class="minus">{{o.fullName}}</button>
-          <!-- ion-item button detail lines="full" (click)="deleteMember(o.id)">
-              {{o.fullName}}
-            </ion-item-->
           }
         </div>
       </div>
     </ion-accordion>
     <ion-accordion value="second">
-      <ion-item slot="header" color="light">
-        <ion-label>{{'Select the users to add to the group.'|translate}}</ion-label>
+      <ion-item slot="header">
+        <ion-label>{{'Add new member.'|translate}}</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
         <ion-item lines="none">
@@ -43,9 +45,6 @@
         <div class="button-container">
           @for(o of noMemberRowData; track o.id){
           <button (click)="addMember(o.id)" class="pluss">{{o.fullName}}</button>
-          <!-- ion-item button detail lines="full" (click)="addMember(o.id)">
-              {{o.fullName}}
-            </ion-item -->
           }
         </div>
       </div>
@@ -56,9 +55,7 @@
     <ion-row>
       <ion-col size=12 sizeMd=12 sizeLg=6 sizeXl=6>
         <ion-list [inset]="true">
-          <ion-list-header lines="full" color="medium">
-            {{'Select the users to remove from the group.'|translate}}
-          </ion-list-header>
+          <ion-list-header lines="full" color="medium">{{'Show and remove member.'|translate}}</ion-list-header>
           <ion-item lines="none">
             <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onMemberFilterChanged()"
               id="memberFilter">
@@ -67,18 +64,13 @@
           <div class="button-container">
             @for(o of memberRowData; track o.id){
             <button (click)="deleteMember(o.id)" class="minus">{{o.fullName}}</button>
-            <!-- ion-item button detail lines="full" (click)="deleteMember(o.id)">
-              {{o.fullName}}
-            </ion-item -->
             }
           </div>
         </ion-list>
       </ion-col>
       <ion-col size=12 sizeMd=12 sizeLg=6 sizeXl=6>
         <ion-list [inset]="true">
-          <ion-list-header lines="full" color="medium">
-            {{'Select the users to add to the group.'|translate}}
-          </ion-list-header>
+          <ion-list-header lines="full" color="medium">{{'Add new member.'|translate}}</ion-list-header>
           <ion-item>
             <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onNoMemberFilterChanged()"
               id="noMemberFilter">
@@ -87,9 +79,6 @@
           <div class="button-container">
             @for(o of noMemberRowData; track o.id){
             <button (click)="addMember(o.id)" class="pluss">{{o.fullName}}</button>
-            <!-- ion-item button detail lines="full" (click)="addMember(o.id)">
-              {{o.fullName}}
-            </ion-item -->
             }
           </div>
         </ion-list>
