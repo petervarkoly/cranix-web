@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { LanguageService } from 'src/app/services/language.service';
-import { AuthenticationService } from 'src/app/services/auth.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { Software, Hwconf, Room, Device, Category, Installation } from 'src/app/shared/models/data-model';
-import { SoftwareService } from 'src/app/services/softwares.service';
+import { SoftwareService } from 'cranix-common/dist/services/softwares.service';
 @Component({
   selector: 'cranix-edit-installation-set',
   templateUrl: './edit-installation-set.component.html',

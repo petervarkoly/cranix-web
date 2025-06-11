@@ -2,10 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 //own
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { LanguageService } from 'src/app/services/language.service';
-import { RoomsService } from 'src/app/services/rooms.service';
-import { SecurityService } from 'src/app/services/security-service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { RoomsService } from 'cranix-common/dist/services/rooms.service';
+import { SecurityService } from 'cranix-common/dist/services/security-service';
 import { Room } from 'src/app/shared/models/data-model';
 import { AccessInRoom } from 'src/app/shared/models/secutiry-model';
 @Component({

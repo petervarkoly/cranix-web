@@ -9,7 +9,7 @@ import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
 import { RoomsListsPage }   from './rooms-lists.page';
 import { RoomsComponent }   from './rooms.component';
 import { AdhocComponent }  from './adhoc.component';
-import { CanActivateViaAcls } from 'src/app/services/auth-guard.service';
+import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
 import { RoomPrintersPage } from 'src/app/protected/cranix/rooms/details/printers/room-printers.page';
 
 const routes: Routes = [

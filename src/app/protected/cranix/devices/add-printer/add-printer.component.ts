@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 //own stuff
-import { PrintersService } from 'src/app/services/printers.service';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { RoomsService } from 'src/app/services/rooms.service';
+import { PrintersService } from 'cranix-common/dist/services/printers.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { RoomsService } from 'cranix-common/dist/services/rooms.service';
 import { Printer, Room, Device } from 'src/app/shared/models/data-model';
 import { ModalController } from '@ionic/angular';
-import { LanguageService } from 'src/app/services/language.service';
-import { AuthenticationService } from 'src/app/services/auth.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 
 @Component({
   selector: 'cranix-add-printer',

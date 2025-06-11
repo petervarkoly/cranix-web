@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
-import { CanActivateViaAcls } from 'src/app/services/auth-guard.service';
+import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
 import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
 import { PipesModule } from 'src/app/pipes/pipe-modules';
 import { GroupsPage } from './groups.page';

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/auth.service';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { LanguageService } from 'src/app/services/language.service';
-import { NoticesService } from 'src/app/services/notices.service';
-import { ParentsService } from 'src/app/services/parents.service';
-import { SystemService } from 'src/app/services/system.service';
-import { UtilsService } from 'src/app/services/utils.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { NoticesService } from 'cranix-common/dist/services/notices.service';
+import { ParentsService } from 'cranix-common/dist/services/parents.service';
+import { SystemService } from 'cranix-common/dist/services/system.service';
+import { UtilsService } from 'cranix-common/dist/services/utils.service';
 import { CrxNotice, ParentTeacherMeeting, PTMEvent, PTMTeacherInRoom, Room, User } from 'src/app/shared/models/data-model';
 import { WindowRef } from 'src/app/shared/models/ohters';
 

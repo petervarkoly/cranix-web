@@ -3,9 +3,9 @@ import { Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 //own services
-import { AuthenticationService } from './services/auth.service';
-import { GenericObjectService } from './services/generic-object.service';
-import { LanguageService } from './services/language.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
 
 @Component({
   selector: 'app-root',

@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { PopoverController, ModalController } from '@ionic/angular';
 import { GridOptions, GridApi } from 'ag-grid-community';
 //Own stuff
-import { AuthenticationService } from 'src/app/services/auth.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { DownloadSoftwaresComponent } from 'src/app/shared/actions/download-softwares/download-softwares.component';
 import { SoftwareEditBTNRenderer } from 'src/app/pipes/ag-software-edit-renderer';
-import { LanguageService } from 'src/app/services/language.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { SoftwareService } from 'src/app/services/softwares.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { SoftwareService } from 'cranix-common/dist/services/softwares.service';
 import { Software } from 'src/app/shared/models/data-model';
 import { SoftwareLicensesComponent } from 'src/app/shared/actions/software-licenses/software-licenses.component';
 

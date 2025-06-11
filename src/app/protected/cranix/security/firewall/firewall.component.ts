@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { GridApi } from 'ag-grid-community'
 import { IncomingRules, OutgoingRule, RemoteRule } from 'src/app/shared/models/secutiry-model';
-import { LanguageService } from 'src/app/services/language.service';
-import { AuthenticationService } from 'src/app/services/auth.service';
-import { SecurityService } from 'src/app/services/security-service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { SecurityService } from 'cranix-common/dist/services/security-service';
 import { AddOutgoingRuleComponent } from './add-rules/add-outgoing-rule.component';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { AddRemoteRuleComponent } from './add-rules/add-remote-rule.component';
-import { SystemService } from 'src/app/services/system.service';
+import { SystemService } from 'cranix-common/dist/services/system.service';
 
 @Component({
   selector: 'cranix-firewall',

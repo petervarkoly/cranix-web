@@ -3,12 +3,12 @@ import { Component, OnInit } from '@angular/core';
 //Our Stuff
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
 import { PositivList } from 'src/app/shared/models/data-model'
-import { AuthenticationService } from 'src/app/services/auth.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { ModalController } from '@ionic/angular';
-import { LanguageService } from 'src/app/services/language.service';
-import { EductaionService } from 'src/app/services/education.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { EductaionService } from 'cranix-common/dist/services/education.service';
 import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 
 @Component({
   selector: 'cranix-mypositive',

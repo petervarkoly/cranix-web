@@ -17,24 +17,24 @@ import { QuillModule } from 'ngx-quill';
 import { CranixSharedModule } from './shared/cranix-shared.module';
 
 //own services
-import { CrxCalendarService } from './services/crx-calendar.service';
-import { CephalixService } from './services/cephalix.service';
-import { DevicesService } from './services/devices.service';
-import { EductaionService } from './services/education.service';
-import { GenericObjectService } from './services/generic-object.service';
-import { CrxObjectService } from './services/crx-object-service';
-import { GroupsService } from './services/groups.service';
-import { HwconfsService } from './services/hwconfs.service';
-import { InformationsService } from './services/informations.services';
-import { LanguageService } from './services/language.service';
-import { PrintersService } from './services/printers.service';
-import { ParentsService } from './services/parents.service';
-import { RoomsService } from './services/rooms.service';
-import { SecurityService } from './services/security-service';
-import { SoftwareService } from './services/softwares.service';
-import { SystemService } from './services/system.service';
-import { UsersService } from './services/users.service';
-import { UtilsService } from './services/utils.service';
+import { CrxCalendarService } from 'cranix-common/dist/services/crx-calendar.service';
+import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
+import { DevicesService } from 'cranix-common/dist/services/devices.service';
+import { EductaionService } from 'cranix-common/dist/services/education.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { CrxObjectService } from 'cranix-common/dist/services/crx-object-service';
+import { GroupsService } from 'cranix-common/dist/services/groups.service';
+import { HwconfsService } from 'cranix-common/dist/services/hwconfs.service';
+import { InformationsService } from 'cranix-common/dist/services/informations.services';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { PrintersService } from 'cranix-common/dist/services/printers.service';
+import { ParentsService } from 'cranix-common/dist/services/parents.service';
+import { RoomsService } from 'cranix-common/dist/services/rooms.service';
+import { SecurityService } from 'cranix-common/dist/services/security-service';
+import { SoftwareService } from 'cranix-common/dist/services/softwares.service';
+import { SystemService } from 'cranix-common/dist/services/system.service';
+import { UsersService } from 'cranix-common/dist/services/users.service';
+import { UtilsService } from 'cranix-common/dist/services/utils.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 

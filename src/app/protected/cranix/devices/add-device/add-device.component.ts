@@ -1,13 +1,13 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 //own stuff
-import { DevicesService } from 'src/app/services/devices.service';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { RoomsService } from 'src/app/services/rooms.service';
+import { DevicesService } from 'cranix-common/dist/services/devices.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { RoomsService } from 'cranix-common/dist/services/rooms.service';
 import { Device, Room, Hwconf } from 'src/app/shared/models/data-model';
 import { ModalController } from '@ionic/angular';
-import { LanguageService } from 'src/app/services/language.service';
-import { AuthenticationService } from 'src/app/services/auth.service';
-import { SelfManagementService } from 'src/app/services/selfmanagement.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { SelfManagementService } from 'cranix-common/dist/services/selfmanagement.service';
 import { takeWhile } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

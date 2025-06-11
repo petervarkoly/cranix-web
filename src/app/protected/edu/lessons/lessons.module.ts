@@ -6,8 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { QuillModule } from 'ngx-quill';
 
-import { CanActivateViaAcls } from 'src/app/services/auth-guard.service';
-import { ChallengeCanDeactivate } from 'src/app/services/challenges.service';
+import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
+import { ChallengeCanDeactivate } from 'cranix-common/dist/services/challenges.service';
 import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
 import { LessonsPage } from './lessons.page';
 import { RoomControlComponent } from './room-control/room-control.component';

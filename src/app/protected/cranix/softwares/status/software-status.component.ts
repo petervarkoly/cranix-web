@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community';
 //Own stuff
-import { AuthenticationService } from 'src/app/services/auth.service';
-import { LanguageService } from 'src/app/services/language.service';
-import { SoftwareService } from 'src/app/services/softwares.service'
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { SoftwareService } from 'cranix-common/dist/services/softwares.service'
 import { SoftwareStatus } from 'src/app/shared/models/data-model';
 
 @Component({

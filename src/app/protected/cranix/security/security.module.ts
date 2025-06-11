@@ -11,7 +11,7 @@ import { FirewallComponent } from './firewall/firewall.component';
 import { ProxyComponent } from './proxy/proxy.component';
 import { RoomAccessComponent } from './room-access/room-access.component';
 import { UnboundComponent } from './unbound/unbound.component';
-import { FirewallCanDeactivate, ProxyCanDeactivate, UnboundCanDeactivate } from 'src/app/services/security-service';
+import { FirewallCanDeactivate, ProxyCanDeactivate, UnboundCanDeactivate } from 'cranix-common/dist/services/security-service';
 import { AddRemoteRuleComponent } from './firewall/add-rules/add-remote-rule.component';
 import { AddOutgoingRuleComponent } from './firewall/add-rules/add-outgoing-rule.component';
 import { AddEditRoomAccessComponent } from './room-access/add-edit-room-access/add-edit-room-access.component';

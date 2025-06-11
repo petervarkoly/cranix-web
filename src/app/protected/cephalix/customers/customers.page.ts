@@ -7,12 +7,12 @@ import { Storage } from '@ionic/storage-angular';
 import { DateCellRenderer } from 'src/app/pipes/ag-date-renderer';
 import { CustomerActionRenderer } from 'src/app/pipes/ag-customer-action-renderer';
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { LanguageService } from 'src/app/services/language.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
 import { Customer, Institute } from 'src/app/shared/models/cephalix-data-model'
-import { AuthenticationService } from 'src/app/services/auth.service';
-import { CephalixService } from 'src/app/services/cephalix.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
 
 @Component({
   selector: 'cranix-customers',

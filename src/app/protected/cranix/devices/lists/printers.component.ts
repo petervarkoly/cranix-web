@@ -6,14 +6,14 @@ import { Storage } from '@ionic/storage-angular';
 
 //own modules
 
-import { AuthenticationService } from 'src/app/services/auth.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { AddPrinterComponent } from './../add-printer/add-printer.component';
 import { ActionsComponent } from 'src/app/shared/actions/actions.component';
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { LanguageService } from 'src/app/services/language.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { PrinterActionBTNRenderer } from 'src/app/pipes/ag-printer-renderer';
-import { PrintersService } from 'src/app/services/printers.service';
+import { PrintersService } from 'cranix-common/dist/services/printers.service';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
 import { Device, Printer } from 'src/app/shared/models/data-model'
 import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';

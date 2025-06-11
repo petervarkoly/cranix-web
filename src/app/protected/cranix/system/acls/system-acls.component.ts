@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community'
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { AuthenticationService } from 'src/app/services/auth.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { ModalController } from '@ionic/angular';
-import { LanguageService } from 'src/app/services/language.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ManageAclsComponent } from './manage-acls/manage-acls.component';
 

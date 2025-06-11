@@ -4,8 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ModalController } from '@ionic/angular';
 //own modules
 import { Institute, Notice } from 'src/app/shared/models/cephalix-data-model';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { CephalixService } from 'src/app/services/cephalix.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
 
 @Component({

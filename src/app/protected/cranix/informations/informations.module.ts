@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { CanActivateViaAcls } from 'src/app/services/auth-guard.service';
+import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
 import { IonicModule } from '@ionic/angular';
 import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
 import { TranslateService } from '@ngx-translate/core';

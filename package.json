@@ -42,6 +42,7 @@
     "ag-grid-angular": "",
     "ag-grid-community": "",
     "angular-csv-ext": "",
+    "cranix-common":"",
     "hammerjs": "",
     "ionic-selectable": "^5.0.0",
     "ngx-quill": "",

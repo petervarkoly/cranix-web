@@ -13,7 +13,7 @@ import { Users2faComponent } from './users-2fa';
 import { UserGroupsPage } from '../details/groups/user-groups.page';
 import { ManageParentsComponent } from './manage-parents/manage-parents.component'
 import { IdCardsComponent } from './id-cards/id-cards.component'
-import { CanActivateViaAcls } from 'src/app/services/auth-guard.service';
+import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
 
 const routes: Routes = [
   {

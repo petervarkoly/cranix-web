@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthenticationService } from 'src/app/services/auth.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 
 @Component({
   selector: 'cranix-users-lists',

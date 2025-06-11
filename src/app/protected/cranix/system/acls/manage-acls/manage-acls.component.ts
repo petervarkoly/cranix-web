@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { SystemService } from 'src/app/services/system.service';
+import { SystemService } from 'cranix-common/dist/services/system.service';
 import { Acl } from 'src/app/shared/models/server-models';
 
 @Component({

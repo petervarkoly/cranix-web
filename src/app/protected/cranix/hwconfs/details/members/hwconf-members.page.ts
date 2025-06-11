@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community'
 //own stuff
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { LanguageService } from 'src/app/services/language.service';
-import { HwconfsService } from 'src/app/services/hwconfs.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { HwconfsService } from 'cranix-common/dist/services/hwconfs.service';
 import { Hwconf, Device, Room } from 'src/app/shared/models/data-model';
-import { AuthenticationService } from 'src/app/services/auth.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { CrxActionMap } from 'src/app/shared/models/server-models';
-import { DevicesService } from 'src/app/services/devices.service';
+import { DevicesService } from 'cranix-common/dist/services/devices.service';
 import { RoomIdCellRenderer } from 'src/app/pipes/ag-roomid-render';
 import { interval } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';

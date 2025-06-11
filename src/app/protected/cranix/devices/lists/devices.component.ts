@@ -7,11 +7,11 @@ import { Storage } from '@ionic/storage-angular';
 import { ActionsComponent } from 'src/app/shared/actions/actions.component';
 import { DeviceActionBTNRenderer } from 'src/app/pipes/ag-device-renderer';
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { LanguageService } from 'src/app/services/language.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
 import { Device } from 'src/app/shared/models/data-model'
-import { AuthenticationService } from 'src/app/services/auth.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { DevicePrintersComponent } from './../details/printers/device-printers.component';
 import { AddDeviceComponent } from './../add-device/add-device.component';
 import { ManageDhcpComponent } from 'src/app/shared/actions/manage-dhcp/manage-dhcp.component';

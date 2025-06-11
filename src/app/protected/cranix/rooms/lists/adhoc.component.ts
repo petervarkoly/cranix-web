@@ -4,9 +4,9 @@ import { Storage } from '@ionic/storage-angular';
 
 //Own stuff
 import { AdHocRoom } from 'src/app/shared/models/data-model'
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { AuthenticationService } from 'src/app/services/auth.service';
-import { LanguageService } from 'src/app/services/language.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
 import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';

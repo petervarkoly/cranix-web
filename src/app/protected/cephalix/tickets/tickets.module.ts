@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 //own modules
-import { CanActivateViaAcls } from 'src/app/services/auth-guard.service';
+import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
 import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
 import { TicketsPage } from './tickets.page';
 

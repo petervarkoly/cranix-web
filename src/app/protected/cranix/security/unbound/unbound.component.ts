@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { SecurityService } from 'src/app/services/security-service';
-import { LanguageService } from 'src/app/services/language.service';
-import { AuthenticationService } from 'src/app/services/auth.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { SecurityService } from 'cranix-common/dist/services/security-service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { SafeSearch } from 'src/app/shared/models/secutiry-model';
 
 @Component({

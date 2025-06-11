@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
-import { AuthenticationService } from 'src/app/services/auth.service';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { SelfManagementService } from 'src/app/services/selfmanagement.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { SelfManagementService } from 'cranix-common/dist/services/selfmanagement.service';
 import { Crx2fa } from 'src/app/shared/models/server-models';
 
 @Component({

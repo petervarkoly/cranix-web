@@ -1,7 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/auth.service';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { UsersService } from 'src/app/services/users.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { UsersService } from 'cranix-common/dist/services/users.service';
 import { IdRequest } from 'src/app/shared/models/data-model';
 
 @Component({

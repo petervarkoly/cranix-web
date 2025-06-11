@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { Hwconf } from 'src/app/shared/models/data-model';
 import { FormBuilder } from '@angular/forms';
-import { HwconfsService } from 'src/app/services/hwconfs.service';
-import { AuthenticationService } from 'src/app/services/auth.service';
+import { HwconfsService } from 'cranix-common/dist/services/hwconfs.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 
 @Component({
   selector: 'cranix-hwconf-edit',

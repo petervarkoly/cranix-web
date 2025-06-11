@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateService  } from '@ngx-translate/core';
 
 import { CalendarComponent } from './calendar.component';
-import { CanActivateViaAcls } from 'src/app/services/auth-guard.service';
+import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
 import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
 
 

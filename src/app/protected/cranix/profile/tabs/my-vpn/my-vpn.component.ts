@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { SelfManagementService } from 'src/app/services/selfmanagement.service';
+import { SelfManagementService } from 'cranix-common/dist/services/selfmanagement.service';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 
 @Component({
   selector: 'cranix-my-vpn',

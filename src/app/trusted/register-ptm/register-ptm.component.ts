@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/auth.service';
-import { ParentsService } from 'src/app/services/parents.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { ParentsService } from 'cranix-common/dist/services/parents.service';
 import { ParentTeacherMeeting, User } from 'src/app/shared/models/data-model';
 
 @Component({

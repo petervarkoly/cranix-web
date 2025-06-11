@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { GridApi } from 'ag-grid-community';
-import { AuthenticationService } from 'src/app/services/auth.service';
-import { LanguageService } from 'src/app/services/language.service';
-import { SecurityService } from 'src/app/services/security-service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { SecurityService } from 'cranix-common/dist/services/security-service';
 import { AccessInRoom } from 'src/app/shared/models/secutiry-model';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { ModalController } from '@ionic/angular';
 import { AddEditRoomAccessComponent } from './add-edit-room-access/add-edit-room-access.component';
 import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';
-import { SystemService } from 'src/app/services/system.service';
+import { SystemService } from 'cranix-common/dist/services/system.service';
 import { ApplyBTNRenderer } from 'src/app/pipes/ag-apply-renderer';
 
 @Component({

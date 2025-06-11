@@ -4,10 +4,10 @@ import { PopoverController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 //own modules
-import { AuthenticationService } from 'src/app/services/auth.service';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { LanguageService } from 'src/app/services/language.service';
-import { CephalixService } from 'src/app/services/cephalix.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
 import { Institute } from 'src/app/shared/models/cephalix-data-model'
 import { User } from 'src/app/shared/models/data-model';
 

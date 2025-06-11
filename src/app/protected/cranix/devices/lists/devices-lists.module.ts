@@ -10,7 +10,7 @@ import { DevicesListsPage }   from './devices-lists.page';
 import { DevicesComponent }   from './devices.component';
 import { PrintersComponent }  from './printers.component';
 import { DevicePrintersComponent } from '../details/printers/device-printers.component';
-import { CanActivateViaAcls } from 'src/app/services/auth-guard.service';
+import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
 
 const routes: Routes = [
   {

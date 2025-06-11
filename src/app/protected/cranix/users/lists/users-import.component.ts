@@ -5,12 +5,12 @@ import { takeWhile } from 'rxjs/internal/operators/takeWhile';
 
 //own modules
 import { ShowImportComponent } from 'src/app/shared/actions/show-import/show-import.component';
-import { UsersService } from 'src/app/services/users.service';
-import { LanguageService } from 'src/app/services/language.service';
+import { UsersService } from 'cranix-common/dist/services/users.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { UsersImport } from 'src/app/shared/models/data-model';
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { AuthenticationService } from 'src/app/services/auth.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 
 @Component({
   selector: 'cranix-users-import',

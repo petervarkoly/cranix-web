@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IdRequest, User } from 'src/app/shared/models/data-model';
-import { SelfManagementService } from 'src/app/services/selfmanagement.service';
+import { SelfManagementService } from 'cranix-common/dist/services/selfmanagement.service';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
 import { TranslateService } from '@ngx-translate/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { SetpasswordComponent } from 'src/app/shared/actions/setpassword/setpassword.component';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { AuthenticationService } from 'src/app/services/auth.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
-import { LanguageService } from 'src/app/services/language.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
 @Component({
   selector: 'cranix-myself',
   templateUrl: './myself.component.html',

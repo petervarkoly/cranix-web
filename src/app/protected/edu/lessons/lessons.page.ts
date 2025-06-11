@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 //own modules
-import { ChallengesService } from 'src/app/services/challenges.service';
-import { AuthenticationService } from 'src/app/services/auth.service';
+import { ChallengesService } from 'cranix-common/dist/services/challenges.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 
 @Component({
   selector: 'cranix-lessons',

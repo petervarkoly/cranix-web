@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController, ModalController } from '@ionic/angular';
 //own stuff
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { LanguageService } from 'src/app/services/language.service';
-import { DevicesService } from 'src/app/services/devices.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { DevicesService } from 'cranix-common/dist/services/devices.service';
 import { Printer, Device } from 'src/app/shared/models/data-model'
 
 @Component({

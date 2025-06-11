@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/auth.service';
-import { ChallengesService } from 'src/app/services/challenges.service';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
+import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { ChallengesService } from 'cranix-common/dist/services/challenges.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { CrxChallenge } from 'src/app/shared/models/data-model';
 
 

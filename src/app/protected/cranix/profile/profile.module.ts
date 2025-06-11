@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { CanActivateViaAcls } from 'src/app/services/auth-guard.service';
+import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
 import { IonicModule } from '@ionic/angular';
 import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,8 +12,8 @@ import { MyselfComponent } from './tabs/myself/myself.component'
 import { MyDevicesComponent } from './tabs/my-devices/my-devices.component'
 import { MyVPNComponent } from './tabs/my-vpn/my-vpn.component'
 import { MyCrx2faComponent } from './tabs/my-crx2fa/my-crx2fa.component'
-import { SelfManagementService } from 'src/app/services/selfmanagement.service';
-import { AdHocLanService } from 'src/app/services/adhoclan.service';
+import { SelfManagementService } from 'cranix-common/dist/services/selfmanagement.service';
+import { AdHocLanService } from 'cranix-common/dist/services/adhoclan.service';
 
 const routes: Routes = [
   {

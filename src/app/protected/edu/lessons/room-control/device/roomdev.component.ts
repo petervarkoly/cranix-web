@@ -4,7 +4,7 @@ import { ActionsComponent } from 'src/app/shared/actions/actions.component';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { Subscription, interval } from 'rxjs';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
-import { EductaionService } from 'src/app/services/education.service';
+import { EductaionService } from 'cranix-common/dist/services/education.service';
 import { WindowRef } from 'src/app/shared/models/ohters'
 
 @Component({

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { SystemService } from 'src/app/services/system.service';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
+import { SystemService } from 'cranix-common/dist/services/system.service';
+import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { AlertController } from '@ionic/angular';
 import { LangChangeEvent } from '@ngx-translate/core';
-import { LanguageService } from 'src/app/services/language.service';
+import { LanguageService } from 'cranix-common/dist/services/language.service';
 
 @Component({
   selector: 'cranix-system-addons',
