@@ -4,8 +4,8 @@ import { ToastController, ModalController } from '@ionic/angular';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { RoomsService } from 'cranix-common/dist/services/rooms.service';
-import { Printer, Room } from 'src/app/shared/models/data-model'
-import { ServerResponse } from 'src/app/shared/models/server-models';
+import { Printer, Room } from 'cranix-common/dist/models/data-model'
+import { ServerResponse } from 'cranix-common/dist/models/server-models';
 
 @Component({
   selector: 'cranix-room-printers',

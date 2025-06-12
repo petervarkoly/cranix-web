@@ -4,7 +4,7 @@ import { ToastController, ModalController } from '@ionic/angular';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { DevicesService } from 'cranix-common/dist/services/devices.service';
-import { Printer, Device } from 'src/app/shared/models/data-model'
+import { Printer, Device } from 'cranix-common/dist/models/data-model'
 
 @Component({
   selector: 'cranix-device-printers',

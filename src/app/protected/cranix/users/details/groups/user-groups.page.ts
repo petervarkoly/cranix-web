@@ -6,7 +6,7 @@ import { GridApi } from 'ag-grid-community'
 //own stuff
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { UsersService } from 'cranix-common/dist/services/users.service';
-import { Group, User } from 'src/app/shared/models/data-model'
+import { Group, User } from 'cranix-common/dist/models/data-model'
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 
 @Component({

@@ -7,15 +7,15 @@ import { Router } from '@angular/router';
 
 //own modules
 import { ActionsComponent } from 'src/app/shared/actions/actions.component';
-import { DateTimeCellRenderer } from 'src/app/pipes/ag-datetime-renderer';
+import { DateTimeCellRenderer } from 'cranix-common/dist/pipes/ag-datetime-renderer';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
-import { Ticket } from 'src/app/shared/models/cephalix-data-model'
+import { Ticket } from 'cranix-common/dist/models/cephalix-data-model'
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { Subscription } from 'rxjs';
 import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
-import { SupportRequest } from 'src/app/shared/models/data-model';
+import { SupportRequest } from 'cranix-common/dist/models/data-model';
 import { CreateSupport } from 'src/app/shared/actions/create-support/create-support-page';
 
 @Component({

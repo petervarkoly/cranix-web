@@ -4,7 +4,7 @@ import { GridApi } from 'ag-grid-community';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { SoftwareService } from 'cranix-common/dist/services/softwares.service'
-import { SoftwareStatus } from 'src/app/shared/models/data-model';
+import { SoftwareStatus } from 'cranix-common/dist/models/data-model';
 
 @Component({
   selector: 'cranix-software-status',

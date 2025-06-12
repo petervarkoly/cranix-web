@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { Room } from 'src/app/shared/models/data-model';
+import { Room } from 'cranix-common/dist/models/data-model';
 import { EductaionService } from 'cranix-common/dist/services/education.service';
 import { takeWhile } from 'rxjs/operators';
 import { PopoverController, IonSelect, ModalController } from '@ionic/angular';

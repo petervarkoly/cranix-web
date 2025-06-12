@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Device } from 'src/app/shared/models/data-model';
+import { Device } from 'cranix-common/dist/models/data-model';
 import { ActionsComponent } from 'src/app/shared/actions/actions.component';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { Subscription, interval } from 'rxjs';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
 import { EductaionService } from 'cranix-common/dist/services/education.service';
-import { WindowRef } from 'src/app/shared/models/ohters'
+import { WindowRef } from 'cranix-common/dist/models/ohters'
 
 @Component({
   selector: 'cranix-roomdev',

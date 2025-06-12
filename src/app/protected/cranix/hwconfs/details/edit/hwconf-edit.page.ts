@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { Hwconf } from 'src/app/shared/models/data-model';
+import { Hwconf } from 'cranix-common/dist/models/data-model';
 import { FormBuilder } from '@angular/forms';
 import { HwconfsService } from 'cranix-common/dist/services/hwconfs.service';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';

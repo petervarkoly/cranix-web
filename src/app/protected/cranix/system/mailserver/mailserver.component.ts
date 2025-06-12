@@ -3,7 +3,7 @@ import { AuthenticationService } from 'cranix-common/dist/services/auth.service'
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { SystemService } from 'cranix-common/dist/services/system.service';
-import { MailAccess } from 'src/app/shared/models/server-models'
+import { MailAccess } from 'cranix-common/dist/models/server-models'
 
 @Component({
   selector: 'app-mailserver',

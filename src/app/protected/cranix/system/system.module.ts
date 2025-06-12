@@ -15,7 +15,7 @@ import { SystemAclsComponent } from './acls/system-acls.component';
 import { SystemServicesComponent } from './services/system-services.component';
 import { ManageAclsComponent } from 'src/app/protected/cranix/system/acls/manage-acls/manage-acls.component';
 import { MailserverComponent } from './mailserver/mailserver.component'
-import { simpleToolbarOptions } from 'src/app/shared/models/constants'
+import { simpleToolbarOptions } from 'cranix-common/dist/models/constants'
 
 
 const routes: Routes = [

@@ -4,12 +4,12 @@ import { GridOptions, GridApi } from 'ag-grid-community';
 //Own stuff
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { DownloadSoftwaresComponent } from 'src/app/shared/actions/download-softwares/download-softwares.component';
-import { SoftwareEditBTNRenderer } from 'src/app/pipes/ag-software-edit-renderer';
+import { SoftwareEditBTNRenderer } from 'cranix-common/dist/pipes/ag-software-edit-renderer';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
+import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { SoftwareService } from 'cranix-common/dist/services/softwares.service';
-import { Software } from 'src/app/shared/models/data-model';
+import { Software } from 'cranix-common/dist/models/data-model';
 import { SoftwareLicensesComponent } from 'src/app/shared/actions/software-licenses/software-licenses.component';
 
 @Component({

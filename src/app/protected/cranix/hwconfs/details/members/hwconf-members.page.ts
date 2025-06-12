@@ -4,11 +4,11 @@ import { GridApi } from 'ag-grid-community'
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { HwconfsService } from 'cranix-common/dist/services/hwconfs.service';
-import { Hwconf, Device, Room } from 'src/app/shared/models/data-model';
+import { Hwconf, Device, Room } from 'cranix-common/dist/models/data-model';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { CrxActionMap } from 'src/app/shared/models/server-models';
+import { CrxActionMap } from 'cranix-common/dist/models/server-models';
 import { DevicesService } from 'cranix-common/dist/services/devices.service';
-import { RoomIdCellRenderer } from 'src/app/pipes/ag-roomid-render';
+import { RoomIdCellRenderer } from 'cranix-common/dist/pipes/ag-roomid-render';
 import { interval } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 

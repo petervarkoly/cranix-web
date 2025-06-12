@@ -2,7 +2,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { UsersService } from 'cranix-common/dist/services/users.service';
-import { IdRequest } from 'src/app/shared/models/data-model';
+import { IdRequest } from 'cranix-common/dist/models/data-model';
 
 @Component({
   selector: 'app-id-cards',

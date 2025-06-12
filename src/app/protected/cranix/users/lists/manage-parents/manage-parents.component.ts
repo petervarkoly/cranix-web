@@ -5,8 +5,8 @@ import { GenericObjectService } from 'cranix-common/dist/services/generic-object
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { ParentsService } from 'cranix-common/dist/services/parents.service';
 import { UtilsService } from 'cranix-common/dist/services/utils.service';
-import { Group, PTMTeacherInRoom, ParentTeacherMeeting, User } from 'src/app/shared/models/data-model';
-import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer'
+import { Group, PTMTeacherInRoom, ParentTeacherMeeting, User } from 'cranix-common/dist/models/data-model';
+import { EditBTNRenderer } from 'cranix-common/dist/pipes/ag-edit-renderer'
 
 @Component({
   selector: 'app-manage-parents',

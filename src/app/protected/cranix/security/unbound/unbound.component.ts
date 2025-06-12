@@ -3,7 +3,7 @@ import { GenericObjectService } from 'cranix-common/dist/services/generic-object
 import { SecurityService } from 'cranix-common/dist/services/security-service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { SafeSearch } from 'src/app/shared/models/secutiry-model';
+import { SafeSearch } from 'cranix-common/dist/models/secutiry-model';
 
 @Component({
   selector: 'cranix-unbound',

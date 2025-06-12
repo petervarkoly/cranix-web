@@ -4,13 +4,13 @@ import { PopoverController, ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 
 //own modules
-import { DateCellRenderer } from 'src/app/pipes/ag-date-renderer';
-import { CustomerActionRenderer } from 'src/app/pipes/ag-customer-action-renderer';
-import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
+import { DateCellRenderer } from 'cranix-common/dist/pipes/ag-date-renderer';
+import { CustomerActionRenderer } from 'cranix-common/dist/pipes/ag-customer-action-renderer';
+import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
-import { Customer, Institute } from 'src/app/shared/models/cephalix-data-model'
+import { Customer, Institute } from 'cranix-common/dist/models/cephalix-data-model'
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
 

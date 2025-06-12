@@ -5,13 +5,13 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
 //own modules
-import { DateTimeCellRenderer } from 'src/app/pipes/ag-datetime-renderer';
-import { FileSystemUsageRenderer } from 'src/app/pipes/ag-filesystem-usage-renderer';
+import { DateTimeCellRenderer } from 'cranix-common/dist/pipes/ag-datetime-renderer';
+import { FileSystemUsageRenderer } from 'cranix-common/dist/pipes/ag-filesystem-usage-renderer';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
-import { Institute } from 'src/app/shared/models/cephalix-data-model'
+import { Institute } from 'cranix-common/dist/models/cephalix-data-model'
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 
 @Component({

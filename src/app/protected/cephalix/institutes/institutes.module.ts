@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
 import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
-import { PipesModule } from 'src/app/pipes/pipe-modules';
+import { PipesModule } from 'cranix-common/dist/pipes/pipe-modules';
 
 const routes: Routes = [
   {

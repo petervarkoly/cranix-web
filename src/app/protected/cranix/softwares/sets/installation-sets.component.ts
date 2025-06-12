@@ -5,10 +5,10 @@ import { GridApi } from 'ag-grid-community';
 
 //Own stuff
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
+import { EditBTNRenderer } from 'cranix-common/dist/pipes/ag-edit-renderer';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { SoftwareService } from 'cranix-common/dist/services/softwares.service'
-import { Installation, Category } from 'src/app/shared/models/data-model';
+import { Installation, Category } from 'cranix-common/dist/models/data-model';
 import { EditInstallationSetComponent } from 'src/app/protected/cranix/softwares/edit-set/edit-installation-set.component';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 

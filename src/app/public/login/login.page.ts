@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { SystemService } from 'cranix-common/dist/services/system.service';
-import { LoginForm } from 'src/app/shared/models/server-models';
+import { LoginForm } from 'cranix-common/dist/models/server-models';
 
 
 

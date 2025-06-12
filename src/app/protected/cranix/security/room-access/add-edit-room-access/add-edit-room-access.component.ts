@@ -6,8 +6,8 @@ import { GenericObjectService } from 'cranix-common/dist/services/generic-object
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { RoomsService } from 'cranix-common/dist/services/rooms.service';
 import { SecurityService } from 'cranix-common/dist/services/security-service';
-import { Room } from 'src/app/shared/models/data-model';
-import { AccessInRoom } from 'src/app/shared/models/secutiry-model';
+import { Room } from 'cranix-common/dist/models/data-model';
+import { AccessInRoom } from 'cranix-common/dist/models/secutiry-model';
 @Component({
   selector: 'cranix-add-edit-room-access',
   templateUrl: './add-edit-room-access.component.html',

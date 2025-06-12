@@ -6,7 +6,7 @@ import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.servi
 import { IonicModule } from '@ionic/angular';
 import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
 import { TranslateService } from '@ngx-translate/core';
-import { PipesModule } from 'src/app/pipes/pipe-modules';
+import { PipesModule } from 'cranix-common/dist/pipes/pipe-modules';
 import { ProfileComponent } from './profile.component'
 import { MyselfComponent } from './tabs/myself/myself.component'
 import { MyDevicesComponent } from './tabs/my-devices/my-devices.component'

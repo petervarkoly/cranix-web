@@ -7,11 +7,11 @@ import { takeWhile } from 'rxjs/operators';
 //Own module
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
+import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { UtilsService } from 'cranix-common/dist/services/utils.service';
-import { Settings } from 'src/app/shared/models/server-models';
-import { Ticket } from 'src/app/shared/models/cephalix-data-model';
+import { Settings } from 'cranix-common/dist/models/server-models';
+import { Ticket } from 'cranix-common/dist/models/cephalix-data-model';
 import { Router } from '@angular/router';
 
 @Component({

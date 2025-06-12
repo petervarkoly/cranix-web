@@ -3,7 +3,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { DevicesService } from 'cranix-common/dist/services/devices.service';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { RoomsService } from 'cranix-common/dist/services/rooms.service';
-import { Device, Room, Hwconf } from 'src/app/shared/models/data-model';
+import { Device, Room, Hwconf } from 'cranix-common/dist/models/data-model';
 import { ModalController } from '@ionic/angular';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';

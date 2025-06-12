@@ -5,12 +5,12 @@ import { Storage } from '@ionic/storage-angular';
 
 //own modules
 import { ActionsComponent } from 'src/app/shared/actions/actions.component';
-import { UserActionBTNRenderer } from 'src/app/pipes/ag-user-renderer';
-import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
+import { UserActionBTNRenderer } from 'cranix-common/dist/pipes/ag-user-renderer';
+import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
-import { User } from 'src/app/shared/models/data-model'
+import { User } from 'cranix-common/dist/models/data-model'
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { UserGroupsPage } from '../details/groups/user-groups.page';
 import { SystemService } from 'cranix-common/dist/services/system.service';

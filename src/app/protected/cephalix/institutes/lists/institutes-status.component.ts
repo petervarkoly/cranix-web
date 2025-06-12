@@ -6,17 +6,17 @@ import { Storage } from '@ionic/storage-angular';
 
 //own modules
 import { ActionsComponent } from 'src/app/shared/actions/actions.component';
-import { DateTimeCellRenderer } from 'src/app/pipes/ag-datetime-renderer';
-import { FileSystemUsageRenderer } from 'src/app/pipes/ag-filesystem-usage-renderer';
-import { InstituteStatusRenderer } from 'src/app/pipes/ag-institute-status-renderer';
+import { DateTimeCellRenderer } from 'cranix-common/dist/pipes/ag-datetime-renderer';
+import { FileSystemUsageRenderer } from 'cranix-common/dist/pipes/ag-filesystem-usage-renderer';
+import { InstituteStatusRenderer } from 'cranix-common/dist/pipes/ag-institute-status-renderer';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
-import { InstituteStatus } from 'src/app/shared/models/cephalix-data-model'
-import { UpdateRenderer } from 'src/app/pipes/ag-update-renderer';
+import { InstituteStatus } from 'cranix-common/dist/models/cephalix-data-model'
+import { UpdateRenderer } from 'cranix-common/dist/pipes/ag-update-renderer';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { DateCellRenderer } from 'src/app/pipes/ag-date-renderer';
+import { DateCellRenderer } from 'cranix-common/dist/pipes/ag-date-renderer';
 @Component({
   selector: 'cranix-institutes-status',
   templateUrl: './institutes-status.component.html',

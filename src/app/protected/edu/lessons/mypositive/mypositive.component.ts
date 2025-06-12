@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 //Our Stuff
-import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
-import { PositivList } from 'src/app/shared/models/data-model'
+import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
+import { PositivList } from 'cranix-common/dist/models/data-model'
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { ModalController } from '@ionic/angular';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { EductaionService } from 'cranix-common/dist/services/education.service';
-import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
+import { EditBTNRenderer } from 'cranix-common/dist/pipes/ag-edit-renderer';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 
 @Component({

@@ -6,8 +6,8 @@ import { AuthenticationService } from 'cranix-common/dist/services/auth.service'
 import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { Institute, SynchronizedObject } from 'src/app/shared/models/cephalix-data-model';
-import { SyncObjectRenderer } from 'src/app/pipes/ag-sync-object-renderer';
+import { Institute, SynchronizedObject } from 'cranix-common/dist/models/cephalix-data-model';
+import { SyncObjectRenderer } from 'cranix-common/dist/pipes/ag-sync-object-renderer';
 
 @Component({
   selector: 'cranix-institute-synced-objects',

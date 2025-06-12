@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SystemService } from 'cranix-common/dist/services/system.service';
-import { ServiceStatus } from 'src/app/shared/models/server-models'
+import { ServiceStatus } from 'cranix-common/dist/models/server-models'
 import { takeWhile } from 'rxjs/operators';
 import { interval, Subscription } from 'rxjs';
 

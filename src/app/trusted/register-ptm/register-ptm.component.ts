@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { ParentsService } from 'cranix-common/dist/services/parents.service';
-import { ParentTeacherMeeting, User } from 'src/app/shared/models/data-model';
+import { ParentTeacherMeeting, User } from 'cranix-common/dist/models/data-model';
 
 @Component({
   selector: 'app-register-ptm',

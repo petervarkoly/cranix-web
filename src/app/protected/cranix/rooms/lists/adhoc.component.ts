@@ -3,14 +3,14 @@ import { ModalController, PopoverController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 
 //Own stuff
-import { AdHocRoom } from 'src/app/shared/models/data-model'
+import { AdHocRoom } from 'cranix-common/dist/models/data-model'
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
-import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
-import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';
-import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
+import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
+import { YesNoBTNRenderer } from 'cranix-common/dist/pipes/ag-yesno-renderer';
+import { EditBTNRenderer } from 'cranix-common/dist/pipes/ag-edit-renderer';
 @Component({
   selector: 'cranix-adhoc',
   templateUrl: './adhoc.component.html',

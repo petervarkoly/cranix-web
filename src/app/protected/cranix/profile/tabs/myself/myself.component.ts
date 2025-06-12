@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IdRequest, User } from 'src/app/shared/models/data-model';
+import { IdRequest, User } from 'cranix-common/dist/models/data-model';
 import { SelfManagementService } from 'cranix-common/dist/services/selfmanagement.service';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
 import { TranslateService } from '@ngx-translate/core';

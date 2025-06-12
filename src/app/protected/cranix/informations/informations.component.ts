@@ -3,7 +3,7 @@ import { AuthenticationService } from 'cranix-common/dist/services/auth.service'
 import { InformationsService } from 'cranix-common/dist/services/informations.services';
 import { ModalController } from '@ionic/angular';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { Announcenement, Contact, FAQ, TaskResponse } from 'src/app/shared/models/data-model';
+import { Announcenement, Contact, FAQ, TaskResponse } from 'cranix-common/dist/models/data-model';
 
 @Component({
   selector: 'cranix-informations',

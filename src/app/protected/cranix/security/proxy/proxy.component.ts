@@ -4,9 +4,9 @@ import { GridApi } from 'ag-grid-community'
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { SecurityService } from 'cranix-common/dist/services/security-service';
-import { CheckBoxBTNRenderer } from 'src/app/pipes/ag-checkbox-renderer';
+import { CheckBoxBTNRenderer } from 'cranix-common/dist/pipes/ag-checkbox-renderer';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { ApplyCheckBoxBTNRenderer } from 'src/app/pipes/ag-apply-checkbox-renderer';
+import { ApplyCheckBoxBTNRenderer } from 'cranix-common/dist/pipes/ag-apply-checkbox-renderer';
 
 @Component({
   selector: 'cranix-proxy',

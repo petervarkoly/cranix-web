@@ -2,7 +2,7 @@ import { ChallengesService } from 'cranix-common/dist/services/challenges.servic
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CrxChallenge, CrxQuestion, CrxQuestionAnswer, TeachingSubject } from 'src/app/shared/models/data-model';
+import { CrxChallenge, CrxQuestion, CrxQuestionAnswer, TeachingSubject } from 'cranix-common/dist/models/data-model';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { CrxObjectService } from 'cranix-common/dist/services/crx-object-service';

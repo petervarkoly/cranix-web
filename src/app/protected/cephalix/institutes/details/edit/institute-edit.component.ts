@@ -4,10 +4,10 @@ import { TranslateService } from '@ngx-translate/core';
 //Own stuff
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
-import { Institute, DynDns, CephalixCare, Repository, Customer } from 'src/app/shared/models/cephalix-data-model';
+import { Institute, DynDns, CephalixCare, Repository, Customer } from 'cranix-common/dist/models/cephalix-data-model';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { User } from 'src/app/shared/models/data-model';
-import { contracts } from 'src/app/shared/models/cephalix-data-model';
+import { User } from 'cranix-common/dist/models/data-model';
+import { contracts } from 'cranix-common/dist/models/cephalix-data-model';
 import { SystemService } from 'cranix-common/dist/services/system.service';
 @Component({
   selector: 'cranix-institute-edit',

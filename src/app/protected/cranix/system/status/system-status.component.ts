@@ -5,8 +5,8 @@ import { Storage } from '@ionic/storage-angular';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { SystemService } from 'cranix-common/dist/services/system.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { SupportRequest } from 'src/app/shared/models/data-model';
-import { ServiceStatus } from 'src/app/shared/models/server-models';
+import { SupportRequest } from 'cranix-common/dist/models/data-model';
+import { ServiceStatus } from 'cranix-common/dist/models/server-models';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { CreateSupport } from 'src/app/shared/actions/create-support/create-support-page';
 

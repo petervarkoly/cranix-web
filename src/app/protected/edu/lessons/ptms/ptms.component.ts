@@ -6,8 +6,8 @@ import { NoticesService } from 'cranix-common/dist/services/notices.service';
 import { ParentsService } from 'cranix-common/dist/services/parents.service';
 import { SystemService } from 'cranix-common/dist/services/system.service';
 import { UtilsService } from 'cranix-common/dist/services/utils.service';
-import { CrxNotice, ParentTeacherMeeting, PTMEvent, PTMTeacherInRoom, Room, User } from 'src/app/shared/models/data-model';
-import { WindowRef } from 'src/app/shared/models/ohters';
+import { CrxNotice, ParentTeacherMeeting, PTMEvent, PTMTeacherInRoom, Room, User } from 'cranix-common/dist/models/data-model';
+import { WindowRef } from 'cranix-common/dist/models/ohters';
 
 @Component({
   selector: 'app-ptms',

@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 //own
-import { Ticket, Article, Institute, Customer } from 'src/app/shared/models/cephalix-data-model';
+import { Ticket, Article, Institute, Customer } from 'cranix-common/dist/models/cephalix-data-model';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
 import { AlertController, ModalController } from '@ionic/angular';
-import { User } from 'src/app/shared/models/data-model';
+import { User } from 'cranix-common/dist/models/data-model';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { WindowRef } from 'src/app/shared/models/ohters';
+import { WindowRef } from 'cranix-common/dist/models/ohters';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 @Component({
   selector: 'cranix-details',
