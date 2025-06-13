@@ -6,7 +6,7 @@ import { AuthenticationService } from 'cranix-common/dist/services/auth.service'
 import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { Institute, SynchronizedObject } from 'cranix-common/dist/models/cephalix-data-model';
+import { Institute, CephalixMapping } from 'cranix-common/dist/models/cephalix-data-model';
 import { SyncObjectRenderer } from 'cranix-common/dist/pipes/ag-sync-object-renderer';
 
 @Component({
@@ -23,13 +23,13 @@ export class InstituteSyncedObjectsComponent implements OnInit {
   };
   columnDefs = [];
   memberApi: GridApi;
-  memberSelection: SynchronizedObject[] = [];
-  memberData: SynchronizedObject[] = [];
+  memberSelection: CephalixMapping[] = [];
+  memberData: CephalixMapping[] = [];
   modules = [];
   institute;
   segment = "to";
   hwconfs = {};
-  syncedObjects: SynchronizedObject[] = [];
+  syncedObjects: CephalixMapping[] = [];
 
   constructor(
     public authService: AuthenticationService,
@@ -141,7 +141,8 @@ export class InstituteSyncedObjectsComponent implements OnInit {
         return tmp
       }
     }
-    return {
+    return <CephalixMapping>{
+      id: 0,
       objectType: 'hwconf',
       objectName: obj.name,
       lastSync: 0,
@@ -160,7 +161,7 @@ export class InstituteSyncedObjectsComponent implements OnInit {
       }
     )
   }
-  syncHWconfFromInstitute(mapping: SynchronizedObject) {
+  syncHWconfFromInstitute(mapping: CephalixMapping) {
     this.objectService.requestSent();
     this.cephalixService.syncHWconfFromInstitute(this.institute.id, mapping).subscribe({
       next: (val) => {
@@ -170,7 +171,7 @@ export class InstituteSyncedObjectsComponent implements OnInit {
       error: (err) => { this.objectService.errorMessage(err) }
     })
   }
-  syncObjectToInstitute(mapping: SynchronizedObject) {
+  syncObjectToInstitute(mapping: CephalixMapping) {
     this.objectService.requestSent();
     this.cephalixService.putObjectToInstitute(this.institute.id, mapping.objectType, mapping.cephalixId).subscribe({
       next: (val) => {

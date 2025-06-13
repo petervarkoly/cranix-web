@@ -31,8 +31,8 @@ export class AddPrinterComponent implements OnInit {
   originalModel = "";
   originalMac = "";
 
-  @Input() action;
-  @Input() object: Printer;
+  @Input() public action;
+  @Input() public object;
   constructor(
     public authService: AuthenticationService,
     public printersService: PrintersService,

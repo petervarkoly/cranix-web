@@ -118,11 +118,6 @@ export class MypositiveComponent implements OnInit {
       animated: true,
       showBackdrop: true
     });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
-    });
     (await modal).present();
   }
 
