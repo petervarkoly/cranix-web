@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 //own modules
 import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
-import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
+import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { TicketsPage } from './tickets.page';
 
 const routes: Routes = [

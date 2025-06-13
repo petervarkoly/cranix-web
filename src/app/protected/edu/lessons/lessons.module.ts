@@ -8,7 +8,7 @@ import { QuillModule } from 'ngx-quill';
 
 import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
 import { ChallengeCanDeactivate } from 'cranix-common/dist/services/challenges.service';
-import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
+import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { LessonsPage } from './lessons.page';
 import { RoomControlComponent } from './room-control/room-control.component';
 import { RoomDevComponent } from './room-control/device/roomdev.component';

@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
 
 //own modules
-import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
+import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { RoomsListsPage }   from './rooms-lists.page';
 import { RoomsComponent }   from './rooms.component';
 import { AdhocComponent }  from './adhoc.component';

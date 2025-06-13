@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
 
 //own modules
-import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
+import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { SecurityPage } from './security.page';
 import { FirewallComponent } from './firewall/firewall.component';
 import { ProxyComponent } from './proxy/proxy.component';

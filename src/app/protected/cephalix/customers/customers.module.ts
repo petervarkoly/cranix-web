@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
-import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
+import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { PipesModule } from 'cranix-common/dist/pipes/pipe-modules';
 import { CustomersPage, EditInstitutes } from './customers.page';
 

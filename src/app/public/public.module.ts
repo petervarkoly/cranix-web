@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule,Routes } from '@angular/router';
 
-import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
+import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { ShowScreenshotComponent } from './show-screenshot/show-screenshot.component'
 import { PrintPageComponent } from './print-page/print-page.component';
 

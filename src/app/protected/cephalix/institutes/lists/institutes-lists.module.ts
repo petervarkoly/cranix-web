@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
 
 //own modules
-import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
+import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { InstitutesListsPage } from './institutes-lists.page';
 import { InstitutesComponent } from './institutes.component';
 import { InstitutesStatusComponent } from './institutes-status.component';

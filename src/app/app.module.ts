@@ -14,7 +14,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { QuillModule } from 'ngx-quill';
 
 //own modules
-import { CranixSharedModule } from './shared/cranix-shared.module';
+import { CranixSharedModule } from './cranix-shared.module';
 
 //own services
 import { CrxCalendarService } from 'cranix-common/dist/services/crx-calendar.service';

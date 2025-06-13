@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
 import { IonicModule } from '@ionic/angular';
-import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
+import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { TranslateService } from '@ngx-translate/core';
 import { PipesModule } from 'cranix-common/dist/pipes/pipe-modules';
 import { ProfileComponent } from './profile.component'

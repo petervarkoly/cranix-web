@@ -7,7 +7,7 @@ import { QuillModule } from 'ngx-quill';
 import { DetailsPageRoutingModule } from './details-routing.module';
 import { DetailsPage, EditArticle } from './details.page';
 import { TranslateService } from '@ngx-translate/core';
-import { CranixSharedModule } from 'src/app/shared/cranix-shared.module';
+import { CranixSharedModule } from 'src/app/cranix-shared.module';
 
 @NgModule({
   imports: [
