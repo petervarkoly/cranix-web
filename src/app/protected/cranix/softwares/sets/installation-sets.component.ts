@@ -137,9 +137,6 @@ export class InstallationSetsComponent implements OnInit {
     });
     modal.onDidDismiss().then((dataReturned) => {
       this.softwareService.readInstallationsSets()
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
     });
     (await modal).present();
   }

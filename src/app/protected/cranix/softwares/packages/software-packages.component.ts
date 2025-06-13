@@ -3,14 +3,14 @@ import { PopoverController, ModalController } from '@ionic/angular';
 import { GridOptions, GridApi } from 'ag-grid-community';
 //Own stuff
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { DownloadSoftwaresComponent } from 'src/app/shared/actions/download-softwares/download-softwares.component';
+import { DownloadSoftwaresComponent } from 'cranix-common/dist/components/actions/download-softwares/download-softwares.component';
 import { SoftwareEditBTNRenderer } from 'cranix-common/dist/pipes/ag-software-edit-renderer';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { SoftwareService } from 'cranix-common/dist/services/softwares.service';
 import { Software } from 'cranix-common/dist/models/data-model';
-import { SoftwareLicensesComponent } from 'src/app/shared/actions/software-licenses/software-licenses.component';
+import { SoftwareLicensesComponent } from 'cranix-common/dist/components/actions/software-licenses/software-licenses.component';
 
 @Component({
   selector: 'cranix-software-packages',
@@ -170,9 +170,6 @@ export class SoftwarePackagesComponent implements OnInit {
     });
     modal.onDidDismiss().then((dataReturned) => {
       this.readInstallableSoftware();
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
     });
     (await modal).present();
   }
@@ -186,11 +183,6 @@ export class SoftwarePackagesComponent implements OnInit {
       cssClass: 'big-modal',
       animated: true,
       showBackdrop: true
-    });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
     });
     (await modal).present(); 
 

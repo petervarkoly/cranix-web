@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 //own stuff
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { RoomsService } from 'cranix-common/dist/services/rooms.service';
 import { Printer, Room } from 'cranix-common/dist/models/data-model'
-import { ServerResponse } from 'cranix-common/dist/models/server-models';
-
 @Component({
   selector: 'cranix-room-printers',
   templateUrl: './room-printers.page.html',

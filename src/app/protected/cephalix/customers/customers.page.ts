@@ -9,7 +9,7 @@ import { CustomerActionRenderer } from 'cranix-common/dist/pipes/ag-customer-act
 import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
+import { SelectColumnsComponent } from 'cranix-common/dist/components/select-columns/select-columns.component';
 import { Customer, Institute } from 'cranix-common/dist/models/cephalix-data-model'
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
@@ -143,11 +143,6 @@ export class CustomersPage implements OnInit {
       animated: true,
       showBackdrop: true
     });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
-    });
     (await modal).present();
   }
   async redirectToEdit(customer: Customer) {
@@ -166,11 +161,6 @@ export class CustomersPage implements OnInit {
       },
       animated: true,
       showBackdrop: true
-    });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
     });
     (await modal).present();
   }

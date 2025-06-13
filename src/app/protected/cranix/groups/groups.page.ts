@@ -5,15 +5,15 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
 //own modules
-import { ActionsComponent } from 'src/app/shared/actions/actions.component';
+import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
 import { GroupActionBTNRenderer } from 'cranix-common/dist/pipes/ag-group-renderer';
 import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
+import { SelectColumnsComponent } from 'cranix-common/dist/components/select-columns/select-columns.component';
 import { Group } from 'cranix-common/dist/models/data-model'
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { GroupMembersPage } from 'src/app/shared/actions/group-members/group-members.page';
+import { GroupMembersPage } from 'cranix-common/dist/components/actions/group-members/group-members.page';
 
 @Component({
   selector: 'cranix-groups',
@@ -159,11 +159,6 @@ export class GroupsPage implements OnInit {
       animated: true,
       showBackdrop: true
     });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
-    });
     (await modal).present();
   }
   async redirectToEdit(group: Group) {
@@ -182,11 +177,6 @@ export class GroupsPage implements OnInit {
       },
       animated: true,
       showBackdrop: true
-    });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
     });
     (await modal).present();
   }

@@ -10,7 +10,7 @@ import { FileSystemUsageRenderer } from 'cranix-common/dist/pipes/ag-filesystem-
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
+import { SelectColumnsComponent } from 'cranix-common/dist/components/select-columns/select-columns.component';
 import { Institute } from 'cranix-common/dist/models/cephalix-data-model'
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 

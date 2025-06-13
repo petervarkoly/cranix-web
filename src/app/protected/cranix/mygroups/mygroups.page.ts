@@ -6,19 +6,19 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 //own modules
-import { ActionsComponent } from 'src/app/shared/actions/actions.component';
+import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
 import { GroupActionBTNRenderer } from 'cranix-common/dist/pipes/ag-group-renderer';
 import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { Group, GuestUsers, Room, User } from 'cranix-common/dist/models/data-model'
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { GroupMembersPage } from 'src/app/shared/actions/group-members/group-members.page';
+import { GroupMembersPage } from 'cranix-common/dist/components/actions/group-members/group-members.page';
 import { EductaionService } from 'cranix-common/dist/services/education.service';
 import { YesNoBTNRenderer } from 'cranix-common/dist/pipes/ag-yesno-renderer';
 import { DateTimeCellRenderer } from 'cranix-common/dist/pipes/ag-datetime-renderer';
 import { EditBTNRenderer } from 'cranix-common/dist/pipes/ag-edit-renderer';
-import { CranixNoticesComponent } from 'src/app/shared/cranix-notices/cranix-notices.component';
+import { CranixNoticesComponent } from 'cranix-common/dist/components/cranix-notices/cranix-notices.component';
 import { UserActionBTNRenderer } from 'cranix-common/dist/pipes/ag-user-renderer';
 
 @Component({
@@ -327,9 +327,6 @@ export class MyGroupsPage implements OnInit {
     });
     modal.onDidDismiss().then((dataReturned) => {
       this.gridApi.deselectAll();
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
     });
     (await modal).present();
   }
@@ -367,9 +364,6 @@ export class MyGroupsPage implements OnInit {
         case 'education/user': { this.userColumnDefs(); break; }
         case 'education/guestUser': { this.guestColumnDefs(); break; }
       }
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
     });
     (await modal).present();
   }
@@ -393,7 +387,6 @@ export class MyGroupsPage implements OnInit {
     modal.onDidDismiss().then((dataReturned) => {
       if (dataReturned.data) {
         this.objectService.getAllObject('education/guestUser');
-        this.authService.log("Object was created or modified", dataReturned.data)
       }
     });
     (await modal).present();

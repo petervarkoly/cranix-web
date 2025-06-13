@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
 //own modules
-import { ActionsComponent } from 'src/app/shared/actions/actions.component';
+import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
 import { DateCellRenderer } from 'cranix-common/dist/pipes/ag-date-renderer';
@@ -14,7 +14,7 @@ import { Institute } from 'cranix-common/dist/models/cephalix-data-model'
 import { InstituteActionCellRenderer } from 'cranix-common/dist/pipes/ag-institute-action-renderer';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
-import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
+import { SelectColumnsComponent } from 'cranix-common/dist/components/select-columns/select-columns.component';
 import { WindowRef } from 'cranix-common/dist/models/ohters';
 
 @Component({
@@ -175,11 +175,6 @@ export class InstitutesComponent implements OnInit {
         },
         animated: true,
         showBackdrop: true
-      });
-      modal.onDidDismiss().then((dataReturned) => {
-        if (dataReturned.data) {
-          this.authService.log("Object was created or modified", dataReturned.data)
-        }
       });
       (await modal).present();
     }

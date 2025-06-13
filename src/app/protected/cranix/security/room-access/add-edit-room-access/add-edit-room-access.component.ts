@@ -7,7 +7,7 @@ import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { RoomsService } from 'cranix-common/dist/services/rooms.service';
 import { SecurityService } from 'cranix-common/dist/services/security-service';
 import { Room } from 'cranix-common/dist/models/data-model';
-import { AccessInRoom } from 'cranix-common/dist/models/secutiry-model';
+import { AccessInRoom } from 'cranix-common/dist/models/security-model';
 @Component({
   selector: 'cranix-add-edit-room-access',
   templateUrl: './add-edit-room-access.component.html',

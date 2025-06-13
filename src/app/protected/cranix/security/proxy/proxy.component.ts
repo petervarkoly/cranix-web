@@ -125,15 +125,15 @@ export class ProxyComponent implements OnInit {
       case 'basic': {
         this.authService.log(this.rowData);
         this.objectService.requestSent();
-        let sub = this.securityService.setProxyBasic(this.rowData).subscribe(
-          (val) => { 
+        this.securityService.setProxyBasic(this.rowData).subscribe({
+          next: (val) => { 
             this.objectService.responseMessage(val)
             this.securityService.proxyChanged[this.segment] = false;
            },
-          (err) => {
+          error: (err) => {
             this.objectService.errorMessage(this.languageS.trans("An error was accoured"));
-          },
-          () => { sub.unsubscribe() });
+          }
+        });
         return;
       }
       case 'positive': { return; }

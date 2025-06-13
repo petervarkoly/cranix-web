@@ -4,7 +4,7 @@ import { PopoverController } from '@ionic/angular';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { ActionsComponent } from 'src/app/shared/actions/actions.component';
+import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
 
 
 @Component({

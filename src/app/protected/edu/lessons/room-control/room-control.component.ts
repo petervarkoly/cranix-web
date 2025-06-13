@@ -4,10 +4,10 @@ import { Room } from 'cranix-common/dist/models/data-model';
 import { EductaionService } from 'cranix-common/dist/services/education.service';
 import { takeWhile } from 'rxjs/operators';
 import { PopoverController, IonSelect, ModalController } from '@ionic/angular';
-import { ActionsComponent } from 'src/app/shared/actions/actions.component';
+import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { FilesCollectComponent } from 'src/app/shared/actions/files-collect/files-collect.component';
-import { FilesUploadComponent } from 'src/app/shared/actions/files-upload/files-upload.component';
+import { FilesCollectComponent } from 'cranix-common/dist/components/actions/files-collect/files-collect.component';
+import { FilesUploadComponent } from 'cranix-common/dist/components/actions/files-upload/files-upload.component';
 @Component({
   selector: 'cranix-room-control',
   templateUrl: './room-control.component.html',

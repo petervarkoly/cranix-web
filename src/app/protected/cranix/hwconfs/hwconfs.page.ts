@@ -5,13 +5,13 @@ import { Storage } from '@ionic/storage-angular';
 import { GridApi } from 'ag-grid-community'
 
 //own modules
-import { ActionsComponent } from 'src/app/shared/actions/actions.component';
+import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
 import { DateCellRenderer } from 'cranix-common/dist/pipes/ag-date-renderer';
 import { ActionBTNRenderer } from 'cranix-common/dist/pipes/ag-action-renderer';
 import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
+import { SelectColumnsComponent } from 'cranix-common/dist/components/select-columns/select-columns.component';
 import { Hwconf } from 'cranix-common/dist/models/data-model'
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 
@@ -168,11 +168,6 @@ export class HwconfsPage implements OnInit {
         },
         animated: true,
         showBackdrop: true
-      });
-      modal.onDidDismiss().then((dataReturned) => {
-        if (dataReturned.data) {
-          this.authService.log("Object was created or modified", dataReturned.data)
-        }
       });
       (await modal).present();
     }

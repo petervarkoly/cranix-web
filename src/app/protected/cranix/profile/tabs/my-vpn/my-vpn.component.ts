@@ -9,34 +9,35 @@ import { GenericObjectService } from 'cranix-common/dist/services/generic-object
   templateUrl: './my-vpn.component.html',
   styleUrls: ['./my-vpn.component.scss'],
 })
-export class MyVPNComponent implements OnInit,OnDestroy {
+export class MyVPNComponent implements OnInit, OnDestroy {
 
   alive: boolean = true;
   supportedOSlist: Observable<string[]>;
 
-  selectedOS: string; 
-  
+  selectedOS: string;
+
   constructor(private selfS: SelfManagementService,
     public objectService: GenericObjectService) {
-    this.supportedOSlist = this.selfS.getSupportedOS()  
+    this.supportedOSlist = this.selfS.getSupportedOS()
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  log(){
+  log() {
     console.log('value is:', this.selectedOS);
   }
-  downloadExec(){
+  downloadExec() {
     this.objectService.requestSent();
     this.selfS.getVPNInstaller(this.selectedOS)
-        .pipe(takeWhile(() => this.alive ))
-        .subscribe((x) => { 
-           // console.log('answer is', x.headers.get('content-disposition'));
-           const keys = x.headers.keys();
+      .pipe(takeWhile(() => this.alive))
+      .subscribe({
+        next: (x) => {
+          // console.log('answer is', x.headers.get('content-disposition'));
+          const keys = x.headers.keys();
           let headers = keys.map(key =>
             `${key}: ${x.headers.get(key)}`);
-           console.log('full answer', x);
-           console.log('headers are', headers);
+          console.log('full answer', x);
+          console.log('headers are', headers);
           var newBlob = new Blob([x.body], { type: x.body.type });
 
           // IE doesn't allow using a blob object directly as link href
@@ -52,58 +53,63 @@ export class MyVPNComponent implements OnInit,OnDestroy {
 
           var link = document.createElement('a');
           link.href = data;
-          link.download = x.headers.get('content-disposition').replace('attachment; filename=','');
+          link.download = x.headers.get('content-disposition').replace('attachment; filename=', '');
           // this is necessary as link.click() does not work on the latest firefox
           link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
 
           setTimeout(function () {
-              // For Firefox it is necessary to delay revoking the ObjectURL
-              window.URL.revokeObjectURL(data);
-              link.remove();
+            // For Firefox it is necessary to delay revoking the ObjectURL
+            window.URL.revokeObjectURL(data);
+            link.remove();
           }, 100);
-        }, (err) => {
+        },
+        error: (err) => {
           this.objectService.errorMessage(err);
-        })
+        }
+      })
   }
 
-  downloadConfig(){
+  downloadConfig() {
     this.objectService.requestSent();
     this.selfS.getVPNConfig(this.selectedOS)
-    .pipe(takeWhile(() => this.alive ))
-    .subscribe((x) => {
-      console.log('full answer', x);
-      console.log('answer is', x.headers.get('content-disposition'));
+      .pipe(takeWhile(() => this.alive))
+      .subscribe({
+        next: (x) => {
+          console.log('full answer', x);
+          console.log('answer is', x.headers.get('content-disposition'));
 
-      var newBlob = new Blob([x.body], { type: x.body.type });
+          var newBlob = new Blob([x.body], { type: x.body.type });
 
-      // IE doesn't allow using a blob object directly as link href
-      /* instead it is necessary to use msSaveOrOpenBlob
-      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-          window.navigator.msSaveOrOpenBlob(newBlob);
-          return;
-      }*/
+          // IE doesn't allow using a blob object directly as link href
+          /* instead it is necessary to use msSaveOrOpenBlob
+          if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+              window.navigator.msSaveOrOpenBlob(newBlob);
+              return;
+          }*/
 
-      // For other browsers: 
-      // Create a link pointing to the ObjectURL containing the blob.
-      const data = window.URL.createObjectURL(newBlob);
+          // For other browsers: 
+          // Create a link pointing to the ObjectURL containing the blob.
+          const data = window.URL.createObjectURL(newBlob);
 
-      var link = document.createElement('a');
-      link.href = data;
-      link.download = x.headers.get('content-disposition').replace('attachment; filename=','');
-      // this is necessary as link.click() does not work on the latest firefox
-      link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+          var link = document.createElement('a');
+          link.href = data;
+          link.download = x.headers.get('content-disposition').replace('attachment; filename=', '');
+          // this is necessary as link.click() does not work on the latest firefox
+          link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
 
-      setTimeout(function () {
-          // For Firefox it is necessary to delay revoking the ObjectURL
-          window.URL.revokeObjectURL(data);
-          link.remove();
-      }, 100);
-    }, (err) => {
-      this.objectService.errorMessage(err);
-    })
+          setTimeout(function () {
+            // For Firefox it is necessary to delay revoking the ObjectURL
+            window.URL.revokeObjectURL(data);
+            link.remove();
+          }, 100);
+        },
+        error: (err) => {
+          this.objectService.errorMessage(err);
+        }
+      })
   }
 
-  ngOnDestroy(){
-    this.alive = false; 
+  ngOnDestroy() {
+    this.alive = false;
   }
 }

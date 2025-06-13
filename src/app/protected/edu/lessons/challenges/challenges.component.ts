@@ -6,7 +6,7 @@ import { CrxChallenge, CrxQuestion, CrxQuestionAnswer, TeachingSubject } from 'c
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { CrxObjectService } from 'cranix-common/dist/services/crx-object-service';
-import { ActionsComponent } from 'src/app/shared/actions/actions.component';
+import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 
 @Component({

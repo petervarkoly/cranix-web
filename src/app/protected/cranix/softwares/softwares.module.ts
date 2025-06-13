@@ -11,7 +11,7 @@ import { InstallationSetsComponent }     from './sets/installation-sets.componen
 import { SoftwaresPage }                 from './softwares.page';
 import { SoftwareStatusComponent }       from './status/software-status.component';
 import { SoftwarePackagesComponent }     from './packages/software-packages.component';
-import { SoftwareLicensesComponent }     from 'src/app/shared/actions/software-licenses/software-licenses.component'
+import { SoftwareLicensesComponent }     from 'cranix-common/dist/components/actions/software-licenses/software-licenses.component'
 
 const routes: Routes = [
   {

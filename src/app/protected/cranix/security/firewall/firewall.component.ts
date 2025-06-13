@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { GridApi } from 'ag-grid-community'
-import { IncomingRules, OutgoingRule, RemoteRule } from 'cranix-common/dist/models/secutiry-model';
+import { IncomingRules, OutgoingRule, RemoteRule } from 'cranix-common/dist/models/security-model';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { SecurityService } from 'cranix-common/dist/services/security-service';

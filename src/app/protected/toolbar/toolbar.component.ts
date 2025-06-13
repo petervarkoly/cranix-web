@@ -125,7 +125,6 @@ export class ToolbarComponent implements OnInit {
         if (this.utilService.actMdList) {
           this.utilService.actMdList.ngOnInit();
         }
-        this.authService.log("ToolbarComponent", "Settings was modified", this.authService.settings)
       }
     });
     (await modal).present();

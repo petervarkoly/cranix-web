@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
 
 //own modules
-import { ShowImportComponent } from 'src/app/shared/actions/show-import/show-import.component';
+import { ShowImportComponent } from 'cranix-common/dist/components/actions/show-import/show-import.component';
 import { UsersService } from 'cranix-common/dist/services/users.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { UsersImport } from 'cranix-common/dist/models/data-model';
@@ -64,9 +64,6 @@ export class UsersImportComponent implements OnInit {
     });
     modal.onDidDismiss().then((dataReturned) => {
       this.refreshImports()
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
     });
     (await modal).present();
   }
@@ -103,9 +100,6 @@ export class UsersImportComponent implements OnInit {
       .pipe(takeWhile(() => this.alive))
       .subscribe({
         next: (x) => {
-          this.authService.log('full answer', x);
-          this.authService.log('answer is', x.headers.get('content-disposition'));
-
           var newBlob = new Blob([x.body], { type: x.body.type });
 
           // IE doesn't allow using a blob object directly as link href

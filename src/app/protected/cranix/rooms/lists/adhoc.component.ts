@@ -7,7 +7,7 @@ import { AdHocRoom } from 'cranix-common/dist/models/data-model'
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
 import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
+import { SelectColumnsComponent } from 'cranix-common/dist/components/select-columns/select-columns.component';
 import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
 import { YesNoBTNRenderer } from 'cranix-common/dist/pipes/ag-yesno-renderer';
 import { EditBTNRenderer } from 'cranix-common/dist/pipes/ag-edit-renderer';
@@ -181,11 +181,6 @@ export class AdhocComponent implements OnInit {
       },
       animated: true,
       showBackdrop: true
-    });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
     });
     (await modal).present();
   }

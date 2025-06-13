@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Device } from 'cranix-common/dist/models/data-model';
-import { ActionsComponent } from 'src/app/shared/actions/actions.component';
+import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { Subscription, interval } from 'rxjs';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';

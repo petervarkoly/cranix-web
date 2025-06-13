@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RemoteRule } from 'cranix-common/dist/models/secutiry-model';
+import { RemoteRule } from 'cranix-common/dist/models/security-model';
 import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
 import { ModalController } from '@ionic/angular';
 import { SecurityService } from 'cranix-common/dist/services/security-service';

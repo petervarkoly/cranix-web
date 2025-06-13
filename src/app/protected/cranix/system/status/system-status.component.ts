@@ -8,7 +8,7 @@ import { LanguageService } from 'cranix-common/dist/services/language.service';
 import { SupportRequest } from 'cranix-common/dist/models/data-model';
 import { ServiceStatus } from 'cranix-common/dist/models/server-models';
 import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { CreateSupport } from 'src/app/shared/actions/create-support/create-support-page';
+import { CreateSupport } from 'cranix-common/dist/components/actions/create-support/create-support-page';
 
 @Component({
   selector: 'cranix-system-status',
