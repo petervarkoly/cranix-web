@@ -4,15 +4,15 @@ import { Router } from '@angular/router';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
 
 //own modules
-import { ShowImportComponent } from 'cranix-common/dist/components/actions/show-import/show-import.component';
-import { UsersService } from 'cranix-common/dist/services/users.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { UsersImport } from 'cranix-common/dist/models/data-model';
-import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { ShowImportComponent } from 'cranix-common';
+import { UsersService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { UsersImport } from 'cranix-common';
+import { ObjectsEditComponent } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { AuthenticationService } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-users-import',
   templateUrl: './users-import.component.html',
   // styleUrls: ['./user-import.component.scss'],

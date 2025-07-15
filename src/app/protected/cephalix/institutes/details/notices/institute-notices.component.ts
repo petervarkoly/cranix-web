@@ -3,12 +3,12 @@ import { FormBuilder } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalController } from '@ionic/angular';
 //own modules
-import { Institute, Notice } from 'cranix-common/dist/models/cephalix-data-model';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
-import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
+import { Institute, Notice } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { CephalixService } from 'cranix-common';
+import { ObjectsEditComponent } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-institute-notices',
   templateUrl: './institute-notices.component.html',
   styleUrls: ['./institute-notices.component.scss'],

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule,Routes } from '@angular/router';
 
-import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { RegisterPTMComponent } from './register-ptm/register-ptm.component';
 const routes: Routes = [
   {
@@ -17,7 +16,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CranixSharedModule,
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule,RegisterPTMComponent],

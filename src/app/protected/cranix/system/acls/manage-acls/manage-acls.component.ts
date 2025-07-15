@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { SystemService } from 'cranix-common/dist/services/system.service';
-import { Acl } from 'cranix-common/dist/models/server-models';
+import { SystemService } from 'cranix-common';
+import { Acl } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-manage-acls',
   templateUrl: './manage-acls.component.html',
   styleUrls: ['./manage-acls.component.scss'],

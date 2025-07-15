@@ -5,16 +5,16 @@ import { Storage } from '@ionic/storage-angular';
 import { interval } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 //Own module
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { UtilsService } from 'cranix-common/dist/services/utils.service';
-import { Settings } from 'cranix-common/dist/models/server-models';
-import { Ticket } from 'cranix-common/dist/models/cephalix-data-model';
+import { AuthenticationService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { ObjectsEditComponent } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { UtilsService } from 'cranix-common';
+import { Settings } from 'cranix-common';
+import { Ticket } from 'cranix-common';
 import { Router } from '@angular/router';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],

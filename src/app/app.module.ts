@@ -14,27 +14,27 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { QuillModule } from 'ngx-quill';
 
 //own modules
-import { CranixSharedModule } from './cranix-shared.module';
+import { CranixCommonModule } from 'cranix-common';
 
 //own services
-import { CrxCalendarService } from 'cranix-common/dist/services/crx-calendar.service';
-import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
-import { DevicesService } from 'cranix-common/dist/services/devices.service';
-import { EductaionService } from 'cranix-common/dist/services/education.service';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { CrxObjectService } from 'cranix-common/dist/services/crx-object-service';
-import { GroupsService } from 'cranix-common/dist/services/groups.service';
-import { HwconfsService } from 'cranix-common/dist/services/hwconfs.service';
-import { InformationsService } from 'cranix-common/dist/services/informations.services';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { PrintersService } from 'cranix-common/dist/services/printers.service';
-import { ParentsService } from 'cranix-common/dist/services/parents.service';
-import { RoomsService } from 'cranix-common/dist/services/rooms.service';
-import { SecurityService } from 'cranix-common/dist/services/security-service';
-import { SoftwareService } from 'cranix-common/dist/services/softwares.service';
-import { SystemService } from 'cranix-common/dist/services/system.service';
-import { UsersService } from 'cranix-common/dist/services/users.service';
-import { UtilsService } from 'cranix-common/dist/services/utils.service';
+import { CrxCalendarService } from 'cranix-common';
+import { CephalixService } from 'cranix-common';
+import { DevicesService } from 'cranix-common';
+import { EductaionService } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { CrxObjectService } from 'cranix-common';
+import { GroupsService } from 'cranix-common';
+import { HwconfsService } from 'cranix-common';
+import { InformationsService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { PrintersService } from 'cranix-common';
+import { ParentsService } from 'cranix-common';
+import { RoomsService } from 'cranix-common';
+import { SecurityService } from 'cranix-common';
+import { SoftwareService } from 'cranix-common';
+import { SystemService } from 'cranix-common';
+import { UsersService } from 'cranix-common';
+import { UtilsService } from 'cranix-common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -46,7 +46,7 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [AppComponent],
   imports: [
     BrowserAnimationsModule,
-    CranixSharedModule,
+    CranixCommonModule,
     DragDropModule,
     HttpClientModule,
     IonicModule.forRoot(),

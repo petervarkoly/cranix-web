@@ -1,19 +1,19 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 //own stuff
-import { DevicesService } from 'cranix-common/dist/services/devices.service';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { RoomsService } from 'cranix-common/dist/services/rooms.service';
-import { Device, Room, Hwconf } from 'cranix-common/dist/models/data-model';
+import { DevicesService } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { RoomsService } from 'cranix-common';
+import { Device, Room, Hwconf } from 'cranix-common';
 import { ModalController } from '@ionic/angular';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { SelfManagementService } from 'cranix-common/dist/services/selfmanagement.service';
+import { LanguageService } from 'cranix-common';
+import { AuthenticationService } from 'cranix-common';
+import { SelfManagementService } from 'cranix-common';
 import { takeWhile } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-add-device',
   templateUrl: './add-device.component.html',
   styleUrls: ['./add-device.component.scss'],

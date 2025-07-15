@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { PopoverController, ModalController } from '@ionic/angular';
 import { GridOptions, GridApi } from 'ag-grid-community';
 //Own stuff
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { DownloadSoftwaresComponent } from 'cranix-common/dist/components/actions/download-softwares/download-softwares.component';
-import { SoftwareEditBTNRenderer } from 'cranix-common/dist/pipes/ag-software-edit-renderer';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { SoftwareService } from 'cranix-common/dist/services/softwares.service';
-import { Software } from 'cranix-common/dist/models/data-model';
-import { SoftwareLicensesComponent } from 'cranix-common/dist/components/actions/software-licenses/software-licenses.component';
+import { AuthenticationService } from 'cranix-common';
+import { DownloadSoftwaresComponent } from 'cranix-common';
+import { SoftwareEditBTNRenderer } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { ObjectsEditComponent } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { SoftwareService } from 'cranix-common';
+import { Software } from 'cranix-common';
+import { SoftwareLicensesComponent } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-software-packages',
   templateUrl: './software-packages.component.html',
   styleUrls: ['./software-packages.component.scss'],

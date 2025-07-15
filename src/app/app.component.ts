@@ -3,11 +3,12 @@ import { Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 //own services
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { AuthenticationService } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
 
 @Component({
+  standalone: false,
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
@@ -39,7 +40,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       if (params.has("token") || this.error) {
         //Sending the token as url parameter grands only access to the page defined in the session of the token.
-        this.token = params.get('token') 
+        this.token = params.get('token')
         console.log(this.token)
         this.authService.setupSessionByToken(this.token)
       } else {

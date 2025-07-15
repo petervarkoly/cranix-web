@@ -6,22 +6,22 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 //own modules
-import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
-import { GroupActionBTNRenderer } from 'cranix-common/dist/pipes/ag-group-renderer';
-import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { Group, GuestUsers, Room, User } from 'cranix-common/dist/models/data-model'
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { GroupMembersPage } from 'cranix-common/dist/components/actions/group-members/group-members.page';
-import { EductaionService } from 'cranix-common/dist/services/education.service';
-import { YesNoBTNRenderer } from 'cranix-common/dist/pipes/ag-yesno-renderer';
-import { DateTimeCellRenderer } from 'cranix-common/dist/pipes/ag-datetime-renderer';
-import { EditBTNRenderer } from 'cranix-common/dist/pipes/ag-edit-renderer';
-import { CranixNoticesComponent } from 'cranix-common/dist/components/cranix-notices/cranix-notices.component';
-import { UserActionBTNRenderer } from 'cranix-common/dist/pipes/ag-user-renderer';
+import { ActionsComponent } from 'cranix-common';
+import { GroupActionBTNRenderer } from 'cranix-common';
+import { ObjectsEditComponent } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { Group, GuestUsers, Room, User } from 'cranix-common'
+import { AuthenticationService } from 'cranix-common';
+import { GroupMembersPage } from 'cranix-common';
+import { EductaionService } from 'cranix-common';
+import { YesNoBTNRenderer } from 'cranix-common';
+import { DateTimeCellRenderer } from 'cranix-common';
+import { EditBTNRenderer } from 'cranix-common';
+import { CranixNoticesComponent } from 'cranix-common';
+import { UserActionBTNRenderer } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-mygroups',
   templateUrl: './mygroups.page.html',
   styleUrls: ['./mygroups.page.scss'],
@@ -406,7 +406,7 @@ export class MyGroupsPage implements OnInit {
   }
 }
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-add-edit-guest',
   templateUrl: './add-edit-guest.html'
 })

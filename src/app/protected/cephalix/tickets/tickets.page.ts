@@ -6,19 +6,19 @@ import { Router } from '@angular/router';
 
 
 //own modules
-import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
-import { DateTimeCellRenderer } from 'cranix-common/dist/pipes/ag-datetime-renderer';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { SelectColumnsComponent } from 'cranix-common/dist/components/select-columns/select-columns.component';
-import { Ticket } from 'cranix-common/dist/models/cephalix-data-model'
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { ActionsComponent } from 'cranix-common';
+import { DateTimeCellRenderer } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { SelectColumnsComponent } from 'cranix-common';
+import { Ticket } from 'cranix-common'
+import { AuthenticationService } from 'cranix-common';
 import { Subscription } from 'rxjs';
-import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
-import { SupportRequest } from 'cranix-common/dist/models/data-model';
-import { CreateSupport } from 'cranix-common/dist/components/actions/create-support/create-support-page';
+import { CephalixService } from 'cranix-common';
+import { SupportRequest } from 'cranix-common';
+import { CreateSupport } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-tickets',
   templateUrl: './tickets.page.html',
   styleUrls: ['./tickets.page.scss'],

@@ -2,13 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 //own
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { RoomsService } from 'cranix-common/dist/services/rooms.service';
-import { SecurityService } from 'cranix-common/dist/services/security-service';
-import { Room } from 'cranix-common/dist/models/data-model';
-import { AccessInRoom } from 'cranix-common/dist/models/security-model';
-@Component({
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { RoomsService } from 'cranix-common';
+import { SecurityService } from 'cranix-common';
+import { Room } from 'cranix-common';
+import { AccessInRoom } from 'cranix-common';
+@Component({     standalone: false,
   selector: 'cranix-add-edit-room-access',
   templateUrl: './add-edit-room-access.component.html',
 })

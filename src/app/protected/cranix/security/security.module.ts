@@ -5,13 +5,12 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
 
 //own modules
-import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { SecurityPage } from './security.page';
 import { FirewallComponent } from './firewall/firewall.component';
 import { ProxyComponent } from './proxy/proxy.component';
 import { RoomAccessComponent } from './room-access/room-access.component';
 import { UnboundComponent } from './unbound/unbound.component';
-import { FirewallCanDeactivate, ProxyCanDeactivate, UnboundCanDeactivate } from 'cranix-common/dist/services/security-service';
+import { FirewallCanDeactivate, ProxyCanDeactivate, UnboundCanDeactivate } from 'cranix-common';
 import { AddRemoteRuleComponent } from './firewall/add-rules/add-remote-rule.component';
 import { AddOutgoingRuleComponent } from './firewall/add-rules/add-outgoing-rule.component';
 import { AddEditRoomAccessComponent } from './room-access/add-edit-room-access/add-edit-room-access.component';
@@ -54,7 +53,6 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    CranixSharedModule,
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes)

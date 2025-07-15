@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 //Own stuff
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { SystemService } from 'cranix-common/dist/services/system.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { SupportRequest } from 'cranix-common/dist/models/data-model';
-import { ServiceStatus } from 'cranix-common/dist/models/server-models';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { CreateSupport } from 'cranix-common/dist/components/actions/create-support/create-support-page';
+import { GenericObjectService } from 'cranix-common';
+import { SystemService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { SupportRequest } from 'cranix-common';
+import { ServiceStatus } from 'cranix-common';
+import { AuthenticationService } from 'cranix-common';
+import { CreateSupport } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-system-status',
   templateUrl: './system-status.component.html',
   styleUrls: ['./system-status.component.scss'],

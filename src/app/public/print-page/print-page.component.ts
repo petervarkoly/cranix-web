@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-@Component({
+@Component({     standalone: false,
   selector: 'app-print-page',
   templateUrl: './print-page.component.html',
   styleUrl: './print-page.component.css',

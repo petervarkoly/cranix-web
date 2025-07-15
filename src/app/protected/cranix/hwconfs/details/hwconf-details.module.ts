@@ -5,7 +5,6 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
 
 //own modules
-import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { HwconfDetailsPage } from './hwconf-details.page';
 import { HwconfEditPage } from './edit/hwconf-edit.page';
 import { HwconfMembersPage } from './members/hwconf-members.page';
@@ -44,7 +43,6 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    CranixSharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [HwconfDetailsPage,HwconfEditPage,HwconfMembersPage]

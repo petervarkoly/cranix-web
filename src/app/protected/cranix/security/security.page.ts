@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { AuthenticationService } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-security',
   templateUrl: './security.page.html',
   styleUrls: ['./security.page.scss'],

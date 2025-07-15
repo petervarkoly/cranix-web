@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { OutgoingRule } from 'cranix-common/dist/models/security-model';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { OutgoingRule } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
 import { ModalController } from '@ionic/angular';
-import { SecurityService } from 'cranix-common/dist/services/security-service';
+import { SecurityService } from 'cranix-common';
 
 class SourceObject {
   public key:  number;
   public name: string;
 }
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-add-outgoing-rule',
   templateUrl: './add-outgoing-rule.component.html',
   styleUrls: ['./add-outgoing-rule.component.scss'],

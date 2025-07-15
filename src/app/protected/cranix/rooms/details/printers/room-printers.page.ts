@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 //own stuff
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { RoomsService } from 'cranix-common/dist/services/rooms.service';
-import { Printer, Room } from 'cranix-common/dist/models/data-model'
-@Component({
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { RoomsService } from 'cranix-common';
+import { Printer, Room } from 'cranix-common'
+@Component({     standalone: false,
   selector: 'cranix-room-printers',
   templateUrl: './room-printers.page.html',
   styleUrls: ['./room-printers.page.scss'],

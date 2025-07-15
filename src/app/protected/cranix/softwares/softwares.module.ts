@@ -5,13 +5,12 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
 
 //own modules
-import { CranixSharedModule }            from 'src/app/cranix-shared.module';
 import { EditInstallationSetComponent }  from './edit-set/edit-installation-set.component';
 import { InstallationSetsComponent }     from './sets/installation-sets.component';
 import { SoftwaresPage }                 from './softwares.page';
 import { SoftwareStatusComponent }       from './status/software-status.component';
 import { SoftwarePackagesComponent }     from './packages/software-packages.component';
-import { SoftwareLicensesComponent }     from 'cranix-common/dist/components/actions/software-licenses/software-licenses.component'
+import { SoftwareLicensesComponent }     from 'cranix-common'
 
 const routes: Routes = [
   {
@@ -51,7 +50,6 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    CranixSharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

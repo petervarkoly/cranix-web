@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 //Own stuff
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
+import { AuthenticationService } from 'cranix-common';
+import { CephalixService } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
 import { GridApi } from 'ag-grid-community';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-institutes-sync-objects',
   templateUrl: './institutes-sync-objects.component.html'
 })

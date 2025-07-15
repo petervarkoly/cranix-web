@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-show-screenshot',
   templateUrl: './show-screenshot.component.html',
   styleUrls: ['./show-screenshot.component.scss'],

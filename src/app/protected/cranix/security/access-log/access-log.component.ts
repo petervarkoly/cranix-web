@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { SystemService } from 'cranix-common/dist/services/system.service';
+import { AuthenticationService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { SystemService } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-access-log',
   templateUrl: './access-log.component.html',
   styleUrls: ['./access-log.component.scss'],

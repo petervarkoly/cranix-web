@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { ChallengesService } from 'cranix-common/dist/services/challenges.service';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { CrxChallenge } from 'cranix-common/dist/models/data-model';
+import { AuthenticationService } from 'cranix-common';
+import { ChallengesService } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { CrxChallenge } from 'cranix-common';
 
 
-@Component({
+@Component({     standalone: false,
   selector: 'app-tests',
   templateUrl: './tests.component.html',
   styleUrls: ['../challenges/challenges.component.scss', './tests.component.scss'],

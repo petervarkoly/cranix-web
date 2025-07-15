@@ -1,15 +1,15 @@
-import { ChallengesService } from 'cranix-common/dist/services/challenges.service';
+import { ChallengesService } from 'cranix-common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { DomSanitizer } from '@angular/platform-browser';
-import { CrxChallenge, CrxQuestion, CrxQuestionAnswer, TeachingSubject } from 'cranix-common/dist/models/data-model';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { CrxObjectService } from 'cranix-common/dist/services/crx-object-service';
-import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { CrxChallenge, CrxQuestion, CrxQuestionAnswer, TeachingSubject } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { CrxObjectService } from 'cranix-common';
+import { ActionsComponent } from 'cranix-common';
+import { AuthenticationService } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'app-challenges',
   templateUrl: './challenges.component.html',
   styleUrls: ['./challenges.component.scss'],

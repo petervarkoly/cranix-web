@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { AuthenticationService } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-protected',
   templateUrl: './protected.page.html',
   styleUrls: ['./protected.page.scss'],

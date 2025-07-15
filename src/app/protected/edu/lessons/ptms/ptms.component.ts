@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { NoticesService } from 'cranix-common/dist/services/notices.service';
-import { ParentsService } from 'cranix-common/dist/services/parents.service';
-import { SystemService } from 'cranix-common/dist/services/system.service';
-import { UtilsService } from 'cranix-common/dist/services/utils.service';
-import { CrxNotice, ParentTeacherMeeting, PTMEvent, PTMTeacherInRoom, Room, User } from 'cranix-common/dist/models/data-model';
-import { WindowRef } from 'cranix-common/dist/models/ohters';
+import { AuthenticationService } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { NoticesService } from 'cranix-common';
+import { ParentsService } from 'cranix-common';
+import { SystemService } from 'cranix-common';
+import { UtilsService } from 'cranix-common';
+import { CrxNotice, ParentTeacherMeeting, PTMEvent, PTMTeacherInRoom, Room, User } from 'cranix-common';
+import { WindowRef } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'app-ptms',
   templateUrl: './ptms.component.html',
   styleUrl: './ptms.component.css'

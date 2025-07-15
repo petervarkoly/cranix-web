@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { RemoteRule } from 'cranix-common/dist/models/security-model';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { RemoteRule } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
 import { ModalController } from '@ionic/angular';
-import { SecurityService } from 'cranix-common/dist/services/security-service';
+import { SecurityService } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-add-remote-rule',
   templateUrl: './add-remote-rule.component.html',
   styleUrls: ['./add-remote-rule.component.scss'],

@@ -3,15 +3,15 @@ import { ModalController, PopoverController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 
 //Own stuff
-import { AdHocRoom } from 'cranix-common/dist/models/data-model'
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { SelectColumnsComponent } from 'cranix-common/dist/components/select-columns/select-columns.component';
-import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
-import { YesNoBTNRenderer } from 'cranix-common/dist/pipes/ag-yesno-renderer';
-import { EditBTNRenderer } from 'cranix-common/dist/pipes/ag-edit-renderer';
-@Component({
+import { AdHocRoom } from 'cranix-common'
+import { GenericObjectService } from 'cranix-common';
+import { AuthenticationService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { SelectColumnsComponent } from 'cranix-common';
+import { ObjectsEditComponent } from 'cranix-common';
+import { YesNoBTNRenderer } from 'cranix-common';
+import { EditBTNRenderer } from 'cranix-common';
+@Component({     standalone: false,
   selector: 'cranix-adhoc',
   templateUrl: './adhoc.component.html',
   styleUrls: ['./adhoc.component.scss'],

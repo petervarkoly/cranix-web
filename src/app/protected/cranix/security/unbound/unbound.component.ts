@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { SecurityService } from 'cranix-common/dist/services/security-service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { SafeSearch } from 'cranix-common/dist/models/security-model';
+import { GenericObjectService } from 'cranix-common';
+import { SecurityService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { AuthenticationService } from 'cranix-common';
+import { SafeSearch } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-unbound',
   templateUrl: './unbound.component.html',
   styleUrls: ['./unbound.component.scss'],

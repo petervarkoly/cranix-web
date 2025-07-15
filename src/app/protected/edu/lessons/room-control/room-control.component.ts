@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { Room } from 'cranix-common/dist/models/data-model';
-import { EductaionService } from 'cranix-common/dist/services/education.service';
+import { AuthenticationService } from 'cranix-common';
+import { Room } from 'cranix-common';
+import { EductaionService } from 'cranix-common';
 import { takeWhile } from 'rxjs/operators';
 import { PopoverController, IonSelect, ModalController } from '@ionic/angular';
-import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { FilesCollectComponent } from 'cranix-common/dist/components/actions/files-collect/files-collect.component';
-import { FilesUploadComponent } from 'cranix-common/dist/components/actions/files-upload/files-upload.component';
-@Component({
+import { ActionsComponent } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { FilesCollectComponent } from 'cranix-common';
+import { FilesUploadComponent } from 'cranix-common';
+@Component({     standalone: false,
   selector: 'cranix-room-control',
   templateUrl: './room-control.component.html',
   styleUrls: ['./room-control.component.scss'],

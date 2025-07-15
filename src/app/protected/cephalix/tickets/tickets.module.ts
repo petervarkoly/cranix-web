@@ -6,8 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 //own modules
-import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
-import { CranixSharedModule } from 'src/app/cranix-shared.module';
+import { CanActivateViaAcls } from 'cranix-common';
 import { TicketsPage } from './tickets.page';
 
 const routes: Routes = [
@@ -29,7 +28,6 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
     IonicModule,
-    CranixSharedModule
   ],
   declarations: [TicketsPage],
   providers: [TranslateService]

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular'
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { ParentsService } from 'cranix-common/dist/services/parents.service';
-import { UtilsService } from 'cranix-common/dist/services/utils.service';
-import { Group, PTMTeacherInRoom, ParentTeacherMeeting, User } from 'cranix-common/dist/models/data-model';
-import { EditBTNRenderer } from 'cranix-common/dist/pipes/ag-edit-renderer'
+import { AuthenticationService } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { ParentsService } from 'cranix-common';
+import { UtilsService } from 'cranix-common';
+import { Group, PTMTeacherInRoom, ParentTeacherMeeting, User } from 'cranix-common';
+import { EditBTNRenderer } from 'cranix-common'
 
-@Component({
+@Component({     standalone: false,
   selector: 'app-manage-parents',
   templateUrl: './manage-parents.component.html',
   styleUrl: './manage-parents.component.css'

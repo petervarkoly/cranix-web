@@ -5,11 +5,10 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
 
 //own modules
-import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { RoomsListsPage }   from './rooms-lists.page';
 import { RoomsComponent }   from './rooms.component';
 import { AdhocComponent }  from './adhoc.component';
-import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
+import { CanActivateViaAcls } from 'cranix-common';
 import { RoomPrintersPage } from 'src/app/protected/cranix/rooms/details/printers/room-printers.page';
 
 const routes: Routes = [
@@ -39,7 +38,6 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    CranixSharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [RoomsListsPage,RoomsComponent,AdhocComponent,RoomPrintersPage]

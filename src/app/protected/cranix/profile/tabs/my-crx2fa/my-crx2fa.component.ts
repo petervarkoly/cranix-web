@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { SelfManagementService } from 'cranix-common/dist/services/selfmanagement.service';
-import { Crx2fa } from 'cranix-common/dist/models/server-models';
+import { AuthenticationService } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { SelfManagementService } from 'cranix-common';
+import { Crx2fa } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'app-my-crx2fa',
   templateUrl: './my-crx2fa.component.html',
   styleUrls: ['./my-crx2fa.component.scss'],

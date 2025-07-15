@@ -1,13 +1,13 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Device } from 'cranix-common/dist/models/data-model';
-import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
+import { Device } from 'cranix-common';
+import { ActionsComponent } from 'cranix-common';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { Subscription, interval } from 'rxjs';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
-import { EductaionService } from 'cranix-common/dist/services/education.service';
-import { WindowRef } from 'cranix-common/dist/models/ohters'
+import { EductaionService } from 'cranix-common';
+import { WindowRef } from 'cranix-common'
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-roomdev',
   templateUrl: './roomdev.component.html',
   styleUrls: ['./roomdev.component.scss'],

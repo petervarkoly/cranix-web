@@ -6,7 +6,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { QuillModule } from 'ngx-quill';
 
 //own modules
-import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { SystemPage } from './system.page';
 import { SystemStatusComponent }  from './status/system-status.component';
 import { SystemConfigComponent }  from './config/system-config.component';
@@ -15,7 +14,7 @@ import { SystemAclsComponent } from './acls/system-acls.component';
 import { SystemServicesComponent } from './services/system-services.component';
 import { ManageAclsComponent } from 'src/app/protected/cranix/system/acls/manage-acls/manage-acls.component';
 import { MailserverComponent } from './mailserver/mailserver.component'
-import { simpleToolbarOptions } from 'cranix-common/dist/models/constants'
+import { simpleToolbarOptions } from 'cranix-common'
 
 
 const routes: Routes = [
@@ -60,7 +59,6 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    CranixSharedModule,
     QuillModule.forRoot({
       modules: { toolbar: simpleToolbarOptions},
     }),

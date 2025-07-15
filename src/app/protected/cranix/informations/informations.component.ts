@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { InformationsService } from 'cranix-common/dist/services/informations.services';
+import { AuthenticationService } from 'cranix-common';
+import { InformationsService } from 'cranix-common';
 import { ModalController } from '@ionic/angular';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { Announcenement, Contact, FAQ, TaskResponse } from 'cranix-common/dist/models/data-model';
+import { GenericObjectService } from 'cranix-common';
+import { Announcenement, Contact, FAQ, TaskResponse } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-informations',
   templateUrl: './informations.component.html',
   styleUrls: ['./informations.component.scss'],
@@ -197,7 +197,7 @@ export class InformationsComponent implements OnInit {
   }
 }
 
-@Component({
+@Component({     standalone: false,
   selector: 'add-edit-info-page',
   templateUrl: 'add-edit-info.html'
 })
@@ -278,7 +278,7 @@ export class AddEditInfoPage implements OnInit {
   }
 }
 
-@Component({
+@Component({     standalone: false,
   selector: 'show-responses-page',
   templateUrl: 'show-responses-page.html'
 })

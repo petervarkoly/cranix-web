@@ -5,7 +5,6 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
 
 //own modules
-import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { InstituteDetailsPage } from './institute-details.page';
 import { InstituteEditComponent } from './edit/institute-edit.component';
 import { InstituteNoticesComponent } from './notices/institute-notices.component';
@@ -54,7 +53,6 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    CranixSharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [InstituteDetailsPage,InstituteEditComponent,InstituteStatusComponent,InstituteNoticesComponent,InstituteSyncedObjectsComponent]

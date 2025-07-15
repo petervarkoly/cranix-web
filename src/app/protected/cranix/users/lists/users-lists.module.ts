@@ -5,7 +5,6 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
 
 //own modules
-import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { UsersListsPage } from './users-lists.page';
 import { UsersComponent } from './users.component';
 import { UsersImportComponent } from './users-import.component';
@@ -13,7 +12,7 @@ import { Users2faComponent } from './users-2fa';
 import { UserGroupsPage } from '../details/groups/user-groups.page';
 import { ManageParentsComponent } from './manage-parents/manage-parents.component'
 import { IdCardsComponent } from './id-cards/id-cards.component'
-import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
+import { CanActivateViaAcls } from 'cranix-common';
 
 const routes: Routes = [
   {
@@ -51,7 +50,6 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    CranixSharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 //Our Stuff
-import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
-import { PositivList } from 'cranix-common/dist/models/data-model'
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { ObjectsEditComponent } from 'cranix-common';
+import { PositivList } from 'cranix-common'
+import { AuthenticationService } from 'cranix-common';
 import { ModalController } from '@ionic/angular';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { EductaionService } from 'cranix-common/dist/services/education.service';
-import { EditBTNRenderer } from 'cranix-common/dist/pipes/ag-edit-renderer';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { LanguageService } from 'cranix-common';
+import { EductaionService } from 'cranix-common';
+import { EditBTNRenderer } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-mypositive',
   templateUrl: './mypositive.component.html',
   styleUrls: ['./mypositive.component.scss'],

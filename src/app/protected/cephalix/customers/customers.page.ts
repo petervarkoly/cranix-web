@@ -4,17 +4,17 @@ import { PopoverController, ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 
 //own modules
-import { DateCellRenderer } from 'cranix-common/dist/pipes/ag-date-renderer';
-import { CustomerActionRenderer } from 'cranix-common/dist/pipes/ag-customer-action-renderer';
-import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { SelectColumnsComponent } from 'cranix-common/dist/components/select-columns/select-columns.component';
-import { Customer, Institute } from 'cranix-common/dist/models/cephalix-data-model'
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
+import { DateCellRenderer } from 'cranix-common';
+import { CustomerActionRenderer } from 'cranix-common';
+import { ObjectsEditComponent } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { SelectColumnsComponent } from 'cranix-common';
+import { Customer, Institute } from 'cranix-common'
+import { AuthenticationService } from 'cranix-common';
+import { CephalixService } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-customers',
   templateUrl: './customers.page.html',
   styleUrls: ['./customers.page.scss'],
@@ -202,7 +202,7 @@ export class CustomersPage implements OnInit {
   }
 }
 
-@Component({
+@Component({     standalone: false,
   selector: 'edit-institutes-component',
   templateUrl: 'edit-institutes.html'
 })

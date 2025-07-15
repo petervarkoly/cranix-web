@@ -1,10 +1,10 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { UsersService } from 'cranix-common/dist/services/users.service';
-import { IdRequest } from 'cranix-common/dist/models/data-model';
+import { AuthenticationService } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { UsersService } from 'cranix-common';
+import { IdRequest } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'app-id-cards',
   templateUrl: './id-cards.component.html',
   styleUrl: './id-cards.component.css'

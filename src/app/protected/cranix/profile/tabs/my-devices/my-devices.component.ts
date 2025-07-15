@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SelfManagementService } from 'cranix-common/dist/services/selfmanagement.service';
+import { SelfManagementService } from 'cranix-common';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { GenericObjectService } from 'cranix-common';
 import { ModalController } from '@ionic/angular';
 import { AddDeviceComponent } from 'src/app/protected/cranix/devices/add-device/add-device.component';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-my-devices',
   templateUrl: './my-devices.component.html',
   styleUrls: ['./my-devices.component.scss'],

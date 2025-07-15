@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 //own modules
-import { ChallengesService } from 'cranix-common/dist/services/challenges.service';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { ChallengesService } from 'cranix-common';
+import { AuthenticationService } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-lessons',
   templateUrl: './lessons.page.html',
 })

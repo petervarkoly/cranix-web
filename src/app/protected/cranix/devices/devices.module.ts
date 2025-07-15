@@ -5,9 +5,7 @@ import { TranslateService  } from '@ngx-translate/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
-import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
-import { CranixSharedModule } from 'src/app/cranix-shared.module';
-import { PipesModule } from 'cranix-common/dist/pipes/pipe-modules';
+import { CanActivateViaAcls } from 'cranix-common';
 
 const routes: Routes = [
   {
@@ -23,9 +21,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
     IonicModule,
-    CranixSharedModule
   ],
-  declarations: [ ],
-  providers: [TranslateService, PipesModule]
+  declarations: [ ]
 })
 export class DevicesPageModule {}

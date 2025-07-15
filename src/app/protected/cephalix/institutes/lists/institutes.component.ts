@@ -5,19 +5,19 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
 //own modules
-import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
-import { DateCellRenderer } from 'cranix-common/dist/pipes/ag-date-renderer';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { Institute } from 'cranix-common/dist/models/cephalix-data-model'
-import { InstituteActionCellRenderer } from 'cranix-common/dist/pipes/ag-institute-action-renderer';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
-import { SelectColumnsComponent } from 'cranix-common/dist/components/select-columns/select-columns.component';
-import { WindowRef } from 'cranix-common/dist/models/ohters';
+import { ActionsComponent } from 'cranix-common';
+import { AuthenticationService } from 'cranix-common';
+import { CephalixService } from 'cranix-common';
+import { DateCellRenderer } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { Institute } from 'cranix-common'
+import { InstituteActionCellRenderer } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { ObjectsEditComponent } from 'cranix-common';
+import { SelectColumnsComponent } from 'cranix-common';
+import { WindowRef } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-institutes',
   templateUrl: './institutes.component.html',
   styleUrls: ['./institutes.component.scss'],

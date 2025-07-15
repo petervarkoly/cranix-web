@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { ParentsService } from 'cranix-common/dist/services/parents.service';
-import { ParentTeacherMeeting, User } from 'cranix-common/dist/models/data-model';
+import { AuthenticationService } from 'cranix-common';
+import { ParentsService } from 'cranix-common';
+import { ParentTeacherMeeting, User } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'app-register-ptm',
   templateUrl: './register-ptm.component.html',
   styleUrl: './register-ptm.component.css'

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule,Routes } from '@angular/router';
 
-import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { ProtectedPage } from './protected.page';
 
 const routes: Routes = [
@@ -24,7 +23,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CranixSharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ProtectedPage]

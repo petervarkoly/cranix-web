@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community';
 import { PopoverController } from '@ionic/angular';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
+import { AuthenticationService } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { ActionsComponent } from 'cranix-common';
 
 
-@Component({
+@Component({     standalone: false,
     selector: 'cranix-users-2fa',
     templateUrl: './users-2fa.html',
     // styleUrls: ['./user-import.component.scss'],

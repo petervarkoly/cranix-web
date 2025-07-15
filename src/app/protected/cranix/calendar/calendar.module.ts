@@ -5,8 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateService  } from '@ngx-translate/core';
 
 import { CalendarComponent } from './calendar.component';
-import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
-import { CranixSharedModule } from 'src/app/cranix-shared.module';
+import { CanActivateViaAcls } from 'cranix-common';
 
 
 const routes: Routes = [
@@ -23,7 +22,6 @@ const routes: Routes = [
     CommonModule,
     FullCalendarModule,
     RouterModule.forChild(routes),
-    CranixSharedModule
   ],
   providers: [TranslateService]
 })

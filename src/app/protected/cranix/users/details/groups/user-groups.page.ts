@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { GenericObjectService } from 'cranix-common';
 import { ModalController } from '@ionic/angular';
 import { GridApi } from 'ag-grid-community'
 
 //own stuff
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { UsersService } from 'cranix-common/dist/services/users.service';
-import { Group, User } from 'cranix-common/dist/models/data-model'
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { LanguageService } from 'cranix-common';
+import { UsersService } from 'cranix-common';
+import { Group, User } from 'cranix-common'
+import { AuthenticationService } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-user-groups',
   templateUrl: './user-groups.page.html',
   styleUrls: ['./user-groups.page.scss'],

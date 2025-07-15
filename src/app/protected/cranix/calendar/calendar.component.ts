@@ -9,15 +9,15 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { RRule } from 'rrule';
-import { CrxCalendarService } from 'cranix-common/dist/services/crx-calendar.service';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { CrxCalendar, Group, RecRule, Room } from 'cranix-common/dist/models/data-model';
-import { UsersService } from 'cranix-common/dist/services/users.service';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { UtilsService } from 'cranix-common/dist/services/utils.service';
+import { CrxCalendarService } from 'cranix-common';
+import { AuthenticationService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { CrxCalendar, Group, RecRule, Room } from 'cranix-common';
+import { UsersService } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { UtilsService } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'crx-calendar',
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css'

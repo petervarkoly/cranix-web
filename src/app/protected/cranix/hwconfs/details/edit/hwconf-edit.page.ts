@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { Hwconf } from 'cranix-common/dist/models/data-model';
+import { GenericObjectService } from 'cranix-common';
+import { Hwconf } from 'cranix-common';
 import { FormBuilder } from '@angular/forms';
-import { HwconfsService } from 'cranix-common/dist/services/hwconfs.service';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { HwconfsService } from 'cranix-common';
+import { AuthenticationService } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-hwconf-edit',
   templateUrl: './hwconf-edit.page.html',
   styleUrls: ['./hwconf-edit.page.scss'],

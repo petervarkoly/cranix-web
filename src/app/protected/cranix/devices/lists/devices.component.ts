@@ -4,19 +4,19 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 
 //own modules
-import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
-import { DeviceActionBTNRenderer } from 'cranix-common/dist/pipes/ag-device-renderer';
-import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { SelectColumnsComponent } from 'cranix-common/dist/components/select-columns/select-columns.component';
-import { Device } from 'cranix-common/dist/models/data-model'
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { ActionsComponent } from 'cranix-common';
+import { DeviceActionBTNRenderer } from 'cranix-common';
+import { ObjectsEditComponent } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { SelectColumnsComponent } from 'cranix-common';
+import { Device } from 'cranix-common'
+import { AuthenticationService } from 'cranix-common';
 import { DevicePrintersComponent } from './../details/printers/device-printers.component';
 import { AddDeviceComponent } from './../add-device/add-device.component';
-import { ManageDhcpComponent } from 'cranix-common/dist/components/actions/manage-dhcp/manage-dhcp.component';
+import { ManageDhcpComponent } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-devices',
   templateUrl: './devices.component.html',
   styleUrls: ['./devices.component.scss'],

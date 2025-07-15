@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService} from 'cranix-common/dist/services/language.service';
-import { SystemConfig } from 'cranix-common/dist/models/data-model';
-import { SystemService } from 'cranix-common/dist/services/system.service';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-@Component({
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService} from 'cranix-common';
+import { SystemConfig } from 'cranix-common';
+import { SystemService } from 'cranix-common';
+import { AuthenticationService } from 'cranix-common';
+@Component({     standalone: false,
   selector: 'cranix-system-config',
   templateUrl: './system-config.component.html',
   styleUrls: ['./system-config.component.scss'],

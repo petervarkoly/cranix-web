@@ -1,15 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 //own
-import { Ticket, Article, Institute, Customer } from 'cranix-common/dist/models/cephalix-data-model';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { CephalixService } from 'cranix-common/dist/services/cephalix.service';
+import { Ticket, Article, Institute, Customer } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { CephalixService } from 'cranix-common';
 import { AlertController, ModalController } from '@ionic/angular';
-import { User } from 'cranix-common/dist/models/data-model';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { WindowRef } from 'cranix-common/dist/models/ohters';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-@Component({
+import { User } from 'cranix-common';
+import { AuthenticationService } from 'cranix-common';
+import { WindowRef } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+@Component({     standalone: false,
   selector: 'cranix-details',
   templateUrl: './details.page.html',
   styleUrls: ['./details.page.scss'],
@@ -274,7 +274,7 @@ export class DetailsPage implements OnInit {
   }
 }
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-edit-article',
   templateUrl: './edit-article.html'
   //styleUrls: ['./edit-article.scss'],

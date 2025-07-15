@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community'
 //own stuff
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { HwconfsService } from 'cranix-common/dist/services/hwconfs.service';
-import { Hwconf, Device, Room } from 'cranix-common/dist/models/data-model';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { CrxActionMap } from 'cranix-common/dist/models/server-models';
-import { DevicesService } from 'cranix-common/dist/services/devices.service';
-import { RoomIdCellRenderer } from 'cranix-common/dist/pipes/ag-roomid-render';
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { HwconfsService } from 'cranix-common';
+import { Hwconf, Device, Room } from 'cranix-common';
+import { AuthenticationService } from 'cranix-common';
+import { CrxActionMap } from 'cranix-common';
+import { DevicesService } from 'cranix-common';
+import { RoomIdCellRenderer } from 'cranix-common';
 import { interval } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-hwconf-members',
   templateUrl: './hwconf-members.page.html',
   styleUrls: ['./hwconf-members.page.scss'],

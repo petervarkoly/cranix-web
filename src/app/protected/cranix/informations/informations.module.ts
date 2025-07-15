@@ -1,9 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { CanActivateViaAcls } from 'cranix-common/dist/services/auth-guard.service';
+import { CanActivateViaAcls } from 'cranix-common';
 import { IonicModule } from '@ionic/angular';
-import { CranixSharedModule } from 'src/app/cranix-shared.module';
 import { TranslateService } from '@ngx-translate/core';
 import { InformationsComponent, AddEditInfoPage, ShowResponses } from 'src/app/protected/cranix/informations/informations.component'
 import { QuillModule } from 'ngx-quill';
@@ -19,7 +18,6 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    CranixSharedModule,
     IonicModule,
     QuillModule.forRoot({
       modules: {

@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { GridApi } from 'ag-grid-community';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { SecurityService } from 'cranix-common/dist/services/security-service';
-import { AccessInRoom } from 'cranix-common/dist/models/security-model';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
+import { AuthenticationService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { SecurityService } from 'cranix-common';
+import { AccessInRoom } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
 import { ModalController } from '@ionic/angular';
 import { AddEditRoomAccessComponent } from './add-edit-room-access/add-edit-room-access.component';
-import { YesNoBTNRenderer } from 'cranix-common/dist/pipes/ag-yesno-renderer';
-import { SystemService } from 'cranix-common/dist/services/system.service';
-import { ApplyBTNRenderer } from 'cranix-common/dist/pipes/ag-apply-renderer';
+import { YesNoBTNRenderer } from 'cranix-common';
+import { SystemService } from 'cranix-common';
+import { ApplyBTNRenderer } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-room-access',
   templateUrl: './room-access.component.html',
   styleUrls: ['./room-access.component.scss'],

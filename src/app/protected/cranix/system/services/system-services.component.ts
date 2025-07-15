@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SystemService } from 'cranix-common/dist/services/system.service';
-import { ServiceStatus } from 'cranix-common/dist/models/server-models'
+import { SystemService } from 'cranix-common';
+import { ServiceStatus } from 'cranix-common'
 import { takeWhile } from 'rxjs/operators';
 import { interval, Subscription } from 'rxjs';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-system-services',
   templateUrl: './system-services.component.html',
   styleUrls: ['./system-services.component.scss'],

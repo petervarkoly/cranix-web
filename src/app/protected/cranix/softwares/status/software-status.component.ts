@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community';
 //Own stuff
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { SoftwareService } from 'cranix-common/dist/services/softwares.service'
-import { SoftwareStatus } from 'cranix-common/dist/models/data-model';
+import { AuthenticationService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { SoftwareService } from 'cranix-common'
+import { SoftwareStatus } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-software-status',
   templateUrl: './software-status.component.html',
   styleUrls: ['./software-status.component.scss'],

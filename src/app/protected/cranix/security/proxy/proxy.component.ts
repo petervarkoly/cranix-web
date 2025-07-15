@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { GridApi } from 'ag-grid-community'
 
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { SecurityService } from 'cranix-common/dist/services/security-service';
-import { CheckBoxBTNRenderer } from 'cranix-common/dist/pipes/ag-checkbox-renderer';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { ApplyCheckBoxBTNRenderer } from 'cranix-common/dist/pipes/ag-apply-checkbox-renderer';
+import { LanguageService } from 'cranix-common';
+import { AuthenticationService } from 'cranix-common';
+import { SecurityService } from 'cranix-common';
+import { CheckBoxBTNRenderer } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { ApplyCheckBoxBTNRenderer } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-proxy',
   templateUrl: './proxy.component.html',
   styleUrls: ['./proxy.component.scss'],

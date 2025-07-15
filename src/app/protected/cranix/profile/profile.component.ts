@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SelfManagementService } from 'cranix-common/dist/services/selfmanagement.service';
+import { SelfManagementService } from 'cranix-common';
 import { takeWhile } from 'rxjs/operators';
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { AuthenticationService } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],

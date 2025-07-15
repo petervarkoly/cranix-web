@@ -6,19 +6,19 @@ import { Storage } from '@ionic/storage-angular';
 
 //own modules
 
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
+import { AuthenticationService } from 'cranix-common';
 import { AddPrinterComponent } from './../add-printer/add-printer.component';
-import { ActionsComponent } from 'cranix-common/dist/components/actions/actions.component';
-import { ObjectsEditComponent } from 'cranix-common/dist/components/objects-edit/objects-edit.component';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { LanguageService } from 'cranix-common/dist/services/language.service';
-import { PrinterActionBTNRenderer } from 'cranix-common/dist/pipes/ag-printer-renderer';
-import { PrintersService } from 'cranix-common/dist/services/printers.service';
-import { SelectColumnsComponent } from 'cranix-common/dist/components/select-columns/select-columns.component';
-import { Device, Printer } from 'cranix-common/dist/models/data-model'
-import { YesNoBTNRenderer } from 'cranix-common/dist/pipes/ag-yesno-renderer';
+import { ActionsComponent } from 'cranix-common';
+import { ObjectsEditComponent } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { LanguageService } from 'cranix-common';
+import { PrinterActionBTNRenderer } from 'cranix-common';
+import { PrintersService } from 'cranix-common';
+import { SelectColumnsComponent } from 'cranix-common';
+import { Device, Printer } from 'cranix-common'
+import { YesNoBTNRenderer } from 'cranix-common';
 
-@Component({
+@Component({     standalone: false,
   selector: 'cranix-printers',
   templateUrl: './printers.component.html',
   styleUrls: ['./printers.component.scss'],

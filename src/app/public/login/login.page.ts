@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 //Own modules
-import { AuthenticationService } from 'cranix-common/dist/services/auth.service';
-import { GenericObjectService } from 'cranix-common/dist/services/generic-object.service';
-import { SystemService } from 'cranix-common/dist/services/system.service';
-import { LoginForm } from 'cranix-common/dist/models/server-models';
+import { AuthenticationService } from 'cranix-common';
+import { GenericObjectService } from 'cranix-common';
+import { SystemService } from 'cranix-common';
+import { LoginForm } from 'cranix-common';
 
 
 
-@Component({
+@Component({     standalone: false,
     selector: 'app-login',
     templateUrl: './login.page.html',
     styleUrls: ['./login.page.scss'],
