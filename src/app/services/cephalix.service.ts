@@ -292,6 +292,7 @@ export class CephalixService {
 
 	setCare(instituteId: number, cephalixCare: CephalixCare) {
 		this.url = this.hostname + `/institutes/${instituteId}/care`
+		console.log(cephalixCare)
 		return this.http.post<ServerResponse>(this.url, cephalixCare, { headers: this.authService.headers }).subscribe(
 			(val) => { this.objectService.responseMessage(val) }
 		);
