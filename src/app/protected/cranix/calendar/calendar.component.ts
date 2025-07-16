@@ -141,10 +141,9 @@ export class CalendarComponent implements OnInit {
       this.calendarOptions.footerToolbar = {
         left: '',
         right: '',
-        center: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+        center: 'multiMonthYear,dayGridMonth,timeGridWeek,timeGridDay,listWeek'
       }
-    }
-    if (this.authService.isAllowed('calendar.manage')) {
+    } else if (this.authService.isAllowed('calendar.manage')) {
       this.calendarOptions.headerToolbar = {
         left: 'prev,next today selectCalendar',
         center: 'title',

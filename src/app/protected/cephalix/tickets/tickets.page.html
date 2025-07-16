@@ -34,7 +34,8 @@
   </ag-grid-angular>
 </ion-content>
 <ion-content *ngIf="authService.isMD()">
-  <ion-item>
+  <cranix-md-list objectType="ticket" [context]="context"></cranix-md-list>
+  <!-- ion-item>
     <ion-searchbar placeholder="{{'search' | translate }}" (input)="onQuickFilterChanged('ticketsFilterMD')"
       id="ticketsFilterMD" showCancelButton="never">
     </ion-searchbar>
@@ -73,5 +74,5 @@
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
-  </ion-list>
+  </ion-list -->
 </ion-content>

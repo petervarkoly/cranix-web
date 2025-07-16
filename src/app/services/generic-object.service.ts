@@ -50,6 +50,7 @@ export class GenericObjectService {
     'agGridThema': ['ag-theme-material', 'ag-theme-alpine', 'ag-theme-balham'],
     'devCount': [0, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096],
     'identifier': ['sn-gn-bd', 'uuid', 'uid'],
+    'labelPlacement': ['fixed', 'floating', 'stacked', undefined],
     'lang': ['DE', 'EN'],
     'status': ['N', 'A', 'D'],
     'supporttype': ['Error', 'FeatureRequest', 'Feedback', 'ProductOrder']
@@ -625,120 +626,34 @@ export class GenericObjectService {
 
   filterObject(objectType: string, filter: string) {
     let rowData = []
-    switch (objectType) {
-      case "adhocroom": {
-        for (let obj of this.allObjects[objectType]) {
-          if (
-            obj.name.toLowerCase().indexOf(filter) != -1 ||
-            obj.description.toLowerCase().indexOf(filter) != -1
-          ) {
-            rowData.push(obj)
-          }
+    for (let o of this.allObjects[objectType]) {
+      //TODO split filter also
+      for( let field of this.getDefaultSearchFields(objectType)){
+        if (o[field] && o[field].indexOf(filter) > -1) {
+          rowData.push(o)
+          break;
         }
-        break
-      }
-      case "device": {
-        for (let dev of this.allObjects[objectType]) {
-          if (this.selectedRoom && dev.roomId != this.selectedRoom) {
-            continue
-          }
-          if (
-            dev.name.toLowerCase().indexOf(filter) != -1 ||
-            dev.ip.indexOf(filter) != -1 ||
-            dev.mac.toLowerCase().indexOf(filter) != -1
-          ) {
-            rowData.push(dev)
-          }
-        }
-        break
-      }
-      case "education/user":
-        {
-          for (let obj of this.allObjects[objectType]) {
-            if (
-              obj.uid.toLowerCase().indexOf(filter) != -1 ||
-              obj.givenName.toLowerCase().indexOf(filter) != -1 ||
-              obj.surName.toLowerCase().indexOf(filter) != -1
-            ) {
-              rowData.push(obj)
-            }
-          }
-          break
-        }
-      case "education/group":
-      case "group": {
-        for (let obj of this.allObjects[objectType]) {
-          if (
-            obj.name.toLowerCase().indexOf(filter) != -1 ||
-            obj.description.toLowerCase().indexOf(filter) != -1 ||
-            this.languageS.trans(obj.groupType).toLowerCase().indexOf(filter) != -1
-          ) {
-            rowData.push(obj)
-          }
-        }
-        break
-      }
-      case "institute": {
-        for (let obj of this.allObjects[objectType]) {
-          if (
-            obj.name.toLowerCase().indexOf(filter) != -1 ||
-            (obj.regCode && obj.regCode.toLowerCase().indexOf(filter) != -1) ||
-            (obj.locality && obj.locality.toLowerCase().indexOf(filter) != -1)
-          ) {
-            rowData.push(obj)
-          }
-        }
-        break
-      }
-      case "printer": {
-        for (let dev of this.allObjects[objectType]) {
-          if (
-            dev.name.toLowerCase().indexOf(filter) != -1 ||
-            dev.model.indexOf(filter) != -1
-          ) {
-            rowData.push(dev)
-          }
-        }
-        break
-      }
-      case "room": {
-        for (let obj of this.allObjects[objectType]) {
-          if (
-            obj.name.toLowerCase().indexOf(filter) != -1 ||
-            obj.description.toLowerCase().indexOf(filter) != -1 ||
-            this.languageS.trans(obj.roomType).toLowerCase().indexOf(filter) != -1 ||
-            this.languageS.trans(obj.roomControl).toLowerCase().indexOf(filter) != -1
-          ) {
-            rowData.push(obj)
-          }
-        }
-        break
-      }
-      case "user": {
-        for (let obj of this.allObjects[objectType]) {
-          if (
-            obj.uid.toLowerCase().indexOf(filter) != -1 ||
-            obj.givenName.toLowerCase().indexOf(filter) != -1 ||
-            obj.surName.toLowerCase().indexOf(filter) != -1 ||
-            this.languageS.trans(obj.role).toLowerCase().indexOf(filter) != -1
-          ) {
-            rowData.push(obj)
-          }
-        }
-        break
-      }
-      case "challenge":
-      case "challenges/todo": {
-        for (let obj of this.allObjects[objectType]) {
-          if (
-            obj.description.toLowerCase().indexOf(filter) != -1
-          ) {
-            rowData.push(obj)
-          }
-        }
-        break
       }
     }
     return rowData
+  }
+
+  getDefaultSearchFields(objectType: string){
+    switch(objectType){
+      case 'acl': return ['acl']
+      case 'announcement': ['issue','keywords','title']
+      case 'category': return ['name', 'description', 'categoryType']
+      case 'contact': ['issue','name','email','phone','title']
+      case 'customer': return ['name', 'name2', 'uuid', 'locality', 'address1', 'address2', 'description', 'contact']
+      case 'device': return ['name', 'IP','MAC','wlanIp','wlanMac','serial','inventary']
+      case 'education/group':
+      case 'group': return ['name', 'description','groupType']
+      case 'institute': return ['name', 'uuid', 'instituteType', 'domain', 'locality', 'regCode']
+      case 'printer': return ['name', 'model']
+      case 'room': return ['name', 'description','roomType','startIP']
+      case 'education/user':
+      case 'user': return ['uid','givenName','surName','role']
+      default: return ['name','description']
+    }
   }
 }

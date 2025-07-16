@@ -78,6 +78,12 @@ export class CranixMdListComponent implements OnInit {
         this.left2 = "locality"
         break
       }
+      case 'ticket': {
+        this.left1 = "title"
+        this.left2 = "lastname"
+        this.left3 = "firstname"
+        break
+      }
     }
     while (!this.objectService.allObjects[this.objectType]) {
       await new Promise(f => setTimeout(f, 1000));

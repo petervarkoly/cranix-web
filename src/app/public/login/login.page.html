@@ -4,7 +4,31 @@
       <img src="assets/images/logo/cranix_school.svg" style="height: 200px; width: 200px; padding: 10px">
       <h2 style="margin-top: 5px;">{{ instName | async }}</h2>
     </ion-card-header>
-    <ion-card-content *ngIf="!authService.use2fa">
+    @if(authService.use2fa){
+    <ion-card-content>
+      <ion-list>
+        @if(authService.session.crx2fas.length > 1){
+        <ion-item>
+          <ion-select [(ngModel)]="authService.crx2fa" name="selectedCx2fa">
+            @for(tmp of authService.session.crx2fas; track tmp){
+            <ion-select-option [value]="tmp">{{tmp.split('#')[0]}}</ion-select-option>
+            }
+          </ion-select>
+        </ion-item>
+        }
+        <ion-item>
+          <ion-input label="{{'Enter PIN'|translate}}" labelPlacement="fixed" [(ngModel)]="totppin" name="totppin"
+            required></ion-input>
+          @if(!authService.crx2fa.startsWith('TOTP')){
+          <ion-button (click)="sendPin()">{{'Send pin'|translate}}</ion-button>
+          }
+        </ion-item>
+        <ion-button style="margin: 10px;" expand="full" color="primary" (click)="checkPin()"
+          [disabled]="!loginForm.valid">{{'login'|translate}}</ion-button>
+      </ion-list>
+    </ion-card-content>
+    }@else{
+    <ion-card-content>
       <ion-list>
         <ion-item>
           <ion-input label="{{'username'|translate}}" labelPlacement="fixed" [(ngModel)]="user.username" name="username"
@@ -20,26 +44,8 @@
           [disabled]="!loginForm.valid">{{'login'|translate}}</ion-button>
       </ion-list>
     </ion-card-content>
-    <ion-card-content *ngIf="authService.use2fa">
-      <ion-list>
-        <ion-item *ngIf="authService.session.crx2fas.length > 1">
-          <ion-select [(ngModel)]="authService.crx2fa" name="selectedCx2fa">
-            <ion-select-option *ngFor="let tmp of authService.session.crx2fas"
-              [value]="tmp">{{tmp.split('#')[0]}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-input label="{{'Enter PIN'|translate}}" labelPlacement="fixed" [(ngModel)]="totppin" name="totppin"
-            required></ion-input>
-          <ion-button *ngIf="!authService.crx2fa.startsWith('TOTP')" (click)="sendPin()">
-            {{'Send pin'|translate}}
-          </ion-button>
-        </ion-item>
-        <ion-button style="margin: 10px;" expand="full" color="primary" (click)="checkPin()"
-          [disabled]="!loginForm.valid">{{'login' |
-          translate}}</ion-button>
-      </ion-list>
-    </ion-card-content>
+    }
+
   </ion-card>
 </form>
 <ion-footer collapse="fade">

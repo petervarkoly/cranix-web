@@ -39,7 +39,7 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
       this.multiple = false;
     }
     if (typeof this.itemTextField == "undefined") {
-      this.itemTextField = ["name"];
+      this.itemTextField = this.getDefaultTextFields()
     }else if( typeof this.itemTextField  == "string") {
       this.itemTextField = [this.itemTextField]
     }
@@ -122,18 +122,26 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
   }
   onQuickFilterChanged() {
     let filter = (<HTMLInputElement>document.getElementById('crxSearchFilter')).value.toLowerCase();
-    let tmp = []
-    for (let o of this.items) {
-      //TODO split filter also
-      for( let field of this.itemTextField){
-        if (o[field] && o[field].indexOf(filter) > -1) {
-          tmp.push(o)
-          break;
-        }
-      }
-    }
-    this.rowData = tmp;
+    this.rowData = this.objectService.filterObject(this.objectType,filter);
   }
+
+  getDefaultTextFields(){
+    switch(this.objectType){
+      case 'acl': return ['acl']
+      case 'announcement': ['issue','keywords','title']
+      case 'category': return ['name', 'description', 'categoryType']
+      case 'contact': ['issue','name','email','phone','title']
+      case 'customer': return ['name', 'locality', 'description']
+      case 'device': return ['name', 'IP']
+      case 'group': return ['name', 'description','groupType']
+      case 'institute': return ['name', 'locality', 'instituteType']
+      case 'room': return ['name', 'description', 'roomType']
+      case 'user': return ['fullName']
+      default: return ['name','description']
+    }
+  }
+
+  
    _emitValueChange() {
     this.propagateOnChange(this.selection);
 

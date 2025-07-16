@@ -8,12 +8,14 @@
       <ion-segment-button value="manager">
         <ion-label>{{'Manager' | translate}}</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="dyndns" *ngIf="authService.isAllowed('customer.manage')">
+      @if(authService.isAllowed('customer.manage')){
+      <ion-segment-button value="dyndns">
         <ion-label>{{'dynDNS' | translate}}</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="contract" *ngIf="authService.isAllowed('customer.manage')">
+      <ion-segment-button value="contract">
         <ion-label>{{'Contract' | translate}}</ion-label>
       </ion-segment-button>
+      }
     </ion-segment>
     @if(!authService.isMD()){
     <ion-buttons slot="end">
@@ -50,7 +52,7 @@
   </ion-toolbar>
   <ion-content fullscreen>
     @if(authService.isMD()){
-    <ion-fab *ngIf="" vertical="top" horizontal="end" slot="fixed">
+    <ion-fab vertical="center" horizontal="end" slot="fixed">
       <ion-fab-button size="small">
         <ion-icon name="arrow-forward-circle"></ion-icon>
       </ion-fab-button>
@@ -81,49 +83,39 @@
     <ion-grid>
       <ion-row>
         <ion-col size=12 sizeMd=6 sizeLg=4 sizeXl=3 *ngFor="let key of objectKeys;">
-          @switch(objectService.typeOf(key,object,'edit')){
-          @case('string'){
+
           <ion-item>
+            <ion-label [position]="authService.settings.labelPlacement">{{ key | translate }}</ion-label>
+            @switch(objectService.typeOf(key,object,'edit')){
+            @case('string'){
             @if(objectService.selects[key]){
-            <ion-select [label-placement]="authService.settings.labelPlacement" label="{{ key | translate }}"
-              type="text" [(ngModel)]="object[key]" name="{{key}}" [compareWith]="objectService.compareFn"
+            <ion-select type="text" [(ngModel)]="object[key]" name="{{key}}" [compareWith]="objectService.compareFn"
               [required]="objectService.required[key]">
-              <ion-select-option *ngFor="let option of  objectService.selects[key]" value="{{option}}">
-                {{option | translate}}</ion-select-option>
+              @for(option of objectService.selects[key]; track option){
+              <ion-select-option value="{{option}}">{{option | translate}}</ion-select-option>
+              }
             </ion-select>
             }@else{
-            <ion-input [label-placement]="authService.settings.labelPlacement" label="{{ key | translate }}" type="text"
-              [(ngModel)]="object[key]" name="{{key}}" value="{{object[key]}}"
+            <ion-input type="text" [(ngModel)]="object[key]" name="{{key}}" value="{{object[key]}}"
               [required]="objectService.required[key]"></ion-input>
             }
-          </ion-item>
-          }
-          @case('stringRO'){
-          <ion-item>
+            }
+            @case('stringRO'){
             <ion-input [label-placement]="authService.settings.labelPlacement" label="{{ key | translate }}"
               color="tertiary" type="text" [(ngModel)]="object[key]" name="{{key}}" value="{{object[key]}}" readonly>
             </ion-input>
+            }
+            @case('date'){
+            <input [(ngModel)]="object[key]" name="{{key}}" type="date">
+            }
+            @case('number'){
+            <input [(ngModel)]="object[key]" name="{{key}}" type="number">
+            }
+            @case('numberRO'){
+            <input [(ngModel)]="object[key]" name="{{key}}" type="number" readonly>
+            }
+            }
           </ion-item>
-          }
-          @case('date'){
-          <ion-item>
-            <input [label-placement]="authService.settings.labelPlacement" label="{{ key | translate }}"
-              [(ngModel)]="object[key]" name="{{key}}" type="date">
-          </ion-item>
-          }
-          @case('number'){
-          <ion-item>
-            <input [label-placement]="authService.settings.labelPlacement" label="{{ key | translate }}"
-              [(ngModel)]="object[key]" name="{{key}}" type="number">
-          </ion-item>
-          }
-          @case('numberRO'){
-          <ion-item>
-            <input [label-placement]="authService.settings.labelPlacement" label="{{ key | translate }}"
-              [(ngModel)]="object[key]" name="{{key}}" type="number" readonly>
-          </ion-item>
-          }
-          }
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -139,26 +131,26 @@
     @case('dyndns'){
     <ion-list>
       <ion-item>
-        <ion-label position="stacked">{{ 'Actuall IP' | translate}}</ion-label>
+        <ion-label [position]="authService.settings.labelPlacement">{{ 'Actuall IP' | translate}}</ion-label>
         <ion-input type="text" [(ngModel)]="dynDnsIp" name="dynDnsIp" readonly></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">{{ 'Name' | translate}}</ion-label>
+        <ion-label [position]="authService.settings.labelPlacement">{{ 'Name' | translate}}</ion-label>
         <ion-input type="text" [(ngModel)]="dynDnsName" name="dynDnsName"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">{{ 'Domain' | translate}}</ion-label>
+        <ion-label [position]="authService.settings.labelPlacement">{{ 'Domain' | translate}}</ion-label>
         <ion-select [(ngModel)]="dynDnsDomain" [compareWith]="objectService.compareFn" name="dynDnsDomain">
           <ion-select-option *ngFor="let domain of systemService.dnsDomains" [value]="domain">
             {{domain}}</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">{{ 'Port' | translate}}</ion-label>
+        <ion-label [position]="authService.settings.labelPlacement">{{ 'Port' | translate}}</ion-label>
         <ion-input type="text" [(ngModel)]="dynDnsPort" name="dynDnsPort"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">{{ 'Must not change' | translate}}</ion-label>
+        <ion-label [position]="authService.settings.labelPlacement">{{ 'Must not change' | translate}}</ion-label>
         <ion-checkbox [(ngModel)]="dynDnsRo" name="dynDnsRo"></ion-checkbox>
       </ion-item>
     </ion-list>
@@ -166,47 +158,31 @@
     @case('contract'){
     <ion-list>
       <ion-item>
-        <ion-select label-placement="fixed" label="{{ 'description' | translate}}" [(ngModel)]="care.description"
+        <ion-select [label-placement]="authService.settings.labelPlacement" label="{{ 'description' | translate}}" [(ngModel)]="care.description"
           name="careDescription">
           <ion-select-option *ngFor="let contract of myContracts" [value]="contract">{{ contract | translate
             }}</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-input label-placement="fixed" label="{{ 'access' | translate}}" type="text" [(ngModel)]="care.access"
+        <ion-input [label-placement]="authService.settings.labelPlacement" label="{{ 'access' | translate}}" type="text" [(ngModel)]="care.access"
           name="careAccess"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label-placement="fixed" label="{{ 'contact' | translate}}" type="text" [(ngModel)]="care.contact"
+        <ion-input [label-placement]="authService.settings.labelPlacement" label="{{ 'contact' | translate}}" type="text" [(ngModel)]="care.contact"
           name="careContact"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-select label-placement="fixed" label="{{ 'AddOns' | translate}}" [(ngModel)]="addons" name="addons"
+        <ion-select [label-placement]="authService.settings.labelPlacement" label="{{ 'AddOns' | translate}}" [(ngModel)]="addons" name="addons"
           multiple="true" [compareWith]="compareAddons" (ionChange)="addonChanged()">
           <ion-select-option *ngFor="let addon of allAddons" [value]="addon">{{ addon.name }}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list>
     <ion-item>
-      <ion-label position="fixed">{{'customer'| translate}}</ion-label>
-      <ionic-selectable #ionicSelectable [(ngModel)]="myCustomer" [items]="objectService.allObjects['customer']"
-        [ngModelOptions]="{standalone: true}" itemValueField="id" itemTextField="name" [canSearch]="true">
-        <ng-template ionicSelectableHeaderTemplate>
-          <ion-toolbar>
-            <ion-title>
-              {{ "Select a customer" | translate }}
-            </ion-title>
-            <ion-buttons slot="end">
-              <ion-button ion-button (click)="ionicSelectable.close()">
-                <ion-icon color="danger" name="close"></ion-icon>
-              </ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-        </ng-template>
-        <ng-template ionicSelectableItemIconTemplate>
-          <div></div>
-        </ng-template>
-      </ionic-selectable>
+      <ion-label [position]="authService.settings.labelPlacement">{{'customer'| translate}}</ion-label>
+      <cranix-search objectType="customer" [(ngModel)]="myCustomer" name="selectedCustomer"
+        [items]="objectService.allObjects['customer']" emptyLabel="{{'Select a customer' | translate}}"></cranix-search>
     </ion-item>
     }
     }

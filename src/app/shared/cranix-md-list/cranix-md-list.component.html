@@ -5,9 +5,9 @@
       style="min-width: 400px;">
     </ion-input>
     @if( objectType == 'challenge' ) {
-      <cranix-search objectType="teachingSubject" [(ngModel)]="authService.selectedTeachingSubject"
-        [items]="crxObjectService.subjects" name="searchTeachingSubject" emptyLabel="teachingSubject">
-      </cranix-search>
+    <cranix-search objectType="teachingSubject" [(ngModel)]="authService.selectedTeachingSubject"
+      [items]="crxObjectService.subjects" name="searchTeachingSubject" emptyLabel="teachingSubject">
+    </cranix-search>
     }
   </ion-item>
   <ion-buttons slot="end">
@@ -116,6 +116,10 @@
           @else if(objectType.indexOf('user') != -1){
           <p>{{ object.role | translate }}</p>
           <p>{{ object.classes }}</p>
+          }
+          @else if(objectType == 'ticket'){
+          <p>{{ object.created | date:'yy-MM-dd HH:mm' }}</p>
+          @if(object.cephalixInstituteId){<p>{{ object.cephalixInstituteId | idToName:'institute' }}</p>}
           }
           @if(objectType == 'challenge' && object.creatorId == authService.session.userId) {
           <ion-item>
