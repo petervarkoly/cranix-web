@@ -7,6 +7,7 @@ import { LanguageService } from 'src/app/services/language.service';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { CrxObjectService } from 'src/app/services/crx-object-service';
 @Component({
+    standalone: false,
     selector: 'cranix-notices',
     templateUrl: './cranix-notices.component.html',
     styleUrl: './cranix-notices.component.css'

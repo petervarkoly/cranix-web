@@ -17,7 +17,8 @@ import { AddDeviceComponent } from './../add-device/add-device.component';
 import { ManageDhcpComponent } from 'src/app/shared/actions/manage-dhcp/manage-dhcp.component';
 
 @Component({
-  selector: 'cranix-devices',
+  standalone: false,
+    selector: 'cranix-devices',
   templateUrl: './devices.component.html',
   styleUrls: ['./devices.component.scss'],
 })

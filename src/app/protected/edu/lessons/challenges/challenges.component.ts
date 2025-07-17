@@ -10,7 +10,8 @@ import { ActionsComponent } from 'src/app/shared/actions/actions.component';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-challenges',
+  standalone: false,
+    selector: 'app-challenges',
   templateUrl: './challenges.component.html',
   styleUrls: ['./challenges.component.scss'],
 })

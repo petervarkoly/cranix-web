@@ -5,7 +5,8 @@ import { takeWhile } from 'rxjs/internal/operators/takeWhile';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 
 @Component({
-  selector: 'cranix-my-vpn',
+  standalone: false,
+    selector: 'cranix-my-vpn',
   templateUrl: './my-vpn.component.html',
   styleUrls: ['./my-vpn.component.scss'],
 })

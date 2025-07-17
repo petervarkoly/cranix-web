@@ -8,7 +8,8 @@ import { LanguageService } from 'src/app/services/language.service';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
 
 @Component({
-  selector: 'cranix-files-upload',
+  standalone: false,
+    selector: 'cranix-files-upload',
   templateUrl: './files-upload.component.html',
   styleUrls: ['./files-upload.component.scss'],
 })

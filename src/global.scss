@@ -10,27 +10,27 @@
  */
 
 /* Core CSS required for Ionic components to work properly */
-@import "~@ionic/angular/css/core.css";
+@import "@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
-@import "~@ionic/angular/css/normalize.css";
-@import "~@ionic/angular/css/structure.css";
-@import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import '@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
-@import "~@ionic/angular/css/padding.css";
-@import "~@ionic/angular/css/float-elements.css";
-@import "~@ionic/angular/css/text-alignment.css";
-@import "~@ionic/angular/css/text-transformation.css";
-@import "~@ionic/angular/css/flex-utils.css";
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 /* AgGrifd */
-@import "~ag-grid-community/styles/ag-grid.css";
-@import "~ag-grid-community/styles/ag-theme-balham.css";
-@import "~ag-grid-community/styles/ag-theme-alpine.css";
-@import "~ag-grid-community/styles/ag-theme-material.css";
+@import "ag-grid-community/styles/ag-grid.css";
+@import "ag-grid-community/styles/ag-theme-balham.css";
+@import "ag-grid-community/styles/ag-theme-alpine.css";
+@import "ag-grid-community/styles/ag-theme-material.css";
 /* do not import dark styles
 @import "~ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
 @import "~ag-grid-community/dist/styles/ag-theme-balham-dark.css";
@@ -40,17 +40,12 @@
 /*
 * ngx-quill settings
 */
-@import '~quill/dist/quill.core.css';
-@import '~quill/dist/quill.bubble.css';
-@import '~quill/dist/quill.snow.css';
+@import 'quill/dist/quill.core.css';
+@import 'quill/dist/quill.bubble.css';
+@import 'quill/dist/quill.snow.css';
 
 
 /* Custom */
-@import "theme/ion-custom.scss";
-@import "theme/cranix-custom.scss";
-@import "theme/fonts.css";
-@import "theme/variables.scss";
-
 [contenteditable] {
   -webkit-user-select: text;
   user-select: text;

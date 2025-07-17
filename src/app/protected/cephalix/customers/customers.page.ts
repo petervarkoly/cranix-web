@@ -15,7 +15,8 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { CephalixService } from 'src/app/services/cephalix.service';
 
 @Component({
-  selector: 'cranix-customers',
+  standalone: false,
+    selector: 'cranix-customers',
   templateUrl: './customers.page.html',
   styleUrls: ['./customers.page.scss'],
 })
@@ -213,7 +214,8 @@ export class CustomersPage implements OnInit {
 }
 
 @Component({
-  selector: 'edit-institutes-component',
+  standalone: false,
+    selector: 'edit-institutes-component',
   templateUrl: 'edit-institutes.html'
 })
 export class EditInstitutes implements OnInit {

@@ -3,7 +3,8 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'cranix-search',
+  standalone: false,
+    selector: 'cranix-search',
   templateUrl: './cranix-search.component.html',
   styleUrl: './cranix-search.component.css',
   providers: [{

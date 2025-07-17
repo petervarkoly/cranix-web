@@ -10,7 +10,8 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { WindowRef } from 'src/app/shared/models/ohters';
 import { LanguageService } from 'src/app/services/language.service';
 @Component({
-  selector: 'cranix-details',
+  standalone: false,
+    selector: 'cranix-details',
   templateUrl: './details.page.html',
   styleUrls: ['./details.page.scss'],
 })
@@ -275,7 +276,8 @@ export class DetailsPage implements OnInit {
 }
 
 @Component({
-  selector: 'cranix-edit-article',
+  standalone: false,
+    selector: 'cranix-edit-article',
   templateUrl: './edit-article.html'
   //styleUrls: ['./edit-article.scss'],
 })

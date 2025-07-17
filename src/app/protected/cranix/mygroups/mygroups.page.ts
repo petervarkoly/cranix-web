@@ -22,7 +22,8 @@ import { CranixNoticesComponent } from 'src/app/shared/cranix-notices/cranix-not
 import { UserActionBTNRenderer } from 'src/app/pipes/ag-user-renderer';
 
 @Component({
-  selector: 'cranix-mygroups',
+  standalone: false,
+    selector: 'cranix-mygroups',
   templateUrl: './mygroups.page.html',
   styleUrls: ['./mygroups.page.scss'],
 })
@@ -414,7 +415,8 @@ export class MyGroupsPage implements OnInit {
 }
 
 @Component({
-  selector: 'cranix-add-edit-guest',
+  standalone: false,
+    selector: 'cranix-add-edit-guest',
   templateUrl: './add-edit-guest.html'
 })
 export class AddEditGuestPage implements OnInit {

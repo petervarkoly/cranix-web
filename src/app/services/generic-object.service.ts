@@ -532,6 +532,16 @@ export class GenericObjectService {
     }
     return 0;
   }
+  sortByCreatedBack(a, b) {
+    console.log(a.created, b.created)
+    if (a.created > b.created) {
+      return 1;
+    }
+    if (a.created < b.created) {
+      return -1;
+    }
+    return 0;
+  }
   sortByCreated(a, b) {
     if (a.created < b.created) {
       return 1;
@@ -653,6 +663,7 @@ export class GenericObjectService {
       case 'room': return ['name', 'description','roomType','startIP']
       case 'education/user':
       case 'user': return ['uid','givenName','surName','role']
+      case 'ticket': return ['title','email','firstname','lastname']
       default: return ['name','description']
     }
   }

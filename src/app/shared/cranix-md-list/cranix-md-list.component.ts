@@ -9,7 +9,8 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { CranixNoticesComponent } from 'src/app/shared/cranix-notices/cranix-notices.component'
 
 @Component({
-  selector: 'cranix-md-list',
+  standalone: false,
+    selector: 'cranix-md-list',
   templateUrl: './cranix-md-list.component.html',
   styleUrls: ['./cranix-md-list.component.scss'],
 })
@@ -88,18 +89,26 @@ export class CranixMdListComponent implements OnInit {
     while (!this.objectService.allObjects[this.objectType]) {
       await new Promise(f => setTimeout(f, 1000));
     }
-    if (this.objectType == 'device') {
-      for (let dev of this.objectService.allObjects[this.objectType]) {
+    switch (this.objectType) {
+       case "ticket" : {
+           this.rowData = this.objectService.allObjects[this.objectType].sort(this.objectService.sortByCreatedBack)
+           break
+       }
+       case 'device' : {
+          for (let dev of this.objectService.allObjects[this.objectType]) {
         if (dev.hwconfId == 2) {
           continue
         }
         if (this.objectService.selectedRoom && dev.roomId != this.objectService.selectedRoom) {
-
+            continue
         }
         this.rowData.push(dev);
-      }
-    } else {
-      this.rowData = this.objectService.allObjects[this.objectType]
+          }
+           break
+       }
+       default: {
+           this.rowData = this.objectService.allObjects[this.objectType]
+       }
     }
     if (this.max > (this.rowData.length)) {
       this.max = this.rowData.length
@@ -153,7 +162,11 @@ export class CranixMdListComponent implements OnInit {
     let filter = (<HTMLInputElement>document.getElementById('filterMD')).value.toLowerCase();
     this.min = -1;
     this.max = this.step;
-    this.rowData = this.objectService.filterObject(this.objectType,filter)
+    if( this.objectType == 'ticket' ){
+    	this.rowData = this.objectService.filterObject(this.objectType,filter).sort(this.objectService.sortByCreatedBack)
+    }else {
+    	this.rowData = this.objectService.filterObject(this.objectType,filter)
+    }
     if (this.rowData.length < this.step) {
       this.min = -1
       this.max = this.rowData.length

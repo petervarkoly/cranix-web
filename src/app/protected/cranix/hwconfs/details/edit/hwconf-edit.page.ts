@@ -7,7 +7,8 @@ import { HwconfsService } from 'src/app/services/hwconfs.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'cranix-hwconf-edit',
+  standalone: false,
+    selector: 'cranix-hwconf-edit',
   templateUrl: './hwconf-edit.page.html',
   styleUrls: ['./hwconf-edit.page.scss'],
 })

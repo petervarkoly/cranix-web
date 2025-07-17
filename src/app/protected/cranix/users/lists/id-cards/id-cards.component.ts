@@ -5,7 +5,8 @@ import { UsersService } from 'src/app/services/users.service';
 import { IdRequest } from 'src/app/shared/models/data-model';
 
 @Component({
-  selector: 'app-id-cards',
+  standalone: false,
+    selector: 'app-id-cards',
   templateUrl: './id-cards.component.html',
   styleUrl: './id-cards.component.css'
 })

@@ -10,7 +10,8 @@ import { Group, User } from 'src/app/shared/models/data-model'
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'cranix-user-groups',
+  standalone: false,
+    selector: 'cranix-user-groups',
   templateUrl: './user-groups.page.html',
   styleUrls: ['./user-groups.page.scss'],
 })

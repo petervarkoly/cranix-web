@@ -13,7 +13,8 @@ import { EditInstallationSetComponent } from 'src/app/protected/cranix/softwares
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 
 @Component({
-  selector: 'cranix-installation-sets',
+  standalone: false,
+    selector: 'cranix-installation-sets',
   templateUrl: './installation-sets.component.html',
   styleUrls: ['./installation-sets.component.scss'],
 })

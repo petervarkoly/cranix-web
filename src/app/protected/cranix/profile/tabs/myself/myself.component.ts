@@ -10,7 +10,8 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { LanguageService } from 'src/app/services/language.service';
 @Component({
-  selector: 'cranix-myself',
+  standalone: false,
+    selector: 'cranix-myself',
   templateUrl: './myself.component.html',
   styleUrls: ['./myself.component.scss'],
 })

@@ -5,7 +5,8 @@ import { FormBuilder } from '@angular/forms';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
-  selector: 'cranix-select-columns',
+  standalone: false,
+    selector: 'cranix-select-columns',
   templateUrl: './select-columns.component.html',
   styleUrls: ['./select-columns.component.scss'],
 })

@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 
 @Component({
-  selector: 'room-renderer',
+  standalone: false,
+    selector: 'room-renderer',
   template: `@if(params.value != "0") {
   @if(context.isPtmManager) {
   <ion-button fill="clear" size="small" (click)="context.registerRoom(params.data.teacherId, params.data.ptmId)">

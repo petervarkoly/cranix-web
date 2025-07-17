@@ -3,7 +3,8 @@ import { PTMEvent } from 'src/app/shared/models/data-model';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 
 @Component({
-  selector: 'event-renderer',
+  standalone: false,
+    selector: 'event-renderer',
   template: `@if(event){
   @if(event.blocked){
   <ion-button fill="clear" size="small">

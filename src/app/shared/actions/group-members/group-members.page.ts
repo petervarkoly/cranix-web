@@ -9,7 +9,8 @@ import { Group, User } from 'src/app/shared/models/data-model'
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { ModalController } from '@ionic/angular';
 @Component({
-  selector: 'cranix-group-members',
+  standalone: false,
+    selector: 'cranix-group-members',
   templateUrl: './group-members.page.html',
   styleUrls: ['./group-members.page.scss'],
 })

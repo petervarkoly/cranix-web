@@ -9,7 +9,8 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { FilesCollectComponent } from 'src/app/shared/actions/files-collect/files-collect.component';
 import { FilesUploadComponent } from 'src/app/shared/actions/files-upload/files-upload.component';
 @Component({
-  selector: 'cranix-room-control',
+  standalone: false,
+    selector: 'cranix-room-control',
   templateUrl: './room-control.component.html',
   styleUrls: ['./room-control.component.scss'],
 })

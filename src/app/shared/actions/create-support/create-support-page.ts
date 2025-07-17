@@ -5,6 +5,7 @@ import { SystemService } from 'src/app/services/system.service';
 
 
 @Component({
+    standalone: false,
     selector: 'create-support-page',
     templateUrl: 'create-support.html'
   })

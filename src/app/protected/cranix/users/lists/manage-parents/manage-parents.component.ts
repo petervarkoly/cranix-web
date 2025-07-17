@@ -9,7 +9,8 @@ import { Group, PTMTeacherInRoom, ParentTeacherMeeting, User } from 'src/app/sha
 import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer'
 
 @Component({
-  selector: 'app-manage-parents',
+  standalone: false,
+    selector: 'app-manage-parents',
   templateUrl: './manage-parents.component.html',
   styleUrl: './manage-parents.component.css'
 })

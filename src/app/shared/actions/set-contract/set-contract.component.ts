@@ -5,7 +5,8 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { CephalixCare, contracts } from 'src/app/shared/models/cephalix-data-model';
 
 @Component({
-  selector: 'cranix-set-contract',
+  standalone: false,
+    selector: 'cranix-set-contract',
   templateUrl: './set-contract.component.html',
   styleUrls: ['./set-contract.component.scss'],
 })

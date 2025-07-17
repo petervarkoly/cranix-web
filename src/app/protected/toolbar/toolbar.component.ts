@@ -15,7 +15,8 @@ import { Ticket } from 'src/app/shared/models/cephalix-data-model';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'cranix-toolbar',
+  standalone: false,
+    selector: 'cranix-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
 })

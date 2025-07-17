@@ -6,7 +6,8 @@ import { LangChangeEvent } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
-  selector: 'cranix-system-addons',
+  standalone: false,
+    selector: 'cranix-system-addons',
   templateUrl: './system-addons.component.html',
   styleUrls: ['./system-addons.component.scss'],
 })

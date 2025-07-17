@@ -4,7 +4,8 @@ import { takeWhile } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'cranix-profile',
+  standalone: false,
+    selector: 'cranix-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })

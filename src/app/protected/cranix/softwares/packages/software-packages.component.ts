@@ -13,7 +13,8 @@ import { Software } from 'src/app/shared/models/data-model';
 import { SoftwareLicensesComponent } from 'src/app/shared/actions/software-licenses/software-licenses.component';
 
 @Component({
-  selector: 'cranix-software-packages',
+  standalone: false,
+    selector: 'cranix-software-packages',
   templateUrl: './software-packages.component.html',
   styleUrls: ['./software-packages.component.scss'],
 })

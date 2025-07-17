@@ -9,6 +9,7 @@ import { LoginForm } from 'src/app/shared/models/server-models';
 
 
 @Component({
+    standalone: false,
     selector: 'app-login',
     templateUrl: './login.page.html',
     styleUrls: ['./login.page.scss'],

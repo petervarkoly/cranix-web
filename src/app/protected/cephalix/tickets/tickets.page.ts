@@ -19,7 +19,8 @@ import { SupportRequest } from 'src/app/shared/models/data-model';
 import { CreateSupport } from 'src/app/shared/actions/create-support/create-support-page';
 
 @Component({
-  selector: 'cranix-tickets',
+  standalone: false,
+    selector: 'cranix-tickets',
   templateUrl: './tickets.page.html',
   styleUrls: ['./tickets.page.scss'],
 })

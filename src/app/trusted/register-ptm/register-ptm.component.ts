@@ -5,7 +5,8 @@ import { ParentsService } from 'src/app/services/parents.service';
 import { ParentTeacherMeeting, User } from 'src/app/shared/models/data-model';
 
 @Component({
-  selector: 'app-register-ptm',
+  standalone: false,
+    selector: 'app-register-ptm',
   templateUrl: './register-ptm.component.html',
   styleUrl: './register-ptm.component.css'
 })

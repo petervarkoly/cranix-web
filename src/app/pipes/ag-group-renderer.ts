@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
+    standalone: false,
     selector: 'group-action-cell-renderer',
     template: `
 

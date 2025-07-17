@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {ICellRendererAngularComp} from "ag-grid-angular";
 
 @Component({
+    standalone: false,
     selector: 'userid-cell',
     template: `{{ params.value | userIdToUid }}`,
 })

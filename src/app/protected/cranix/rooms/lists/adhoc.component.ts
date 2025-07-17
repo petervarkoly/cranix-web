@@ -12,7 +12,8 @@ import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.c
 import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';
 import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
 @Component({
-  selector: 'cranix-adhoc',
+  standalone: false,
+    selector: 'cranix-adhoc',
   templateUrl: './adhoc.component.html',
   styleUrls: ['./adhoc.component.scss'],
 })

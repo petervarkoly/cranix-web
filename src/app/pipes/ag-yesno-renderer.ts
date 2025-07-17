@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 import { ICellRendererAngularComp } from "ag-grid-angular";
 
 @Component({
+    standalone: false,
     selector: 'yesno-cell',
     template: `
         <ion-button *ngIf="params.value != null && active" fill="clear" size="small"

@@ -9,7 +9,8 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { ApplyCheckBoxBTNRenderer } from 'src/app/pipes/ag-apply-checkbox-renderer';
 
 @Component({
-  selector: 'cranix-proxy',
+  standalone: false,
+    selector: 'cranix-proxy',
   templateUrl: './proxy.component.html',
   styleUrls: ['./proxy.component.scss'],
 })

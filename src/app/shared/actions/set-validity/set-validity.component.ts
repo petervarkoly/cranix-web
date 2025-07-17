@@ -3,7 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 
 @Component({
-  selector: 'cranix-set-validity',
+  standalone: false,
+    selector: 'cranix-set-validity',
   templateUrl: './set-validity.component.html',
   styleUrls: ['./set-validity.component.scss'],
 })

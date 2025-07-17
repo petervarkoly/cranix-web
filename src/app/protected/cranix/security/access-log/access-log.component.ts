@@ -4,7 +4,8 @@ import { LanguageService } from 'src/app/services/language.service';
 import { SystemService } from 'src/app/services/system.service';
 
 @Component({
-  selector: 'cranix-access-log',
+  standalone: false,
+    selector: 'cranix-access-log',
   templateUrl: './access-log.component.html',
   styleUrls: ['./access-log.component.scss'],
 })

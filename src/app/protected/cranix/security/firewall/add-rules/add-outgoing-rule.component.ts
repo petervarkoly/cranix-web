@@ -9,7 +9,8 @@ class SourceObject {
   public name: string;
 }
 @Component({
-  selector: 'cranix-add-outgoing-rule',
+  standalone: false,
+    selector: 'cranix-add-outgoing-rule',
   templateUrl: './add-outgoing-rule.component.html',
   styleUrls: ['./add-outgoing-rule.component.scss'],
 })

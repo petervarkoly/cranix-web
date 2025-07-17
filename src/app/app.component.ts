@@ -6,9 +6,13 @@ import { Storage } from '@ionic/storage-angular';
 import { AuthenticationService } from './services/auth.service';
 import { GenericObjectService } from './services/generic-object.service';
 import { LanguageService } from './services/language.service';
-
+/* Necessary from ag-grid 33
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+ModuleRegistry.registerModules([AllCommunityModule]);
+*/
 @Component({
-  selector: 'app-root',
+  standalone: false,
+    selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })

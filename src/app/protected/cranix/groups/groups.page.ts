@@ -16,7 +16,8 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { GroupMembersPage } from 'src/app/shared/actions/group-members/group-members.page';
 
 @Component({
-  selector: 'cranix-groups',
+  standalone: false,
+    selector: 'cranix-groups',
   templateUrl: './groups.page.html',
   styleUrls: ['./groups.page.scss'],
 })

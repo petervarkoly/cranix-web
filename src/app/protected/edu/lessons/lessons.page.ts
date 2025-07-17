@@ -5,7 +5,8 @@ import { ChallengesService } from 'src/app/services/challenges.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'cranix-lessons',
+  standalone: false,
+    selector: 'cranix-lessons',
   templateUrl: './lessons.page.html',
 })
 export class LessonsPage{

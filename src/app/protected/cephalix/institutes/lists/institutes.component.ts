@@ -18,7 +18,8 @@ import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-col
 import { WindowRef } from 'src/app/shared/models/ohters';
 
 @Component({
-  selector: 'cranix-institutes',
+  standalone: false,
+    selector: 'cranix-institutes',
   templateUrl: './institutes.component.html',
   styleUrls: ['./institutes.component.scss'],
 })

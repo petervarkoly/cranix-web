@@ -101,7 +101,7 @@
             }
             }
             @case('stringRO'){
-            <ion-input [label-placement]="authService.settings.labelPlacement" label="{{ key | translate }}"
+            <ion-input [labelPlacement]="authService.settings.labelPlacement" label="{{ key | translate }}"
               color="tertiary" type="text" [(ngModel)]="object[key]" name="{{key}}" value="{{object[key]}}" readonly>
             </ion-input>
             }
@@ -158,22 +158,22 @@
     @case('contract'){
     <ion-list>
       <ion-item>
-        <ion-select [label-placement]="authService.settings.labelPlacement" label="{{ 'description' | translate}}" [(ngModel)]="care.description"
+        <ion-select [labelPlacement]="authService.settings.labelPlacement" label="{{ 'description' | translate}}" [(ngModel)]="care.description"
           name="careDescription">
           <ion-select-option *ngFor="let contract of myContracts" [value]="contract">{{ contract | translate
             }}</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-input [label-placement]="authService.settings.labelPlacement" label="{{ 'access' | translate}}" type="text" [(ngModel)]="care.access"
+        <ion-input [labelPlacement]="authService.settings.labelPlacement" label="{{ 'access' | translate}}" type="text" [(ngModel)]="care.access"
           name="careAccess"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input [label-placement]="authService.settings.labelPlacement" label="{{ 'contact' | translate}}" type="text" [(ngModel)]="care.contact"
+        <ion-input [labelPlacement]="authService.settings.labelPlacement" label="{{ 'contact' | translate}}" type="text" [(ngModel)]="care.contact"
           name="careContact"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-select [label-placement]="authService.settings.labelPlacement" label="{{ 'AddOns' | translate}}" [(ngModel)]="addons" name="addons"
+        <ion-select [labelPlacement]="authService.settings.labelPlacement" label="{{ 'AddOns' | translate}}" [(ngModel)]="addons" name="addons"
           multiple="true" [compareWith]="compareAddons" (ionChange)="addonChanged()">
           <ion-select-option *ngFor="let addon of allAddons" [value]="addon">{{ addon.name }}</ion-select-option>
         </ion-select>

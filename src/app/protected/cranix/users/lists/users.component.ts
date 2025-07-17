@@ -17,7 +17,8 @@ import { SystemService } from 'src/app/services/system.service';
 import { CranixNoticesComponent } from 'src/app/shared/cranix-notices/cranix-notices.component';
 
 @Component({
-  selector: 'cranix-users',
+  standalone: false,
+    selector: 'cranix-users',
   templateUrl: './users.component.html'
 })
 export class UsersComponent implements OnInit {

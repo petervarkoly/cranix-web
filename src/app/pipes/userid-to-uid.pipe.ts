@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { GenericObjectService } from 'src/app/services/generic-object.service'
 import { LanguageService } from '../services/language.service';
 @Pipe({
+  standalone: false,
   name: 'userIdToUid'
 })
 export class UseridToUidPipe implements PipeTransform {

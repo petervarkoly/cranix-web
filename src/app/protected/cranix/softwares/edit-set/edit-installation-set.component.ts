@@ -7,7 +7,8 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { Software, Hwconf, Room, Device, Category, Installation } from 'src/app/shared/models/data-model';
 import { SoftwareService } from 'src/app/services/softwares.service';
 @Component({
-  selector: 'cranix-edit-installation-set',
+  standalone: false,
+    selector: 'cranix-edit-installation-set',
   templateUrl: './edit-installation-set.component.html',
   styleUrls: ['./edit-installation-set.component.scss'],
 })

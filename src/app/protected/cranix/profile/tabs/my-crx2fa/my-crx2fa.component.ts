@@ -6,7 +6,8 @@ import { SelfManagementService } from 'src/app/services/selfmanagement.service';
 import { Crx2fa } from 'src/app/shared/models/server-models';
 
 @Component({
-  selector: 'app-my-crx2fa',
+  standalone: false,
+    selector: 'app-my-crx2fa',
   templateUrl: './my-crx2fa.component.html',
   styleUrls: ['./my-crx2fa.component.scss'],
 })

@@ -5,7 +5,8 @@ import { takeWhile } from 'rxjs/operators';
 import { interval, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'cranix-system-services',
+  standalone: false,
+    selector: 'cranix-system-services',
   templateUrl: './system-services.component.html',
   styleUrls: ['./system-services.component.scss'],
 })

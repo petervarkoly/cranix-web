@@ -6,7 +6,8 @@ import { devActionMenu } from '../objects.menus';
 import { takeWhile } from 'rxjs/operators';
 
 @Component({
-  selector: 'cranix-dev-power',
+  standalone: false,
+    selector: 'cranix-dev-power',
   templateUrl: './dev-power.component.html',
   styleUrls: ['./dev-power.component.scss'],
 })

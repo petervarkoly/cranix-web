@@ -10,7 +10,8 @@ import { CrxNotice, ParentTeacherMeeting, PTMEvent, PTMTeacherInRoom, Room, User
 import { WindowRef } from 'src/app/shared/models/ohters';
 
 @Component({
-  selector: 'app-ptms',
+  standalone: false,
+    selector: 'app-ptms',
   templateUrl: './ptms.component.html',
   styleUrl: './ptms.component.css'
 })

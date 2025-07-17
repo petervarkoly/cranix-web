@@ -18,7 +18,8 @@ import { UpdateRenderer } from 'src/app/pipes/ag-update-renderer';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { DateCellRenderer } from 'src/app/pipes/ag-date-renderer';
 @Component({
-  selector: 'cranix-institutes-status',
+  standalone: false,
+    selector: 'cranix-institutes-status',
   templateUrl: './institutes-status.component.html',
   styleUrls: ['./institutes-status.component.scss'],
   encapsulation: ViewEncapsulation.None

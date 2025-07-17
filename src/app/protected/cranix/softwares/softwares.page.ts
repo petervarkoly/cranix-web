@@ -3,7 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'cranix-softwares',
+  standalone: false,
+    selector: 'cranix-softwares',
   templateUrl: './softwares.page.html',
   styleUrls: ['./softwares.page.scss'],
 })

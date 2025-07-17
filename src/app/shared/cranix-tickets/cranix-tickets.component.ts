@@ -5,7 +5,8 @@ import { CrxticketService } from 'src/app/services/crxticket.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-cranix-tickets',
+  standalone: false,
+    selector: 'app-cranix-tickets',
   templateUrl: './cranix-tickets.component.html',
   styleUrl: './cranix-tickets.component.css'
 })
