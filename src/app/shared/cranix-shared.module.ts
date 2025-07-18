@@ -64,6 +64,7 @@ import { SetContractComponent } from 'src/app/shared/actions/set-contract/set-co
 import { SetValidityComponent } from 'src/app/shared/actions/set-validity/set-validity.component'
 import { ShowImportComponent } from 'src/app/shared/actions/show-import/show-import.component'
 import { WindowRef } from 'src/app/shared/models/ohters'
+import { CranixListComponent } from 'src/app/shared/cranix-list/cranix-list.component'
 import { CranixMdListComponent } from 'src/app/shared/cranix-md-list/cranix-md-list.component'
 import { CranixNoticesComponent } from './cranix-notices/cranix-notices.component';
 import { CranixPtmViewComponent } from 'src/app/shared/cranix-ptm-view/cranix-ptm-view.component'
@@ -80,6 +81,7 @@ import { simpleToolbarOptions } from 'src/app/shared/models/constants'
     ApplyCheckBoxBTNRenderer,
     ActionBTNRenderer,
     CreateSupport,
+    CranixListComponent,
     CranixMdListComponent,
     CranixNoticesComponent,
     CranixPtmViewComponent,
@@ -157,6 +159,7 @@ import { simpleToolbarOptions } from 'src/app/shared/models/constants'
     ReactiveFormsModule,
     TranslateModule,
     ToolbarComponent,
+    CranixListComponent,
     CranixMdListComponent,
     CranixNoticesComponent,
     CranixPtmViewComponent,
