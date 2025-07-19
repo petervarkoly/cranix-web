@@ -43,8 +43,7 @@ export class RoomActionBTNRenderer implements ICellRendererAngularComp {
     }
     public devices(event) {
         event.stopPropagation();
-        this.params.context.componentParent.objectService.selectedRoom = this.params.data;
-        this.params.context.componentParent.route.navigate(['/pages/cranix/devices']);
+        this.params.context.componentParent.devices(this.params.data);
     }
     public setPrinters(event) {
         event.stopPropagation();

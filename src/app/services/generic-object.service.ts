@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, ToastController, PopoverController, ModalController } from '@ionic/angular';
 // own modules
+
+import { ActionsComponent } from 'src/app/shared/actions/actions.component';
+import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
 import { ServerResponse } from 'src/app/shared/models/server-models';
 import { Group, Package, User } from 'src/app/shared/models/data-model';
 import { UtilsService } from './utils.service';
@@ -9,6 +12,7 @@ import { AuthenticationService } from './auth.service';
 import { LanguageService } from './language.service';
 import { CrxObjectService } from './crx-object-service';
 import { Router } from '@angular/router';
+import { objectsTemlate, enumerates, selects, hiddenAttributes, readOnlyAttributes, required, multivalued } from 'src/app/shared/models/constants';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,115 +26,22 @@ export class GenericObjectService {
   selectedRoom: any = null;
   selectedGroup: any = null;
   packagesAvailable: Package[] = [];
-  /**
-   * The base objects which need to be loaded by the initialisations
-   */
-  private objectsTemlate: string[] = [
-    'education/user',
-    'education/group',
-    'education/guestUser',
-    'user',
-    'group',
-    'room',
-    'device',
-    'hwconf',
-    'printer',
-    'adhocroom',
-    'challenge',
-    'challenges/todo'
-  ]
   objects: string[] = [];
-  /**
-   * Default.ini for cephalix
-   */
   cephalixDefaults: any = {};
-
-  selects: any = {
-    'action': ['wol', 'reboot', 'shutdown', 'logout'],
-    'agGridThema': ['ag-theme-material', 'ag-theme-alpine', 'ag-theme-balham'],
-    'devCount': [0, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096],
-    'identifier': ['sn-gn-bd', 'uuid', 'uid'],
-    'labelPlacement': ['fixed', 'floating', 'stacked', undefined],
-    'lang': ['DE', 'EN'],
-    'status': ['N', 'A', 'D'],
-    'supporttype': ['Error', 'FeatureRequest', 'Feedback', 'ProductOrder']
-  }
   initialized: number = 0;
-  enumerates: string[] = [
-    'instituteType', 'groupType', 'deviceType', 'roomType', 'roomControl', 'network', 'accessType', 'role', 'noticeType'
-  ];
+  selects = selects;
+  required = required;
 
-  multivalued: string[] = [
-    'softwareVersions', 'softwareFullNames', 'mailAliases'
-  ]
-
-  /**
-   * Attributes which can not be modified
-   */
-  readOnlyAttributes: string[] = [
-    'id',
-    'accessType',
-    'classes',
-    'counter',
-    'devCount',
-    'fsQuotaUsed',
-    'ip',
-    'ignoreNetbios',
-    'loggedInName',
-    'msQuotaUsed',
-    'modified',
-    'name',
-    'network',
-    'netMask',
-    'creatorName',
-    'created',
-    'role',
-    'roomId',
-    'sourceAvailable',
-    'startIP',
-    'uid',
-    'wlanIp'
-  ]
-  /**
-   * Attributes which we get but need not be shown
-   */
-  hiddenAttributes: string[] = [
-    'accessInRooms',
-    'cephalixInstituteId',
-    'color',
-    'deleted',
-    'devices',
-    'fullName',
-    'loggedInId',
-    'network',
-    'creatorId',
-    'partitions',
-    'saveNext',
-    'screenShot',
-    'users'
-  ]
-  /**
-   * Required attributes
-   */
-  required: any = {
-    'givenName': '*',
-    'groupType': '*',
-    'identifier': "*",
-    'instituteType': '*',
-    'importFile': "*",
-    'name': '*',
-    'regCode': '*',
-    'role': '*',
-    'surName': '*'
-  };
 
   constructor(
-    public alertController: AlertController,
+    public alertCtrl: AlertController,
     public authService: AuthenticationService,
     private http: HttpClient,
     private languageS: LanguageService,
     private utilsS: UtilsService,
     private crxObjectService: CrxObjectService,
+    private popoverCtrl: PopoverController,
+    private modalCtrl: ModalController,
     public toastController: ToastController,
     private router: Router) {
   }
@@ -150,7 +61,7 @@ export class GenericObjectService {
     if (this.authService.isAllowed('2fa.manage')) {
       this.objects.push('2fa');
     }
-    for (let obj of this.objectsTemlate) {
+    for (let obj of objectsTemlate) {
       this.objects.push(obj)
     }
     let subs: any = {};
@@ -158,10 +69,10 @@ export class GenericObjectService {
     for (let key of this.objects) {
       this.getAllObject(key);
     }
-    for (let key of this.enumerates) {
+    for (let key of enumerates) {
       let url = this.utilsS.hostName() + "/system/enumerates/" + key;
       subs[key] = this.http.get<string[]>(url, { headers: this.authService.headers }).subscribe({
-        next: (val) => { this.selects[key] = val; },
+        next: (val) => { selects[key] = val; },
         error: (err) => { },
         complete: () => { subs[key].unsubscribe() }
       });
@@ -183,13 +94,13 @@ export class GenericObjectService {
     });
     url = this.utilsS.hostName() + "/institutes/ayTemplates/";
     let sub2 = this.http.get<string[]>(url, { headers: this.authService.headers }).subscribe({
-      next: (val) => { this.selects['ayTemplate'] = val; },
+      next: (val) => { selects['ayTemplate'] = val; },
       error: (err) => { },
       complete: () => { sub2.unsubscribe() }
     });
     url = this.utilsS.hostName() + "/institutes/objects/";
     let sub3 = this.http.get<string[]>(url, { headers: this.authService.headers }).subscribe({
-      next: (val) => { this.selects['objects'] = val; },
+      next: (val) => { selects['objects'] = val; },
       error: (err) => { },
       complete: () => { sub3.unsubscribe() }
     });
@@ -238,16 +149,16 @@ export class GenericObjectService {
         val.sort(this.sortByCreated)
       }
       this.allObjects[objectType] = val;
-      this.selects[objectType + 'Id'] = []
+      selects[objectType + 'Id'] = []
       for (let obj of <any[]>val) {
-        this.selects[objectType + 'Id'].push(obj.id);
+        selects[objectType + 'Id'].push(obj.id);
       }
       this.authService.log("GenericObjectService: ", objectType + "s were read", this.allObjects[objectType]);
       this.initialized++;
     } catch (error) {
       if (!this.allObjects[objectType]) {
         this.allObjects[objectType] = [];
-        this.selects[objectType + 'Id'] = [];
+        selects[objectType + 'Id'] = [];
       }
       console.log('getAllObject', objectType, error);
     }
@@ -382,7 +293,7 @@ export class GenericObjectService {
         name = object.name;
       }
     }
-    const alert = await this.alertController.create({
+    const alert = await this.alertCtrl.create({
       header: this.languageS.trans('Confirm!'),
       subHeader: this.languageS.trans('Do you realy want to delete?'),
       message: name,
@@ -533,7 +444,6 @@ export class GenericObjectService {
     return 0;
   }
   sortByCreatedBack(a, b) {
-    console.log(a.created, b.created)
     if (a.created > b.created) {
       return 1;
     }
@@ -550,6 +460,14 @@ export class GenericObjectService {
       return -1;
     }
     return 0;
+  }
+
+  isRequired(key: string) {
+    key in required
+  }
+
+  isReadOnly(key: string) {
+    return readOnlyAttributes.indexOf(key) != -1
   }
   /**
    * Helper script fot the template to detect the type of the variables
@@ -576,19 +494,19 @@ export class GenericObjectService {
     if (typeof obj === 'boolean') {
       return 'booleanFalse';
     }
-    if (action == 'modify' && this.hiddenAttributes.indexOf(key) != -1) {
+    if (action == 'modify' && hiddenAttributes.indexOf(key) != -1) {
       return 'hidden';
     }
     if (key == 'name' && object.regCode) {
       return 'string';
     }
-    if (key.substring(key.length - 2) == 'Id' && this.readOnlyAttributes.indexOf(key) != -1) {
+    if (key.substring(key.length - 2) == 'Id' && readOnlyAttributes.indexOf(key) != -1) {
       return 'idPipeRO';
     }
-    if (typeof obj == 'number' && action == 'modify' && this.readOnlyAttributes.indexOf(key) != -1) {
+    if (typeof obj == 'number' && action == 'modify' && readOnlyAttributes.indexOf(key) != -1) {
       return 'numberRO'
     }
-    if (action == 'modify' && this.readOnlyAttributes.indexOf(key) != -1) {
+    if (action == 'modify' && readOnlyAttributes.indexOf(key) != -1) {
       return 'stringRO';
     }
     if (key.substring(key.length - 2) == 'Id') {
@@ -600,7 +518,7 @@ export class GenericObjectService {
     if (key.substring(key.length - 4) == 'File') {
       return 'file';
     }
-    if (this.multivalued.indexOf(key) != -1) {
+    if (multivalued.indexOf(key) != -1) {
       return 'multivalued';
     }
 
@@ -638,7 +556,7 @@ export class GenericObjectService {
     let rowData = []
     for (let o of this.allObjects[objectType]) {
       //TODO split filter also
-      for( let field of this.getDefaultSearchFields(objectType)){
+      for (let field of this.getDefaultSearchFields(objectType)) {
         if (o[field] && o[field].indexOf(filter) > -1) {
           rowData.push(o)
           break;
@@ -648,23 +566,48 @@ export class GenericObjectService {
     return rowData
   }
 
-  getDefaultSearchFields(objectType: string){
-    switch(objectType){
+  getDefaultSearchFields(objectType: string) {
+    switch (objectType) {
       case 'acl': return ['acl']
-      case 'announcement': ['issue','keywords','title']
+      case 'announcement': ['issue', 'keywords', 'title']
       case 'category': return ['name', 'description', 'categoryType']
-      case 'contact': ['issue','name','email','phone','title']
+      case 'contact': ['issue', 'name', 'email', 'phone', 'title']
       case 'customer': return ['name', 'name2', 'uuid', 'locality', 'address1', 'address2', 'description', 'contact']
-      case 'device': return ['name', 'IP','MAC','wlanIp','wlanMac','serial','inventary']
+      case 'device': return ['name', 'IP', 'MAC', 'wlanIp', 'wlanMac', 'serial', 'inventary']
       case 'education/group':
-      case 'group': return ['name', 'description','groupType']
+      case 'group': return ['name', 'description', 'groupType']
       case 'institute': return ['name', 'uuid', 'instituteType', 'domain', 'locality', 'regCode']
       case 'printer': return ['name', 'model']
-      case 'room': return ['name', 'description','roomType','startIP']
+      case 'room': return ['name', 'description', 'roomType', 'startIP']
       case 'education/user':
-      case 'user': return ['uid','givenName','surName','role']
-      case 'ticket': return ['title','email','firstname','lastname']
-      default: return ['name','description']
+      case 'user': return ['uid', 'givenName', 'surName', 'role']
+      case 'ticket': return ['title', 'email', 'firstname', 'lastname']
+      default: return ['name', 'description']
     }
+  }
+
+  async openActions(objectType: string, object: any, gridApi: any) {
+    if (object) {
+      this.selectedIds.push(object.id)
+      this.selection.push(object)
+    } else {
+      if (this.selection.length == 0) {
+        this.selectObject();
+        return;
+      }
+    }
+    const popover = await this.popoverCtrl.create({
+      component: ActionsComponent,
+      componentProps: {
+        objectType: objectType,
+        objectIds: this.selectedIds,
+        selection: this.selection,
+        gridApi: gridApi
+      },
+      translucent: true,
+      animated: true,
+      showBackdrop: true
+    });
+    await popover.present();
   }
 }

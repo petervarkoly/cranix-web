@@ -4,12 +4,9 @@ import { PopoverController, ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 
 //own modules
-import { DateCellRenderer } from 'src/app/pipes/ag-date-renderer';
-import { CustomerActionRenderer } from 'src/app/pipes/ag-customer-action-renderer';
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { LanguageService } from 'src/app/services/language.service';
-import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
 import { Customer, Institute } from 'src/app/shared/models/cephalix-data-model'
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { CephalixService } from 'src/app/services/cephalix.service';
@@ -20,17 +17,11 @@ import { CephalixService } from 'src/app/services/cephalix.service';
   templateUrl: './customers.page.html',
   styleUrls: ['./customers.page.scss'],
 })
-export class CustomersPage implements OnInit {
+export class CustomersPage{
   objectKeys: string[] = [];
   displayedColumns: string[] = ['id', 'name', 'uuid', 'locality', 'ipVPN', 'regCode', 'validity'];
   sortableColumns: string[] = ['id', 'name', 'uuid', 'locality', 'ipVPN', 'regCode', 'validity'];
-  columnDefs: ColDef[] = [];
-  defaultColDef: ColDef = {};
-  gridApi: GridApi;
   context;
-  selected: Customer[] = [];
-  title = 'app';
-  objectIds: number[] = [];
   myInstitutes: Institute[] = [];
 
   constructor(
@@ -43,96 +34,14 @@ export class CustomersPage implements OnInit {
   ) {
     this.context = { componentParent: this };
     this.objectKeys = Object.getOwnPropertyNames(new Customer());
-    this.createColumnDefs();
-    this.defaultColDef = {
-      resizable: true,
-      sortable: true,
-      hide: false,
-      suppressHeaderMenuButton: true
-    };
-
-  }
-  ngOnInit() {
-    this.storage.get('CustomersPage.displayedColumns').then((val) => {
-      let myArray = JSON.parse(val);
-      if (myArray) {
-        this.displayedColumns = ['select'].concat(myArray).concat(['actions']);
-        this.createColumnDefs();
-      }
-    });
-  }
-
-  createColumnDefs() {
-    this.columnDefs = [];
-    let action: ColDef = {
-      headerName: "",
-      minWidth: 130,
-      suppressSizeToFit: true,
-      cellStyle: { 'padding': '2px', 'line-height': '36px' },
-      field: 'actions',
-      pinned: 'left',
-      cellRenderer: CustomerActionRenderer
-
-    };
-    for (let key of this.objectKeys) {
-      let col = {};
-      col['field'] = key;
-      col['headerName'] = this.languageS.trans(key);
-      col['hide'] = (this.displayedColumns.indexOf(key) == -1);
-      col['sortable'] = (this.sortableColumns.indexOf(key) != -1);
-      switch (key) {
-        case 'name': {
-          col['headerCheckboxSelection'] = this.authService.settings.headerCheckboxSelection;
-          col['headerCheckboxSelectionFilteredOnly'] = true;
-          col['checkboxSelection'] = this.authService.settings.checkboxSelection;
-          col['suppressSizeToFit'] = true;
-          col['minWidth'] = 250;
-          col['pinned'] = 'left';
-          col['flex'] = '1';
-          col['colId'] = '1';
-          this.columnDefs.push(col);
-          this.columnDefs.push(action)
-          continue;
-        }
-        case 'created': {
-          col['cellRenderer'] = DateCellRenderer;
-          break;
-        }
-      }
-      this.columnDefs.push(col);
-    }
-  }
-
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridApi.sizeColumnsToFit();
-  }
-  onSelectionChanged() {
-  }
-
-  onQuickFilterChanged(quickFilter) {
-    this.gridApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById(quickFilter)).value);
-  }
-
-  public redirectToDelete = (customer: Customer) => {
-    this.objectService.deleteObjectDialog(customer, 'customer', '')
   }
   /**
  * Open the actions menu with the selected object ids.
  * @param ev 
  */
-  async redirectToAddInstitute(ev: any) {
-    this.selected = this.gridApi.getSelectedRows();
-    if (!this.selected) {
-      this.objectService.selectObject();
-      return;
-    }
-    if (this.selected.length > 1) {
-      //TODO Warning
-      return;
-    }
+  async redirectToAddInstitute(customer: Customer) {
     let institute = new Institute();
-    institute.cephalixCustomerId = this.selected[0].id;
+    institute.cephalixCustomerId = customer.id;
     const modal = await this.modalCtrl.create({
       component: ObjectsEditComponent,
       componentProps: {
@@ -176,31 +85,6 @@ export class CustomersPage implements OnInit {
     (await modal).present();
   }
 
-  /**
-* Function to Select the columns to show
-* @param ev 
-*/
-  async openCollums(ev: any) {
-    const modal = await this.modalCtrl.create({
-      component: SelectColumnsComponent,
-      componentProps: {
-        columns: this.objectKeys,
-        selected: this.displayedColumns,
-        objectPath: "CustomersPage.displayedColumns"
-      },
-      animated: true,
-      backdropDismiss: false
-    });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned.data) {
-        this.displayedColumns = (dataReturned.data).concat(['actions']);
-        this.createColumnDefs();
-      }
-    });
-    (await modal).present().then((val) => {
-      this.authService.log("most lett vegrehajtva.")
-    })
-  }
   async editInstitutes(customer: Customer) {
     const modal = await this.modalCtrl.create({
       component: EditInstitutes,
@@ -235,8 +119,8 @@ export class EditInstitutes implements OnInit {
     { field: 'regCode' }
   ];
   disabled: boolean = false;
-  myInstituteIds: number[];
-  myInstitutes: Institute[];
+  myInstituteIds: number[] = [];
+  myInstitutes: Institute[] = [];
   rowData: Institute[];
   owned: boolean = false;
   @Input() customer

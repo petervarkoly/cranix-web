@@ -11,6 +11,7 @@ import { SupportRequest, SoftwareVersion, SoftwareFullName } from '../models/dat
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { UtilsService } from 'src/app/services/utils.service';
+import { selects } from '../models/constants';
 @Component({
   standalone: false,
     selector: 'cranix-objects-edit',
@@ -76,7 +77,7 @@ export class ObjectsEditComponent implements OnInit {
     this.disabled = false;
     if (this.objectAction != 'add' && this.objectType != 'settings') {
       let url = this.utilsS.hostName() + "/" + this.objectType + "s/" + this.object.id;
-      let sub = this.http.get(url, { headers: this.authService.headers }).subscribe(
+      this.http.get(url, { headers: this.authService.headers }).subscribe(
         (val) => {
           for (let key of this.objectKeys) {
             if (this.objectService.typeOf(key, this.object, 'edit') == 'multivalued') {

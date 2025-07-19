@@ -1,13 +1,8 @@
 <cranix-toolbar title="{{'Manage users' | translate}}"></cranix-toolbar>
-<ion-content *ngIf="!authService.isMD()">
-  <cranix-list objectType="user"></cranix-list>
-  <!-- ag-grid-angular style="width: 100%; height: 100%;" class="{{authService.settings.agGridThema}}"
-    rowSelection="multiple" [rowHeight]="authService.settings.rowHeight"
-    [rowMultiSelectWithClick]="authService.settings.rowMultiSelectWithClick"
-    [rowData]="objectService.allObjects['user']" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [context]="context"
-    (gridReady)="onGridReady($event)" (selectionChanged)="selectionChanged()" id="agGridTable">
-  </ag-grid-angular -->
-</ion-content>
-<ion-content *ngIf="authService.isMD()">
-  <cranix-md-list objectType="user" [context]="context"></cranix-md-list>
+<ion-content>
+@if(authService.isMD()){
+<cranix-md-list objectType="user" [context]="context"></cranix-md-list>
+}@else{
+<cranix-list objectType="user"  [context]="context"></cranix-list>
+}
 </ion-content>

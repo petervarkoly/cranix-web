@@ -110,13 +110,13 @@
       </ion-item>
       }
       @case("date") {
-      <ion-item [disabled]="objectService.readOnlyAttributes[key]">
+      <ion-item [disabled]="objectService.isReadOnly(key)">
         <ion-label [position]="labelPlacement">{{ key | translate }}{{objectService.required[key]}}</ion-label>
         <input [(ngModel)]="object[key]" name="{{key}}" type="date">
       </ion-item>
       }
       @case("date-time") {
-      <ion-item [disabled]="objectService.readOnlyAttributes[key]">
+      <ion-item [disabled]="objectService.isReadOnly(key)">
         <ion-label [position]="labelPlacement">{{ key | translate }}{{objectService.required[key]}}</ion-label>
         <input [(ngModel)]="object[key]" name="{{key}}" type="datetime-local">
       </ion-item>
