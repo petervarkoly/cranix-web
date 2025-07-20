@@ -103,21 +103,6 @@ export class CustomersPage{
   templateUrl: 'edit-institutes.html'
 })
 export class EditInstitutes implements OnInit {
-  context;
-  gridApi;
-  columnApi;
-  defaultColDef: ColDef = {
-    resizable: true,
-    sortable: true,
-    hide: false,
-    suppressHeaderMenuButton: true
-  }
-  columnDefs: ColDef[] = [
-    { field: 'id', checkboxSelection: true, headerCheckboxSelection: true, headerCheckboxSelectionFilteredOnly: true },
-    { field: 'name' },
-    { field: 'locality' },
-    { field: 'regCode' }
-  ];
   disabled: boolean = false;
   myInstituteIds: number[] = [];
   myInstitutes: Institute[] = [];
@@ -131,7 +116,6 @@ export class EditInstitutes implements OnInit {
     public objectService: GenericObjectService
   ) {
     this.rowData = this.objectService.allObjects['institute'];
-    this.context = { componentParent: this };
   }
 
   ngOnInit(): void {
@@ -146,41 +130,10 @@ export class EditInstitutes implements OnInit {
     console.log(this.myInstituteIds)
   }
 
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.columnApi = params.columnApi;
-    this.selectMy();
-  }
-
-  onQuickFilterChanged() {
-    this.gridApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById('instituteFilter')).value);
-  }
-
-  showOwned() {
-    this.gridApi.setRowData(this.myInstitutes);
-    this.owned = true;
-    this.selectMy();
-  }
-  showAll() {
-    this.gridApi.setRowData(this.objectService.allObjects['institute']);
-    this.owned = false;
-    this.selectMy();
-  }
-  selectMy() {
-    var managedIds = this.myInstituteIds;
-    this.gridApi.forEachNode(
-      function (node, index) {
-        if (managedIds.indexOf(node.data.id) != -1) {
-          node.setSelected(true);
-        }
-      }
-    )
-  }
-
   async onSubmit() {
-    this.disabled = true;
+    this.disabled = true
     let newMyInstituteIds: number[] = [];
-    for (let institute of this.gridApi.getSelectedRows()) {
+    for (let institute of this.myInstitutes) {
       newMyInstituteIds.push(institute.id)
     }
     for (let i of newMyInstituteIds) {

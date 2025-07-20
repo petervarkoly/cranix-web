@@ -68,14 +68,14 @@ export class CranixListComponent implements OnInit {
     public utilService: UtilsService
   ) {
     this.listContext = { componentParent: this };
-    
+
     this.authService.log("CranixMdListComponent constructor was called")
     this.utilService.actMdList = this;
     this.useNotice = this.authService.isAllowed('notice.use')
   }
 
   async ngOnInit() {
-    if( this.context.rowData ){
+    if (this.context.rowData) {
       this.rowData = this.rowData
     }
     this.addToolTip = this.languageService.trans("Create a new " + this.objectType);
@@ -88,7 +88,7 @@ export class CranixListComponent implements OnInit {
     while (!this.objectService.allObjects[this.objectType]) {
       await new Promise(f => setTimeout(f, 1000));
     }
-    
+
     if (this.objectService.allObjects[this.objectType][0]) {
       for (const key in this.objectService.allObjects[this.objectType][0]) {
         this.objectKeys.push(key)
@@ -162,30 +162,30 @@ export class CranixListComponent implements OnInit {
           col['valueFormatter'] = params => new Date(params.value).toISOString(); break
         }
         case 'cephalixCustomerId': {
-          col['valueFormatter'] = params =>params.context['componentParent'].objectService.idToName('customer', params.data.cephalixCustomerId);break;
+          col['valueFormatter'] = params => params.context['componentParent'].objectService.idToName('customer', params.data.cephalixCustomerId); break;
         }
         case 'groupId': {
-          col['valueFormatter'] = params =>params.context['componentParent'].objectService.idToName('group', params.data.groupId);break;
+          col['valueFormatter'] = params => params.context['componentParent'].objectService.idToName('group', params.data.groupId); break;
         }
         case 'groupType': {
-          col['valueFormatter'] = params =>params.context['componentParent'].languageService.trans(params.data.groupType);break;
+          col['valueFormatter'] = params => params.context['componentParent'].languageService.trans(params.data.groupType); break;
         }
         case 'instituteType': {
-          col['valueFormatter'] = params =>params.context['componentParent'].languageService.trans(params.data.instituteType);break;
+          col['valueFormatter'] = params => params.context['componentParent'].languageService.trans(params.data.instituteType); break;
         }
         case 'hwconfId': {
           col['valueFormatter'] = params => params.context['componentParent'].objectService.idToName('hwconf', params.data.hwconfId); break;
         }
         case 'roomId': {
-          col['valueFormatter'] = params =>params.context['componentParent'].objectService.idToName('room', params.data.roomId);break;
+          col['valueFormatter'] = params => params.context['componentParent'].objectService.idToName('room', params.data.roomId); break;
         }
         case 'roomControl': {
-          col['valueFormatter'] = params =>params.context['componentParent'].languageService.trans(params.data.roomControl);break;
+          col['valueFormatter'] = params => params.context['componentParent'].languageService.trans(params.data.roomControl); break;
         }
         case 'role': {
-          col['valueFormatter'] = params =>params.context['componentParent'].languageService.trans(params.data.role);break;
+          col['valueFormatter'] = params => params.context['componentParent'].languageService.trans(params.data.role); break;
         }
-        
+
       }
       columnDefs.push(col);
     }
@@ -206,7 +206,7 @@ export class CranixListComponent implements OnInit {
     this.objectService.selection = this.gridApi.getSelectedRows()
   }
 
-  redirectToAddInstitute(){
+  redirectToAddInstitute() {
     let selection = this.gridApi.getSelectedRows();
     if (!selection) {
       this.objectService.selectObject();
@@ -214,12 +214,16 @@ export class CranixListComponent implements OnInit {
     }
     this.context.componentParent.redirectToAddInstitute(selection[0])
   }
-  
+
   addPrinter() {
     this.context.componentParent.addPrinter();
   }
   redirectToDelete = (object) => {
     this.objectService.deleteObjectDialog(object, this.objectType, '')
+  }
+
+  editInstitutes(object) {
+    this.context.componentParent.editInstitutes(object)
   }
 
   async redirectToMembers(object) {
@@ -240,7 +244,7 @@ export class CranixListComponent implements OnInit {
   async setPrinters(object) {
     this.context.componentParent.setPrinters(object);
   }
-  devices(object){
+  devices(object) {
     this.context.componentParent.devices(object);
   }
 

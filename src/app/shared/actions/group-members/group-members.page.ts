@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { ModalController } from '@ionic/angular';
 
 //own stuff
-import { LanguageService } from 'src/app/services/language.service';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { GroupsService } from 'src/app/services/groups.service';
 import { Group, User } from 'src/app/shared/models/data-model'
 import { AuthenticationService } from 'src/app/services/auth.service';
-import { ModalController } from '@ionic/angular';
 @Component({
   standalone: false,
     selector: 'cranix-group-members',
@@ -15,31 +13,22 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./group-members.page.scss'],
 })
 export class GroupMembersPage implements OnInit {
-  context;
-  memberOptions;
-  noMemberOptions;
-  columnDefs = [];
-  memberApi;
-  noMemberApi;
-  memberRowData: User[] = [];
-  noMemberRowData: User[] = [];
+  memberRawData: User[] = [];
+  noMemberRawData: User[] = [];
   memberData: User[] = [];
   noMemberData: User[] = [];
   group;
 
   constructor(
     public authService: AuthenticationService,
-    private objectS: GenericObjectService,
-    public modalCtrl: ModalController,
-    private languageS: LanguageService,
-    private groupS: GroupsService,
-    public translateServices: TranslateService
+    private objectService: GenericObjectService,
+    private groupService: GroupsService,
+    public modalCtrl: ModalController
   ) { }
 
   ngOnInit() {
     console.log('innerWidth', window.innerWidth)
-    this.context = { componentParent: this }
-    this.group = <Group>this.objectS.selectedObject;
+    this.group = <Group>this.objectService.selectedObject;
     this.readMembers();
   }
   onMemberFilterChanged() {
@@ -50,7 +39,7 @@ export class GroupMembersPage implements OnInit {
         tmp.push(o)
       }
     }
-    this.memberRowData = tmp;
+    this.memberRawData = tmp;
   }
 
   onNoMemberFilterChanged() {
@@ -61,37 +50,37 @@ export class GroupMembersPage implements OnInit {
         tmp.push(o)
       }
     }
-    this.noMemberRowData = tmp;
+    this.noMemberRawData = tmp;
   }
 
   addMember(id: number){
-    this.objectS.requestSent()
-    this.groupS.putUserToGroup(id, this.group.id).subscribe(
+    this.objectService.requestSent()
+    this.groupService.putUserToGroup(id, this.group.id).subscribe(
       (val) => {
-        this.objectS.responseMessage(val)
+        this.objectService.responseMessage(val)
         this.readMembers()
       }
     )
   }
   deleteMember(id: number){
-    this.objectS.requestSent()
-    this.groupS.deletUserFromGroup(id, this.group.id).subscribe(
+    this.objectService.requestSent()
+    this.groupService.deletUserFromGroup(id, this.group.id).subscribe(
       (val) => {
-        this.objectS.responseMessage(val)
+        this.objectService.responseMessage(val)
         this.readMembers()
       }
     )
   }
 
   readMembers() {
-    this.groupS.getMembers(this.group.id).subscribe(
+    this.groupService.getMembers(this.group.id).subscribe(
       (val) => {
         this.memberData = val
-        this.memberRowData = val
-        this.groupS.getAvailiableMembers(this.group.id).subscribe(
+        this.memberRawData = val
+        this.groupService.getAvailiableMembers(this.group.id).subscribe(
           (val) => {
             this.noMemberData = val;
-            this.noMemberRowData = val;
+            this.noMemberRawData = val;
           }
         )
       }

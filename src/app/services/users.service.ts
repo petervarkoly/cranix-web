@@ -36,17 +36,22 @@ export class UsersService {
 		this.hostname = this.utilsS.hostName();
 	};
 
-	removeUserFromGroup(uId: number, gId: number) {
-		this.url = this.hostname + `/users/${uId}/${gId}`;
+	addUserToGroup(uid: number, gid: number) {
+		this.url = `${this.hostname}/users/${uid}/${gid}`;
+		return this.http.put<ServerResponse>(this.url, null, { headers: this.authService.headers });
+	}
+	
+	removeUserFromGroup(uId: number, gid: number) {
+		this.url = this.hostname + `/users/${uId}/${gid}`;
 		return this.http.delete<ServerResponse>(this.url, { headers: this.authService.headers });
 	}
 
-	addUserToGroups(ui: number, groups: any[]) {
-		const body = groups;
+	addUserToGroups(ui: number, groups: Group[]) {
 		this.url = `${this.hostname}/users/${ui}/groups`;
-		return this.http.post<ServerResponse>(this.url, body, { headers: this.authService.headers });
+		return this.http.post<ServerResponse>(this.url, groups, { headers: this.authService.headers });
 	}
 
+	
 	getUsersGroups(uid: number) {
 		this.url = `${this.hostname}/users/${uid}/groups`
 		console.log(this.url);

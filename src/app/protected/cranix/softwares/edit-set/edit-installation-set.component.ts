@@ -17,26 +17,14 @@ export class EditInstallationSetComponent implements OnInit {
   submitted: boolean = false;
   context;
   installationSet: Category = new Category();
+
   softwares: Software[] = [];
-  softwaresApi;
-  availableSoftwaresApi;
   hwconfs: Hwconf[] = [];
-  hwconfsApi;
   availableHwconfs: Hwconf[] = [];
-  availableHwconfsApi;
   rooms: Room[] = [];
-  roomsApi;
   availableRooms: Room[] = [];
-  availableRoomsApi;
   devices: Device[] = [];
-  devicesApi;
   availableDevices: Device[] = [];
-  availableDevicesApi;
-  toShow = "overview";
-  deviceColumnDefs = [];
-  hwconfColumnDefs = [];
-  softwareColumnDefs = [];
-  roomColumnDefs = [];
 
   constructor(
     public authService: AuthenticationService,
@@ -45,31 +33,6 @@ export class EditInstallationSetComponent implements OnInit {
     private modalCtrl: ModalController,
     public softwareService: SoftwareService
   ) {
-    this.deviceColumnDefs = [
-      {
-        headerName: this.languageS.trans('devices'),
-        field: 'name',
-        sortable: true
-      }];
-    this.hwconfColumnDefs = [
-      {
-        headerName: this.languageS.trans('hwconfs'),
-        field: 'name',
-        sortable: true
-      }];
-
-    this.roomColumnDefs = [
-      {
-        headerName: this.languageS.trans('rooms'),
-        field: 'name',
-        sortable: true
-      }];
-    this.softwareColumnDefs = [
-      {
-        headerName: this.languageS.trans('softwares'),
-        field: 'name',
-        sortable: true
-      }];
     this.context = { componentParent: this };
   }
 
@@ -110,158 +73,6 @@ export class EditInstallationSetComponent implements OnInit {
         this.devices.push(this.objectService.getObjectById('device', id));
       }
     }
-  }
-  public ngAfterViewInit() {
-    (<HTMLInputElement>document.getElementById("editSoftware")).style.height = Math.trunc(window.innerHeight * 0.90) + "px";
-    while (document.getElementsByTagName('mat-tooltip-component').length > 0) { document.getElementsByTagName('mat-tooltip-component')[0].remove(); }
-  }
-
-  segmentChanged(event) {
-    this.toShow = event.detail.value;
-  }
-  /**Available Softwares */
-  availableSoftwaresReady(params) {
-    this.availableSoftwaresApi = params.api;
-    this.availableSoftwaresApi.forEachNode(
-      function (node, index) {
-        console.log(node)
-        for (let obj of node.beans.gridOptions.context.componentParent.softwares) {
-          if (node.data.id == obj.id) {
-            node.setSelected(true);
-          }
-        }
-      }
-    )
-    if (!this.authService.isMD()) {
-      (<HTMLInputElement>document.getElementById("availableSoftwaresTable")).style.height = Math.trunc(window.innerHeight * 0.65) + "px";
-    }
-    this.availableSoftwaresApi.sizeColumnsToFit();
-  }
-  availableSoftwaresChanged() {
-    this.softwares = this.availableSoftwaresApi.getSelectedRows();
-  }
-  availableSoftwaresFilterChanged() {
-    this.availableSoftwaresApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById("availableSoftwaresFilter")).value);
-  }
-
-  /**Available Hwconfs */
-  availableHwconfsReady(params) {
-    this.availableHwconfsApi = params.api;
-    this.availableHwconfsApi.forEachNode(
-      function (node, index) {
-        for (let obj of node.beans.gridOptions.context.componentParent.hwconfs) {
-          if (node.data.id == obj.id) {
-            node.setSelected(true);
-          }
-        }
-      }
-    )
-    if (!this.authService.isMD()) {
-      (<HTMLInputElement>document.getElementById("availableHwconfsTable")).style.height = Math.trunc(window.innerHeight * 0.65) + "px";
-    }
-    this.availableHwconfsApi.sizeColumnsToFit();
-  }
-  availableHwconfsChanged() {
-    this.hwconfs = this.availableHwconfsApi.getSelectedRows();
-  }
-  availableHwconfsFilterChanged() {
-    this.availableHwconfsApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById("availableHwconfsFilter")).value);
-  }
-
-  /**Available Rooms */
-  availableRoomsReady(params) {
-    this.availableRoomsApi = params.api;
-    this.availableRoomsApi.forEachNode(
-      function (node, index) {
-        for (let obj of node.beans.gridOptions.context.componentParent.rooms) {
-          if (node.data.id == obj.id) {
-            node.setSelected(true);
-          }
-        }
-      }
-    )
-    if (!this.authService.isMD()) {
-      (<HTMLInputElement>document.getElementById("availableRoomsTable")).style.height = Math.trunc(window.innerHeight * 0.65) + "px";
-    }
-    this.availableRoomsApi.sizeColumnsToFit();
-  }
-  availableRoomsChanged() {
-    this.rooms = this.availableRoomsApi.getSelectedRows();
-  }
-  availableRoomsFilterChanged() {
-    this.availableRoomsApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById("availableRoomsFilter")).value);
-  }
-
-  /**Available Devices */
-  availableDevicesReady(params) {
-    this.availableDevicesApi = params.api;
-    this.availableDevicesApi.forEachNode(
-      function (node, index) {
-        for (let obj of node.beans.gridOptions.context.componentParent.devices) {
-          if (node.data.id == obj.id) {
-            node.setSelected(true);
-          }
-        }
-      }
-    )
-    this.availableDevicesApi.sizeColumnsToFit();
-    if (!this.authService.isMD()) {
-      (<HTMLInputElement>document.getElementById("availableDevicesTable")).style.height = Math.trunc(window.innerHeight * 0.65) + "px";
-    }
-  }
-  availableDevicesChanged() {
-    this.devices = this.availableDevicesApi.getSelectedRows();
-  }
-  availableDevicesFilterChanged() {
-    this.availableDevicesApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById("availableDevicesFilter")).value);
-  }
-
-  /**Available Softwares */
-  softwaresReady(params) {
-    this.softwaresApi = params.api;
-    this.softwaresApi.sizeColumnsToFit();
-    if (!this.authService.isMD()) {
-      (<HTMLInputElement>document.getElementById("softwaresTable")).style.height = Math.trunc(window.innerHeight * 0.65) + "px";
-    }
-  }
-  softwaresFilterChanged() {
-    this.softwaresApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById("softwaresFilter")).value);
-  }
-
-  /**Available Hwconfs */
-  hwconfsReady(params) {
-    this.hwconfsApi = params.api;
-    this.hwconfsApi.sizeColumnsToFit();
-    if (!this.authService.isMD()) {
-      (<HTMLInputElement>document.getElementById("hwconfsTable")).style.height = Math.trunc(window.innerHeight * 0.65) + "px";
-    }
-  }
-  hwconfsFilterChanged() {
-    this.hwconfsApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById("hwconfsFilter")).value);
-  }
-
-  /**Available Rooms */
-  roomsReady(params) {
-    this.roomsApi = params.api;
-    this.roomsApi.sizeColumnsToFit();
-    if (!this.authService.isMD()) {
-      (<HTMLInputElement>document.getElementById("roomsTable")).style.height = Math.trunc(window.innerHeight * 0.65) + "px";
-    }
-  }
-  roomsFilterChanged() {
-    this.roomsApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById("roomsFilter")).value);
-  }
-
-  /**Available Devices */
-  devicesReady(params) {
-    this.devicesApi = params.api;
-    this.devicesApi.sizeColumnsToFit();
-    if (!this.authService.isMD()) {
-      (<HTMLInputElement>document.getElementById("devicesTable")).style.height = Math.trunc(window.innerHeight * 0.65) + "px";
-    }
-  }
-  devicesFilterChanged() {
-    this.devicesApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById("devicesFilter")).value);
   }
   closeWindow() {
     this.modalCtrl.dismiss();

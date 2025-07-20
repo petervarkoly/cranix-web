@@ -124,3 +124,24 @@ ul.radiolist input[type="radio"]:checked::before {
 	top:2px;
 }
 
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Vollbildhöhe */
+  }
+
+  /* Obere Zeile */
+  .header {
+    flex: 0 0 auto; /* Nimmt nur so viel Platz wie nötig */
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  /* Listenteil, der den verbleibenden Raum füllt */
+  .list-container {
+    flex: 1 1 auto; /* Füllt den verfügbaren Raum */
+    overflow-y: auto; /* Scrollbar bei Überfüllung */
+    padding: 10px;
+    background-color: #fff;
+  }

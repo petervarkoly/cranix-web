@@ -1,14 +1,14 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>{{ 'Modify groups of selected user:' | translate}} "{{user.uid}}" ({{user.givenName}}
-      {{user.surName}})
+  <ion-toolbar color="primary">
+    <ion-title>
+      @if(authService.isMD()){
+      {{'User' | translate}}:
+      }@else{
+      {{'Modify groups of selected user:' | translate}}
+      }
+      {{user.fullName}}
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button fill="clear" size="small" 
-        matTooltip="{{'Add remove user to/from the selected groups.' | translate }}"
-        (click)="applyChanges()"  [disabled]="noMemberSelection.length ==0 && memberSelection.length == 0">
-        <ion-icon slot="icon-only" color="success" name="checkmark-sharp"></ion-icon>
-      </ion-button>
       <ion-button fill="clear" size="small" (click)="modalCtrl.dismiss()">
         <ion-icon slot="icon-only" color="danger" name="close"></ion-icon>
       </ion-button>
@@ -16,52 +16,80 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-card>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col size=12 sizeMd=12 sizeLg=6 sizeXl=6>
-            <ion-title matTooltip="{{'Select the groups the user must be removed from.' | translate}}">{{ 'Member of groups:' | translate }}</ion-title>
-            <ion-item>
-              <!--ion-label position="stacked">{{ 'Member of groups:' | translate }}</ion-label-->
-              <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onMemberFilterChanged()"
-                id="memberFilter"></ion-input>
-            </ion-item>
-            <ag-grid-angular
-              style="width: 100%; height: 100%;"
-              class="{{authService.settings.agGridThema}}"
-              rowSelection="multiple" 
-              [rowHeight]="authService.settings.rowHeight"
-              [rowMultiSelectWithClick]="authService.settings.rowMultiSelectWithClick"
-              [rowData]="memberData"
-              [columnDefs]="columnDefs"
-              (gridReady)="onMemberReady($event)"
-              (selectionChanged)="onMemberSelectionChanged()"
-              id="memberTable">
-            </ag-grid-angular>
-          </ion-col>
-          <ion-col size=12 sizeMd=12 sizeLg=6 sizeXl=6>
-            <ion-title matTooltip="{{'Select the groups into  the user must be added.'| translate}}">{{ 'Available groups:' | translate }}</ion-title>
-            <ion-item>
-              <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onNoMemberFilterChanged()"
-                id="noMemberFilter">
-              </ion-input>
-            </ion-item>
-            <ag-grid-angular
-              style="width: 100%; height: 100%;"
-              class="{{authService.settings.agGridThema}}"
-              rowSelection="multiple" 
-              [rowHeight]="authService.settings.rowHeight"
-              [rowMultiSelectWithClick]="authService.settings.rowMultiSelectWithClick"
-              [rowData]="noMemberData"
-              [columnDefs]="columnDefs"
-              (gridReady)="onNoMemberReady($event)"
-              (selectionChanged)="onNoMemberSelectionChanged()"
-               id="noMemberTable">
-            </ag-grid-angular>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+  <ion-item>
+    <ion-label style="text-align: center; display: block;">
+      {{'The actions are executed immediately when you click on the group name.'|translate}}
+    </ion-label>
+  </ion-item>
+  @if(authService.isMD()){
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header">
+        <ion-label>{{ 'Member of groups:' | translate }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-item lines="none">
+          <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onMemberFilterChanged()"
+            id="memberFilter"></ion-input>
+        </ion-item>
+        <div class="button-container">
+          @for(o of memberRawData; track o.id){
+          <button (click)="removeFromGroup(o.id)" class="minus">{{o.name}}, {{o.description}}</button>
+          }
+        </div>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header">
+        <ion-label>{{ 'Available groups:' | translate }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-item lines="none">
+          <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onNoMemberFilterChanged()"
+            id="noMemberFilter"></ion-input>
+        </ion-item>
+        <div class="button-container">
+          @for(o of noMemberRawData; track o.id){
+          <button (click)="addToGroup(o.id)" class="pluss">{{o.name}}, {{o.description}}</button>
+          }
+        </div>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+  }@else{
+  <ion-grid>
+    <ion-row>
+      <ion-col size=12 sizeMd=12 sizeLg=6 sizeXl=6>
+        <ion-list [inset]="true">
+          <ion-list-header lines="full" color="medium">{{ 'Member of groups:' | translate }}</ion-list-header>
+          <ion-item lines="none">
+            <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onMemberFilterChanged()"
+              id="memberFilter">
+            </ion-input>
+          </ion-item>
+          <div class="button-container">
+            @for(o of memberRawData; track o.id){
+            <button (click)="removeFromGroup(o.id)" class="minus">{{o.name}}, {{o.description}}</button>
+            }
+          </div>
+        </ion-list>
+      </ion-col>
+      <ion-col size=12 sizeMd=12 sizeLg=6 sizeXl=6>
+        <ion-list [inset]="true">
+          <ion-list-header lines="full" color="medium">{{ 'Available groups:' | translate }}</ion-list-header>
+          <ion-item>
+            <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onNoMemberFilterChanged()"
+              id="noMemberFilter">
+            </ion-input>
+          </ion-item>
+          <div class="button-container">
+            @for(o of noMemberRawData; track o.id){
+            <button (click)="addToGroup(o.id)" class="pluss">{{o.name}}, {{o.description}}</button>
+            }
+          </div>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  }
 </ion-content>
