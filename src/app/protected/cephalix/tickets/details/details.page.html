@@ -8,14 +8,14 @@
   </ion-title>
   }@else{
   <ion-title>#{{ticket.id}}, {{ticket.created | date:'yyyy-MM-dd HH:mm'}}, {{ticket.title}}<br>
-    {{ institute.name }} {{ institute.regCode }} {{ institute.ipVPN }}<br>
+    @if(institute) { {{ institute.name }} {{ institute.regCode }} {{ institute.ipVPN }}<br> }
     {{ticket.email}} {{ticket.lastname}},{{ticket.firstname}}
   </ion-title>
   <ion-buttons slot="end">
     <ion-button fill="clear" (click)="router.navigate(['/pages/cephalix/tickets'])">
       <ion-icon slot="icon-only" name="caret-back"></ion-icon>
     </ion-button>
-    @if(institute.ipVPN && institute.ipVPN != ''){
+    @if(institute && institute.ipVPN && institute.ipVPN != ''){
     <ion-button color="secondary" fill="clear" size="small" (click)="routeToInstitute($event)"
       matTooltip="{{'Connect the institute in a separate window.' | translate }}">
       <ion-icon name="create"></ion-icon>
@@ -39,19 +39,22 @@
       <ion-col style="padding: 0px;">
         <ion-item lines="none">
           <ion-label position="stacked">{{'Ticket Owner'| translate}}</ion-label>
-          <cranix-search objectType="user" [items]="workers" [(ngModel)]="ticketCreator" name="selecteWorker" (onChange)="setCreator()" itemTextField="fullName"></cranix-search>
+          <cranix-search objectType="user" [items]="workers" [(ngModel)]="ticketCreator" name="selecteWorker"
+            (onChange)="setCreator()" itemTextField="fullName"></cranix-search>
         </ion-item>
       </ion-col>
       <ion-col style="padding: 0px;">
         <ion-item lines="none">
           <ion-label position="stacked">{{'Institute'| translate}}</ion-label>
-          <cranix-search objectType="institute" [(ngModel)]="institute" name="selecteInstitue" (onChange)="setInstitute()" [itemTextField]="['name','locality']"></cranix-search>
+          <cranix-search objectType="institute" [(ngModel)]="institute" name="selecteInstitue"
+            (onChange)="setInstitute()" [itemTextField]="['name','locality']"></cranix-search>
         </ion-item>
       </ion-col>
       <ion-col style="padding: 0px;">
         <ion-item lines="none">
           <ion-label position="stacked">{{'Customer'| translate}}</ion-label>
-          <cranix-search objectType="customer" [(ngModel)]="customer" name="selectedCustomer" (onChange)="setCustomer()" [itemTextField]="['name','locality']">
+          <cranix-search objectType="customer" [(ngModel)]="customer" name="selectedCustomer" (onChange)="setCustomer()"
+            [itemTextField]="['name','locality']">
           </cranix-search>
         </ion-item>
       </ion-col>
@@ -68,7 +71,7 @@
       <ion-fab-button fill="clear" (click)="router.navigate(['/pages/cephalix/tickets'])">
         <ion-icon name="caret-back"></ion-icon>
       </ion-fab-button>
-      @if(institute.ipVPN && institute.ipVPN != ''){
+      @if(institute && institute.ipVPN && institute.ipVPN != ''){
       <ion-fab-button fill="clear" (click)="routeToInstitute($event)"
         matTooltip="{{'Connect the institute in a separate window.' | translate }}">
         <ion-icon color="secondary" name="create"></ion-icon>
@@ -85,8 +88,7 @@
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
-  {{ institute.name }}<br>
-  {{ institute.ipVPN }}<br>
+  @if(institute) { {{ institute.name }}<br>{{ institute.ipVPN }}<br>}
   {{ticket.email}} {{ticket.lastname}}, {{ticket.firstname}}
   }
   @for(article of articles; track article.id){

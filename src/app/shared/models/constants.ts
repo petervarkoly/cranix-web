@@ -149,7 +149,8 @@ export const hiddenColumns: string[] = [
     'parentIds',
     'password',
     'accessInRooms',
-    'cephalixInstituteId',
+    'cranixUserId',
+    'cranixDeviceId',
     'color',
     'deleted',
     'devices',
@@ -162,7 +163,7 @@ export const hiddenColumns: string[] = [
     'ipFileserver',
     'ipPrint',
     'ipMail',
-    'ipProxy', 
+    'ipProxy',
     'ipBackup',
     'ipGateway',
     'ipTrNet',
@@ -178,3 +179,70 @@ export const hiddenColumns: string[] = [
     'screenShot',
     'users'
 ]
+
+import { AccessInRooms, AccessStatus, AdHocRoom, Announcenement, Category, Contact, CrxCalendar, CrxChallenge, CrxChallengeAnswer, CrxConfig, CrxNotice, CrxQuestion, CrxQuestionAnswer, CrxTicket, CrxTicketArticle, Device, DNSRecord, Drivers, EduRoom, FAQ, Group, GuestUsers, Hwconf, IdRequest, Installation, InstallStateDev, License, Package, Parent, ParentRequest, ParentTeacherMeeting, Partition, Permission, PositivList, Printer, PTMEvent, PTMTeacherInRoom, RecRule, RepoSoftware, Room, Software, SoftwareFullName, SoftwareStatus, SoftwareVersion, SubjectArea, SupportRequest, SystemConfig, TaskResponse, TeachingSubject, User, UsersImport } from './data-model'
+import { Article, CephalixCare, Customer, DynDns, Institute, InstituteStatus, Notice, Repository, Ticket} from './cephalix-data-model'
+export function getObjectKeys(objectType: string) {
+    switch (objectType) {
+        case 'accessinrooms': return Object.getOwnPropertyNames(new AccessInRooms)
+        case 'accessstatus': return Object.getOwnPropertyNames(new AccessStatus)
+        case 'adhocroom': return Object.getOwnPropertyNames(new AdHocRoom)
+        case 'announcenement': return Object.getOwnPropertyNames(new Announcenement)
+        case 'category': return Object.getOwnPropertyNames(new Category)
+        case 'contact': return Object.getOwnPropertyNames(new Contact)
+        case 'crxcalendar': return Object.getOwnPropertyNames(new CrxCalendar)
+        case 'crxchallenge': return Object.getOwnPropertyNames(new CrxChallenge)
+        case 'crxchallengeanswer': return Object.getOwnPropertyNames(new CrxChallengeAnswer)
+        case 'crxconfig': return Object.getOwnPropertyNames(new CrxConfig)
+        case 'crxnotice': return Object.getOwnPropertyNames(new CrxNotice)
+        case 'crxquestion': return Object.getOwnPropertyNames(new CrxQuestion)
+        case 'crxquestionanswer': return Object.getOwnPropertyNames(new CrxQuestionAnswer)
+        case 'crxticket': return Object.getOwnPropertyNames(new CrxTicket)
+        case 'crxticketarticle': return Object.getOwnPropertyNames(new CrxTicketArticle)
+        case 'device': return Object.getOwnPropertyNames(new Device)
+        case 'dnsrecord': return Object.getOwnPropertyNames(new DNSRecord)
+        case 'drivers': return Object.getOwnPropertyNames(new Drivers)
+        case 'eduroom': return Object.getOwnPropertyNames(new EduRoom)
+        case 'faq': return Object.getOwnPropertyNames(new FAQ)
+        case 'group': return Object.getOwnPropertyNames(new Group)
+        case 'guestusers': return Object.getOwnPropertyNames(new GuestUsers)
+        case 'hwconf': return Object.getOwnPropertyNames(new Hwconf)
+        case 'idrequest': return Object.getOwnPropertyNames(new IdRequest)
+        case 'installation': return Object.getOwnPropertyNames(new Installation)
+        case 'installstatedev': return Object.getOwnPropertyNames(new InstallStateDev)
+        case 'license': return Object.getOwnPropertyNames(new License)
+        case 'package': return Object.getOwnPropertyNames(new Package)
+        case 'parent': return Object.getOwnPropertyNames(new Parent)
+        case 'parentrequest': return Object.getOwnPropertyNames(new ParentRequest)
+        case 'parentteachermeeting': return Object.getOwnPropertyNames(new ParentTeacherMeeting)
+        case 'partition': return Object.getOwnPropertyNames(new Partition)
+        case 'permission': return Object.getOwnPropertyNames(new Permission)
+        case 'positivlist': return Object.getOwnPropertyNames(new PositivList)
+        case 'printer': return Object.getOwnPropertyNames(new Printer)
+        case 'ptmevent': return Object.getOwnPropertyNames(new PTMEvent)
+        case 'ptmteacherinroom': return Object.getOwnPropertyNames(new PTMTeacherInRoom)
+        case 'recrule': return Object.getOwnPropertyNames(new RecRule)
+        case 'reposoftware': return Object.getOwnPropertyNames(new RepoSoftware)
+        case 'room': return Object.getOwnPropertyNames(new Room)
+        case 'software': return Object.getOwnPropertyNames(new Software)
+        case 'softwarefullname': return Object.getOwnPropertyNames(new SoftwareFullName)
+        case 'softwarestatus': return Object.getOwnPropertyNames(new SoftwareStatus)
+        case 'softwareversion': return Object.getOwnPropertyNames(new SoftwareVersion)
+        case 'subjectarea': return Object.getOwnPropertyNames(new SubjectArea)
+        case 'supportrequest': return Object.getOwnPropertyNames(new SupportRequest)
+        case 'systemconfig': return Object.getOwnPropertyNames(new SystemConfig)
+        case 'taskresponse': return Object.getOwnPropertyNames(new TaskResponse)
+        case 'teachingsubject': return Object.getOwnPropertyNames(new TeachingSubject)
+        case 'user': return Object.getOwnPropertyNames(new User)
+        case 'usersimport': return Object.getOwnPropertyNames(new UsersImport)
+        case 'article': return Object.getOwnPropertyNames(new Article)
+        case 'cephalixcare': return Object.getOwnPropertyNames(new CephalixCare)
+        case 'customer': return Object.getOwnPropertyNames(new Customer)
+        case 'dyndns': return Object.getOwnPropertyNames(new DynDns)
+        case 'institute': return Object.getOwnPropertyNames(new Institute)
+        case 'institutestatus': return Object.getOwnPropertyNames(new InstituteStatus)
+        case 'notice': return Object.getOwnPropertyNames(new Notice)
+        case 'repository': return Object.getOwnPropertyNames(new Repository)
+        case 'ticket': return Object.getOwnPropertyNames(new Ticket)
+    }
+}

@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 //own modules
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { LanguageService } from 'src/app/services/language.service';
 import { Room } from 'src/app/shared/models/data-model';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { RoomPrintersPage } from '../details/printers/room-printers.page';
@@ -27,8 +26,6 @@ export class RoomsComponent {
     public authService: AuthenticationService,
     public objectService: GenericObjectService,
     public modalCtrl: ModalController,
-    public popoverCtrl: PopoverController,
-    public languageS: LanguageService,
     public route: Router
   ) {
     this.context = { componentParent: this };

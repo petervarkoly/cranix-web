@@ -53,6 +53,11 @@ export class CranixSearchListComponent implements ControlValueAccessor, OnInit {
     if (this.multiple) {
       this.selection = []
     }
+    if(this.items[0] && !this.items[0].id){
+      for(let item of this.items){
+        item['id'] = this.hashStringToInt(item.name + item.version )
+      }
+    }
     this.rowData = this.items
   }
 
@@ -138,4 +143,11 @@ export class CranixSearchListComponent implements ControlValueAccessor, OnInit {
       value: this.selection
     });
   }
+  hashStringToInt(str: string): number {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = (hash * 31 + str.charCodeAt(i)) | 0; // | 0 sorgt für 32-bit Integer
+    }
+    return Math.abs(hash);
+}
 }

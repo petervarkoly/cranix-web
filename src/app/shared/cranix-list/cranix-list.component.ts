@@ -20,7 +20,8 @@ import { UserActionBTNRenderer } from 'src/app/pipes/ag-user-renderer';
 import { ActionsComponent } from '../actions/actions.component';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
-import { hiddenColumns } from 'src/app/shared/models/constants';
+import { hiddenColumns, getObjectKeys } from 'src/app/shared/models/constants';
+import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';
 
 @Component({
   standalone: false,
@@ -50,14 +51,13 @@ export class CranixListComponent implements OnInit {
   }
   listContext: any;
   objectKeys: string[] = [];
-  rowData: any[];
 
   useNotice: boolean = false;
-  @Input() objectType: string;
+  @Input({ required: true }) objectType: string;
   @Input() context;
+  @Input() rowData;
   constructor(
     public authService: AuthenticationService,
-    private challengeService: ChallengesService,
     public crxObjectService: CrxObjectService,
     public languageService: LanguageService,
     public objectService: GenericObjectService,
@@ -75,25 +75,18 @@ export class CranixListComponent implements OnInit {
   }
 
   async ngOnInit() {
-    if (this.context.rowData) {
-      this.rowData = this.rowData
-    }
     this.addToolTip = this.languageService.trans("Create a new " + this.objectType);
-    this.storage.get(this.objectType + "_hidden_collums").then((val) => {
-      let myArray = JSON.parse(val);
-      if (myArray) {
-        this.hiddenColumns = myArray;
-      }
-    });
-    while (!this.objectService.allObjects[this.objectType]) {
-      await new Promise(f => setTimeout(f, 1000));
+    let val = await this.storage.get(this.objectType + "_hidden_collums");
+    let myArray = JSON.parse(val);
+    if (myArray) {
+      this.hiddenColumns = myArray;
     }
-
-    if (this.objectService.allObjects[this.objectType][0]) {
-      for (const key in this.objectService.allObjects[this.objectType][0]) {
-        this.objectKeys.push(key)
+    if (typeof this.rowData == "undefined") {
+      while (!this.objectService.allObjects[this.objectType]) {
+        await new Promise(f => setTimeout(f, 1000));
       }
     }
+    this.objectKeys = getObjectKeys(this.objectType);
     this.createColumnDefs();
   }
 
@@ -157,12 +150,17 @@ export class CranixListComponent implements OnInit {
           });
           continue;
         }
+        case 'validFrom':
+        case 'validUntil':
         case 'created':
         case 'modified': {
-          col['valueFormatter'] = params => new Date(params.value).toISOString(); break
+          col['valueFormatter'] = params => new Date(params.value).toISOString().substring(0, 16); break
         }
         case 'cephalixCustomerId': {
           col['valueFormatter'] = params => params.context['componentParent'].objectService.idToName('customer', params.data.cephalixCustomerId); break;
+        }
+        case 'cephalixInstituteId': {
+          col['valueFormatter'] = params => params.context['componentParent'].objectService.idToName('institute', params.data.cephalixInstituteId); break;
         }
         case 'groupId': {
           col['valueFormatter'] = params => params.context['componentParent'].objectService.idToName('group', params.data.groupId); break;
@@ -184,6 +182,31 @@ export class CranixListComponent implements OnInit {
         }
         case 'role': {
           col['valueFormatter'] = params => params.context['componentParent'].languageService.trans(params.data.role); break;
+        }
+        case 'studentsOnly': {
+          col['cellRenderer'] = YesNoBTNRenderer; break;
+        }
+        case 'deviceIds': {
+          col['valueFormatter'] = params => params.data.deviceIds.length; break;
+        }
+        case 'groupIds': {
+          col['valueFormatter'] = params => params.data.groupIds.length; break;
+        }
+        case 'hwconfIds': {
+          col['valueFormatter'] = params => params.data.hwconfIds.length; break;
+        }
+        case 'roomIds': {
+          col['valueFormatter'] = params => params.data.roomIds.length; break;
+        }
+        case 'userIds': {
+          col['valueFormatter'] = params => params.data.userIds.length; break;
+        }
+        case 'ticketStatus': {
+          col['minWidth'] = 60
+          col['width'] = 60
+          col['cellStyle'] = params => params.data.ticketStatus == "N" ? { 'background-color': 'red' } :
+            params.data.ticketStatus == "R" ? { 'background-color': 'orange' } : { 'background-color': 'green' }
+          break
         }
 
       }

@@ -270,7 +270,7 @@ export class DetailsPage implements OnInit {
 
   isHTML(s: string) {
     //var htmlRegex = new RegExp("<([A-Za-z][A-Za-z0-9]*)\b[^>]*>(.*?)</\1>");
-    var htmlRegex = new RegExp("<\/?[a-z][\s\S]*>");
+    var htmlRegex = new RegExp("<([A-Za-z][A-Za-z0-9]*)>");
     return htmlRegex.test(s);
   }
 }

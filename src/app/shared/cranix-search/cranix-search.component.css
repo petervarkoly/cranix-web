@@ -127,7 +127,7 @@ ul.radiolist input[type="radio"]:checked::before {
   .container {
     display: flex;
     flex-direction: column;
-    height: 100vh; /* Vollbildhöhe */
+    height: auto; /* Vollbildhöhe */
   }
 
   /* Obere Zeile */

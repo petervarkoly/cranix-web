@@ -60,7 +60,7 @@ export class SelfManagementService {
     getMyDevices() {
         this.url = this.hostname + `/selfmanagement/devices`;
         console.log(this.url);
-        return this.http.get<User>(this.url, { headers: this.authService.headers });
+        return this.http.get<Device[]>(this.url, { headers: this.authService.headers });
     }
     getMyRooms() {
         this.url = this.hostname + `/selfmanagement/rooms`;

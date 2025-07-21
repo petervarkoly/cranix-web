@@ -1,23 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController, PopoverController } from '@ionic/angular';
-import { Storage } from '@ionic/storage-angular';
+import { Component } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 //Own stuff
 import { AdHocRoom } from 'src/app/shared/models/data-model'
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { LanguageService } from 'src/app/services/language.service';
-import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
-import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';
-import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
 @Component({
   standalone: false,
     selector: 'cranix-adhoc',
   templateUrl: './adhoc.component.html',
   styleUrls: ['./adhoc.component.scss'],
 })
-export class AdhocComponent implements OnInit {
+export class AdhocComponent {
 
   objectKeys: string[] =Object.getOwnPropertyNames(new AdHocRoom());
   displayedColumns: string[] = ['name', 'description','devCount', 'devicesProUser','roomControl', 'groupIds', 'userIds', 'studentsOnly'];
@@ -32,120 +28,9 @@ export class AdhocComponent implements OnInit {
     public authService: AuthenticationService,
     public languageS: LanguageService,
     public objectService: GenericObjectService,
-    public modalCtrl: ModalController,
-    public popoverCtrl: PopoverController,
-    public storage: Storage
+    public modalCtrl: ModalController
   ) {
     this.context = { componentParent: this };
-  }
-
-  ngOnInit() {
-    this.storage.get('AdhocComponent.displayedColumns').then((val) => {
-      let myArray = JSON.parse(val);
-      if (myArray) {
-        this.displayedColumns = myArray.concat(['actions']);
-      }
-    });
-    delete this.objectService.selectedObject;
-    this.createColumnDefs();
-  }
-
-  createColumnDefs() {
-    let columnDefs = [];
-    for (let key of this.objectKeys) {
-      let col = {};
-      col['field'] = key;
-      col['headerName'] = this.languageS.trans(key);
-      col['hide'] = (this.displayedColumns.indexOf(key) == -1);
-      col['sortable'] = (this.sortableColumns.indexOf(key) != -1);
-      switch (key) {
-        case 'name': {
-          col['headerCheckboxSelection'] = this.authService.settings.headerCheckboxSelection;
-          col['headerCheckboxSelectionFilteredOnly'] = true;
-          col['checkboxSelection'] = this.authService.settings.checkboxSelection;
-          col['width'] = 150;
-          col['suppressSizeToFit'] = true;
-          col['pinned'] = 'left';
-          col['flex'] = '1';
-          col['colId'] = '1';
-          break;
-        }
-        case 'studentsOnly': {
-          col['cellRenderer'] = YesNoBTNRenderer;
-          break;
-        }
-        case 'groupIds': {
-          col['valueGetter'] = function (params) {
-            return params.data.groupIds.length;
-          }
-          break;
-        }
-        case 'userIds': {
-          col['valueGetter'] = function (params) {
-            return params.data.userIds.length;
-          }
-          break;
-        }
-      }
-      columnDefs.push(col);
-    }
-    let action = {
-      headerName: "",
-      width: 230,
-      suppressSizeToFit: true,
-      cellStyle: { 'padding': '2px', 'line-height': '36px' },
-      field: 'actions',
-      pinned: 'left',
-      cellRenderer: EditBTNRenderer
-    };
-    columnDefs.splice(1, 0, action);
-    this.columnDefs = columnDefs;
-  }
-
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.columnApi = params.columnApi;
-  }
-
-  selectionChanged() {
-    this.objectService.selectedIds = []
-    for (let i = 0; i < this.gridApi.getSelectedRows().length; i++) {
-      this.objectService.selectedIds.push(this.gridApi.getSelectedRows()[i].id);
-    }
-    this.objectService.selection = this.gridApi.getSelectedRows()
-  }
-  onQuickFilterChanged(quickFilter) {
-    let filter = (<HTMLInputElement>document.getElementById(quickFilter)).value.toLowerCase();
-    this.gridApi.setGridOption('quickFilterText', filter);
-  }
-  public redirectToDelete = (adhoc: AdHocRoom) => {
-    this.objectService.deleteObjectDialog(adhoc, 'adhocroom','')
-  }
-
-  async openCollums(ev: any) {
-    const modal = await this.modalCtrl.create({
-      component: SelectColumnsComponent,
-      componentProps: {
-        columns: this.objectKeys,
-        selected: this.displayedColumns,
-        objectPath: "AdhocComponent.displayedColumns"
-      },
-      animated: true,
-      backdropDismiss: false
-    });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned.data) {
-        this.displayedColumns = dataReturned.data.concat(['actions']);
-        this.createColumnDefs();
-      }
-    });
-    (await modal).present().then((val) => {
-      this.authService.log("most lett vegrehajtva.")
-    })
-  }
-
-  openActions(event,adhocroom){
-
   }
 
   async redirectToEdit(adhocroom: AdHocRoom) {
@@ -182,11 +67,6 @@ export class AdhocComponent implements OnInit {
       },
       animated: true,
       showBackdrop: true
-    });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
     });
     (await modal).present();
   }

@@ -1,33 +1,4 @@
-@if( !authService.isMD() ) {
-<ion-toolbar class="page-toolbar">
-  <ion-item lines="none">
-    <ion-input placeholder="{{'search' | translate }}" (input)="onQuickFilterChanged()" id="filterMD"
-      style="min-width: 400px;">
-    </ion-input>
-    @if( objectType == 'challenge' ) {
-    <cranix-search objectType="teachingSubject" [(ngModel)]="authService.selectedTeachingSubject"
-      [items]="crxObjectService.subjects" name="searchTeachingSubject" emptyLabel="teachingSubject">
-    </cranix-search>
-    }
-  </ion-item>
-  <ion-buttons slot="end">
-    <ion-button size="small" fill="solid" (click)="context.componentParent.redirectToEdit(null)"
-      matTooltip="{{'Create a new object' | translate }}">
-      <ion-icon slot="icon-only" name="add-circle"></ion-icon>
-    </ion-button>
-    <ion-button size="small" fill="solid" (click)="context.componentParent.openActions($event,null)"
-      matTooltip="{{'Apply actions on the selected objects' | translate }}">
-      <ion-icon slot="icon-only" name="ellipsis-vertical-sharp"></ion-icon>
-    </ion-button>
-    @if( objectType == 'challenge' ) {
-    <ion-button *ngIf="objectType == 'challenge'" size="small" fill="solid" (click)="getCephalixChallenges()"
-      matTooltip="{{'Get challenges from CEPHALIX server to the selected subject.' | translate }}">
-      <img src="assets/images/logo/cranix_school.svg" style="height: 32px; width: 32px;">
-    </ion-button>
-    }
-  </ion-buttons>
-</ion-toolbar>
-} @else {
+@if(rowData){
 <ion-item>
   @if( objectType == 'challenge' ) {
   <cranix-search objectType="teachingSubject" [(ngModel)]="authService.selectedTeachingSubject"
@@ -72,7 +43,6 @@
     }
   </ion-fab-list>
 </ion-fab>
-}
 <ion-list>
   @for(object of rowData; track object.id; let i = $index; ){
   @if(i > min && i < max) { <ion-item-sliding>
@@ -192,11 +162,11 @@
         <ion-icon slot="icon-only" name="people-circle"></ion-icon>
       </ion-item-option>
       }
-      <ion-item-option color="tertiary" (click)="context.componentParent.openActions($event,object)">
+      <ion-item-option color="tertiary" (click)="openActions($event,object)">
         <ion-icon slot="icon-only" name="ellipsis-vertical-sharp"></ion-icon>
       </ion-item-option>
       @if(authService.session.userId == object.creatorId || authService.isAllowed(objectType + '.delete')){
-      <ion-item-option color="danger" (click)="context.componentParent.redirectToDelete(object)">
+      <ion-item-option color="danger" (click)="redirectToDelete(object)">
         <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
       </ion-item-option>
       }
@@ -205,4 +175,7 @@
     }
     }
 </ion-list>
+}@else{
+  <h1>{{'Loading data ..'|translate}} </h1>
+}
 <!-- /ion-content -->

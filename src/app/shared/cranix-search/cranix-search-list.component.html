@@ -1,10 +1,8 @@
 <div class="container">
   <div class="header">
-    <ion-toolbar>
-      <ion-item>
-        <ion-searchbar placeholder="{{'search' | translate }}" (input)="onQuickFilterChanged()"
-          id="crxSearchFilter"></ion-searchbar>
-      </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onQuickFilterChanged()"
+        id="crxSearchFilter"></ion-input>
       <ion-buttons slot="end">
         <ion-button class="ion-no-margin" (click)="clearSelection()" matTooltip="{{'Clear selection' | translate }}">
           <ion-icon slot="icon-only" color="warning" name="trash"></ion-icon>
@@ -13,7 +11,7 @@
           <ion-icon slot="icon-only" color="danger" name="checkbox"></ion-icon>
         </ion-button>
       </ion-buttons>
-    </ion-toolbar>
+    </ion-item>
   </div>
   <div class="list-container">
     @if(multiple){
