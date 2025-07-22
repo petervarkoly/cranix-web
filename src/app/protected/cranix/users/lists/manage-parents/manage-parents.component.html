@@ -150,11 +150,13 @@
     </form>
 </ion-content>
 }@else{
-@if(authService.isMD){
-<cranix-md-list context="context" objectType="parent" [rowData]="rowData"></cranix-md-list>
-}@else{
-<cranix-list context="context" objectType="parent" [rowData]="rowData"></cranix-list>
-}
+<ion-content>
+    @if(authService.isMD()){
+    <cranix-md-list context="context" objectType="parent" [rowData]="rowData"></cranix-md-list>
+    }@else{
+    <cranix-list context="context" objectType="parent" [rowData]="rowData"></cranix-list>
+    }
+</ion-content>
 }
 }
 
