@@ -567,6 +567,20 @@ export class GenericObjectService {
     return rowData
   }
 
+  filterItemsOfObject(objectType: string, filter: string, items: any[]) {
+    let rowData = []
+    let lowerFilter = filter.toLowerCase();
+    for (let o of items) {
+      //TODO split filter also
+      for (let field of this.getDefaultSearchFields(objectType)) {
+        if (o[field] && o[field].toLowerCase().indexOf(lowerFilter) > -1) {
+          rowData.push(o)
+          break;
+        }
+      }
+    }
+    return rowData
+  }
   getDefaultSearchFields(objectType: string) {
     switch (objectType) {
       case 'acl': return ['acl']

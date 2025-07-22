@@ -1,5 +1,5 @@
 <ion-button expand="block" fill="clear" (click)="openModal()">
-    @if(selection){
+    @if(selection && selection.length > 0){
     @if(multiple){
     {{selection.length}} {{selectedLabel|translate}}
     }@else{

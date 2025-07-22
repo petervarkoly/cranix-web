@@ -63,11 +63,19 @@ ion-input.number {
     margin-right: 5px; /* Abstand zum Text */
     color: green; /* Optional, Farbe des + Zeichens */
   }
-
   button.minus::before {
     content: "- ";
     margin-right: 5px; /* Abstand zum Text */
     color: red; /* Optional, Farbe des + Zeichens */
+  }
+  button.lt::before {
+    content: "<";
+    margin-right: 5px; /* Abstand zum Text */
+  }
+
+  button.gt::before {
+    content: ">";
+    margin-right: 5px; /* Abstand zum Text */
   }
 /* + Zeichen vor dem Button-Text */
   button.checked::before {

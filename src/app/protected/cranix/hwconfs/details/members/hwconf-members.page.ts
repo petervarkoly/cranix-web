@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GridApi } from 'ag-grid-community'
 //own stuff
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { LanguageService } from 'src/app/services/language.service';
@@ -8,46 +7,37 @@ import { Hwconf, Device, Room } from 'src/app/shared/models/data-model';
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { CrxActionMap } from 'src/app/shared/models/server-models';
 import { DevicesService } from 'src/app/services/devices.service';
-import { RoomIdCellRenderer } from 'src/app/pipes/ag-roomid-render';
 import { interval } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 
 @Component({
   standalone: false,
-    selector: 'cranix-hwconf-members',
+  selector: 'cranix-hwconf-members',
   templateUrl: './hwconf-members.page.html',
   styleUrls: ['./hwconf-members.page.scss'],
 })
-export class HwconfMembersPage implements OnInit {
+export class HwconfMembersPage {
   context;
-  columnDefs = [];
-  defaultColDef = {
-    cellStyle: { 'justify-content': "center" },
-    resizable: true,
-    sortable: true,
-    hide: false,
-    suppressHeaderMenuButton: true
-  }
-  memberApi: GridApi;
-  memberData:  Device[] = [];
-  memberDataB: Device[] = [];
+  memberData: Device[];
+  memberDataB: Device[];
   hwconf;
-  modules = [];
-  sentImage=0;
+  selected = [];
+  sentImage = 0;
   sendingImage: boolean = false;
-  networkCard: string    = "eth0";
+  networkCard: string = "eth0";
   selectedRooms = [];
   rooms: Room[] = [];
   //TODO
-  networkCards: string[] = ["eth0","eth1"];
+  networkCards: string[] = ["eth0", "eth1"];
   constructor(
-    public  authService: AuthenticationService,
-    public  objectService: GenericObjectService,
+    public authService: AuthenticationService,
+    public objectService: GenericObjectService,
     private languageService: LanguageService,
     private hwconfService: HwconfsService,
     private deviceService: DevicesService
   ) {
     this.hwconf = <Hwconf>this.objectService.selectedObject;
+    this.readMembers();
     this.hwconfService.getMultiDevs().subscribe(
       (val) => {
         this.networkCards = val;
@@ -57,89 +47,50 @@ export class HwconfMembersPage implements OnInit {
     this.context = { componentParent: this };
   }
 
-  ngOnInit() {
-    this.createColumnDef();
-    this.readMembers();
-  }
-
-  createColumnDef() {
-      this.columnDefs = [
-        {
-          headerCheckboxSelection: this.authService.settings.headerCheckboxSelection,
-          headerCheckboxSelectionFilteredOnly: true,
-          checkboxSelection: this.authService.settings.checkboxSelection,
-          headerName: this.languageService.trans('name'),
-          field: 'name',
-        },
-        {
-          headerName: this.languageService.trans('room'),
-          field: 'roomId',
-          cellRenderer: RoomIdCellRenderer,
-        },
-        {
-          headerName: this.languageService.trans('ip'),
-          field: 'ip',
-        },
-        {
-          headerName: this.languageService.trans('mac'),
-          field: 'mac',
-        }
-      ]
-  }
-
-  public ngAfterViewInit() {
-    while (document.getElementsByTagName('mat-tooltip-component').length > 0) { document.getElementsByTagName('mat-tooltip-component')[0].remove(); }
-  }
-
-  onMemberReady(params) {
-    this.memberApi = params.api;
-    //this.memberApi.sizeColumnsToFit();
-  }
-
-  onQuickFilterChanged(quickFilter) {
-    this.memberApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById(quickFilter)).value);
-  }
 
   readMembers() {
-    let subM = this.hwconfService.getMembers(this.hwconf.id).subscribe(
+    this.hwconfService.getMembers(this.hwconf.id).subscribe(
       (val) => {
-        this.memberData  = val;
+        this.memberData = val;
         this.memberDataB = val;
         let roomIds: number[] = [];
-        for( let dev of val ) {
-          if( roomIds.indexOf(dev.roomId) == -1 ) {
+        for (let dev of val) {
+          if (roomIds.indexOf(dev.roomId) == -1) {
             roomIds.push(dev.roomId)
-            this.rooms.push(this.objectService.getObjectById('room',dev.roomId))
+            this.rooms.push(this.objectService.getObjectById('room', dev.roomId))
           }
         }
-        this.authService.log(val) },
-      (err) => { this.authService.log(err) },
-      () => { subM.unsubscribe() });
+      }
+    );
   }
+
   readFilteredMember() {
-    let sRooms: number[]= [];
-    for(let room of this.selectedRooms ){
+    let sRooms: number[] = [];
+    delete this.memberData
+    for (let room of this.selectedRooms) {
       sRooms.push(room.id);
     }
-    if( sRooms.length == 0 ) {
+    if (sRooms.length == 0) {
       this.memberData = this.memberDataB
     } else {
-      this.memberData = [];
-      for( let dev of this.memberDataB ) {
-        if( sRooms.indexOf(dev.roomId) != -1 ) {
-          this.memberData.push(dev);
+      let tmp = [];
+      for (let dev of this.memberDataB) {
+        if (sRooms.indexOf(dev.roomId) != -1) {
+          tmp.push(dev);
         }
       }
+      this.memberData = tmp;
     }
+    console.log(this.memberData)
   }
   triggerClone(event, what) {
-    if (this.memberApi.getSelectedRows().length == 0) {
+    if (this.selected.length == 0) {
       this.objectService.selectObject();
       return;
     }
     let actionMap = new CrxActionMap;
     actionMap.name = what;
-    for (let dev of this.memberApi.getSelectedRows()) {
+    for (let dev of this.selected) {
       actionMap.objectIds.push(dev.id);
     }
     this.objectService.requestSent();
@@ -150,7 +101,7 @@ export class HwconfMembersPage implements OnInit {
           response = response + "<br>" + this.languageService.transResponse(resp);
         }
         this.objectService.okMessage(response)
-        if(what == 'startmulticastclone' ) {
+        if (what == 'startmulticastclone') {
           this.sendingImage = true;
         } else {
           this.sendingImage = false;
@@ -161,14 +112,14 @@ export class HwconfMembersPage implements OnInit {
     )
   }
 
-  startSending(){
+  startSending() {
     console.log("startSending")
     this.sendingImage = true;
   }
 
-  sendImage(id: number){
-    this.sentImage=id;
-    this.hwconfService.startMultiCast(id,this.networkCard).subscribe(
+  sendImage(id: number) {
+    this.sentImage = id;
+    this.hwconfService.startMultiCast(id, this.networkCard).subscribe(
       (val) => {
         this.objectService.responseMessage(val);
         interval(5000).pipe(takeWhile(() => this.sentImage > 0)).subscribe(
@@ -178,13 +129,13 @@ export class HwconfMembersPage implements OnInit {
     )
   }
 
-  checkSending(){
+  checkSending() {
     this.hwconfService.getRunningMulticast().subscribe(
-      (val) => { if(!val) { this.sentImage = 0 }}
+      (val) => { if (!val) { this.sentImage = 0 } }
     )
   }
 
-  stopMulticast(){
+  stopMulticast() {
     this.sentImage = 0;
     this.sendingImage = false;
     this.hwconfService.stopMulticast().subscribe(

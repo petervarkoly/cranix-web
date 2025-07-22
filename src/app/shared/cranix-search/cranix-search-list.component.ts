@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, Output, EventEmitter, forwardRef, SimpleChanges } from '@angular/core';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -14,6 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   }]
 })
 export class CranixSearchListComponent implements ControlValueAccessor, OnInit {
+  isAllSelected: boolean = false
   isShowChecked: boolean = false
   rowData = []
   selection: any | any[]
@@ -53,19 +54,40 @@ export class CranixSearchListComponent implements ControlValueAccessor, OnInit {
     if (this.multiple) {
       this.selection = []
     }
-    if(this.items[0] && !this.items[0].id){
-      for(let item of this.items){
-        item['id'] = this.hashStringToInt(item.name + item.version )
-      }
-    }
-    this.rowData = this.items
-  }
+    this.setupItems()
 
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes)
+    if (changes['items']) {
+      this.setupItems()
+      console.log('items haben sich geändert:', this.items);
+    }
+  }
   private propagateOnChange = (_: any) => { };
   private propagateOnTouched = () => { };
 
   showChecked() {
     this.isShowChecked = !this.isShowChecked
+  }
+
+  setupItems() {
+    if (this.items[0] && !this.items[0].id) {
+      for (let item of this.items) {
+        item['id'] = this.hashStringToInt(item.name + item.version)
+      }
+    }
+    this.rowData = this.items
+  }
+  checkAll() {
+    this.selection = []
+    if (!this.isAllSelected) {
+      for (let obj of this.rowData) {
+        this.selection.push(obj)
+      }
+    }
+    this.isAllSelected = !this.isAllSelected
+    this.propagateOnChange(this.selection);
   }
   writeValue(value: any) {
     console.log("write value called")
@@ -118,7 +140,7 @@ export class CranixSearchListComponent implements ControlValueAccessor, OnInit {
   }
   onQuickFilterChanged() {
     let filter = (<HTMLInputElement>document.getElementById('crxSearchFilter')).value;
-    this.rowData = this.objectService.filterObject(this.objectType, filter);
+    this.rowData = this.objectService.filterItemsOfObject(this.objectType, filter, this.items);
   }
 
   getDefaultTextFields() {
@@ -146,8 +168,8 @@ export class CranixSearchListComponent implements ControlValueAccessor, OnInit {
   hashStringToInt(str: string): number {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
-        hash = (hash * 31 + str.charCodeAt(i)) | 0; // | 0 sorgt für 32-bit Integer
+      hash = (hash * 31 + str.charCodeAt(i)) | 0; // | 0 sorgt für 32-bit Integer
     }
     return Math.abs(hash);
-}
+  }
 }

@@ -1,19 +1,32 @@
 <div class="container">
   <div class="header">
-    <ion-item>
+    <ion-item lines="none">
+      @if(multiple){
+      <ion-buttons slot="start">
+        <ion-button class="ion-no-margin" (click)="checkAll()">
+          @if(isAllSelected){
+          <ion-icon slot="icon-only" name="checkbox"></ion-icon>
+          }@else{
+          <ion-icon slot="icon-only" name="stop-outline"></ion-icon>
+          }
+        </ion-button>
+      </ion-buttons>
+      }
       <ion-input type="text" placeholder="{{'search' | translate }}" (input)="onQuickFilterChanged()"
         id="crxSearchFilter"></ion-input>
       <ion-buttons slot="end">
+        @if(!multiple){
         <ion-button class="ion-no-margin" (click)="clearSelection()" matTooltip="{{'Clear selection' | translate }}">
           <ion-icon slot="icon-only" color="warning" name="trash"></ion-icon>
         </ion-button>
+        }
         <ion-button class="ion-no-margin" (click)="showChecked()">
-          <ion-icon slot="icon-only" color="danger" name="checkbox"></ion-icon>
+          <ion-icon slot="icon-only" color="success" name="eye"></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-item>
   </div>
-  <div class="list-container">
+  <div class="list-container button-container">
     @if(multiple){
     <ul class="checklist">
       @for(o of rowData; track o.id){

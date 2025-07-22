@@ -1,14 +1,16 @@
 <cranix-toolbar title="{{'Download VPN' | translate}}"></cranix-toolbar>
-<ion-content *ngIf="supportedOSlist">
-  <ion-list>
+@if(supportedOSlist){
+<ion-content color="light">
+  <ion-list [inset]="true">
     <ion-item>
       <ion-icon slot="start" name="cube"></ion-icon>
       <ion-label>
         <h2>{{ 'Select OS' | translate}}</h2>
       </ion-label>
       <ion-select type="text" [(ngModel)]="selectedOS" (ionChange)="log()">
-        <ion-select-option value="{{os}}" *ngFor="let os of  supportedOSlist | async">
-          {{ os | translate }}</ion-select-option>
+        @for(os of supportedOSlist; track os){
+        <ion-select-option value="{{os}}">{{ os | translate }}</ion-select-option>
+        }
       </ion-select>
     </ion-item>
     <ion-item lines="none">
@@ -23,3 +25,4 @@
     </ion-item>
   </ion-list>
 </ion-content>
+}

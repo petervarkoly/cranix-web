@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { SelfManagementService } from 'src/app/services/selfmanagement.service';
 import { takeWhile } from 'rxjs/internal/operators/takeWhile';
@@ -10,19 +10,19 @@ import { GenericObjectService } from 'src/app/services/generic-object.service';
   templateUrl: './my-vpn.component.html',
   styleUrls: ['./my-vpn.component.scss'],
 })
-export class MyVPNComponent implements OnInit,OnDestroy {
+export class MyVPNComponent implements OnDestroy {
 
   alive: boolean = true;
-  supportedOSlist: Observable<string[]>;
+  supportedOSlist: string[];
 
   selectedOS: string; 
   
   constructor(private selfS: SelfManagementService,
     public objectService: GenericObjectService) {
-    this.supportedOSlist = this.selfS.getSupportedOS()  
+    this.selfS.getSupportedOS().subscribe(
+      (val) => { this.supportedOSlist = val }
+    )
   }
-
-  ngOnInit() {}
 
   log(){
     console.log('value is:', this.selectedOS);
