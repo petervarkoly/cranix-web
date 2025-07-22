@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/services/auth.service';
-import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { LanguageService } from 'src/app/services/language.service';
 
 
 @Component({

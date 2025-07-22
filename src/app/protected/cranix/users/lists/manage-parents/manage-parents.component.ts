@@ -6,7 +6,6 @@ import { LanguageService } from 'src/app/services/language.service';
 import { ParentsService } from 'src/app/services/parents.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { Group, PTMTeacherInRoom, ParentTeacherMeeting, User } from 'src/app/shared/models/data-model';
-import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer'
 
 @Component({
   standalone: false,
@@ -45,14 +44,6 @@ export class ManageParentsComponent {
   parentKeys = ['givenName', 'surName', 'emailAddress', 'telefonNummer']
   requestKeys = ['parentId', 'givenName', 'surName', 'birthDay', 'className']
   segment: string = "parents"
-  gridApi
-  columnDefs = []
-  defaultColDef = {
-    resizable: true,
-    sortable: true,
-    hide: false,
-    suppressHeaderMenuButton: true
-  }
   context
   ptmTeacherInRoom: PTMTeacherInRoom
   constructor(
@@ -78,11 +69,6 @@ export class ManageParentsComponent {
     }
   }
 
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridApi.sizeColumnsToFit();
-  }
-
   segmentChanged(event) {
     console.log(event)
     this.segment = event.detail.value
@@ -93,13 +79,11 @@ export class ManageParentsComponent {
     switch (this.segment) {
       case 'parents': {
         this.objectKeys = this.parentKeys
-        this.createdColDef()
         this.parentsService.getParents().subscribe((val) => { this.rowData = val })
         break;
       }
       case 'requests': {
         this.objectKeys = this.requestKeys
-        this.createdColDef()
         this.parentsService.getParentRequests().subscribe((val) => { this.rowData = val })
         break;
       }
@@ -156,24 +140,6 @@ export class ManageParentsComponent {
     }
     this.isSelectPtmOpen = false
   }
-  createdColDef() {
-    let cols = []
-    cols.push({
-      field: 'id',
-      pinned: 'left',
-      width: 110,
-      cellRenderer: EditBTNRenderer,
-      headerName: ""
-    })
-    for (let key of this.objectKeys) {
-      let col = {};
-      col['field'] = key;
-      col['headerName'] = this.languageS.trans(key);
-      cols.push(col)
-    }
-    this.columnDefs = cols;
-  }
-
   checkPtmTimes(ptm: ParentTeacherMeeting) {
     let now = new Date().getTime();
     let start = new Date(ptm.start).getTime();
@@ -317,11 +283,6 @@ export class ManageParentsComponent {
         }
       })
     }
-  }
-
-  onQuickFilterChanged(quickFilter: string) {
-    let filter = (<HTMLInputElement>document.getElementById(quickFilter)).value.toLowerCase();
-    this.gridApi.setGridOption('quickFilterText', filter);
   }
 
   getPTMSettings() {
