@@ -11,3 +11,8 @@
     z-index: -1;
     pointer-events: none;
 }
+
+ion-item {
+    max-height: 50px;
+    --padding-start: 2px;
+}

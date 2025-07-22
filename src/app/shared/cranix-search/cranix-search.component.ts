@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, forwardRef, SimpleChanges, OnChanges } from '@angular/core';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -13,7 +13,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     multi: true
   }]
 })
-export class CranixSearchComponent implements ControlValueAccessor, OnInit {
+export class CranixSearchComponent implements ControlValueAccessor, OnInit, OnChanges {
   isCranixSearchModalOpen: boolean = false;
   rowData = []
   selection: any|any[]
@@ -59,6 +59,13 @@ export class CranixSearchComponent implements ControlValueAccessor, OnInit {
   private propagateOnChange = (_: any) => { };
   private propagateOnTouched = () => { };
 
+  
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes)
+    if (changes['items']) {
+      this.rowData = this.items
+    }
+  }
   writeValue(value: any) {
     console.log("write value called")
     console.log(value)

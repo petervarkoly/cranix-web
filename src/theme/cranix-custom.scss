@@ -37,6 +37,16 @@ ion-input.number {
 }
 
 /*
+* Fixed label which is more widther and readable
+*/
+.custom-fixed-label {
+    width: 180px;
+    min-width: 180px;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+/*
 * Layaout for cranix-search-list and user/group member lists
 */
 .button-container {
