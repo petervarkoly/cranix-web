@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { AuthenticationService } from 'src/app/services/auth.service';
@@ -22,6 +22,10 @@ import { ModalController, PopoverController } from '@ionic/angular';
 import { SelectColumnsComponent } from 'src/app/shared/select-columns/select-columns.component';
 import { hiddenColumns, getObjectKeys } from 'src/app/shared/models/constants';
 import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';
+import { CranixNoticesComponent } from '../cranix-notices/cranix-notices.component';
+import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
+import { UpdateRenderer } from 'src/app/pipes/ag-update-renderer';
+import { FileSystemUsageRenderer } from 'src/app/pipes/ag-filesystem-usage-renderer';
 
 @Component({
   standalone: false,
@@ -29,7 +33,7 @@ import { YesNoBTNRenderer } from 'src/app/pipes/ag-yesno-renderer';
   templateUrl: './cranix-list.component.html',
   styleUrls: ['./cranix-list.component.scss'],
 })
-export class CranixListComponent implements OnInit {
+export class CranixListComponent implements OnInit, OnChanges {
 
   addToolTip: string = ""
   columnDefs: ColDef[] = []
@@ -68,13 +72,13 @@ export class CranixListComponent implements OnInit {
     public utilService: UtilsService
   ) {
     this.listContext = { componentParent: this };
-
     this.authService.log("CranixMdListComponent constructor was called")
     this.utilService.actMdList = this;
     this.useNotice = this.authService.isAllowed('notice.use')
   }
 
   async ngOnInit() {
+    console.log(this.objectType, this.objectKeys, this.columnDefs)
     this.addToolTip = this.languageService.trans("Create a new " + this.objectType);
     let val = await this.storage.get(this.objectType + "_hidden_collums");
     let myArray = JSON.parse(val);
@@ -88,6 +92,11 @@ export class CranixListComponent implements OnInit {
     }
     this.objectKeys = getObjectKeys(this.objectType);
     this.createColumnDefs();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+      console.log(changes)
+      this.ngOnInit()
   }
 
   onGridReady(params) {
@@ -105,12 +114,17 @@ export class CranixListComponent implements OnInit {
       case 'device': {
         cellRenderer = DeviceActionBTNRenderer; break
       }
+      case 'education/group':
       case 'group': {
         cellRenderer = GroupActionBTNRenderer; break
+      }
+      case 'education/guestUser': {
+        cellRenderer = EditBTNRenderer; break
       }
       case 'institute': {
         cellRenderer = InstituteActionCellRenderer; break
       }
+      case 'education/user':
       case 'user': {
         cellRenderer = UserActionBTNRenderer; break
       }
@@ -150,10 +164,18 @@ export class CranixListComponent implements OnInit {
           });
           continue;
         }
-        case 'validFrom':
-        case 'validUntil':
-        case 'created':
-        case 'modified': {
+        case 'moday': case 'tuesday': case 'wednesday': case 'thursday': case 'friday': case 'saturday':  case 'sunday':
+        case 'holiday': case 'apply_default':
+        case 'direct': case 'login': case 'portal': case 'printing': case 'proxy':
+        case 'ignoreNetbios': 
+        case 'createAdHocRoom': case 'privateGroup': case 'studentsOnly':
+        {
+          col['cellRenderer'] = YesNoBTNRenderer; break
+        }
+        case 'created': case 'modified':
+        case 'validFrom': case 'validUntil':
+        case 'lastUpdate':
+        {
           col['valueFormatter'] = params => new Date(params.value).toISOString().substring(0, 16); break
         }
         case 'cephalixCustomerId': {
@@ -183,23 +205,55 @@ export class CranixListComponent implements OnInit {
         case 'role': {
           col['valueFormatter'] = params => params.context['componentParent'].languageService.trans(params.data.role); break;
         }
-        case 'studentsOnly': {
-          col['cellRenderer'] = YesNoBTNRenderer; break;
-        }
         case 'deviceIds': {
-          col['valueFormatter'] = params => params.data.deviceIds.length; break;
+          col['valueFormatter'] = params => params.data.deviceIds ? params.data.deviceIds.length : 0; break;
         }
         case 'groupIds': {
-          col['valueFormatter'] = params => params.data.groupIds.length; break;
+          col['valueFormatter'] = params => params.data.groupIds ? params.data.groupIds.length : 0; break;
         }
         case 'hwconfIds': {
-          col['valueFormatter'] = params => params.data.hwconfIds.length; break;
+          col['valueFormatter'] = params => params.data.hwconfIds ? params.data.hwconfIds.length : 0; break;
         }
         case 'roomIds': {
-          col['valueFormatter'] = params => params.data.roomIds.length; break;
+          col['valueFormatter'] = params => params.data.roomIds ? params.data.roomIds.length : 0; break;
         }
         case 'userIds': {
-          col['valueFormatter'] = params => params.data.userIds.length; break;
+          col['valueFormatter'] = params => params.data.userIds ? params.data.userIds.length : 0; break;
+        }
+        case 'availableUpdates': {
+          col['width'] = 60
+          col['cellRenderer'] = UpdateRenderer;
+          break;
+        }
+         case 'rootUsage': {
+          col['cellRenderer'] = FileSystemUsageRenderer;
+          break;
+        }
+        case 'homeUsage': {
+          col['cellRenderer'] = FileSystemUsageRenderer;
+          break;
+        }
+        case 'srvUsage': {
+          col['cellRenderer'] = FileSystemUsageRenderer;
+          break;
+        }
+        case 'varUsage': {
+          col['cellRenderer'] = FileSystemUsageRenderer;
+          break;
+        }
+        case 'runningKernel': {
+          col['width'] = 60
+          col['valueGetter'] = function (params) {
+            let index = params.data.runningKernel.indexOf("-default");
+            let run = params.data.runningKernel.substring(0, index);
+            let inst = params.data.installedKernel.substring(0, index);
+            if (run == inst) {
+              return "OK"
+            } else {
+              return "reboot"
+            }
+          }
+          break;
         }
         case 'ticketStatus': {
           col['minWidth'] = 60
@@ -316,5 +370,17 @@ export class CranixListComponent implements OnInit {
       }
     });
     (await modal).present()
+  }
+
+  async openNotice(object) {
+    const modal = await this.modalCtrl.create({
+      component: CranixNoticesComponent,
+      componentProps: {
+        selectedObject: object,
+        objectType: this.objectType
+      },
+      cssClass: 'big-modal'
+    })
+    modal.present();
   }
 }

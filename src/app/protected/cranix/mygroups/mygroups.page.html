@@ -14,75 +14,22 @@
       <ion-icon name="walk"></ion-icon>
     </ion-segment-button>
   </ion-segment>
-  <ion-buttons *ngIf="!authService.isMD()" slot="end">
-    <ion-button *ngIf="segment == 'education/group' || (segment == 'education/user' && authService.isAllowed('user.add.students'))"
-      size="small" fill="solid" (click)="redirectToEdit(null)" matTooltip="{{'Create a new ' + segment | translate }}">
-      <ion-icon slot="icon-only" name="add-circle"></ion-icon>
-    </ion-button>
-    <ion-button *ngIf="segment == 'education/guestUser'" size="small" fill="solid" (click)="addEditGuest(null)"
-      matTooltip="{{'Create new guest accounts' | translate }}">
-      <ion-icon slot="icon-only" name="add-circle"></ion-icon>
-    </ion-button>
-    <ion-button size="small" fill="solid" (click)="openActions($event,null)"
-      matTooltip="{{'Apply actions on the selected objects' | translate }}">
-      <ion-icon slot="icon-only" name="ellipsis-vertical-sharp"></ion-icon>
-    </ion-button>
-  </ion-buttons>
 </ion-toolbar>
-<ion-item *ngIf="!authService.isMD()" lines="none">
-  <ion-label *ngIf="gridApi">
-    #{{gridApi.getDisplayedRowCount()}}
-  </ion-label>
-  <ion-input placeholder="{{'search' | translate }}" (input)="onQuickFilterChanged('mygroupsFilter')"
-    id="mygroupsFilter">
-  </ion-input>
-</ion-item>
-<ion-content *ngIf="!authService.isMD()" id="carded">
-  <ag-grid-angular id="myGroupsTable" style="width: 100%; height: 100%;" rowSelection="multiple"
-    class="{{authService.settings.agGridThema}}" [rowHeight]="authService.settings.rowHeight"
-    [rowMultiSelectWithClick]="authService.settings.rowMultiSelectWithClick" [animateRows]="true"
-    [context]="context" [rowData]="objectService.allObjects[segment]" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
-    (selectionChanged)="selectionChanged()" (gridReady)="onGridReady($event)">
-  </ag-grid-angular>
-</ion-content>
-<ion-content *ngIf="authService.isMD() && segment == 'education/user'">
-  <cranix-md-list objectType="education/user" [context]="context"></cranix-md-list>
-</ion-content>
-<ion-content *ngIf="authService.isMD() && segment == 'education/group'">
-  <cranix-md-list objectType="education/group" [context]="context"></cranix-md-list>
-</ion-content>
-<ion-content *ngIf="authService.isMD() && segment == 'education/guestUser'">
-  <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button size="small">
-      <ion-icon name="arrow-forward-circle"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-list side="start">
-      <ion-fab-button (click)="openActions($event,null)">
-        <ion-icon name="ellipsis-vertical-sharp"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button *ngIf="segment == 'education/guestUser'" (click)="addEditGuest(null)">
-        <ion-icon name="add-circle"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list>
-  </ion-fab>
-  <ion-list>
-    <ion-item-sliding *ngFor="let object of rowData">
-      <ion-item button (click)="redirectToEdit(object)">
-        <ion-note slot="start">
-          <ion-checkbox (click)="$event.stopPropagation()" (ionChange)="checkChange($event,object)"></ion-checkbox>
-        </ion-note>
-        <ion-label>
-          <h3>{{ object.name }}</h3>
-        </ion-label>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="redirectToDelete(object)">
-          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-        </ion-item-option>
-        <ion-item-option (click)="openActions($event,object)">
-          <ion-icon slot="icon-only" name="ellipsis-vertical-sharp"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+<ion-content>
+  @if(authService.isMD()){
+  <cranix-md-list [objectType]="segment" [rowData]="objectService.allObjects[segment]"
+    context="context"></cranix-md-list>
+  }@else{
+  @switch(segment) {
+  @case('education/user'){
+  <cranix-list objectType="education/user" context="context"></cranix-list>
+  }
+  @case('education/group'){
+  <cranix-list objectType="education/group" context="context"></cranix-list>
+  }
+  @case('education/guestUser'){
+  <cranix-list objectType="education/guestUser" context="context"></cranix-list>
+  }
+  }
+  }
 </ion-content>

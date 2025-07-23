@@ -13,7 +13,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     multi: true
   }]
 })
-export class CranixSearchListComponent implements ControlValueAccessor, OnInit {
+export class CranixSearchListComponent implements ControlValueAccessor, OnInit, OnChanges {
   isAllSelected: boolean = false
   isShowChecked: boolean = false
   rowData = []

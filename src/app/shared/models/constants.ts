@@ -204,7 +204,9 @@ export function getObjectKeys(objectType: string) {
         case 'drivers': return Object.getOwnPropertyNames(new Drivers)
         case 'eduroom': return Object.getOwnPropertyNames(new EduRoom)
         case 'faq': return Object.getOwnPropertyNames(new FAQ)
+        case 'education/group': return ['name', 'description', 'groupType']
         case 'group': return Object.getOwnPropertyNames(new Group)
+        case 'education/guestUser':
         case 'guestusers': return Object.getOwnPropertyNames(new GuestUsers)
         case 'hwconf': return Object.getOwnPropertyNames(new Hwconf)
         case 'idrequest': return Object.getOwnPropertyNames(new IdRequest)
@@ -233,6 +235,7 @@ export function getObjectKeys(objectType: string) {
         case 'systemconfig': return Object.getOwnPropertyNames(new SystemConfig)
         case 'taskresponse': return Object.getOwnPropertyNames(new TaskResponse)
         case 'teachingsubject': return Object.getOwnPropertyNames(new TeachingSubject)
+        case 'education/user': return ['groupName', 'uid', 'givenName', 'surName']
         case 'user': return Object.getOwnPropertyNames(new User)
         case 'usersimport': return Object.getOwnPropertyNames(new UsersImport)
         case 'article': return Object.getOwnPropertyNames(new Article)
@@ -244,5 +247,6 @@ export function getObjectKeys(objectType: string) {
         case 'notice': return Object.getOwnPropertyNames(new Notice)
         case 'repository': return Object.getOwnPropertyNames(new Repository)
         case 'ticket': return Object.getOwnPropertyNames(new Ticket)
+        default: return ['name', 'description', 'created', 'modified', 'creatorId']
     }
 }
