@@ -112,7 +112,6 @@ export class RoomAccessComponent implements OnInit {
       this.securityService.setAccessStatusInRoom(data);
     }
   }
-
   toggleButton(data, field: string) {
     data[field] = !data[field]
     if (this.segment == 'list') {

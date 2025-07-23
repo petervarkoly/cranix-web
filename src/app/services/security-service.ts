@@ -259,7 +259,12 @@ export class SecurityService {
     console.log(this.url);
     let sub = this.http.get<AccessInRoom[]>(this.url, { headers: this.authService.headers }).subscribe({
       next: (val) => {
-        this.actualStatus = val;
+        let i = 0
+        this.actualStatus = []
+        for( let s of val) {
+          s['id'] = i++  
+        }
+        this.actualStatus = val
         console.log(this.actualStatus);
       },
       error: (err) => { console.log('getActualAccessStatus', err) },
