@@ -257,32 +257,14 @@ export class SecurityService {
   getActualAccessStatus() {
     this.url = `${this.hostname}/rooms/accessStatus`;
     console.log(this.url);
-    let sub = this.http.get<AccessInRoom[]>(this.url, { headers: this.authService.headers }).subscribe({
-      next: (val) => {
-        let i = 0
-        this.actualStatus = []
-        for( let s of val) {
-          s['id'] = i++  
-        }
-        this.actualStatus = val
-        console.log(this.actualStatus);
-      },
-      error: (err) => { console.log('getActualAccessStatus', err) },
-      complete: () => { sub.unsubscribe() }
-    })
+    return this.http.get<AccessInRoom[]>(this.url, { headers: this.authService.headers })
   }
 
   setAccessStatusInRoom(accessInRoom: AccessInRoom) {
     this.url = this.hostname + "/rooms/" + accessInRoom.roomId + "/accessStatus";
     console.log(this.url);
     this.objectService.requestSent();
-    let sub = this.http.post<ServerResponse>(this.url, accessInRoom, { headers: this.authService.headers }).subscribe({
-      next: (val) => { this.objectService.responseMessage(val); },
-      error: (err) => {
-        this.objectService.errorMessage(this.languageS.trans("An error was accoured"));
-      },
-      complete: () => { sub.unsubscribe() }
-    });
+    return this.http.post<ServerResponse>(this.url, accessInRoom, { headers: this.authService.headers })
   }
   addAccessInRoom(accessInRoom: AccessInRoom) {
     this.url = this.hostname + "/rooms/" + accessInRoom.roomId + "/accessList";

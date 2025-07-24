@@ -46,57 +46,57 @@ ion-input.number {
     padding-right: 10px;
 }
 
+
+.divclass {
+    flex: 1; /* Gleiche Breite, teilt den Platz gleich auf */
+    display: flex;
+    flex-direction: column; /* Für Zeilenaufteilung innerhalb der Divs, falls nötig */
+    overflow: hidden; /* Verhindert Überlauf */
+    text-overflow: ellipsis; /* Bei Überlauf "..." anzeigen */
+    white-space: nowrap; /* Kein Zeilenumbruch, Text bleibt in einer Zeile */
+}
 /*
 * Layaout for cranix-search-list and user/group member lists
 */
 .button-container {
-    height: 60vh; /* 50% der Viewport-Höhe */
+    height: 90%; /* 50% der Viewport-Höhe */
     overflow-y: auto; /* Bei Überlauf scrollbar machen */
     border: 1px solid #ccc; /* Optional: Rahmen für Sichtbarkeit */
     padding: 10px;
     box-sizing: border-box;
-  }
+}
 
-  /* Style für Buttons (optional) */
-  .button-container button {
-    display: block;
-    width: 100%;
-    margin-bottom: 4px;
-    padding: 10px;
-    font-size: 14px;
-    text-align: left;
-  }
+/* Style für Buttons (optional) */
+.button-container button {
+  display: block;
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 10px;
+  font-size: 14px;
+  text-align: left;
+}
 
-  /* + Zeichen vor dem Button-Text */
-  button.pluss::before {
-    content: "+ ";
-    margin-right: 5px; /* Abstand zum Text */
-    color: green; /* Optional, Farbe des + Zeichens */
-  }
-  button.minus::before {
-    content: "- ";
-    margin-right: 5px; /* Abstand zum Text */
-    color: red; /* Optional, Farbe des + Zeichens */
-  }
-  button.lt::before {
-    content: "<";
-    margin-right: 5px; /* Abstand zum Text */
-  }
-
-  button.gt::before {
-    content: ">";
-    margin-right: 5px; /* Abstand zum Text */
-  }
 /* + Zeichen vor dem Button-Text */
-  button.checked::before {
-    content: url("/svg/checkbox.svg");
-    margin-right: 5px; /* Abstand zum Text */
-  }
+button.pluss::before {
+  content: "+ ";
+  margin-right: 5px; /* Abstand zum Text */
+  color: green; /* Optional, Farbe des + Zeichens */
+}
+button.minus::before {
+  content: "- ";
+  margin-right: 5px; /* Abstand zum Text */
+  color: red; /* Optional, Farbe des + Zeichens */
+}
+button.lt::before {
+  content: "<";
+  margin-right: 5px; /* Abstand zum Text */
+}
 
-  button.unchecked::before {
-    content: url("/svg/square.svg");
-    margin-right: 5px; /* Abstand zum Text */
-  }
+button.gt::before {
+  content: ">";
+  margin-right: 5px; /* Abstand zum Text */
+}
+
 ion-accordion.accordion-expanding ion-item[slot="header"],
 ion-accordion.accordion-expanded ion-item[slot="header"] {
   --color: red;

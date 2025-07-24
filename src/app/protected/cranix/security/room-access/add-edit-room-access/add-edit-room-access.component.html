@@ -1,6 +1,6 @@
 <form #addEditRoomAccess="ngForm" (ngSubmit)="onSubmit()">
   <ion-header translucent>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
       <ion-title>{{ objectActionTitle | translate }}</ion-title>
       <ion-buttons slot="end">
         <ion-button type="submit" class="ion-no-margin" [disabled]="!addEditRoomAccess.valid && !roomAccess.roomId">
