@@ -42,6 +42,11 @@
       <ion-icon color="secondary" slot="icon-only" name="refresh"></ion-icon>
     </ion-button>
     }
+    @if(objectType == 'package' && authService.isAllowed('software.download')){
+    <ion-button fill="solid" (click)="context.componentParent.downloadSoftwares()">
+      <ion-icon name="cloud-download"></ion-icon>
+    </ion-button>
+    }
     <ion-button size="small" fill="solid" (click)="openActions($event,null)"
       matTooltip="{{'Apply actions on the selected objects' | translate }}">
       <ion-icon slot="icon-only" name="ellipsis-vertical-sharp"></ion-icon>

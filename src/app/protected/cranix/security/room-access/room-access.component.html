@@ -1,4 +1,29 @@
 <cranix-toolbar title="{{ 'Manage access in the rooms' | translate}}"></cranix-toolbar>
+@if(authService.isMD()){
+<ion-fab vertical="center" horizontal="end" slot="fixed" class="hidden-lg hidden-xl">
+  <ion-fab-button size="small">
+    <ion-icon name="arrow-forward-circle"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list>
+    @if(segment == 'list'){
+    <ion-fab-button (click)="redirectToAddEdit(null)" matTooltip="{{'Add new room access status' | translate }}"
+      [disabled]="disabled">
+      <ion-icon name="add-circle"></ion-icon>
+    </ion-fab-button>
+    }@else{
+    <ion-fab-button (click)="getActualAccessStatus()" matTooltip="{{'Reload actual firewall status' | translate }}">
+      <ion-icon name="refresh" color="tertiary"></ion-icon>
+    </ion-fab-button>
+    }
+    <ion-fab-button (click)="restartFirewall()" matTooltip="{{'Restart firewall' | translate }}">
+      <ion-icon name="arrow-redo" color="tertiary"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="stopFirewall()" matTooltip="{{'Stop firewall' | translate }}">
+      <ion-icon name="close" color="danger"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
+}
 <ion-content>
   <ion-toolbar>
     <ion-segment (ionChange)="segmentChanged($event)" color="secondary" value="list">
@@ -9,31 +34,7 @@
         <ion-label>{{'Actual status' | translate}}</ion-label>
       </ion-segment-button>
     </ion-segment>
-    @if(authService.isMD()){
-    <ion-fab vertical="center" horizontal="end" slot="fixed" class="hidden-lg hidden-xl">
-      <ion-fab-button size="small">
-        <ion-icon name="arrow-forward-circle"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-list>
-        @if(segment == 'list'){
-        <ion-fab-button (click)="redirectToAddEdit(null)" matTooltip="{{'Add new room access status' | translate }}"
-          [disabled]="disabled">
-          <ion-icon name="add-circle"></ion-icon>
-        </ion-fab-button>
-        }@else{
-        <ion-fab-button (click)="getActualAccessStatus()" matTooltip="{{'Reload actual firewall status' | translate }}">
-          <ion-icon name="refresh" color="tertiary"></ion-icon>
-        </ion-fab-button>
-        }
-        <ion-fab-button (click)="restartFirewall()" matTooltip="{{'Restart firewall' | translate }}">
-          <ion-icon name="arrow-redo" color="tertiary"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button (click)="stopFirewall()" matTooltip="{{'Stop firewall' | translate }}">
-          <ion-icon name="close" color="danger"></ion-icon>
-        </ion-fab-button>
-      </ion-fab-list>
-    </ion-fab>
-    }@else{
+    @if(!authService.isMD()){
     <ion-buttons slot="end">
       @if(segment == 'list'){
       <ion-button size="small" fill="solid" (click)="redirectToAddEdit(null)"
@@ -63,7 +64,7 @@
   </ion-item>
 
   @if(segment == 'list'){
-  <ion-grid style="height: 85vh;">
+  <ion-grid style="height: 80vh;">
     <ion-row style="background-color : {{authService.rowColors[2]}}">
       <ion-col size="4">
         {{ 'room' | translate}}

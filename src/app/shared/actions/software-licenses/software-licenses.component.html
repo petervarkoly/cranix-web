@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-card-title>{{'Manage licenses for' | translate}}: {{software.name}}</ion-card-title>
+  <ion-toolbar color="primary">
+    <ion-title>{{'Manage licenses for' | translate}}: {{software.name}}</ion-title>
     <ion-buttons slot="end">
       <ion-button fill="clear" size="small" (click)="modalController.dismiss()">
         <ion-icon slot="icon-only" color="danger" name="close"></ion-icon>
@@ -31,22 +31,23 @@
           <ion-input type="number" [(ngModel)]="count" name="count"></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col *ngIf="licenseType == 'C'" size=3>
+      <ion-col size=3>
+        @if(licenseType == 'C'){
         <ion-item [disabled]="file">
           <ion-label position="stacked">{{'value' | translate}}</ion-label>
           <ion-input type="text" [(ngModel)]="value" name="value"></ion-input>
         </ion-item>
-      </ion-col>
-      <ion-col *ngIf="licenseType == 'F'" size=3>
+        }@else{
         <ion-item lines="none">
           <div class="upload-btn-wrapper">
             <button class="btn">
-              <div *ngIf="file">{{file.name}}</div>
-              <div *ngIf="!file">{{'Select a file'|translate}}</div>
+              @if(file){ {{file.name}} }
+              @else{ {{'Select a file'|translate}} }
             </button>
             <input type="file" (change)="onFilesAdded($event)" />
           </div>
         </ion-item>
+        }
       </ion-col>
       <ion-col>
         <ion-item lines="none">
@@ -61,11 +62,15 @@
         <ion-title>{{'Existing licenses' | translate}}</ion-title>
       </ion-col>
     </ion-row>
-    <ion-row *ngFor="let license of licenses; index as i">
+    @for(license of licenses; track license.id; let i = $index){
+    <ion-row>
       <ion-col>
         <ion-item>
-          <ion-label *ngIf="licenses[i].licenseType == 'C'">{{'Parameter license'|translate}}</ion-label>
-          <ion-label *ngIf="licenses[i].licenseType == 'F'">{{'File license'|translate}}</ion-label>
+          @if(licenses[i].licenseType == 'C'){
+          <ion-label>{{'Parameter license'|translate}}</ion-label>
+          }@else{
+          <ion-label>{{'File license'|translate}}</ion-label>
+          }
         </ion-item>
       </ion-col>
       <ion-col>
@@ -73,21 +78,25 @@
           <ion-input type="number" [(ngModel)]="licenses[i].count" name="{{count + i }}"></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col *ngIf="licenses[i].licenseType == 'C'" size=3>
+      <ion-col size=3>
+        @if(licenses[i].licenseType == 'C'){
         <ion-item>
           <ion-input type="text" [(ngModel)]="licenses[i].value" name="{{value + i }}"></ion-input>
         </ion-item>
-      </ion-col>
-      <ion-col *ngIf="licenses[i].licenseType == 'F'" size="3">
+        }@else{
         <ion-item lines="none">
           <div class="upload-btn-wrapper">
             <button class="btn">
-              <div *ngIf="files[license.id]">{{files[license.id].name}}</div>
-              <div *ngIf="!files[license.id]">{{licenses[i].value}}</div>
+              @if(files[license.id]){
+              {{files[license.id].name}}
+              }@else{
+              {{licenses[i].value}}
+              }
               <input type="file" (change)="onFilesChanged($event,license.id)" />
             </button>
           </div>
         </ion-item>
+        }
       </ion-col>
       <ion-col>
         <ion-item lines="none">
@@ -100,5 +109,6 @@
         </ion-item>
       </ion-col>
     </ion-row>
+    }
   </ion-grid>
 </ion-content>

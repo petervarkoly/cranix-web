@@ -40,7 +40,7 @@ export class SoftwareEditBTNRenderer implements ICellRendererAngularComp {
     }
     public licenses(event) {
         event.stopPropagation();
-        this.params.context.componentParent.redirectToLicenses(this.params.data);
+        this.params.context.componentParent.context.componentParent.redirectToLicenses(this.params.data);
     }
     public delete(event) {
         event.stopPropagation();

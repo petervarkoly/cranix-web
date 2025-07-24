@@ -117,6 +117,7 @@ export class Group {
 export class Package {
 	name: string = "";
 	version: string = "";
+	weight: number = 0;
 	constructor() { }
 }
 export class SoftwareVersion {

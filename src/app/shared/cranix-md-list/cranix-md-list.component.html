@@ -20,7 +20,7 @@
     <ion-icon name="arrow-forward-circle"></ion-icon>
   </ion-fab-button>
   <ion-fab-list side="start">
-    <ion-fab-button (click)="context.componentParent.openActions($event,null)">
+    <ion-fab-button (click)="context.openActions($event,null)">
       <ion-icon name="ellipsis-vertical-sharp"></ion-icon>
     </ion-fab-button>
     @if(objectType == 'printer'){
@@ -35,6 +35,11 @@
       <ion-icon name="add-circle"></ion-icon>
     </ion-fab-button>
     }
+    @if(objectType == 'package' && authService.isAllowed('software.download')){
+    <ion-fab-button (click)="context.componentParent.downloadSoftwares($event)">
+      <ion-icon name="cloud-download"></ion-icon>
+    </ion-fab-button>
+    }
     @if(objectType == 'challenge'){
     <ion-fab-button size="small" fill="solid" (click)="getCephalixChallenges()"
       matTooltip="{{'Get challenges from CEPHALIX server to the selected subject.' | translate }}">
@@ -47,7 +52,7 @@
   @for(object of rowData.sort(objectService.sortByCreated); track object.id; let i = $index; ){
   @if(i > min && i < max) { <ion-item-sliding>
     <ion-item style="background-color : {{authService.rowColors[i%2]}}" lines="none">
-    <!-- ion-item [class]="i%2 ? 'odd' : 'pair'" lines="none" -->
+      <!-- ion-item [class]="i%2 ? 'odd' : 'pair'" lines="none" -->
       <ion-note slot="start">
         <ion-checkbox (click)="$event.stopPropagation()" (ionChange)="checkChange($event,object)"></ion-checkbox>
       </ion-note>
@@ -74,6 +79,10 @@
           @else if(objectType == 'institute'){
           <p>{{ object.locality }}</p>
           <p>{{ object.instituteType | translate }}</p>
+          }
+          @else if(objectType == 'package') {
+          <p>{{ object.weight }}</p>
+          @if(object.softwareVersions && object.softwareVersions.length >0) {<p>{{ object.softwareVersions[0].version }}</p>}
           }
           @else if(objectType == 'printer'){
           <p>{{ object.model }}</p>
@@ -177,6 +186,6 @@
     }
 </ion-list>
 }@else{
-  <h1>{{'Loading data ..'|translate}} </h1>
+<h1>{{'Loading data ..'|translate}} </h1>
 }
 <!-- /ion-content -->

@@ -41,7 +41,9 @@ export class SoftwareService {
 	getAvailableSoftwares() {
 		this.url = this.hostname + "/softwares/available";
 		console.log(this.url);
-		return this.http.get<Software[]>(this.url, { headers: this.authService.headers });
+		this.http.get<Software[]>(this.url, { headers: this.authService.headers }).subscribe(
+			(val) => this.availableSoftwares = val
+		);
 	}
 
 	readInstallationsSets() {
@@ -53,7 +55,6 @@ export class SoftwareService {
 	}
 	getSoftwareLicense(softwareId: number) {
 		this.url = this.hostname + `/softwares/${softwareId}/license`;
-		console.log(this.url);
 		return this.http.get<License[]>(this.url, { headers: this.authService.headers });
 	}
 	deleteSoftwareLicense(licenseId: number) {

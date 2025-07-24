@@ -26,6 +26,8 @@ import { CranixNoticesComponent } from '../cranix-notices/cranix-notices.compone
 import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
 import { UpdateRenderer } from 'src/app/pipes/ag-update-renderer';
 import { FileSystemUsageRenderer } from 'src/app/pipes/ag-filesystem-usage-renderer';
+import { SoftwareEditBTNRenderer } from 'src/app/pipes/ag-software-edit-renderer';
+import { SoftwareService } from 'src/app/services/softwares.service';
 
 @Component({
   standalone: false,
@@ -68,6 +70,7 @@ export class CranixListComponent implements OnInit, OnChanges {
     public modalCtrl: ModalController,
     private popoverCtrl: PopoverController,
     public route: Router,
+    public softwareService: SoftwareService,
     private storage: Storage,
     public utilService: UtilsService
   ) {
@@ -95,8 +98,8 @@ export class CranixListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-      console.log(changes)
-      this.ngOnInit()
+    console.log(changes)
+    this.ngOnInit()
   }
 
   onGridReady(params) {
@@ -134,6 +137,9 @@ export class CranixListComponent implements OnInit, OnChanges {
       case 'room': {
         cellRenderer = RoomActionBTNRenderer; break
       }
+      case 'package': {
+        cellRenderer = SoftwareEditBTNRenderer; break
+      }
       default: {
         cellRenderer = ActionBTNRenderer; break
       }
@@ -164,20 +170,20 @@ export class CranixListComponent implements OnInit, OnChanges {
           });
           continue;
         }
-        case 'moday': case 'tuesday': case 'wednesday': case 'thursday': case 'friday': case 'saturday':  case 'sunday':
+        case 'moday': case 'tuesday': case 'wednesday': case 'thursday': case 'friday': case 'saturday': case 'sunday':
         case 'holiday': case 'apply_default':
         case 'direct': case 'login': case 'portal': case 'printing': case 'proxy':
-        case 'ignoreNetbios': 
+        case 'ignoreNetbios':
         case 'createAdHocRoom': case 'privateGroup': case 'studentsOnly':
-        {
-          col['cellRenderer'] = YesNoBTNRenderer; break
-        }
+          {
+            col['cellRenderer'] = YesNoBTNRenderer; break
+          }
         case 'created': case 'modified':
         case 'validFrom': case 'validUntil':
         case 'lastUpdate':
-        {
-          col['valueFormatter'] = params => new Date(params.value).toISOString().substring(0, 16); break
-        }
+          {
+            col['valueFormatter'] = params => new Date(params.value).toISOString().substring(0, 16); break
+          }
         case 'cephalixCustomerId': {
           col['valueFormatter'] = params => params.context['componentParent'].objectService.idToName('customer', params.data.cephalixCustomerId); break;
         }
@@ -225,7 +231,7 @@ export class CranixListComponent implements OnInit, OnChanges {
           col['cellRenderer'] = UpdateRenderer;
           break;
         }
-         case 'rootUsage': {
+        case 'rootUsage': {
           col['cellRenderer'] = FileSystemUsageRenderer;
           break;
         }
@@ -239,6 +245,16 @@ export class CranixListComponent implements OnInit, OnChanges {
         }
         case 'varUsage': {
           col['cellRenderer'] = FileSystemUsageRenderer;
+          break;
+        }
+        case 'version': {
+          col['valueGetter'] = function (params) {
+            if (params.data.softwareVersions && params.data.softwareVersions.length > 0) {
+              return params.data.softwareVersions[0].version;
+            }else{
+              return ""
+            }
+          }
           break;
         }
         case 'runningKernel': {

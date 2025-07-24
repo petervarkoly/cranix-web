@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PopoverController, ModalController } from '@ionic/angular';
-import { GridOptions, GridApi } from 'ag-grid-community';
 //Own stuff
 import { AuthenticationService } from 'src/app/services/auth.service';
-import { DownloadSoftwaresComponent } from 'src/app/shared/actions/download-softwares/download-softwares.component';
-import { SoftwareEditBTNRenderer } from 'src/app/pipes/ag-software-edit-renderer';
-import { LanguageService } from 'src/app/services/language.service';
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { SoftwareService } from 'src/app/services/softwares.service';
-import { Software } from 'src/app/shared/models/data-model';
+import { Package, Software } from 'src/app/shared/models/data-model';
 import { SoftwareLicensesComponent } from 'src/app/shared/actions/software-licenses/software-licenses.component';
 
 @Component({
@@ -18,45 +14,21 @@ import { SoftwareLicensesComponent } from 'src/app/shared/actions/software-licen
   templateUrl: './software-packages.component.html',
   styleUrls: ['./software-packages.component.scss'],
 })
-export class SoftwarePackagesComponent implements OnInit {
-  objectKeys: string[] = [];
-  displayedColumns: string[] = ['name', 'description', 'version', 'weight', 'sourceAvailable'];
-  gridOptions: GridOptions;
-  columnDefs = [];
-  gridApi: GridApi;
-  rowSelection;
+export class SoftwarePackagesComponent {
   context;
-  title = 'app';
+  rowData: Package[];
+	availableSoftwares: Software[];
+  isDownloadOpen: boolean = false;
   constructor(
     public authService: AuthenticationService,
     public objectService: GenericObjectService,
     public modalCtrl: ModalController,
     public popoverCtrl: PopoverController,
-    public softwareService: SoftwareService,
-    private languageS: LanguageService
+    public softwareService: SoftwareService
   ) {
+    console.log('SoftwarePackagesComponent called')
     this.context = { componentParent: this };
-    this.rowSelection = 'multiple';
-    this.objectKeys = Object.getOwnPropertyNames(new Software());
-    this.createColumnDefs();
-    this.gridOptions = <GridOptions>{
-      defaultColDef: {
-        resizable: true,
-        sortable: true,
-        hide: false
-      },
-      columnDefs: this.columnDefs,
-      context: this.context,
-      rowHeight: 35
-    }
-  }
-
-  ngOnInit() {
-    this.createColumnDefs();
     this.readInstallableSoftware();
-  }
-  public ngAfterViewInit() {
-    while (document.getElementsByTagName('mat-tooltip-component').length > 0) { document.getElementsByTagName('mat-tooltip-component')[0].remove(); }
   }
 
   async readInstallableSoftware() {
@@ -66,51 +38,9 @@ export class SoftwarePackagesComponent implements OnInit {
   sleep(milliseconds) {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
   }
-  createColumnDefs() {
-    this.columnDefs = [];
-    for (let key of this.objectKeys) {
-      let col = {};
-      col['field'] = key;
-      col['headerName'] = this.languageS.trans(key);
-      col['hide'] = (this.displayedColumns.indexOf(key) == -1);
-      switch (key) {
-        case 'name': {
-          col['headerCheckboxSelection'] = this.authService.settings.headerCheckboxSelection;
-          col['headerCheckboxSelectionFilteredOnly'] = true;
-          col['checkboxSelection'] = this.authService.settings.checkboxSelection;
-          col['minWidth'] = 220;
-          col['suppressSizeToFit'] = true;
-          col['pinned'] = 'left';
-          col['flex'] = '1';
-          col['colId'] = '1';
-          this.columnDefs.push(col);
-          this.columnDefs.push({
-            headerName: "",
-            minWidth: 150,
-            suppressSizeToFit: true,
-            cellStyle: { 'padding': '2px', 'line-height': '36px' },
-            field: 'actions',
-            pinned: 'left',
-            cellRenderer: SoftwareEditBTNRenderer
-          });
-          continue;
-        }
-        case 'version': {
-          col['valueGetter'] = function (params) {
-            return params.data.softwareVersions[0].version;
-          }
-          break;
-        }
-      }
-      this.columnDefs.push(col);
-    }
-  }
-  onGridReady(params) {
-    this.gridApi = params.api;
-  }
-
+  
   onQuickFilterChanged(quickFilter) {
-    this.gridApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById(quickFilter)).value);
+    let filter = (<HTMLInputElement>document.getElementById(quickFilter)).value.toLowerCase();
   }
 
   public redirectToDelete = (software: Software) => {
@@ -121,26 +51,8 @@ export class SoftwarePackagesComponent implements OnInit {
    * Function to select the software packages to download
    * @param ev
    */
-  async downloadSoftwares(ev: any) {
-    const modal = await this.modalCtrl.create({
-      component: DownloadSoftwaresComponent,
-      cssClass: "medium-modal",
-      componentProps: {
-        columns: this.objectKeys,
-        selected: this.displayedColumns
-      },
-      animated: true,
-      backdropDismiss: false
-    });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned.data) {
-        this.displayedColumns = dataReturned.data.concat(['actions']);
-        this.createColumnDefs();
-      }
-    });
-    (await modal).present().then((val) => {
-      this.authService.log("downloadSoftwares executed.")
-    })
+  downloadSoftwares(ev: any) {
+    this.isDownloadOpen = true
   }
 
   /**
