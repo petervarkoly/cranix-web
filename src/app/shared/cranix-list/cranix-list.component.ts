@@ -28,6 +28,7 @@ import { UpdateRenderer } from 'src/app/pipes/ag-update-renderer';
 import { FileSystemUsageRenderer } from 'src/app/pipes/ag-filesystem-usage-renderer';
 import { SoftwareEditBTNRenderer } from 'src/app/pipes/ag-software-edit-renderer';
 import { SoftwareService } from 'src/app/services/softwares.service';
+import { InstituteStatusRenderer } from 'src/app/pipes/ag-institute-status-renderer';
 
 @Component({
   standalone: false,
@@ -43,6 +44,7 @@ export class CranixListComponent implements OnInit, OnChanges {
   gridApi: GridApi;
   gridOptions: GridOptions = {
     defaultColDef: {
+      cellDataType: false,
       resizable: true,
       sortable: true,
       hide: false,
@@ -53,6 +55,9 @@ export class CranixListComponent implements OnInit, OnChanges {
       mode: 'multiRow',
       selectAll: 'filtered',
       headerCheckbox: true
+    },
+    onFirstDataRendered: params => {
+      params.api.autoSizeColumns(['actions']);
     }
   }
   listContext: any;
@@ -81,7 +86,6 @@ export class CranixListComponent implements OnInit, OnChanges {
   }
 
   async ngOnInit() {
-    console.log(this.objectType, this.objectKeys, this.columnDefs)
     this.addToolTip = this.languageService.trans("Create a new " + this.objectType);
     let val = await this.storage.get(this.objectType + "_hidden_collums");
     let myArray = JSON.parse(val);
@@ -95,6 +99,7 @@ export class CranixListComponent implements OnInit, OnChanges {
     }
     this.objectKeys = getObjectKeys(this.objectType);
     this.createColumnDefs();
+    console.log(this.objectType, this.objectKeys, this.columnDefs)
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -106,7 +111,6 @@ export class CranixListComponent implements OnInit, OnChanges {
     this.gridApi = params.api;
     this.gridApi.sizeColumnsToFit();
   }
-
   createColumnDefs() {
     let columnDefs = [];
     var cellRenderer;
@@ -126,6 +130,9 @@ export class CranixListComponent implements OnInit, OnChanges {
       }
       case 'institute': {
         cellRenderer = InstituteActionCellRenderer; break
+      }
+      case 'institutestatus': {
+        cellRenderer = InstituteStatusRenderer; break
       }
       case 'education/user':
       case 'user': {
@@ -160,11 +167,11 @@ export class CranixListComponent implements OnInit, OnChanges {
           col['colId'] = '1';
           columnDefs.push(col);
           columnDefs.push({
-            headerName: "",
-            minWidth: 200,
-            suppressSizeToFit: true,
-            cellStyle: { 'padding': '2px' },
             field: 'actions',
+            headerName: "",
+            //minWidth: 200,
+            //suppressSizeToFit: true,
+            cellStyle: { 'padding': '2px' },
             pinned: 'left',
             cellRenderer: cellRenderer
           });
@@ -174,21 +181,53 @@ export class CranixListComponent implements OnInit, OnChanges {
         case 'holiday': case 'apply_default':
         case 'direct': case 'login': case 'portal': case 'printing': case 'proxy':
         case 'ignoreNetbios':
-        case 'createAdHocRoom': case 'privateGroup': case 'studentsOnly':
-          {
+        case 'createAdHocRoom': case 'privateGroup': case 'studentsOnly': {
             col['cellRenderer'] = YesNoBTNRenderer; break
-          }
+        }
         case 'created': case 'modified':
         case 'validFrom': case 'validUntil':
-        case 'lastUpdate':
-          {
+        case 'lastUpdate':{
             col['valueFormatter'] = params => new Date(params.value).toISOString().substring(0, 16); break
-          }
+        }
         case 'cephalixCustomerId': {
           col['valueFormatter'] = params => params.context['componentParent'].objectService.idToName('customer', params.data.cephalixCustomerId); break;
         }
         case 'cephalixInstituteId': {
-          col['valueFormatter'] = params => params.context['componentParent'].objectService.idToName('institute', params.data.cephalixInstituteId); break;
+          col['valueFormatter'] = params => params.context['componentParent'].objectService.idToName('institute', params.data.cephalixInstituteId);
+          if (this.objectType == 'institutestatus') {
+            col['minWidth'] = 170;
+            col['suppressSizeToFit'] = true;
+            col['pinned'] = 'left';
+            col['flex'] = '1';
+            col['colId'] = '1';
+            columnDefs.push(col);
+            columnDefs.push({
+              headerName: "",
+              minWidth: 200,
+              suppressSizeToFit: true,
+              cellStyle: { 'padding': '2px' },
+              field: 'actions',
+              pinned: 'left',
+              cellRenderer: cellRenderer
+            });
+            continue;
+          }
+          break;
+        }
+        case 'errorMessages': {
+          col['cellStyle'] = function (params) {
+            if (params.value.startsWith("#W")) {
+              return { 'background-color': 'yellow' }
+            }
+            if (params.value.startsWith("#E")) {
+              return { 'background-color': 'red' }
+            }
+            if (params.value) {
+              return { 'background-color': 'red' }
+            }
+            return { 'background-color': '#2dd36f' }
+          }
+          break
         }
         case 'groupId': {
           col['valueFormatter'] = params => params.context['componentParent'].objectService.idToName('group', params.data.groupId); break;
@@ -248,11 +287,13 @@ export class CranixListComponent implements OnInit, OnChanges {
           break;
         }
         case 'version': {
-          col['valueGetter'] = function (params) {
-            if (params.data.softwareVersions && params.data.softwareVersions.length > 0) {
-              return params.data.softwareVersions[0].version;
-            }else{
-              return ""
+          if (this.objectType == 'package') {
+            col['valueGetter'] = function (params) {
+              if (params.data.softwareVersions && params.data.softwareVersions.length > 0) {
+                return params.data.softwareVersions[0].version;
+              } else {
+                return ""
+              }
             }
           }
           break;
@@ -296,7 +337,7 @@ export class CranixListComponent implements OnInit, OnChanges {
     for (let i = 0; i < this.gridApi.getSelectedRows().length; i++) {
       this.objectService.selectedIds.push(this.gridApi.getSelectedRows()[i].id);
     }
-    this.objectService.selection = this.gridApi.getSelectedRows()
+    this.objectService.selectedObjects = this.gridApi.getSelectedRows()
   }
 
   redirectToAddInstitute() {
@@ -344,10 +385,10 @@ export class CranixListComponent implements OnInit, OnChanges {
   async openActions(ev: any, object: any) {
     if (object) {
       this.objectService.selectedIds = [object.id]
-      this.objectService.selection = [object]
+      this.objectService.selectedObjects = [object]
     } else {
       this.getSelection();
-      if (this.objectService.selection.length == 0) {
+      if (this.objectService.selectedObjects.length == 0) {
         this.objectService.selectObject();
         return;
       }
@@ -358,7 +399,7 @@ export class CranixListComponent implements OnInit, OnChanges {
       componentProps: {
         objectType: this.objectType,
         objectIds: this.objectService.selectedIds,
-        selection: this.objectService.selection,
+        selection: this.objectService.selectedObjects,
         gridApi: this.gridApi
       },
       translucent: true,
@@ -398,5 +439,13 @@ export class CranixListComponent implements OnInit, OnChanges {
       cssClass: 'big-modal'
     })
     modal.present();
+  }
+
+  onSelectionChanged() {
+    this.objectService.selectedObjects = this.gridApi.getSelectedRows();
+    this.objectService.selectedIds = []
+    for (let obj of this.objectService.selectedObjects) {
+      this.objectService.selectedIds.push(obj.id)
+    }
   }
 }

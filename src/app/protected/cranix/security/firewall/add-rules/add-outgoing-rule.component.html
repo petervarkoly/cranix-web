@@ -1,7 +1,7 @@
-<form #addRule="ngForm" (ngSubmit)="addOutRule(addRule.value)">
+<form #addRule="ngForm" (ngSubmit)="addOutRule()">
   <ion-header translucent>
-    <ion-toolbar>
-      <ion-title>{{  'Add outgoing firewall rule' | translate }}</ion-title>
+    <ion-toolbar color="primary">
+      <ion-title>{{ 'Add outgoing firewall rule' | translate }}</ion-title>
       <ion-buttons slot="end">
         <ion-button type="submit" class="ion-no-margin" [disabled]="!addRule.valid">
           <ion-icon slot="icon-only" color="success" name="checkmark-sharp"></ion-icon>
@@ -13,76 +13,32 @@
     </ion-toolbar>
   </ion-header>
   <ion-content fullscreen>
-    <ion-list lines="full"> 
+    <ion-list lines="full">
       <ion-item>
-        <ion-label position="stacked">{{'Rule type'| translate}}</ion-label>
+        <ion-label position="authService.settings.labelPlacement">{{'Rule type'| translate}}</ion-label>
         <ion-select type="text" [(ngModel)]="rule.type" name="type">
           <ion-select-option value="room">{{'room'| translate}}</ion-select-option>
           <ion-select-option value="device">{{'device'| translate}}</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-item *ngIf="rule.type == 'room'">
-        <ion-label position="stacked">{{'Room'| translate}}</ion-label>
-        <ionic-selectable
-          #ionicSelectable
-          item-content
-          [(ngModel)]="selectedSource"
-          [ngModelOptions]="{standalone: true}"
-          [items]="roomIps"
-          itemValueField="key"
-          itemTextField="name"
-          [canSearch]="true">
-          <ng-template ionicSelectableHeaderTemplate>
-            <ion-toolbar>
-              <ion-title>
-              {{ "Select a Room" | translate }}
-              </ion-title>
-              <ion-buttons slot="end">
-                <ion-button ion-button (click)="ionicSelectable.close()">
-                  <ion-icon color="danger" name="close"></ion-icon>
-                </ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ng-template>
-          <ng-template ionicSelectableItemIconTemplate>
-            <div></div>
-          </ng-template>
-        </ionic-selectable>
-      </ion-item>
-      <ion-item *ngIf="rule.type == 'device'">
-        <ion-label position="stacked">{{'Device'| translate}}</ion-label>
-        <ionic-selectable
-          #ionicSelectable
-          item-content
-          [(ngModel)]="selectedSource"
-          [ngModelOptions]="{standalone: true}"
-          [items]="deviceIps"
-          itemValueField="key"
-          itemTextField="name"
-          [canSearch]="true">
-          <ng-template ionicSelectableHeaderTemplate>
-            <ion-toolbar>
-              <ion-title>
-              {{ "Select a Device" | translate }}
-              </ion-title>
-              <ion-buttons slot="end">
-                <ion-button ion-button (click)="ionicSelectable.close()">
-                  <ion-icon color="danger" name="close"></ion-icon>
-                </ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ng-template>
-          <ng-template ionicSelectableItemIconTemplate>
-            <div></div>
-          </ng-template>
-        </ionic-selectable>
-      </ion-item>
+      @if(rule.type == 'room'){
       <ion-item>
-        <ion-label position="stacked">{{'dest'|translate}}</ion-label>
+        <ion-label position="authService.settings.labelPlacement">{{'Room'| translate}}</ion-label>
+        <cranix-search objectType="room" [(ngModel)]="selectedSource" [items]="securityService.firewallRooms"
+          name="selectRoomSource"></cranix-search>
+      </ion-item>
+      }@else{
+      <ion-item>
+        <ion-label position="authService.settings.labelPlacement">{{'Device'| translate}}</ion-label>
+        <cranix-search objectType="device" [(ngModel)]="selectedSource" name="selectDeviceSource"></cranix-search>
+      </ion-item>
+      }
+      <ion-item>
+        <ion-label position="authService.settings.labelPlacement">{{'dest'|translate}}</ion-label>
         <ion-input type="text" [(ngModel)]="rule.dest" name="dest"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">{{'Protocol'|translate}}</ion-label>
+        <ion-label position="authService.settings.labelPlacement">{{'Protocol'|translate}}</ion-label>
         <ion-select type="text" [(ngModel)]="rule.protocol" name="protocol">
           <ion-select-option value="all">{{'all'| translate}}</ion-select-option>
           <ion-select-option value="tcp">{{'TCP'| translate}}</ion-select-option>
@@ -90,7 +46,7 @@
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">{{'Port'|translate}}</ion-label>
+        <ion-label position="authService.settings.labelPlacement">{{'Port'|translate}}</ion-label>
         <ion-input type="text" [(ngModel)]="rule.port" name="port" [disabled]="rule.protocol == 'all'"
           [required]="rule.protocol != 'all'"></ion-input>
       </ion-item>

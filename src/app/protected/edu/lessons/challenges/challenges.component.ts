@@ -308,9 +308,9 @@ export class ChallengesComponent implements OnInit {
   async openActions(ev: any, object: CrxChallenge) {
     if (object) {
       this.objectService.selectedIds.push(object.id)
-      this.objectService.selection.push(object)
+      this.objectService.selectedObjects.push(object)
     } else {
-      if (this.objectService.selection.length == 0) {
+      if (this.objectService.selectedObjects.length == 0) {
         this.objectService.selectObject();
         return;
       }
@@ -321,7 +321,7 @@ export class ChallengesComponent implements OnInit {
       componentProps: {
         objectType: "challenges/challenge",
         objectIds: this.objectService.selectedIds,
-        selection: this.objectService.selection,
+        selection: this.objectService.selectedObjects,
         gridApi: null
       },
       animated: true,

@@ -234,8 +234,8 @@ export class CephalixService {
 	addUserToInstitute(userId, instituteId: number) {
 		this.url = this.hostname + `/institutes/${instituteId}/users/${userId}`;
 		console.log(this.url)
-		return this.http.put<ServerResponse>(this.url, null, { headers: this.authService.headers }).subscribe(
-			val => this.objectService.responseMessage(val)
+		this.http.put<ServerResponse>(this.url, null, { headers: this.authService.headers }).subscribe(
+			val => console.log(val)
 		);
 	}
 

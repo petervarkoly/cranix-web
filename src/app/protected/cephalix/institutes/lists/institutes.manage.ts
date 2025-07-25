@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { GridApi } from 'ag-grid-community';
+import { Component } from '@angular/core';
 import { PopoverController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -13,23 +12,16 @@ import { User } from 'src/app/shared/models/data-model';
 
 @Component({
   standalone: false,
-    selector: 'cranix-institutes',
+  selector: 'cranix-institutes',
   templateUrl: './institutes.manage.html',
   styleUrls: ['./institutes.manage.scss'],
 })
-export class InstitutesManage implements OnInit {
-  managedIds:      number[] = [];
-  userKeys:        string[] = [ 'id','uid','givenName','surName','role'];
-  instituteKeys:   string[] = [ 'id','uuid','name','locality','validity'];
-  managerUsers:    User[]   = [];
-  selectedManager: User     = new User();
-  instituteView:   boolean = false;
-  columnDefs = [];
-  defaultColDef = {};
-  gridApi: GridApi;
+export class InstitutesManage {
+  managerUsers: User[] = []
+  manager: User
+  myInstitutes: Institute[] = []
+  isManageInstituteOpen: boolean = false
   context;
-  title = 'app';
-  rowData = [];
 
   constructor(
     public authService: AuthenticationService,
@@ -41,138 +33,37 @@ export class InstitutesManage implements OnInit {
     public route: Router
   ) {
     this.context = { componentParent: this };
-    this.defaultColDef = {
-        resizable: true,
-        sortable: true,
-        hide: false,
-        suppressHeaderMenuButton : true,
-        checkboxSelection : false
-      };
-  }
-
-  ngOnInit() {
-
-    this.createColumnDefs(this.userKeys);
-    for (let user of this.objectService.allObjects['user'] ) {
+    let tmp = []
+    for (let user of this.objectService.allObjects['user']) {
       if (user.role.toLowerCase() == "reseller" || user.role == "sysadmins") {
-        this.managerUsers.push(user)
+        tmp.push(user)
       }
     }
+    this.managerUsers = tmp
   }
 
-  createColumnDefs(keys: string[]) {
-    let columnDefs = [];
-    for (let key of keys) {
-      let col = {};
-      col['field'] = key;
-      col['headerName'] = this.languageS.trans(key);
-      switch (key) {
-        case 'uuid': {
-          col['headerCheckboxSelection'] = this.authService.settings.headerCheckboxSelection;
-          col['headerCheckboxSelectionFilteredOnly'] = true;
-          col['minWidth'] = 170;
-          col['cellStyle'] = { 'padding-left': '2px' };
-          col['suppressSizeToFit'] = true;
-          col['pinned'] = 'left';
-          col['flex'] = '1';
-          col['colId'] = '1';
-          columnDefs.push(col);
-          continue;
-        }
-      }
-      columnDefs.push(col);
-    }
-    console.log(this.columnDefs);
-    this.columnDefs = columnDefs;
-  }
-
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridApi.setGridOption('rowData', this.managerUsers);
-    params.columnApi.autoSizeColumns();
-    this.gridApi.addEventListener('rowClicked', this.userRowClickedHandler);
-  }
-
-  userRowClickedHandler(event) {
-    console.log("userRowClickedHandler:" + event);
-    let myContent = event.context['componentParent'];
-    myContent.selectedManager = event.data;
-    myContent.gridApi.removeEventListener('rowClicked', myContent.userRowClickedHandler);
-    myContent.createColumnDefs(myContent.instituteKeys);
-    myContent.gridApi.setRowData(myContent.objectService.allObjects['institute']);
-    myContent.instituteView = true;
-    (<HTMLInputElement>document.getElementById("instituteManageTable")).style.setProperty('height', '93%');
-    myContent.gridApi.addEventListener('rowClicked', myContent.instituteRowClickedHandler);
-    myContent.objectService.okMessage("Loading data ...");
-    //select the owned schools
-    myContent.cephalixService.getInstitutesFromUser(myContent.selectedManager.id).subscribe(
+  manageMyInstitute(user: User) {
+    this.manager = user
+    this.cephalixService.getInstitutesFromUser(user.id).subscribe(
       (val) => {
-        console.log(val)
-        var managedIds = [];
-        for( let obj of val) {
-          managedIds.push(obj.id)
-        }
-        myContent.managedIds = managedIds;
-        myContent.gridApi.forEachNode(
-          function (node, index) {
-            if( managedIds.indexOf(node.data.id) != -1 ) {
-              node.setSelected(true);
-            }
-          }
-        )
+        this.myInstitutes = val
+        this.isManageInstituteOpen = true
+        console.log(this.myInstitutes)
       }
     )
   }
 
-  userList() {
-    this.gridApi.removeEventListener('rowClicked', this.instituteRowClickedHandler);
-    this.createColumnDefs(this.userKeys);
-    this.gridApi.setGridOption('rowData', this.managerUsers);
-    this.instituteView = false;
-    (<HTMLInputElement>document.getElementById("instituteManageTable")).style.setProperty('height', '100%');
-    this.gridApi.addEventListener('rowClicked', this.userRowClickedHandler);
-  }
-
-  instituteRowClickedHandler(event) {
-    let myContent = event.context['componentParent'];
-    let index = myContent.managedIds.indexOf(event.data.id);
-    if( index == -1) {
-      myContent.cephalixService.addUserToInstitute(myContent.selectedManager.id, event.data.id).subscribe(
-        val => {
-          myContent.objectService.responseMessage(val);
-          myContent.managedIds.push(event.data.id);
-        }
-      )
-    } else {
-      myContent.cephalixService.deleteUserFromInstitute(myContent.selectedManager.id, event.data.id).subscribe(
-        val => {
-          myContent.objectService.responseMessage(val);
-          myContent.managedIds.splice(index,1);
-        }
-      )
+  applyChanges(modal) {
+    this.objectService.requestSent()
+    for (let institute of this.myInstitutes) {
+      this.cephalixService.addUserToInstitute(this.manager.id, institute.id)
     }
+    modal.dismiss()
+    this.isManageInstituteOpen = false
   }
 
-  showSelected() {
-    let selectedRows = this.gridApi.getSelectedRows();
-    this.gridApi.setGridOption('rowData', selectedRows);
-    this.gridApi.selectAll();
-  }
-
-  showAll() {
-    this.gridApi.setGridOption('rowData', this.objectService.allObjects['institute']);
-    var managedIds = this.managedIds;
-    this.gridApi.forEachNode(
-      function (node, index) {
-        if( managedIds.indexOf(node.data.id) != -1 ) {
-          node.setSelected(true);
-        }
-      }
-    )
-  }
-
-  onQuickFilterChanged(quickFilter) {
-    console.log(quickFilter,'value',(<HTMLInputElement>document.getElementById(quickFilter)).value);
-    this.gridApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById(quickFilter)).value);
+  closeModal(modal) {
+    modal.dismiss()
+    this.isManageInstituteOpen = false
   }
 }

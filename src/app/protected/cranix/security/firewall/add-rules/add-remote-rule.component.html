@@ -1,6 +1,6 @@
-<form #addRule="ngForm" (ngSubmit)="addRemoteRule(addRule.value)">
+<form #addRule="ngForm" (ngSubmit)="addRemoteRule()">
   <ion-header translucent>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
       <ion-title>{{  'Add remote access firewall rule' | translate }}</ion-title>
       <ion-buttons slot="end">
         <ion-button type="submit" class="ion-no-margin" [disabled]="!addRule.valid">
@@ -15,40 +15,16 @@
   <ion-content fullscreen>
     <ion-list lines="full">
       <ion-item>
-        <ion-label position="stacked">{{'external port'| translate}}</ion-label>
+        <ion-label position="authService.settings.labelPlacement">{{'external port'| translate}}</ion-label>
         <ion-input type="text" [(ngModel)]="rule.ext" name="ext" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">{{'device'| translate}}</ion-label>
-        <ionic-selectable
-          #ionicSelectable
-          item-content
-          [(ngModel)]="selectedDevice"
-          [ngModelOptions]="{standalone: true}"
-          [items]="deviceIps"
-          itemValueField="key"
-          itemTextField="name"
-          [canSearch]="true">
-          <ng-template ionicSelectableHeaderTemplate>
-            <ion-toolbar>
-              <ion-title>
-              {{ "Select a Device" | translate }}
-              </ion-title>
-              <ion-buttons slot="end">
-                <ion-button ion-button (click)="ionicSelectable.close()">
-                  <ion-icon color="danger" name="close"></ion-icon>
-                </ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ng-template>
-          <ng-template ionicSelectableItemIconTemplate>
-           <div></div>
-          </ng-template>
-        </ionic-selectable>
+        <ion-label position="authService.settings.labelPlacement">{{'device'| translate}}</ion-label>
+        <cranix-search objectType="device" [(ngModel)]="selectedDevice" name="selectDevice"></cranix-search>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">{{'internal port'|translate}}</ion-label>
-        <ion-input type="text" [(ngModel)]="rule.port" name="port"></ion-input>
+        <ion-label position="authService.settings.labelPlacement">{{'internal port'|translate}}</ion-label>
+        <ion-input type="text" [(ngModel)]="rule.port" name="port" required></ion-input>
       </ion-item>
     </ion-list>
   </ion-content>

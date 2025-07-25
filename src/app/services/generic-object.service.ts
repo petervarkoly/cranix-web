@@ -22,6 +22,7 @@ export class GenericObjectService {
   selectedObject: any = null;
   selectedObjectType: string = null;
   selection: any[] = [];
+  selectedObjects: any[] = [];
   selectedIds: number[] = [];
   selectedRoom: any = null;
   selectedGroup: any = null;

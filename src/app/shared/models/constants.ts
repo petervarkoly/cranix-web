@@ -244,9 +244,11 @@ export function getObjectKeys(objectType: string) {
         case 'dyndns': return Object.getOwnPropertyNames(new DynDns)
         case 'institute': return Object.getOwnPropertyNames(new Institute)
         case 'institutestatus': return Object.getOwnPropertyNames(new InstituteStatus)
+        case 'oneinstitutestatus': return Object.getOwnPropertyNames(new InstituteStatus).filter((value) => value != 'cephalixInstituteId')
         case 'notice': return Object.getOwnPropertyNames(new Notice)
         case 'repository': return Object.getOwnPropertyNames(new Repository)
         case 'ticket': return Object.getOwnPropertyNames(new Ticket)
+        case 'internetaccess': return ['time','user','sourceIp','destinationIp','protocol','port']
         default: return ['name', 'description', 'created', 'modified', 'creatorId']
     }
 }

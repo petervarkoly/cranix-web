@@ -22,17 +22,13 @@
   <ion-fab-list side="start">
     <ion-fab-button (click)="context.openActions($event,null)">
       <ion-icon name="ellipsis-vertical-sharp"></ion-icon>
-    </ion-fab-button>
-    @if(objectType == 'printer'){
-    <ion-fab-button (click)="context.componentParent.addDevice($event)">
-      <ion-icon name="add-circle"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-button (click)="context.componentParent.addPrinter($event)" disabled>
-      <ion-icon name="print-outline"></ion-icon>
-    </ion-fab-button>
-    }@else{
+    </ion-fab-button>    
     <ion-fab-button (click)="context.componentParent.redirectToEdit(null)">
       <ion-icon name="add-circle"></ion-icon>
+    </ion-fab-button>
+    @if(objectType == 'printer'){
+    <ion-fab-button (click)="context.componentParent.addPrinter($event)" disabled>
+      <ion-icon name="print-outline"></ion-icon>
     </ion-fab-button>
     }
     @if(objectType == 'package' && authService.isAllowed('software.download')){
@@ -40,8 +36,31 @@
       <ion-icon name="cloud-download"></ion-icon>
     </ion-fab-button>
     }
+    @if(objectType == 'customer'){
+    <ion-fab-button (click)="context.componentParent.redirectToAddInstitute()"
+      matTooltip="{{'Create a new institute for the selected customer' | translate }}">
+      <ion-icon name="add-circle"></ion-icon>
+      <ion-icon name="business"></ion-icon>
+    </ion-fab-button>
+    }
+    @if(objectType == 'software'){
+    <ion-fab-button (click)="context.componentParent.writeConfig()"
+      matTooltip="{{'Write state files for the devices' | translate }}">
+      <ion-icon name="pencil-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="context.componentParent.applyState()"
+      matTooltip="{{'Apply state on all running devices' | translate }}">
+      <ion-icon name="refresh-outline"></ion-icon>
+    </ion-fab-button>
+    }
+    @if(objectType == 'ticket') {
+    <ion-fab-button fill="solid" (click)="context.componentParent.reloadAllObjects()"
+      matTooltip="{{'Reload tickets' | translate }}">
+      <ion-icon color="secondary" name="refresh"></ion-icon>
+    </ion-fab-button>
+    }
     @if(objectType == 'challenge'){
-    <ion-fab-button size="small" fill="solid" (click)="getCephalixChallenges()"
+    <ion-fab-button (click)="getCephalixChallenges()"
       matTooltip="{{'Get challenges from CEPHALIX server to the selected subject.' | translate }}">
       <img src="assets/images/logo/cranix_school.svg" style="height: 32px; width: 32px;">
     </ion-fab-button>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { OutgoingRule } from 'src/app/shared/models/secutiry-model';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 import { ModalController } from '@ionic/angular';
@@ -14,41 +14,28 @@ class SourceObject {
   templateUrl: './add-outgoing-rule.component.html',
   styleUrls: ['./add-outgoing-rule.component.scss'],
 })
-export class AddOutgoingRuleComponent implements OnInit {
+export class AddOutgoingRuleComponent {
 
   rule: OutgoingRule = new OutgoingRule();
-  roomIps:        SourceObject[] = [];
-  deviceIps:      SourceObject[] = [];
-  selectedSource: SourceObject;
+  selectedSource;
   constructor(
     public objectService: GenericObjectService,
     public securityService: SecurityService,
     public modalCtrl: ModalController
   ) {
-    for (let room of this.securityService.firewallRooms) {
-      this.roomIps.push({ key: room.id, name: room.name })
-    }
-    for (let dev of this.objectService.allObjects['device']) {
-      this.deviceIps.push({ key: dev.id, name: dev.name })
-    }
   }
 
-  ruleTypeChanged() { }
-  ngOnInit() { }
-
-  addOutRule(rule: OutgoingRule) {
-    console.log(rule);
-    console.log(this.selectedSource);
-    rule.id= this.selectedSource.key;
-    let name = this.selectedSource.name;
+  addOutRule() {
+    console.log(this.selectedSource, this.rule);
     this.securityService.addOutgoingRule({
-        protocol: rule.protocol,
-        port: rule.port,
-        name: name,
-        id: rule.id,
-        type: rule.type,
-        dest: rule.dest
+        protocol: this.rule.protocol,
+        port: this.rule.port,
+        name: this.selectedSource.name,
+        id: this.selectedSource.id,
+        type: this.rule.type,
+        dest: this.rule.dest
       });
+      
     this.modalCtrl.dismiss('success');
   }
 }

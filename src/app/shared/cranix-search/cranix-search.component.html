@@ -1,12 +1,12 @@
 <ion-button expand="block" fill="clear" (click)="openModal()">
-    @if(selection && selection.length > 0){
+    @if(!selection || selection.length == 0){
+    {{emptyLabel|translate}}
+    }@else{
     @if(multiple){
     {{selection.length}} {{selectedLabel|translate}}
     }@else{
     @for(field of itemTextField; track field){ {{selection[field]}} &nbsp; }
     }
-    }@else{
-    {{emptyLabel|translate}}
     }
     <ion-icon slot="end" name="caret-down"></ion-icon>
 </ion-button>
@@ -55,8 +55,8 @@
             <ul class="radiolist">
                 @for(o of rowData; track o.id){
                 <li>
-                    <input type="radio" (click)="select(o,cranixSearchModal)" [id]="o.id"
-                        name="cranixSearchList" [checked]="selection && o.id == selection.id">
+                    <input type="radio" (click)="select(o,cranixSearchModal)" [id]="o.id" name="cranixSearchList"
+                        [checked]="selection && o.id == selection.id">
                     <label [for]="o.id">
                         @for(field of itemTextField; track field){ {{o[field]}} &nbsp; }
                     </label>

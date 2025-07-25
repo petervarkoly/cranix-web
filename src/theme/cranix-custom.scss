@@ -59,7 +59,7 @@ ion-input.number {
 * Layaout for cranix-search-list and user/group member lists
 */
 .button-container {
-    height: 90%; /* 50% der Viewport-Höhe */
+    height: 90vh; /* 50% der Viewport-Höhe */
     overflow-y: auto; /* Bei Überlauf scrollbar machen */
     border: 1px solid #ccc; /* Optional: Rahmen für Sichtbarkeit */
     padding: 10px;

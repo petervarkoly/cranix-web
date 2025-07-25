@@ -49,7 +49,7 @@ export class CranixMdListComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.objectService.selection = []
+    this.objectService.selectedObjects = []
     this.objectService.selectedIds = []
     this.initSteps()
     if (!this.min) {
@@ -155,10 +155,10 @@ export class CranixMdListComponent implements OnInit {
   checkChange(ev, dev) {
     if (ev.detail.checked) {
       this.objectService.selectedIds.push(dev.id)
-      this.objectService.selection.push(dev)
+      this.objectService.selectedObjects.push(dev)
     } else {
       this.objectService.selectedIds = this.objectService.selectedIds.filter(id => id != dev.id)
-      this.objectService.selection = this.objectService.selection.filter(obj => obj.id != dev.id)
+      this.objectService.selectedObjects = this.objectService.selectedObjects.filter(obj => obj.id != dev.id)
     }
   }
 
@@ -190,7 +190,7 @@ export class CranixMdListComponent implements OnInit {
       (val) => {
         this.rowData = val
         this.objectService.allObjects[this.objectType] = val
-        this.objectService.selection = []
+        this.objectService.selectedObjects = []
         this.objectService.selectedIds = [];
         this.initSteps()
       }
@@ -237,9 +237,9 @@ export class CranixMdListComponent implements OnInit {
   async openActions(ev: any, object: any) {
       if (object) {
         this.objectService.selectedIds = [object.id]
-        this.objectService.selection = [object]
+        this.objectService.selectedObjects = [object]
       } else {
-        if (this.objectService.selection.length == 0) {
+        if (this.objectService.selectedObjects.length == 0) {
           this.objectService.selectObject();
           return;
         }
@@ -250,7 +250,7 @@ export class CranixMdListComponent implements OnInit {
         componentProps: {
           objectType: this.objectType,
           objectIds: this.objectService.selectedIds,
-          selection: this.objectService.selection
+          selection: this.objectService.selectedObjects
         },
         translucent: true,
         animated: true,
