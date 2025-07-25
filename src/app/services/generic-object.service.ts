@@ -147,7 +147,7 @@ export class GenericObjectService {
       let respons = await this.getObjects(objectType)
       let val = await respons.json()
       if (objectType == 'ticket') {
-        val.sort(this.sortByCreated)
+        val.sort(this.sortByModified)
       }
       this.allObjects[objectType] = val;
       selects[objectType + 'Id'] = []
@@ -458,6 +458,16 @@ export class GenericObjectService {
       return 1;
     }
     if (a.created > b.created) {
+      return -1;
+    }
+    return 0;
+  }
+
+  sortByModified(a, b) {
+    if (a.modified < b.modified) {
+      return 1;
+    }
+    if (a.modified > b.modified) {
       return -1;
     }
     return 0;
