@@ -25,7 +25,7 @@ export class SelectColumnsComponent implements OnInit {
 
   ngOnInit() {
     for (let key of this.columns) {
-      this.object[key] = this.selected.indexOf(key) != -1;
+      this.object[key] = this.selected.indexOf(key) == -1;
     }
     console.log("Object:" + this.object);
   }
@@ -37,7 +37,7 @@ export class SelectColumnsComponent implements OnInit {
     console.log(this.object);
     var myArray: string[] = [];
     for (let key of this.columns) {
-      if (this.object[key]) {
+      if (!this.object[key]) {
         myArray.push(key);
       }
     }
