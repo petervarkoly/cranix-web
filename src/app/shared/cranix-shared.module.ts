@@ -41,7 +41,6 @@ import { RoomIdCellRenderer } from 'src/app/pipes/ag-roomid-render';
 import { RoomRenderer } from 'src/app/pipes/ag-ptm-room-renderer';
 import { DeviceIdCellRenderer } from 'src/app/pipes/ag-deviceid-renderer';
 import { InstituteStatusRenderer } from 'src/app/pipes/ag-institute-status-renderer'
-import { SyncObjectRenderer } from 'src/app/pipes/ag-sync-object-renderer'
 import { InstituteActionCellRenderer } from 'src/app/pipes/ag-institute-action-renderer';
 import { UpdateRenderer } from 'src/app/pipes/ag-update-renderer';
 import { UserIdCellRenderer } from 'src/app/pipes/ag-userid-renderer';
@@ -116,7 +115,6 @@ import { simpleToolbarOptions } from 'src/app/shared/models/constants'
     ShowImportComponent,
     SoftwareEditBTNRenderer,
     SelectColumnsComponent,
-    SyncObjectRenderer,
     SetContractComponent,
     SetValidityComponent,
     UpdateRenderer,
