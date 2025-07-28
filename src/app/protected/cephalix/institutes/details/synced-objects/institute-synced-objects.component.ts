@@ -1,20 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { GridApi } from 'ag-grid-community';
+import { Component } from '@angular/core';
 
 //Own stuff
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { CephalixService } from 'src/app/services/cephalix.service';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { LanguageService } from 'src/app/services/language.service';
 import { Institute, SynchronizedObject } from 'src/app/shared/models/cephalix-data-model';
-import { SyncObjectRenderer } from 'src/app/pipes/ag-sync-object-renderer';
 
 @Component({
   standalone: false,
     selector: 'cranix-institute-synced-objects',
   templateUrl: './institute-synced-objects.component.html'
 })
-export class InstituteSyncedObjectsComponent implements OnInit {
+export class InstituteSyncedObjectsComponent {
 
   context;
   defaultColDef = {
@@ -23,7 +20,6 @@ export class InstituteSyncedObjectsComponent implements OnInit {
     hide: false
   };
   columnDefs = [];
-  memberApi: GridApi;
   memberSelection: SynchronizedObject[] = [];
   memberData: SynchronizedObject[] = [];
   modules = [];
@@ -35,61 +31,16 @@ export class InstituteSyncedObjectsComponent implements OnInit {
   constructor(
     public authService: AuthenticationService,
     public cephalixService: CephalixService,
-    public objectService: GenericObjectService,
-    private languageS: LanguageService
+    public objectService: GenericObjectService
   ) {
     this.institute = <Institute>this.objectService.selectedObject;
-    this.context = { componentParent: this };
-    this.columnDefs = [
-      {
-        field: 'objectType',
-        valueGetter: function (params) {
-          return params.context['componentParent'].languageS.trans(params.data.objectType);
-        },
-      },
-      {
-        headerName: this.languageS.trans('name'),
-        minsize: '300px',
-        field: 'objectName',
-      },
-      {
-        headerName: this.languageS.trans('lastSync'),
-        field: 'lastSync'
-      },
-      {
-        headerName: "",
-        field: 'cranixId',
-        cellRenderer: SyncObjectRenderer
-      }
-    ];
-  }
-
-  ngOnInit() {
     this.readMembers();
   }
 
-  public ngAfterViewInit() {
-    while (document.getElementsByTagName('mat-tooltip-component').length > 0) { document.getElementsByTagName('mat-tooltip-component')[0].remove(); }
-  }
-
-  onMemberReady(params) {
-    this.memberApi = params.api;
-  }
-
   onMemberFilterChanged() {
-    this.memberApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById("memberFilter")).value);
+    let filter = (<HTMLInputElement>document.getElementById("memberFilter")).value.toLowerCase();
   }
 
-  onResize($event) {
-    //this.sizeAll();
-  }
-  sizeAll() {
-    var allColumnIds = [];
-    this.memberApi.getColumns().forEach((column) => {
-      allColumnIds.push(column.getColId());
-    });
-    this.memberApi.autoSizeColumns(allColumnIds);
-  }
   readMembers() {
     switch (this.segment) {
       case 'to': {
@@ -105,26 +56,24 @@ export class InstituteSyncedObjectsComponent implements OnInit {
         break;
       }
       case 'from': {
-        let subS = this.cephalixService.getSynchronizedObjects(this.institute.id).subscribe({
+        this.cephalixService.getSynchronizedObjects(this.institute.id).subscribe({
           next: (val) => {
             console.log("readMembers to " + val.length + "object read")
             this.memberData = val;
             this.syncedObjects = val;
-            let subM = this.cephalixService.getObjectsFromInstitute(this.institute.id, 'hwconf').subscribe({
+            this.cephalixService.getObjectsFromInstitute(this.institute.id, 'hwconf').subscribe({
               next: (val) => {
                 this.memberData = []
                 console.log("readMembers from " + val.length + "object read")
+                var i = 0;
                 for (let obj of val) {
                   this.hwconfs[obj.id] = obj;
                   this.memberData.push(this.isSynced(obj, 'hwconf'))
                 }
-              },
-              error: (err) => { this.authService.log(err) },
-              complete: () => { subM.unsubscribe() }
+                console.log(this.memberData)
+              }
             })
-          },
-          error: (err) => { this.authService.log(err) },
-          complete: () => { subS.unsubscribe() }
+          }
         });
         break;
       }
@@ -143,6 +92,7 @@ export class InstituteSyncedObjectsComponent implements OnInit {
       }
     }
     return {
+      id: obj.id,
       objectType: 'hwconf',
       objectName: obj.name,
       lastSync: 0,
@@ -181,8 +131,8 @@ export class InstituteSyncedObjectsComponent implements OnInit {
       error: (err) => { this.objectService.errorMessage(err) }
     })
   }
-  stopSyncing(mappingId,direction){
-    this.cephalixService.stopSynching(mappingId,direction).subscribe(
+  stopSyncing(mappingId){
+    this.cephalixService.stopSynching(mappingId,this.segment).subscribe(
       (val) => {
         this.objectService.responseMessage(val)
         this.readMembers()

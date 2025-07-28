@@ -163,7 +163,7 @@ export interface SynchronizedObject {
     id?: number,
     instituteId: number,
     objectType: string,
-    objectName: number,
+    objectName: string,
     cephalixId: number,
     cranixId: number,
     lastSync: number,
