@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,7 +9,6 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 })
 export class SoftwaresPage {
   constructor(
-    public translateService: TranslateService,
     public authService: AuthenticationService
   ) {}
 }
