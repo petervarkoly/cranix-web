@@ -451,7 +451,7 @@ export class PositivList {
 	id?: number = 0;
 	name: string = "";
 	description: string = "";
-	subject: string = "";
+	teachingSubject: string = "";
 	domains: string = "";
 	constructor() { }
 }

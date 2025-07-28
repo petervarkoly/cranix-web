@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 //Our Stuff
 import { ObjectsEditComponent } from 'src/app/shared/objects-edit/objects-edit.component';
@@ -7,27 +7,18 @@ import { AuthenticationService } from 'src/app/services/auth.service';
 import { ModalController } from '@ionic/angular';
 import { LanguageService } from 'src/app/services/language.service';
 import { EductaionService } from 'src/app/services/education.service';
-import { EditBTNRenderer } from 'src/app/pipes/ag-edit-renderer';
 import { GenericObjectService } from 'src/app/services/generic-object.service';
 
 @Component({
   standalone: false,
-    selector: 'cranix-mypositive',
+  selector: 'cranix-mypositive',
   templateUrl: './mypositive.component.html',
   styleUrls: ['./mypositive.component.scss'],
 })
-export class MypositiveComponent implements OnInit {
+export class MypositiveComponent {
 
   rowData: any[];
-  columnDefs = [];
-  defaultColDef = {
-    resizable: true,
-    sortable: true,
-    hide: false,
-    suppressHeaderMenuButton: true
-  };
-  gridApi;
-  columnApi;
+  selectedIds: number[] = []
   context;
 
   constructor(
@@ -36,55 +27,13 @@ export class MypositiveComponent implements OnInit {
     public languageS: LanguageService,
     public modalCtrl: ModalController,
     public objectService: GenericObjectService
-  ) { }
-
-  ngOnInit() {
-    this.context = { componentParent: this };
-    this.createColumnDefs();
+  ) {
     this.readDatas();
   }
 
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.columnApi = params.columnApi;
-    this.gridApi.sizeColumnsToFit();
-  }
-
   onQuickFilterChanged(quickFilter) {
-    this.gridApi.setGridOption('quickFilterText', (<HTMLInputElement>document.getElementById(quickFilter)).value);
+    let filter = (<HTMLInputElement>document.getElementById(quickFilter)).value.toLowerCase();
   }
-
-  createColumnDefs() {
-    this.columnDefs = [];
-    for (let key of Object.getOwnPropertyNames(new PositivList())) {
-      let col = {};
-      switch (key) {
-        case 'id': {
-          break;
-        }
-        case 'name': {
-          col['field'] = key;
-          col['headerName'] = this.languageS.trans(key);
-          this.columnDefs.push(col);
-          this.columnDefs.push({
-            headerName: "",
-            width: 200,
-            suppressSizeToFit: true,
-            cellStyle: { 'padding': '2px', 'line-height': '36px' },
-            field: 'actions',
-            cellRenderer: EditBTNRenderer
-          });
-          break;
-        }
-        default: {
-          col['field'] = key;
-          col['headerName'] = this.languageS.trans(key);
-          this.columnDefs.push(col);
-        }
-      }
-    }
-  }
-
   /**
    * Read the owned positive list.
    */
@@ -96,12 +45,19 @@ export class MypositiveComponent implements OnInit {
     )
   }
 
+  toggleSelect(plist){
+    if(this.selectedIds.indexOf(plist.id) == -1){
+      this.selectedIds.push(plist.id)
+    }else{
+      this.selectedIds = this.selectedIds.filter(value => value != plist.id)
+    }
+  }
   /**
    * Add or edit positive list
    * @param ev 
    * @param positivList 
    */
-  async redirectToEdit(positivList: PositivList) {
+  async redirectToAddEdit(positivList: PositivList) {
     let action = 'modify';
     if (!positivList) {
       positivList = new PositivList();
@@ -119,11 +75,6 @@ export class MypositiveComponent implements OnInit {
       animated: true,
       showBackdrop: true
     });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned.data) {
-        this.authService.log("Object was created or modified", dataReturned.data)
-      }
-    });
     (await modal).present();
   }
 
@@ -132,12 +83,8 @@ export class MypositiveComponent implements OnInit {
    * @param ev 
    */
   activate(ev: Event) {
-    let ids: number[] = [];
-    for (let obj of this.gridApi.getSelectedRows()) {
-      ids.push(obj.id);
-    }
     this.objectService.requestSent();
-    let subs = this.educationService.activatePositivListInRoom(this.educationService.selectedRoom.id, ids).subscribe({
+    let subs = this.educationService.activatePositivListInRoom(this.educationService.selectedRoom.id, this.selectedIds).subscribe({
       next: (val) => { this.objectService.responseMessage(val) },
       error: (err) => { this.objectService.errorMessage(err) },
       complete: () => { subs.unsubscribe() }
