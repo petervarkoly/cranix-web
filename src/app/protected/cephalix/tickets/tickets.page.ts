@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { PopoverController, ModalController } from '@ionic/angular';
-import { Storage } from '@ionic/storage-angular';
+import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 
 //own modules
 import { GenericObjectService } from 'src/app/services/generic-object.service';
-import { LanguageService } from 'src/app/services/language.service';
 import { Ticket } from 'src/app/shared/models/cephalix-data-model'
 import { AuthenticationService } from 'src/app/services/auth.service';
 import { CephalixService } from 'src/app/services/cephalix.service';
@@ -29,19 +27,11 @@ export class TicketsPage {
     public cephalixService: CephalixService,
     public objectService: GenericObjectService,
     public modalCtrl: ModalController,
-    public popoverCtrl: PopoverController,
-    public languageS: LanguageService,
-    private route: Router,
-    private storage: Storage
+    private route: Router
   ) {
-
     this.context = { componentParent: this };
-
   }
 
-  ngOnDestroy() {
-    this.alive = false;
-  }
   async redirectToEdit(ticket: Ticket) {
     if (ticket) {
       this.route.navigate(['/pages/cephalix/tickets/' + ticket.id]);
