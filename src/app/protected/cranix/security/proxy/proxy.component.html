@@ -28,25 +28,15 @@
     </ion-segment-button>
     }
   </ion-segment>
-  @if(!authService.isMD()){
   <ion-buttons slot="end">
-    @if(segment == 'positive'){
-    <ion-button size="small" fill="solid" (click)="redirectToEdit(null)"
-      matTooltip="{{'Create a new positive list.' | translate }}">
-      <ion-icon slot="icon-only" name="add-circle"></ion-icon>
-    </ion-button>
-    }
-    @if(segment != 'positive'){
     <ion-button size="small" fill="solid" (click)="writeConfig()"
       matTooltip="{{'Write proxy configuration and restart proxy.' | translate }}">
       <ion-icon slot="icon-only" color="success" name="checkmark"></ion-icon>
     </ion-button>
-    }
     <ion-button size="small" fill="solid" (click)="restartProxy()" matTooltip="{{'Restart proxy.' | translate }}">
       <ion-icon slot="icon-only" name="arrow-redo" color="tertiary"></ion-icon>
     </ion-button>
   </ion-buttons>
-  }
 </ion-toolbar>
 <ion-item-divider></ion-item-divider>
 <ion-content>
@@ -55,10 +45,42 @@
     <ion-input placeholder="{{'search' | translate }}" (input)="onQuickFilterChanged()" id="proxyQuickFilter">
     </ion-input>
   </ion-item>
-  <ag-grid-angular style="width: 100%; height: 100%;" class="{{authService.settings.agGridThema}}"
+  <div style="display: flex; width: 100%; background-color : {{authService.rowColors[2]}}">
+    <div class="divclass" style="padding: 5px 10px 5px; margin-left: 15px;">{{'Name'|translate}}</div>
+    <div class="divclass" style="padding: 5px 10px 5px 10px;">{{'applyForAll'|translate}}</div>
+    @for(group of groups; track group; let last = $last){
+    @if(last){
+    <div class="divclass" style="padding: 5px 0px 5px 10px; margin-right: 25px;">{{group|translate}} </div>
+    }@else{
+    <div class="divclass" style="padding: 5px 10px 5px 10px;">{{group|translate}} </div>
+    }
+
+    }
+  </div>
+  <div class="button-container">
+    @for(acl of rowData; track acl.name; let i = $index){
+    <div style="display: flex; width: 100%; background-color : {{authService.rowColors[i%2]}}">
+      <div class="divclass" style="padding: 5px 10px 5px;">{{acl.name}}</div>
+      <div class="divclass" style="padding:  5px 10px 5px 10px;">
+        <ion-button class="ion-align-self-center" fill="clear" size="small" (click)="toggleAcl(acl, i)"
+          matTooltip="{{'apply' | translate }}">
+          <ion-icon name="checkmark-circle" color="tertiary"></ion-icon>
+        </ion-button>
+      </div>
+      @for(group of groups; track group){
+      <div class="divclass" style="padding: 10px 10px 5px 10px;">
+        <ion-checkbox [checked]="acl[group]" color="success" (ionChange)="toggle(acl,group)"></ion-checkbox>
+        <!-- input type="checkbox" [checked]="acl[group]" (onClick)="toggle(acl,group)" -->
+      </div>
+      }
+    </div>
+    }
+  </div>
+
+  <!--- ag-grid-angular style="width: 100%; height: 100%;" class="{{authService.settings.agGridThema}}"
     [rowHeight]="authService.settings.rowHeight" [rowData]="rowData" [columnDefs]="columnDefs" [context]="context"
     (gridReady)="proxyGridReady($event)" id="proxyGridTable">
-  </ag-grid-angular>
+  </ag-grid-angular -->
   }@else{
   <form #addNewDomainForm="ngForm">
     <ion-item>
