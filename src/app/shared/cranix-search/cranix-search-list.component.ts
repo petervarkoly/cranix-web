@@ -72,7 +72,7 @@ export class CranixSearchListComponent implements ControlValueAccessor, OnInit, 
   }
 
   setupItems() {
-    if (this.items[0] && !this.items[0].id) {
+    if (this.items[0] && !this.items[0].hasOwnProperty('id')) {
       for (let item of this.items) {
         item['id'] = this.hashStringToInt(item.name + item.version)
       }
